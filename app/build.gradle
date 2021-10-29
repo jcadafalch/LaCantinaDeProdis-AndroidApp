@@ -7,7 +7,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "cat.copernic.jcadafalch_aramirez.lacantinadeprodis"
+        applicationId "cat.copernic.jcadafalchAramirez.lacantinadeprodis"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -23,7 +23,7 @@ android {
         }
     }
     buildFeatures {
-        dataBinding true
+        viewBinding true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

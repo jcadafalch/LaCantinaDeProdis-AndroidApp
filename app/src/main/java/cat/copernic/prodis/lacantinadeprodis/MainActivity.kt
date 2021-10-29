@@ -1,9 +1,8 @@
-package cat.copernic.jcadafalch_aramirez.lacantinadeprodis
+package cat.copernic.prodis.lacantinadeprodis
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
-import cat.copernic.jcadafalch_aramirez.lacantinadeprodis.databinding.ActivityMainBinding
+import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,6 +10,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }
