@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LaCantinaDeProdis</string>
+    <string name="txtPprincipal"><u>Selecciona el tipus d\'usuari que seràs</u></string>
+    <string name="btnPprincipalClient">CLIENT/A</string>
+    <string name="btnPprincipalCambrer">CAIXER/A</string>
+    <string name="btnPprincipalCaixer">CAIXER/A</string>
+    <string name="btnPprincipalCuiner">CUINER/A</string>
+    <string name="btnPprincipalAdministrador">Administrador/a</string>
 </resources>

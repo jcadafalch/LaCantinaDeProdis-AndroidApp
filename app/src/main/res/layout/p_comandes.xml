@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
- // proba
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="170dp"
-        tools:layout_editor_absoluteY="250dp" />
+        android:text="Comandes"
+        tools:layout_editor_absoluteX="171dp"
+        tools:layout_editor_absoluteY="116dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

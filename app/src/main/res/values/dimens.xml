@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="padding">16</dimen>
+    <dimen name="txtPrincipal">20sp</dimen>
+    <dimen name="btnPprincipalCliCambCuiCaix">45sp</dimen>
 </resources>

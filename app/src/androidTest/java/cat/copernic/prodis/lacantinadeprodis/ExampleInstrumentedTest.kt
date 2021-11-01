@@ -1,4 +1,4 @@
-package cat.copernic.jcadafalch_aramirez.lacantinadeprodis
+package cat.copernic.prodis.lacantinadeprodis
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
