@@ -3,43 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.12291666666666666" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/drawable/ic_launcher_background.xml" value="0.12291666666666666" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/drawable/logo_background.xml" value="0.12291666666666666" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/drawable/splash_screen.xml" value="0.12291666666666666" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_administrador_administrar_producte.xml" value="0.1" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_administrador_modificar_usuari.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_administrador_nou_producte.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_administrador_nou_usuari.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_administrador_principal.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_comandes.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_inici_sessio_caixer_cuiner_cambrer.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_inici_sessio_client_admin.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_principal.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_recuperar_contrasenya1.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_recuperar_contrasenya2.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_registre.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/p_administrador_administrar_producte.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/p_administrador_modificar_usuari.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/p_administrador_nou_producte.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/p_administrador_nou_usuari.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/p_administrador_principal.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/p_comandes.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/p_inici_sessio_caixercuinercambrer.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/p_inici_sessio_client.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/p_principal.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/p_recuperar_contrasenya1.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/p_recuperar_contrasenya2.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/p_registre.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/pantalla_inici_sessio.xml" value="0.4" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/pantalla_inici_sessio_caixercuinercambrer.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/pantalla_inici_sessio.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/pantalla_recuperar_contrasenya.xml" value="0.115625" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/pantalla_recuperar_contrasenya1.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/pantalla_recuperar_contrasenya2.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/pantalla_registre.xml" value="0.264" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/mipmap-anydpi-v26/logo.xml" value="0.12291666666666666" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/mipmap-anydpi-v26/logo_round.xml" value="0.18796296296296297" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/pantalla_registre.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/activity_main.xml" value="0.12182971014492754" />
+        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14635416666666667" />
       </map>
     </option>
   </component>
