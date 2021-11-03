@@ -1,11 +1,16 @@
 <resources>
     <string name="app_name">LaCantinaDeProdis</string>
     <string name="txtPprincipal"><u>Selecciona el tipus d\'usuari que seràs</u></string>
-    <string name="btnPprincipalClient">CLIENT/A</string>
-    <string name="btnPprincipalCambrer">CAIXER/A</string>
-    <string name="btnPprincipalCaixer">CAIXER/A</string>
-    <string name="btnPprincipalCuiner">CUINER/A</string>
-    <string name="btnPprincipalAdministrador">Administrador/a</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="client">CLIENT/A</string>
+    <string name="cambrer">CAMNBRER/A</string>
+    <string name="caixer">CAIXER/A</string>
+    <string name="cuiner">CUINER/A</string>
+    <string name="administrador">Administrador/a</string>
+    <string name="iniciarSessio">Iniciar Sessió</string>
+    <string name="txtPIniciarSessio_benvinguda">Hola! M\'alegro de veure\'t de nou.</string>
+    <string name="editDni">11111111L</string>
+    <string name="dni">DNi</string>
+    <string name="contrasenya">Contrasenya</string>
+    <string name="oblidatContrasenya">Has oblidat la contrasenya?</string>
+    <string name="registrat">Registra\'t</string>
 </resources>
