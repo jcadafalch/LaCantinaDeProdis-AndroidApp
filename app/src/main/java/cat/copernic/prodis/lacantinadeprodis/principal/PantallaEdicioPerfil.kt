@@ -1,4 +1,4 @@
-package cat.copernic.prodis.lacantinadeprodis
+package cat.copernic.prodis.lacantinadeprodis.principal
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

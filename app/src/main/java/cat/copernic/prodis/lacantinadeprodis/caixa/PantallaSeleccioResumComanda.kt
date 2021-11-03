@@ -1,10 +1,11 @@
-package cat.copernic.prodis.lacantinadeprodis
+package cat.copernic.prodis.lacantinadeprodis.caixa
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cat.copernic.prodis.lacantinadeprodis.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -13,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [pantalla_seleccio_atributs_bocata.newInstance] factory method to
+ * Use the [pantalla_seleccio_resum_comanda.newInstance] factory method to
  * create an instance of this fragment.
  */
-class pantalla_seleccio_atributs_bocata : Fragment() {
+class pantalla_seleccio_resum_comanda : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,11 +35,7 @@ class pantalla_seleccio_atributs_bocata : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(
-            R.layout.fragment_pantalla_seleccio_atributs_bocata,
-            container,
-            false
-        )
+        return inflater.inflate(R.layout.fragment_pantalla_seleccio_resum_comanda, container, false)
     }
 
     companion object {
@@ -48,12 +45,12 @@ class pantalla_seleccio_atributs_bocata : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment pantalla_seleccio_atributs_bocata.
+         * @return A new instance of fragment pantalla_seleccio_resum_comanda.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            pantalla_seleccio_atributs_bocata().apply {
+            pantalla_seleccio_resum_comanda().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

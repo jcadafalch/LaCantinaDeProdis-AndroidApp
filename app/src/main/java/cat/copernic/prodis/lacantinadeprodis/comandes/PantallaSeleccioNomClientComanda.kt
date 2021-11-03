@@ -1,10 +1,11 @@
-package cat.copernic.prodis.lacantinadeprodis
+package cat.copernic.prodis.lacantinadeprodis.comandes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cat.copernic.prodis.lacantinadeprodis.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
