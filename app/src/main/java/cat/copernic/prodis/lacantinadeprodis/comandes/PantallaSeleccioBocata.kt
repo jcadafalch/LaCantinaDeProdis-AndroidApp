@@ -6,16 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
+import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioAtributsBocataBinding
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioTipusProducteBinding
 
 class PantallaSeleccioBocata : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        val binding: FragmentPantallaSeleccioTipusProducteBinding = DataBindingUtil.inflate(
+        val binding: FragmentPantallaSeleccioAtributsBocataBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_bocata, container, false
         )
+
+
         return binding.root
     }
 }
