@@ -12,21 +12,32 @@ import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSelecci
 
 class PantallaSeleccioTipusProducte : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val binding: FragmentPantallaSeleccioTipusProducteBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_tipus_producte, container, false
         )
 
-        binding.button.setOnClickListener { view : View ->
-            view.findNavController().navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_bocata)
+        binding.btnBocata.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_bocata)
         }
-        binding.button2.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaFreda)
+        binding.btnBegudaFreda.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaFreda)
         }
-        binding.button3.setOnClickListener{ view: View ->
-            view.findNavController().navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaCalenta)
+        binding.btnBegudaCalenta.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaCalenta)
         }
+
+        binding.btnConfirmar.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_nom_client_comanda)
+        }
+
         return binding.root
     }
 }
