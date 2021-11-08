@@ -20,7 +20,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@mipmap/logo_foreground" />
+            app:srcCompat="@mipmap/logo_foreground"
+            android:contentDescription="@string/logo_lacantinadeprodis" />
 
         <TextView
             android:id="@+id/txtPiniciarSessioClient"
@@ -40,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="46dp"
             android:text="@string/txtPIniciarSessio_benvinguda"
+            android:textColor="#616161"
             android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClient_contrasenya"
             app:layout_constraintStart_toStartOf="@+id/txtPIniciarSessioClient_contrasenya" />
@@ -50,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:text="@string/contrasenya"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#00796B"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextNumberPassword"
             app:layout_constraintStart_toStartOf="@+id/editTextNumberPassword" />
@@ -62,10 +64,11 @@
             android:layout_marginStart="32dp"
             android:layout_marginBottom="76dp"
             android:ems="10"
+            android:autofillHints="password"
             android:inputType="numberPassword"
             app:layout_constraintBottom_toTopOf="@+id/btnPiniciarSessioClient"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/btnPiniciarSessioClient"
@@ -76,10 +79,11 @@
             android:layout_marginBottom="176dp"
             android:backgroundTint="@color/colorPrimary"
             android:text="@string/iniciarSessio"
+            android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,TextContrastCheck" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -88,7 +92,8 @@
             android:layout_marginBottom="88dp"
             android:src="@drawable/pasword_eye"
             app:layout_constraintBottom_toTopOf="@+id/btnPiniciarSessioClient"
-            app:layout_constraintStart_toEndOf="@+id/editTextNumberPassword" />
+            app:layout_constraintStart_toEndOf="@+id/editTextNumberPassword"
+            android:contentDescription="@string/image_view_eye" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,27 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/pantalla_rgistre_fragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".principal.PantallaRegistre">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorFons"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageViewLogo"
+            android:layout_width="741dp"
+            android:layout_height="520dp"
+            android:layout_marginBottom="372dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@mipmap/logo_foreground"
+            android:contentDescription="@string/logo_lacantinadeprodis" />
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:id="@+id/txtPRegistre"
+            android:layout_width="146dp"
             android:layout_height="wrap_content"
-            android:text="Pantalla Registre 1"
-            tools:layout_editor_absoluteX="146dp"
-            tools:layout_editor_absoluteY="272dp" />
+            android:text="@string/registrat"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="185dp" />
 
         <Button
             android:id="@+id/btnPregistre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Continuar"
+            android:layout_width="227dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginBottom="26dp"
             tools:layout_editor_absoluteX="152dp"
             tools:layout_editor_absoluteY="390dp" />
 
@@ -40,6 +58,8 @@
             android:text="Inicia sessoó"
             tools:layout_editor_absoluteX="231dp"
             tools:layout_editor_absoluteY="463dp" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
