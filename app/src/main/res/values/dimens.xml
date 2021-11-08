@@ -2,4 +2,5 @@
 <resources>
     <dimen name="txtPrincipal">20sp</dimen>
     <dimen name="btnPprincipalCliCambCuiCaix">30sp</dimen>
+    <dimen name="txtRegistreIniciSessio">14sp</dimen>
 </resources>
