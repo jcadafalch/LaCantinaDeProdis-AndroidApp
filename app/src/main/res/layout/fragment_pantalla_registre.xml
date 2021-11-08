@@ -33,6 +33,15 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="185dp" />
 
+        <TextView
+            android:id="@+id/textPRegistre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nom_i_cognoms"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="219dp" />
+
+
         <Button
             android:id="@+id/btnPregistre"
             android:text="Continuar"

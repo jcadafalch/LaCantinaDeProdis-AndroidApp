@@ -31,32 +31,32 @@
             android:text="@string/iniciarSessio"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClient_benvinguda"
-            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClient_dni" />
+            app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientBenvinguda"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni" />
 
         <TextView
-            android:id="@+id/txtPIniciarSessioClient_benvinguda"
+            android:id="@+id/txtPIniciarSessioClientBenvinguda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:text="@string/txtPIniciarSessio_benvinguda"
             android:textColor="#616161"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClient_dni"
-            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClient_dni" />
+            app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientDni"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni" />
 
         <TextView
-            android:id="@+id/txtPIniciarSessioClient_dni"
+            android:id="@+id/txtPIniciarSessioClientDni"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dni"
             android:textColor="#00796B"
             android:textSize="@dimen/txtRegistreIniciSessio"
-            app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClient_dni"
-            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClient_dni" />
+            app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientDni"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni" />
 
         <EditText
-            android:id="@+id/dtTxtPIniciarSessioClient_dni"
+            android:id="@+id/dtTxtPIniciarSessioClientDni"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="47dp"
@@ -64,12 +64,12 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@string/editDni"
-            app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClient_contrasenya"
+            app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientContrasenya"
             app:layout_constraintStart_toStartOf="@+id/editTextNumberPassword"
             tools:ignore="LabelFor,TouchTargetSizeCheck" />
 
         <TextView
-            android:id="@+id/txtPIniciarSessioClient_contrasenya"
+            android:id="@+id/txtPIniciarSessioClientContrasenya"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/contrasenya"
@@ -100,12 +100,12 @@
             android:backgroundTint="@color/colorPrimary"
             android:text="@string/iniciarSessio"
             android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/txtPiniciarSessioClient_oblidatContrasenya"
+            app:layout_constraintBottom_toTopOf="@+id/txtPiniciarSessioClientOblidatContrasenya"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
 
         <TextView
-            android:id="@+id/txtPiniciarSessioClient_oblidatContrasenya"
+            android:id="@+id/txtPiniciarSessioClientOblidatContrasenya"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="117dp"
@@ -115,14 +115,14 @@
             android:text="@string/oblidatContrasenya"
             android:textAlignment="center"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/txtPiniciarSessioClient_registre"
+            app:layout_constraintBottom_toTopOf="@+id/txtPiniciarSessioClientRegistre"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="TouchTargetSizeCheck"
             android:focusable="true" />
 
         <TextView
-            android:id="@+id/txtPiniciarSessioClient_registre"
+            android:id="@+id/txtPiniciarSessioClientRegistre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="175dp"
