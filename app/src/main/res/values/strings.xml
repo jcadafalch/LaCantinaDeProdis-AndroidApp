@@ -21,4 +21,11 @@
     <string name="image_view_eye">image View eye</string>
     <string name="logo_lacantinadeprodis">logo laCantinaDeProdis</string>
     <string name="nom_i_cognoms">Nom i cognoms</string>
+    <string name="juan_rodriguez_gonalez">Juan Rodriguez Gonález</string>
+    <string name="correu_electronic">Correu electrònic</string>
+    <string name="jrodirezgonzalez_prodiscat">jrodirezgonzalez@prodis.cat</string>
+    <string name="repeteix_contrasenya">Torna a introduir la contrasenya</string>
+    <string name="contrasenyaRepetida">Contrasenya repetida</string>
+    <string name="continuar">Continuar</string>
+    <string name="tens_un_compte">Tens un compte?</string>
 </resources>
