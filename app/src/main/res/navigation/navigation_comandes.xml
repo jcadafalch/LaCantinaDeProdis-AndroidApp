@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_bocata"
-        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.PantallaSeleccioBocata"
+        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.pantalla_seleccio_bocata"
         android:label="pantalla_seleccio_bocata"
         tools:layout="@layout/fragment_pantalla_seleccio_bocata" >
         <action

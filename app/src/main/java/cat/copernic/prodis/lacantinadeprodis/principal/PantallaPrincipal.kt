@@ -11,6 +11,7 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaPrincipalBinding
 
 class PantallaPrincipal : Fragment() {
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val binding: FragmentPantallaPrincipalBinding = DataBindingUtil.inflate(
@@ -40,3 +41,4 @@ class PantallaPrincipal : Fragment() {
         return binding.root
     }
 }
+

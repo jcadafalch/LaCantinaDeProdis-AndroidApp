@@ -9,7 +9,6 @@ import cat.copernic.prodis.lacantinadeprodis.R
 
 
 class PantallaAdministradorPrincipal : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
