@@ -16,7 +16,7 @@
         android:title="profile"/>
     <item
         android:id="@+id/logOutBttn"
-        android:icon="@drawable/logOut_foreground"
+        android:icon="@drawable/log_out_foreground"
         app:showAsAction="always"
         android:title="LogOut" />
 
