@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dni"
-            android:textColor="#00796B"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/txtRegistreIniciSessio"
             app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientDni"
             app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni" />
@@ -63,10 +63,11 @@
             android:autofillHints="nif"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/editDni"
+            android:hint="@string/editDni"
             app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientContrasenya"
-            app:layout_constraintStart_toStartOf="@+id/editTextNumberPassword"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientPassword"
             tools:ignore="LabelFor,TouchTargetSizeCheck" />
+
 
         <TextView
             android:id="@+id/txtPIniciarSessioClientContrasenya"
@@ -74,12 +75,12 @@
             android:layout_height="wrap_content"
             android:text="@string/contrasenya"
             android:textColor="#00796B"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/editTextNumberPassword"
-            app:layout_constraintStart_toStartOf="@+id/editTextNumberPassword" />
+            android:textSize="@dimen/txtRegistreIniciSessio"
+            app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientPassword"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientPassword" />
 
         <EditText
-            android:id="@+id/editTextNumberPassword"
+            android:id="@+id/dtTxtPIniciarSessioClientPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="29dp"
@@ -146,7 +147,7 @@
             android:layout_marginBottom="41dp"
             android:src="@drawable/pasword_eye"
             app:layout_constraintBottom_toTopOf="@+id/btnPiniciarSessioClient"
-            app:layout_constraintStart_toEndOf="@+id/editTextNumberPassword"
+            app:layout_constraintStart_toEndOf="@+id/dtTxtPIniciarSessioClientPassword"
             android:contentDescription="@string/image_view_eye" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
