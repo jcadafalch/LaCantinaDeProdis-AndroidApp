@@ -13,29 +13,11 @@
         <action
             android:id="@+id/action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_bocata"
             app:destination="@id/pantalla_seleccio_bocata" />
-        <action
-            android:id="@+id/action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaFreda"
-            app:destination="@id/pantallaSeleccioBegudaFreda" />
-        <action
-            android:id="@+id/action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaCalenta"
-            app:destination="@id/pantallaSeleccioBegudaCalenta" />
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_bocata"
-        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.PantallaSeleccioBocata"
+        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.pantalla_seleccio_bocata"
         android:label="pantalla_seleccio_bocata"
         tools:layout="@layout/fragment_pantalla_seleccio_bocata"
-        />
-    <fragment
-        android:id="@+id/pantallaSeleccioBegudaFreda"
-        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.PantallaSeleccioBegudaFreda"
-        android:label="PantallaSeleccioBegudaFreda"
-        tools:layout="@layout/fragment_pantalla_seleccio_beguda_freda"
-        />
-    <fragment
-        android:id="@+id/pantallaSeleccioBegudaCalenta"
-        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.PantallaSeleccioBegudaCalenta"
-        android:label="PantallaSeleccioBegudaCalenta"
-        tools:layout="@layout/fragment_pantalla_seleccio_beguda_calenta"
         />
 </navigation>
