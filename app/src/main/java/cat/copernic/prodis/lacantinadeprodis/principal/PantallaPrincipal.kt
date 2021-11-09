@@ -1,7 +1,6 @@
 package cat.copernic.prodis.lacantinadeprodis.principal
 
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityMainBinding
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaPrincipalBinding
 
-private lateinit var binding: FragmentPantallaPrincipalBinding
 
 class PantallaPrincipal : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -25,19 +23,19 @@ class PantallaPrincipal : Fragment() {
         }
 
         binding.btnPprincipalCambrer.setOnClickListener {
-
+            //view: View -> view.findNavController().navigate((R.id.action_pantalla_principal_to_pantalla_inici_sessio_caixer_cuiner_cambrer))
         }
 
         binding.btnPprincipalCaixer.setOnClickListener {
-
+            //view: View -> view.findNavController().navigate((R.id.action_pantalla_principal_to_pantalla_inici_sessio_caixer_cuiner_cambrer))
         }
 
         binding.btnPprincipalCuiner.setOnClickListener {
-
+            //view: View -> view.findNavController().navigate((R.id.action_pantalla_principal_to_pantalla_inici_sessio_caixer_cuiner_cambrer))
         }
 
         binding.btnPprincipalAdministrador.setOnClickListener {
-
+            //view: View -> view.findNavController().navigate((R.id.action_pantalla_principal_to_pantalla_inici_sessio_client_admin))
         }
         return binding.root
     }

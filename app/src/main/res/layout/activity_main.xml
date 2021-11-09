@@ -14,7 +14,7 @@
 
             <fragment
                 android:id="@+id/titleFragment"
-                android:name="cat.copernic.prodis.lacantinadeprodis.PantallaPrincipal"
+                android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaPrincipal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
