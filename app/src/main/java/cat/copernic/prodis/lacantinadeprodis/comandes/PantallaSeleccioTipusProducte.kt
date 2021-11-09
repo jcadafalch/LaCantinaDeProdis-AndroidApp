@@ -18,13 +18,13 @@ class PantallaSeleccioTipusProducte : Fragment() {
             inflater, R.layout.fragment_pantalla_seleccio_tipus_producte, container, false
         )
 
-        binding.button.setOnClickListener { view : View ->
+        binding.btnBocata.setOnClickListener { view : View ->
             view.findNavController().navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_bocata)
         }
-        binding.button2.setOnClickListener { view: View ->
+        binding.btnBegudaFreda.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaFreda)
         }
-        binding.button3.setOnClickListener{ view: View ->
+        binding.btnBegudaCalenta.setOnClickListener{ view: View ->
             view.findNavController().navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaCalenta)
         }
         return binding.root
