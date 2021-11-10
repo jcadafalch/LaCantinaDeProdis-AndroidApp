@@ -28,4 +28,8 @@
     <string name="contrasenyaRepetida">Contrasenya repetida</string>
     <string name="continuar">Continuar</string>
     <string name="tens_un_compte">Tens un compte?</string>
+    <string name="home">Home</string>
+    <string name="profile">profile</string>
+    <string name="logout">LogOut</string>
+    <string name="torna_enrere">Torna enrere</string>
 </resources>
