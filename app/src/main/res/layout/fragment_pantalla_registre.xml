@@ -1,16 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/pantalla_rgistre_fragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    tools:context=".principal.PantallaRegistre">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="170dp"
-        tools:layout_editor_absoluteY="250dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorFons"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageViewLogo"
+            android:layout_width="741dp"
+            android:layout_height="520dp"
+            android:layout_marginBottom="372dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@mipmap/logo_foreground"
+            android:contentDescription="@string/logo_lacantinadeprodis" />
+
+        <TextView
+            android:id="@+id/txtPRegistre"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:text="@string/registrat"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="185dp" />
+
+        <TextView
+            android:id="@+id/textPRegistre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nom_i_cognoms"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="219dp" />
+
+
+        <Button
+            android:id="@+id/btnPregistre"
+            android:text="Continuar"
+            android:layout_width="227dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginBottom="26dp"
+            tools:layout_editor_absoluteX="152dp"
+            tools:layout_editor_absoluteY="390dp" />
+
+        <TextView
+            android:id="@+id/textPregistre_tensUnCompte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tens un compte?"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="462dp" />
+
+        <TextView
+            android:id="@+id/textPregistre_iniciaSessio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inicia sessoó"
+            tools:layout_editor_absoluteX="231dp"
+            tools:layout_editor_absoluteY="463dp" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
