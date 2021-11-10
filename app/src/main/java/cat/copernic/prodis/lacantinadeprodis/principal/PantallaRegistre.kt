@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaRegistreBinding
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioTipusProducteBinding
@@ -18,6 +19,13 @@ class PantallaRegistre : Fragment() {
             inflater, R.layout.fragment_pantalla_registre, container, false
         )
 
+        binding.btnPregistre.setOnClickListener { view : View ->
+            view.findNavController().navigate(R.id.action_pantallaRegistre_to_pantallaIniciSessioClientAdmin)
+        }
+
+        binding.textPregistreIniciaSessio.setOnClickListener { view : View ->
+            view.findNavController().navigate(R.id.action_pantallaRegistre_to_pantallaIniciSessioClientAdmin)
+        }
         return binding.root
     }
 }
