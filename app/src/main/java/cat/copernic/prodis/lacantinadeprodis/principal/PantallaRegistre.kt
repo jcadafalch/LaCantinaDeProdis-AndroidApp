@@ -19,11 +19,11 @@ class PantallaRegistre : Fragment() {
             inflater, R.layout.fragment_pantalla_registre, container, false
         )
 
-        binding.btnRegistreContunuar.setOnClickListener { view : View ->
+        binding.btnPregistre.setOnClickListener { view : View ->
             view.findNavController().navigate(R.id.action_pantallaRegistre_to_pantallaIniciSessioClientAdmin)
         }
 
-        binding.txtRegistreIniciSessio.setOnClickListener { view : View ->
+        binding.textPregistreIniciaSessio.setOnClickListener { view : View ->
             view.findNavController().navigate(R.id.action_pantallaRegistre_to_pantallaIniciSessioClientAdmin)
         }
         return binding.root
