@@ -7,17 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import cat.copernic.prodis.lacantinadeprodis.R
-import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaResumComandesBinding
+import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioBinding
 
-class PantallaResumComandes : Fragment() {
+class PantallaIniciSessio : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        val binding: FragmentPantallaResumComandesBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_pantalla_resum_comandes, container, false
+        val binding: FragmentPantallaIniciSessioBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_pantalla_inici_sessio, container, false
         )
-
         return binding.root
     }
-
 }

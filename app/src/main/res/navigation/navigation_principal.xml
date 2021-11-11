@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_principal"
+    app:startDestination="@id/pantallaPrincipal">
+
+    <fragment
+        android:id="@+id/pantallaPrincipal"
+        android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaPrincipal"
+        android:label="fragment_pantalla_principal"
+        tools:layout="@layout/fragment_pantalla_principal" >
+        <action
+            android:id="@+id/action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer"
+            app:destination="@id/pantallaIniciSessioCaixerCuinerCambrer" />
+        <action
+            android:id="@+id/action_pantallaPrincipal_to_pantallaIniciSessioClientAdmin"
+            app:destination="@id/pantallaIniciSessioClientAdmin" />
+    </fragment>
+    <fragment
+        android:id="@+id/pantallaIniciSessioCaixerCuinerCambrer"
+        android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaIniciSessioCaixerCuinerCambrer"
+        android:label="fragment_pantalla_inici_sessio_caixer_cuiner_cambrer"
+        tools:layout="@layout/fragment_pantalla_inici_sessio_caixer_cuiner_cambrer" />
+    <fragment
+        android:id="@+id/pantallaRegistre"
+        android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaRegistre"
+        android:label="PantallaRegistre"
+        tools:layout="@layout/fragment_pantalla_registre" >
+        <action
+            android:id="@+id/action_pantallaRegistre_to_pantallaIniciSessioClientAdmin"
+            app:destination="@id/pantallaIniciSessioClientAdmin" />
+    </fragment>
+    <fragment
+        android:id="@+id/pantallaRecuperarContrasenya1"
+        android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaRecuperarContrasenya1"
+        android:label="fragment_pantalla_recuperar_contrasenya1"
+        tools:layout="@layout/fragment_pantalla_recuperar_contrasenya1" >
+        <action
+            android:id="@+id/action_pantallaRecuperarContrasenya1_to_pantallaRecuperarContrasenya2"
+            app:destination="@id/pantallaRecuperarContrasenya2" />
+    </fragment>
+    <fragment
+        android:id="@+id/pantallaRecuperarContrasenya2"
+        android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaRecuperarContrasenya2"
+        android:label="fragment_pantalla_recuperar_contrasenya2"
+        tools:layout="@layout/fragment_pantalla_recuperar_contrasenya2" />
+    <fragment
+        android:id="@+id/pantallaIniciSessioClientAdmin"
+        android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaIniciSessioClientAdmin"
+        android:label="fragment_pantalla_inici_sessio_client_admin"
+        tools:layout="@layout/fragment_pantalla_inici_sessio_client_admin" >
+        <action
+            android:id="@+id/action_pantallaIniciSessioClientAdmin_to_pantallaRegistre"
+            app:destination="@id/pantallaRegistre" />
+        <action
+            android:id="@+id/action_pantallaIniciSessioClientAdmin_to_pantallaRecuperarContrasenya1"
+            app:destination="@id/pantallaRecuperarContrasenya1" />
+    </fragment>
+</navigation>

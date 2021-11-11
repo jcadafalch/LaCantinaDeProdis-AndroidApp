@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cat.copernic.prodis.lacantinadeprodis">
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,16 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaCantinaDeProdis">
         <activity
-            android:name=".activities.AdministradorActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.CambrerActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-
-            <!-- android:theme="@style/SplashTheme"> -->
+            android:name="cat.copernic.prodis.lacantinadeprodis.MainActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
