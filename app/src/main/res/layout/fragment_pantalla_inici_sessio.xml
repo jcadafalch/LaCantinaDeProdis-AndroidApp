@@ -5,7 +5,7 @@
     android:id="@+id/pantalla_inici_sessio_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cat.copernic.prodis.lacantinadeprodis.MainActivity">
+    tools:context="cat.copernic.prodis.lacantinadeprodis.principal.PantallaIniciSessio">
 
     <TextView
         android:layout_width="wrap_content"
