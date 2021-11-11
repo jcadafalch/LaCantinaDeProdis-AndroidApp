@@ -14,12 +14,12 @@
             android:id="@+id/imageViewLogo"
             android:layout_width="741dp"
             android:layout_height="520dp"
-            android:layout_marginBottom="372dp"
+            android:layout_marginBottom="364dp"
+            android:contentDescription="@string/logo_lacantinadeprodis"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@mipmap/logo_foreground"
-            android:contentDescription="@string/logo_lacantinadeprodis" />
+            app:srcCompat="@mipmap/logo_foreground" />
 
         <TextView
             android:id="@+id/txtPRegistre"
@@ -28,44 +28,173 @@
             android:text="@string/registrat"
             android:textSize="24sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="185dp" />
+            android:paddingBottom="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/textPRegistre"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistrePersonName" />
 
         <TextView
             android:id="@+id/textPRegistre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nom_i_cognoms"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="219dp" />
+            android:textColor="#00796B"
+            android:textSize="@dimen/txtRegistreIniciSessio"
+            app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistrePersonName"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistrePersonName" />
 
+
+        <EditText
+            android:id="@+id/dtTxtPRegistrePersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/juan_rodriguez_gonalez"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/txtPRegistreDni"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreDni"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/txtPRegistreDni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dni"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/txtRegistreIniciSessio"
+            app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistreDni"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreDni"
+            tools:ignore="TextContrastCheck,TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/dtTxtPRegistreDni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/editDni"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreEmail"
+            tools:ignore="LabelFor,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:text="@string/correu_electronic"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/txtRegistreIniciSessio"
+            app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistreEmail"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreEmail"
+            tools:ignore="TextContrastCheck,TextContrastCheck" />
+
+
+        <EditText
+            android:id="@+id/dtTxtPRegistreEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/jrodirezgonzalez_prodiscat"
+            android:textColorHint="#616161"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/txtPRegistreContrasenya"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistrePassword"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/txtPRegistreContrasenya"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contrasenya"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/txtRegistreIniciSessio"
+            app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistrePassword"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistrePassword"
+            tools:ignore="TextContrastCheck,TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/dtTxtPRegistrePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/contrasenya"
+            android:textColorHint="#616161"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/txtPRegistreRepeteixContrasenya"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreRepeteixPassword"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+
+        <TextView
+            android:id="@+id/txtPRegistreRepeteixContrasenya"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/repeteix_contrasenya"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/txtRegistreIniciSessio"
+            app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistreRepeteixPassword"
+            app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreRepeteixPassword"
+            tools:ignore="TextContrastCheck,TextContrastCheck" />
+
+
+        <EditText
+            android:id="@+id/dtTxtPRegistreRepeteixPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="185dp"
+            android:layout_marginBottom="37dp"
+            android:ems="10"
+            android:hint="@string/contrasenyaRepetida"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/btnPregistre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
         <Button
             android:id="@+id/btnPregistre"
-            android:text="Continuar"
             android:layout_width="227dp"
             android:layout_height="42dp"
-            android:layout_marginStart="92dp"
-            android:layout_marginBottom="26dp"
-            tools:layout_editor_absoluteX="152dp"
-            tools:layout_editor_absoluteY="390dp" />
+            android:layout_marginStart="69dp"
+            android:layout_marginEnd="115dp"
+            android:layout_marginBottom="17dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/continuar"
+            app:layout_constraintBottom_toTopOf="@+id/textPregistre_tensUnCompte"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
         <TextView
             android:id="@+id/textPregistre_tensUnCompte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tens un compte?"
-            tools:layout_editor_absoluteX="81dp"
-            tools:layout_editor_absoluteY="462dp" />
+            android:layout_marginStart="76dp"
+            android:layout_marginBottom="80dp"
+            android:text="@string/tens_un_compte"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_goneMarginRight="10dp"
+            tools:ignore="TextContrastCheck,TextContrastCheck" />
 
         <TextView
             android:id="@+id/textPregistre_iniciaSessio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Inicia sessoó"
-            tools:layout_editor_absoluteX="231dp"
-            tools:layout_editor_absoluteY="463dp" />
-
+            android:layout_marginEnd="137dp"
+            android:layout_marginBottom="80dp"
+            android:text="@string/iniciarSessio"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
