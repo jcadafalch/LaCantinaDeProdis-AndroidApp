@@ -19,23 +19,32 @@ class PantallaPrincipal : Fragment() {
         )
 
         binding.btnPprincipalClient.setOnClickListener { view : View ->
-            view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioClientAdmin)
+            view.findNavController().navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin())
+        // view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioClientAdmin)
         }
 
         binding.btnPprincipalCambrer.setOnClickListener{ view : View ->
-            view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer)
+            view.findNavController().navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioCaixerCuinerCambrer())
+
+            //view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer)
         }
 
         binding.btnPprincipalCaixer.setOnClickListener{ view : View ->
-            view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer)
+            view.findNavController().navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioCaixerCuinerCambrer())
+
+            //view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer)
         }
 
         binding.btnPprincipalCuiner.setOnClickListener{ view : View ->
-            view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer)
+            view.findNavController().navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioCaixerCuinerCambrer())
+
+            //view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer)
         }
 
         binding.btnPprincipalAdministrador.setOnClickListener{ view : View ->
-            view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioClientAdmin)
+            view.findNavController().navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin())
+
+            //view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioClientAdmin)
         }
 
         return binding.root
