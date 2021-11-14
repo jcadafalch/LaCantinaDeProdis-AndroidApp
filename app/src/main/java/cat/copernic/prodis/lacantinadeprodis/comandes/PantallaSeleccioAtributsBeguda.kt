@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
-import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioAtributsBocataBinding
+import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioAtributsBegudaBinding
 
 class PantallaSeleccioAtributsBeguda : Fragment() {
 
@@ -15,10 +16,14 @@ class PantallaSeleccioAtributsBeguda : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: FragmentPantallaSeleccioAtributsBocataBinding = DataBindingUtil.inflate(
+        val binding: FragmentPantallaSeleccioAtributsBegudaBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_atributs_beguda, container, false
         )
 
+        binding.button.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(R.id.action_pantalla_seleccio_atributs_beguda_to_pantalla_seleccio_tipus_producte)
+        }
         return binding.root
     }
 }

@@ -6,16 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
-import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioTipusProducteBinding
+import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioBegudaCalentaBinding
 
 class PantallaSeleccioBegudaCalenta : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        val binding: FragmentPantallaSeleccioTipusProducteBinding = DataBindingUtil.inflate(
+        val binding: FragmentPantallaSeleccioBegudaCalentaBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_beguda_calenta, container, false
         )
+        binding.button2.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(PantallaSeleccioBegudaFredaDirections.actionPantallaSeleccioBegudaFredaToPantallaSeleccioAtributsBeguda())
+        }
         return binding.root
     }
 }

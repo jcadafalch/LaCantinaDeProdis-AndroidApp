@@ -22,6 +22,7 @@ class PantallaSeleccioResumComanda : Fragment() {
             inflater, R.layout.fragment_pantalla_seleccio_resum_comanda, container, false
         )
 
+        //TODO Fer el navigate amb el fitxer Navigation
         binding.button.setOnClickListener { view: View ->
              view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioClientAdmin)
         }
