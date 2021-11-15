@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import cat.copernic.prodis.lacantinadeprodis.R
-import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityCaixaBinding
+import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityComandesBinding
 
 class ComandesActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<Acti>(this, R.layout.activity_comandes)
+        val binding = DataBindingUtil.setContentView<ActivityComandesBinding>(this, R.layout.activity_comandes)
 
         //val navController = this.findNavController(R.id.myNavHostFragment)
 

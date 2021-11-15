@@ -7,9 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
-import cat.copernic.prodis.lacantinadeprodis.CaixerActivity
 import cat.copernic.prodis.lacantinadeprodis.R
+import cat.copernic.prodis.lacantinadeprodis.activities.ComandesActivity
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioCaixerCuinerCambrerBinding
 
 class PantallaIniciSessioCaixerCuinerCambrer : Fragment() {
@@ -20,16 +19,17 @@ class PantallaIniciSessioCaixerCuinerCambrer : Fragment() {
         )
 
         binding.btnPiniciarSessioClient.setOnClickListener { view : View ->
-            showHome()
+            //goPantallaInicisessioCaixerCuinerCambrer()
         }
         return binding.root
+
     }
 
-    private fun showHome() {
-        /*val homeIntent = Intent(this, CaixerActivity::class.java).apply {
-
-
+    fun goPantallaInicisessioCaixerCuinerCambrer(view: View) {
+        /*val intent = Intent(this, ComandesActivity::class.java).apply {
         }
-        startActivity(homeIntent)*/
+        startActivity(intent)*/
+
     }
+
 }

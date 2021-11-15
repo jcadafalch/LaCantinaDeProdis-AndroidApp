@@ -28,4 +28,8 @@
     <string name="contrasenyaRepetida">Contrasenya repetida</string>
     <string name="continuar">Continuar</string>
     <string name="tens_un_compte">Tens un compte?</string>
+    <string name="bocata">BOCATA</string>
+    <string name="begudes_fredes">BEGUDES FREDES</string>
+    <string name="begudes_calentes">BEGUDES CALENTES</string>
+    <string name="finalitza_comanda">FINALITZA COMANDA</string>
 </resources>
