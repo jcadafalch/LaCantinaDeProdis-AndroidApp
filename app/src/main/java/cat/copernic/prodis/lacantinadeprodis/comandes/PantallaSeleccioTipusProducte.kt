@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioTipusProducteBinding
-import cat.copernic.prodis.lacantinadeprodis.principal.PantallaPrincipalDirections
 
 class PantallaSeleccioTipusProducte : Fragment() {
 
@@ -20,23 +19,22 @@ class PantallaSeleccioTipusProducte : Fragment() {
         val binding: FragmentPantallaSeleccioTipusProducteBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_tipus_producte, container, false
         )
-
-        binding.btnBocata.setOnClickListener { view: View ->
+        //TODO El directions no da error pero al compilar peta, de momento está hecho con r.id.
+        binding.imgBocata.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(PantallaSeleccioTipusProducteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioBocata())
+                .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_bocata)
         }
-        binding.btnBegudaFreda.setOnClickListener { view: View ->
+        binding.imgBegudesFredes.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(PantallaSeleccioTipusProducteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioBegudaFreda())
+                .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaFreda)
         }
-        binding.btnBegudaCalenta.setOnClickListener { view: View ->
+        binding.txtBegudesCalentes.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(PantallaSeleccioTipusProducteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioBegudaCalenta())
+                .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaCalenta)
         }
-        //TODO Mirar porque no funciona el directions en este navigate, en los otros funciona correctamente.
         binding.btnConfirmar.setOnClickListener { view: View ->
-            /*view.findNavController()
-                .navigate(PantallaSeleccioTipusProducteDirections.)*/
+            view.findNavController()
+                .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_nom_client_comanda)
         }
         return binding.root
     }
