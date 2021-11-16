@@ -12,20 +12,29 @@ import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSelecci
 
 class PantallaSeleccioTipusProducte : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val binding: FragmentPantallaSeleccioTipusProducteBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_tipus_producte, container, false
         )
-
-        binding.btnBocata.setOnClickListener { view : View ->
-            view.findNavController().navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_bocata)
+        //TODO El directions no da error pero al compilar peta, de momento está hecho con r.id.
+        binding.imgBocata.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_bocata)
         }
-        binding.btnBegudaFreda.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaFreda)
+        binding.imgBegudesFredes.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaFreda)
         }
-        binding.btnBegudaCalenta.setOnClickListener{ view: View ->
-            view.findNavController().navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaCalenta)
+        binding.txtBegudesCalentes.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaCalenta)
+        }
+        binding.btnConfirmar.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_nom_client_comanda)
         }
         return binding.root
     }
