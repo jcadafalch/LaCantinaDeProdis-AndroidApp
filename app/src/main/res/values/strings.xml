@@ -28,4 +28,20 @@
     <string name="contrasenyaRepetida">Contrasenya repetida</string>
     <string name="continuar">Continuar</string>
     <string name="tens_un_compte">Tens un compte?</string>
+    <string name="bocata">BOCATA</string>
+    <string name="begudes_fredes">BEGUDES FREDES</string>
+    <string name="begudes_calentes">BEGUDES CALENTES</string>
+    <string name="finalitza_comanda">FINALITZA COMANDA</string>
+    <string name="sense_tomaquet">SENSE TOMAQUET</string>
+    <string name="per_emportar">PER EMPORTAR</string>
+    <string name="torna_enrere">TORNA ENRERRE</string>
+    <string name="img_bossa_description">Una imatge d\'una bossa que indica que vol la comanda per emportar</string>
+    <string name="descripcio_img_tick">Un botó en forma de tick.</string>
+    <string name="descripcio_img_fletxa">Un botó amb forma de fletxa que indica tornar enrerre.</string>
+    <string name="descripció_img_tomaquet">Una imatge d\'un tomaquet.</string>
+    <string name="descripcio_img_prohibit">Una imatge d\'una forma de prhibit.</string>
+    <string name="sense_sucre">SENSE SUCRE</string>
+    <string name="sucre_blanc">SUCRE BLANC</string>
+    <string name="sucre_more">SUCRE MORÉ</string>
+    <string name="sacarina">SACARINA</string>
 </resources>
