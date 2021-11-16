@@ -28,21 +28,21 @@ class PantallaPrincipal : Fragment() {
 
         binding.btnPprincipalCambrer.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioCaixerCuinerCambrer())
+                .navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin())
 
             //view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer)
         }
 
         binding.btnPprincipalCaixer.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioCaixerCuinerCambrer())
+                .navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin())
 
             //view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer)
         }
 
         binding.btnPprincipalCuiner.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioCaixerCuinerCambrer())
+                .navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin())
 
             //view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer)
         }
