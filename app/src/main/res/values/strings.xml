@@ -40,4 +40,8 @@
     <string name="descripcio_img_fletxa">Un botó amb forma de fletxa que indica tornar enrerre.</string>
     <string name="descripció_img_tomaquet">Una imatge d\'un tomaquet.</string>
     <string name="descripcio_img_prohibit">Una imatge d\'una forma de prhibit.</string>
+    <string name="sense_sucre">SENSE SUCRE</string>
+    <string name="sucre_blanc">SUCRE BLANC</string>
+    <string name="sucre_more">SUCRE MORÉ</string>
+    <string name="sacarina">SACARINA</string>
 </resources>

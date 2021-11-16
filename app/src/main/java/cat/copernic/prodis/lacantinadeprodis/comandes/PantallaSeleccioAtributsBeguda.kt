@@ -20,7 +20,7 @@ class PantallaSeleccioAtributsBeguda : Fragment() {
             inflater, R.layout.fragment_pantalla_seleccio_atributs_beguda, container, false
         )
 
-        binding.button.setOnClickListener { view: View ->
+        binding.btnConfirmar.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(R.id.action_pantalla_seleccio_atributs_beguda_to_pantalla_seleccio_tipus_producte)
         }
