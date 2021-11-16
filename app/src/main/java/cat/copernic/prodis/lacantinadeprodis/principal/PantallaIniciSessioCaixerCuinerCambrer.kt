@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.activities.ComandesActivity
+import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityMainBinding
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioCaixerCuinerCambrerBinding
 
 class PantallaIniciSessioCaixerCuinerCambrer : Fragment() {
@@ -18,14 +21,14 @@ class PantallaIniciSessioCaixerCuinerCambrer : Fragment() {
             inflater, R.layout.fragment_pantalla_inici_sessio_caixer_cuiner_cambrer, container, false
         )
 
-        binding.btnPiniciarSessioClient.setOnClickListener { view : View ->
+        binding.btnPiniciarSessioClient.setOnClickListener { view: View ->
             //goPantallaInicisessioCaixerCuinerCambrer()
         }
         return binding.root
 
     }
 
-    fun goPantallaInicisessioCaixerCuinerCambrer(view: View) {
+    fun goPantallaInicisessioCaixerCuinerCambrer() {
         /*val intent = Intent(this, ComandesActivity::class.java).apply {
         }
         startActivity(intent)*/

@@ -19,8 +19,8 @@ class PantallaSeleccioAtributsBocata : Fragment() {
         val binding: FragmentPantallaSeleccioAtributsBocataBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_atributs_bocata, container, false
         )
-        //TODO No funciona el directions.
-        binding.button.setOnClickListener { view: View ->
+
+        binding.btnConfirmar.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(R.id.action_pantalla_seleccio_atributs_beguda_to_pantalla_seleccio_tipus_producte)
         }
