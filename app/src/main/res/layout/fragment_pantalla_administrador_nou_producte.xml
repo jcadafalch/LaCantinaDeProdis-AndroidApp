@@ -4,28 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".administrador.PantallaAdministradorNouProducte">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtPAdministradorNouProducte"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="122dp"
-            android:layout_marginTop="101dp"
-            android:text="Afegir nou producte / promocio"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:background="@color/colorFons"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnPAdministradorNouProducte_guardar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="148dp"
-            android:layout_marginTop="112dp"
-            android:text="Guardar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouProducte" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txtPAdministradorNouProducte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="53dp"
+                android:layout_marginTop="56dp"
+                android:layout_marginEnd="54dp"
+                android:text="@string/afegir_nou_producte_promocio"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtPAdministradorNouProducte_nouProducte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="81dp"
+                android:layout_marginTop="21dp"
+                android:layout_marginEnd="80dp"
+                android:text="@string/selecciona_la_categoria"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouProducte" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="284dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="64dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouProducte_nouProducte" />
+
+            <Button
+                android:id="@+id/btnPAdministradorNouProducte_guardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="152dp"
+                android:layout_marginBottom="105dp"
+                android:text="@string/guardar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

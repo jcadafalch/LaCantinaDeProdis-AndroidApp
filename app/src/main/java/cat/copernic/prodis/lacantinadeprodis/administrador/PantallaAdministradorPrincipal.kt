@@ -21,19 +21,19 @@ class PantallaAdministradorPrincipal : Fragment() {
             R.layout.fragment_pantalla_administrador_principal,container,false)
 
         binding.btnPAdministradorPrincipalNouUsuari.setOnClickListener {
-            //view: View -> view.findNavController().navigate((R.id.action_pantalla_administrador_principal_to_pantalla_administrador_nou_usuari))
+            view?.findNavController()?.navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorNouUsuari())
         }
 
         binding.btnPAdministradorPrincipalElimiarModificarUsuari.setOnClickListener {
-            //view: View -> view.findNavController().navigate((R.id.action_pantalla_administrador_principal_to_pantalla_administrador_modificar_usuari))
+            view?.findNavController()?.navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorModificarUsuari())
         }
 
         binding.btnPAdministradorPrincipalNouProducte.setOnClickListener {
-            //view: View -> view.findNavController().navigate((R.id.action_pantalla_administrador_principal_to_pantalla_administrador_nou_producte))
+            view?.findNavController()?.navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorNouProducte()   )
         }
 
         binding.btnPAdministradorPrincipalAdministrarProductes.setOnClickListener {
-            //view: View -> view.findNavController().navigate((R.id.action_pantalla_administrador_principal_to_pantalla_administrador_administrar_productes))
+            view?.findNavController()?.navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorAdministrarProducte())
         }
 
         return binding.root

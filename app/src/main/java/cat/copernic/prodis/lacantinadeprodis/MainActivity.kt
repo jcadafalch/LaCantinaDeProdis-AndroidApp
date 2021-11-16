@@ -24,6 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         //Fletxa enderrere i faltaria metode onSupportNavigateUp
         //NavigationUI.setupActionBarWithNavController(this, navController)
-
+        supportActionBar?.hide()
     }
 }

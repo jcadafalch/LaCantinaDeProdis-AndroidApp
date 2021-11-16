@@ -9,10 +9,10 @@ class CambrerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cambrer)
 
-        val bundle = intent.extras
+       /* val bundle = intent.extras
         val username: String? = bundle?.getString("username")
 
-        setup(username ?: "")
+        setup(username ?: "")*/
     }
 
     private fun setup (username: String){

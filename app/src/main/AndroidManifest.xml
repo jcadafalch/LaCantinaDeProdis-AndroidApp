@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaCantinaDeProdis">
         <activity
+            android:name=".activities.CambrerActivity"
+            android:exported="false"/>
+        <activity
             android:name="cat.copernic.prodis.lacantinadeprodis.MainActivity"
             android:exported="true"
             android:theme="@style/AppTheme">
