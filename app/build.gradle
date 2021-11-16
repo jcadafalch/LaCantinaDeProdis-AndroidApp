@@ -8,7 +8,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "cat.copernic.jcadafalchAramirez.lacantinadeprodis"
+        applicationId "cat.copernic.prodis.lacantinadeprodis"
         minSdk 21
         targetSdk 31
         versionCode 1

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import cat.copernic.prodis.lacantinadeprodis.CaixerActivity
 import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.activities.ComandesActivity
@@ -15,24 +16,34 @@ import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityMainBinding
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioCaixerCuinerCambrerBinding
 
 class PantallaIniciSessioCaixerCuinerCambrer : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        val binding: FragmentPantallaIniciSessioCaixerCuinerCambrerBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_pantalla_inici_sessio_caixer_cuiner_cambrer, container, false
-        )
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val binding: FragmentPantallaIniciSessioCaixerCuinerCambrerBinding =
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_pantalla_inici_sessio_caixer_cuiner_cambrer,
+                container,
+                false
+            )
 
         binding.btnPiniciarSessioClient.setOnClickListener { view: View ->
-            //goPantallaInicisessioCaixerCuinerCambrer()
+            goComandesActivity()
         }
         return binding.root
 
     }
 
-    fun goPantallaInicisessioCaixerCuinerCambrer() {
-        /*val intent = Intent(this, ComandesActivity::class.java).apply {
+    fun goComandesActivity() {
+        val intent = Intent(this.context, ComandesActivity::class.java).apply {
         }
-        startActivity(intent)*/
-
+        startActivity(intent)
     }
 
+    fun goCaixerActivity() {
+        val intent = Intent(this.context, CaixerActivity::class.java).apply {
+        }
+        startActivity(intent)
+    }
 }
