@@ -203,12 +203,12 @@
                 android:layout_marginEnd="115dp"
                 android:layout_marginBottom="17dp"
                 android:backgroundTint="@color/colorPrimary"
-                android:text="@string/continuar"
+                android:text="@string/registrat"
                 app:layout_constraintBottom_toTopOf="@+id/textPregistre_tensUnCompte"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
 
             <TextView
                 android:id="@+id/textPregistre_tensUnCompte"

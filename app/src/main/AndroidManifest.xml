@@ -11,6 +11,7 @@
         <activity
             android:name=".activities.CambrerActivity"
             android:exported="false"/>
+        <activity android:name=".activities.AdministradorActivity" android:label="AdministradorActivity"/>
         <activity
             android:name="cat.copernic.prodis.lacantinadeprodis.MainActivity"
             android:exported="true"
