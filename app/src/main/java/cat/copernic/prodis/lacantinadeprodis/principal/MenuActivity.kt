@@ -1,4 +1,4 @@
-package cat.copernic.prodis.lacantinadeprodis.activities
+package cat.copernic.prodis.lacantinadeprodis.principal
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,22 +7,13 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import cat.copernic.prodis.lacantinadeprodis.AdministradorActivity
 import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
-import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityComandesBinding
+import cat.copernic.prodis.lacantinadeprodis.activities.PantallaEdicioPerfil
 
-class ComandesActivity: AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityComandesBinding>(this, R.layout.activity_comandes)
 
-        //val navController = this.findNavController(R.id.myNavHostFragment)
-
-        //Fletxa enderrere i faltaria metode onSupportNavigateUp
-        //NavigationUI.setupActionBarWithNavController(this, navController)
-
-    }
-
+class MenuActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
