@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.text.isDigitsOnly
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -14,6 +15,7 @@ import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaRegistr
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.regex.Pattern
 
 class PantallaRegistre : Fragment() {
     private val db = FirebaseFirestore.getInstance()
@@ -128,15 +130,15 @@ class PantallaRegistre : Fragment() {
         if (dni.isEmpty()) {
             errorMessage += "Falta introduir el dni\n"
             bool = false
-        } /*else if (!dniformat(dni)) {
+        } else if (!checkDni(dni)) {
             errorMessage += "Format DNI incorrecte.\n"
             bool = false
-        }*/
+        }
 
         if (email.isEmpty()) {
             errorMessage += "Falta introduir el correu electronic.\n"
             bool = false
-        } else if (!email.contains("@") /*&& email.substring(email.length - 4) != "."*/) {
+        }else if (!checkEmailFormat(email)){
             errorMessage += "Format correu electronic incorrecte.\n"
             bool = false
         }
@@ -172,80 +174,29 @@ class PantallaRegistre : Fragment() {
 
     }
 
-   /* private fun dniformat(dni: String): Boolean {
-        var letramayuscula = ""
-
-
-        if (dni.length != 9 || Character.isLetter(dni[8]) == false) {
+    private fun checkDni(dni: String): Boolean{
+        val dniNum = dni.substring(0, dni.length -1)
+        if (dni.isDigitsOnly()){
+            println("DIGIT ONLY")
             return false
         }
 
-        letramayuscula = dni.substring(8).uppercase()
-        return onlyNumbers(dni) && letradni(dni) == letramayuscula
+        val dniLletra = dni.substring(dni.length -1).uppercase()
+        val lletraDni = "TRWAGMYFPDXBNJZSQVHLCKE"
+
+        println(lletraDni[dniNum.toInt() % 23])
+        return dniLletra == lletraDni[dniNum.toInt() % 23].toString()
     }
 
-    private fun onlyNumbers(dni: String): Boolean {
-        var i = 0
-        var j = 0
-        var numero = ""
-        var DNI = ""
-        val unoNueve = arrayOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
-
-        while (i < dni.length - 1) {
-            numero = dni.substring(i, i + 1)
-
-            while (j < unoNueve.size) {
-                if (numero == unoNueve[j]) {
-                    DNI += unoNueve[j]
-                }
-                j++
-            }
-            i++
-        }
-        return if (DNI.length != 8) {
-            Toast.makeText(
-                this.context,
-                "Els numeros del DNI no coincideixen amb la lletra",
-                Toast.LENGTH_SHORT
-            ).show()
-            false;
-        } else {
-            true;
-        }
-    }
-
-    private fun letradni(dni: String): String? {
-        val miDNI: Int = dni.substring(0, 8).toInt()
-        var resto = 0
-        val asignacionLetra = arrayOf(
-            "T",
-            "R",
-            "W",
-            "A",
-            "G",
-            "M",
-            "Y",
-            "F",
-            "P",
-            "D",
-            "X",
-            "B",
-            "N",
-            "J",
-            "Z",
-            "S",
-            "Q",
-            "V",
-            "H",
-            "L",
-            "C",
-            "K",
-            "E"
-        )
-        resto = miDNI % 23
-
-        return asignacionLetra[resto]
-    }*/
+  private fun checkEmailFormat(email: String): Boolean{
+      val EMAIL_ADDRESS_PATTERN = Pattern.compile(
+          "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                  "\\@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                  "(" + "\\." + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                  ")+"
+      )
+      return EMAIL_ADDRESS_PATTERN.matcher(email).matches()
+  }
 
     private fun showAlert(message: String) {
         val builder = AlertDialog.Builder(this.requireContext())

@@ -78,6 +78,7 @@
                 android:hint="@string/editDni"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
+                android:maxLength="9"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreEmail"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreEmail"
                 tools:ignore="LabelFor,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
@@ -203,12 +204,12 @@
                 android:layout_marginEnd="115dp"
                 android:layout_marginBottom="17dp"
                 android:backgroundTint="@color/colorPrimary"
-                android:text="@string/registrat"
+                android:text="@string/continuar"
                 app:layout_constraintBottom_toTopOf="@+id/textPregistre_tensUnCompte"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
             <TextView
                 android:id="@+id/textPregistre_tensUnCompte"
