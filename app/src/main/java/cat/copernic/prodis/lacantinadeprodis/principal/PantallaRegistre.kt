@@ -27,7 +27,11 @@ class PantallaRegistre : Fragment() {
         val args = PantallaRegistreArgs.fromBundle(requireArguments())
         val usertype = args.usertype
 
-
+        //Analytics Event
+        val analytics = this.context?.let { FirebaseAnalytics.getInstance(it) }
+        val bundle = Bundle()
+        bundle.putString("message", "Integración de Firebase completa")
+        analytics?.logEvent("InitScreen", bundle)
 
         bdng.btnPregistre.setOnClickListener { view: View ->
             if (datavalids(
@@ -40,12 +44,11 @@ class PantallaRegistre : Fragment() {
                 )
             ) {
                 makeregister(
-                    bdng.dtTxtPRegistrePersonName.toString(),
-                    bdng.dtTxtPRegistreDni.toString(),
-                    bdng.dtTxtPRegistreEmail.toString(),
-                    bdng.dtTxtPRegistrePassword.toString(),
-                    usertype
-                )
+                    bdng.dtTxtPRegistrePersonName.text.toString(),
+                    bdng.dtTxtPRegistreDni.text.toString(),
+                    bdng.dtTxtPRegistreEmail.text.toString(),
+                    bdng.dtTxtPRegistrePassword.text.toString(),
+                    usertype)
                 view.findNavController().navigate(
                     PantallaRegistreDirections.actionPantallaRegistreToPantallaIniciSessioClientAdmin(
                         usertype
@@ -72,22 +75,36 @@ class PantallaRegistre : Fragment() {
         password: String,
         usertype: String
     ) {
-        var bool: Boolean
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-            if (it.isSuccessful){
-                bool = true
+        val passwd = password + "prodis"
+        var bool = false
+        var bool1 = false
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passwd)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    bool = true
 
-            }else{
-                showAlert("Error a l\'hora de fer el registre")
+                } else {
+                    showAlert("Error a l\'hora de fer l\'autenticació")
+                }
+            }
+
+        db.collection("users").document(dni).set(
+            hashMapOf(
+                "username" to nomCognom,
+                "dni" to dni,
+                "email" to email,
+                "password" to passwd,
+                "usertype" to usertype
+            )
+        ).addOnCompleteListener {
+            if (it.isSuccessful) {
+                bool1 = true
+            } else {
+                showAlert("Error a l\'hora de fer el guardat de dades")
             }
         }
 
-        db.collection("users").document(dni).set(
-            hashMapOf("username" to nomCognom,
-            "dni" to dni)
-        )
-
-        if (bool){
+        if (bool && bool1) {
             Toast.makeText(this.context, "T\'has registrat correctament", Toast.LENGTH_SHORT).show()
         }
     }
@@ -141,13 +158,13 @@ class PantallaRegistre : Fragment() {
             }
         }
 
-        if (!checkbox){
+        if (!checkbox) {
             errorMessage += "Has d\'acpetar les condicions"
             bool = false
         }
 
 
-        if (errorMessage != ""){
+        if (errorMessage != "") {
             showAlert(errorMessage)
         }
 
@@ -155,7 +172,7 @@ class PantallaRegistre : Fragment() {
 
     }
 
-    private fun dniformat(dni: String): Boolean {
+   /* private fun dniformat(dni: String): Boolean {
         var letramayuscula = ""
 
 
@@ -185,8 +202,12 @@ class PantallaRegistre : Fragment() {
             }
             i++
         }
-        return if(DNI.length != 8) {
-            Toast.makeText(this.context, "Els numeros del DNI no coincideixen amb la lletra", Toast.LENGTH_SHORT).show()
+        return if (DNI.length != 8) {
+            Toast.makeText(
+                this.context,
+                "Els numeros del DNI no coincideixen amb la lletra",
+                Toast.LENGTH_SHORT
+            ).show()
             false;
         } else {
             true;
@@ -224,9 +245,9 @@ class PantallaRegistre : Fragment() {
         resto = miDNI % 23
 
         return asignacionLetra[resto]
-    }
+    }*/
 
-   private fun showAlert(message: String) {
+    private fun showAlert(message: String) {
         val builder = AlertDialog.Builder(this.requireContext())
         builder.setTitle("¡¡¡Error!!!")
         builder.setMessage(message)
