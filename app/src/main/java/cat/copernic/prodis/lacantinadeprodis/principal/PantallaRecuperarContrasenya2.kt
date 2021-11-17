@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaRecuperarContrasenya2Binding
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioTipusProducteBinding
@@ -19,6 +20,12 @@ class PantallaRecuperarContrasenya2 : Fragment() {
         val binding: FragmentPantallaRecuperarContrasenya2Binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_recuperar_contrasenya2, container, false
         )
+        val args = PantallaRecuperarContrasenya2Args.fromBundle(requireArguments())
+        val usertype = args.usertype
+
+        binding.btnPRecuperarContrasenya2Continuar.setOnClickListener {
+            view?.findNavController()?.navigate(PantallaRecuperarContrasenya2Directions.actionPantallaRecuperarContrasenya2ToPantallaIniciSessioClientAdmin(usertype))
+        }
 
         return binding.root
     }

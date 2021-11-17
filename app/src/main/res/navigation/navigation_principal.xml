@@ -11,17 +11,9 @@
         android:label="fragment_pantalla_principal"
         tools:layout="@layout/fragment_pantalla_principal" >
         <action
-            android:id="@+id/action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer"
-            app:destination="@id/pantallaIniciSessioCaixerCuinerCambrer" />
-        <action
             android:id="@+id/action_pantallaPrincipal_to_pantallaIniciSessioClientAdmin"
             app:destination="@id/pantallaIniciSessioClientAdmin" />
     </fragment>
-    <fragment
-        android:id="@+id/pantallaIniciSessioCaixerCuinerCambrer"
-        android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaIniciSessioCaixerCuinerCambrer"
-        android:label="fragment_pantalla_inici_sessio_caixer_cuiner_cambrer"
-        tools:layout="@layout/fragment_pantalla_inici_sessio_caixer_cuiner_cambrer" />
     <fragment
         android:id="@+id/pantallaRegistre"
         android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaRegistre"
@@ -30,6 +22,9 @@
         <action
             android:id="@+id/action_pantallaRegistre_to_pantallaIniciSessioClientAdmin"
             app:destination="@id/pantallaIniciSessioClientAdmin" />
+        <argument
+            android:name="usertype"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/pantallaRecuperarContrasenya1"
@@ -39,12 +34,22 @@
         <action
             android:id="@+id/action_pantallaRecuperarContrasenya1_to_pantallaRecuperarContrasenya2"
             app:destination="@id/pantallaRecuperarContrasenya2" />
+        <argument
+            android:name="usertype"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/pantallaRecuperarContrasenya2"
         android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaRecuperarContrasenya2"
         android:label="fragment_pantalla_recuperar_contrasenya2"
-        tools:layout="@layout/fragment_pantalla_recuperar_contrasenya2" />
+        tools:layout="@layout/fragment_pantalla_recuperar_contrasenya2" >
+        <action
+            android:id="@+id/action_pantallaRecuperarContrasenya2_to_pantallaIniciSessioClientAdmin"
+            app:destination="@id/pantallaIniciSessioClientAdmin" />
+        <argument
+            android:name="usertype"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/pantallaIniciSessioClientAdmin"
         android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaIniciSessioClientAdmin"
@@ -56,5 +61,8 @@
         <action
             android:id="@+id/action_pantallaIniciSessioClientAdmin_to_pantallaRecuperarContrasenya1"
             app:destination="@id/pantallaRecuperarContrasenya1" />
+        <argument
+            android:name="usertype"
+            app:argType="string" />
     </fragment>
 </navigation>

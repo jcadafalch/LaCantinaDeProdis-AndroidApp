@@ -20,10 +20,11 @@ class PantallaRecuperarContrasenya1 : Fragment() {
         val binding: FragmentPantallaRecuperarContrasenya1Binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_recuperar_contrasenya1, container, false
         )
+        val args = PantallaRecuperarContrasenya1Args.fromBundle(requireArguments())
+        val usertype = args.usertype
 
-        binding.btnPrecuperarContrasenya1Continuar.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(R.id.action_pantallaRecuperarContrasenya1_to_pantallaRecuperarContrasenya2)
+        binding.btnPRecuperarContrasenya1Continuar.setOnClickListener {
+            view?.findNavController()?.navigate(PantallaRecuperarContrasenya1Directions.actionPantallaRecuperarContrasenya1ToPantallaRecuperarContrasenya2(usertype))
         }
         return binding.root
     }

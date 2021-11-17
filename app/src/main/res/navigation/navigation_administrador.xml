@@ -24,15 +24,15 @@
             app:destination="@id/pantallaAdministradorAdministrarProducte" />
     </fragment>
     <fragment
-        android:id="@+id/pantallaAdministradorNouUsuari"
-        android:name="cat.copernic.prodis.lacantinadeprodis.administrador.PantallaAdministradorNouUsuari"
-        android:label="fragment_pantalla_administrador_nou_usuari"
-        tools:layout="@layout/fragment_pantalla_administrador_nou_usuari" />
-    <fragment
         android:id="@+id/pantallaAdministradorModificarUsuari"
         android:name="cat.copernic.prodis.lacantinadeprodis.administrador.PantallaAdministradorModificarUsuari"
         android:label="fragment_pantalla_administrador_modificar_usuari"
         tools:layout="@layout/fragment_pantalla_administrador_modificar_usuari" />
+    <fragment
+        android:id="@+id/pantallaAdministradorNouUsuari"
+        android:name="cat.copernic.prodis.lacantinadeprodis.administrador.PantallaAdministradorNouUsuari"
+        android:label="fragment_pantalla_administrador_nou_usuari"
+        tools:layout="@layout/fragment_pantalla_administrador_nou_usuari" />
     <fragment
         android:id="@+id/pantallaAdministradorNouProducte"
         android:name="cat.copernic.prodis.lacantinadeprodis.administrador.PantallaAdministradorNouProducte"

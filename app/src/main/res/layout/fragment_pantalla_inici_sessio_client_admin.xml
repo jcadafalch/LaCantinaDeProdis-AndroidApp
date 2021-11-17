@@ -4,150 +4,166 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".principal.PantallaIniciSessioClientAdmin">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorFons"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageViewLogo"
-            android:layout_width="741dp"
-            android:layout_height="520dp"
-            android:layout_marginBottom="372dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@mipmap/logo_foreground"
-            android:contentDescription="@string/logo_lacantinadeprodis" />
-
-        <TextView
-            android:id="@+id/txtPIniciarSessioClient"
-            android:layout_width="146dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="@string/iniciarSessio"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientBenvinguda"
-            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni" />
+            android:background="@color/colorFons"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtPIniciarSessioClientBenvinguda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:text="@string/txtPIniciarSessio_benvinguda"
-            android:textColor="#616161"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientDni"
-            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni" />
+            <ImageView
+                android:id="@+id/imageViewLogo"
+                android:layout_width="741dp"
+                android:layout_height="520dp"
+                android:layout_marginBottom="372dp"
+                android:contentDescription="@string/logo_lacantinadeprodis"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@mipmap/logo_foreground" />
 
-        <TextView
-            android:id="@+id/txtPIniciarSessioClientDni"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dni"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/txtRegistreIniciSessio"
-            app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientDni"
-            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni" />
+            <TextView
+                android:id="@+id/txtPIniciarSessioClient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/iniciarSessio"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientBenvinguda"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.109"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-            android:id="@+id/dtTxtPIniciarSessioClientDni"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="47dp"
-            android:autofillHints="nif"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="@string/editDni"
-            app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientContrasenya"
-            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientPassword"
-            tools:ignore="LabelFor,TouchTargetSizeCheck" />
+            <TextView
+                android:id="@+id/txtPIniciarSessioClientBenvinguda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:text="@string/txtPIniciarSessio_benvinguda"
+                android:textColor="#616161"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientDni"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni" />
+
+            <TextView
+                android:id="@+id/txtPIniciarSessioClientDni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dni"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/txtRegistreIniciSessio"
+                app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientDni"
+                app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni"
+                tools:ignore="TextContrastCheck,TextContrastCheck" />
+
+            <EditText
+                android:id="@+id/dtTxtPIniciarSessioClientDni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="47dp"
+                android:autofillHints="nif"
+                android:ems="10"
+                android:hint="@string/editDni"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientContrasenya"
+                app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientPassword"
+                tools:ignore="LabelFor,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
 
-        <TextView
-            android:id="@+id/txtPIniciarSessioClientContrasenya"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/contrasenya"
-            android:textColor="#00796B"
-            android:textSize="@dimen/txtRegistreIniciSessio"
-            app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientPassword"
-            app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientPassword" />
+            <TextView
+                android:id="@+id/txtPIniciarSessioClientContrasenya"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contrasenya"
+                android:textColor="#00796B"
+                android:textSize="@dimen/txtRegistreIniciSessio"
+                app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientPassword"
+                app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientPassword" />
 
-        <EditText
-            android:id="@+id/dtTxtPIniciarSessioClientPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="29dp"
-            android:layout_marginBottom="32dp"
-            android:autofillHints="password"
-            android:ems="10"
-            android:inputType="numberPassword"
-            app:layout_constraintBottom_toTopOf="@+id/btnPiniciarSessioClient"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck"/>
+            <EditText
+                android:id="@+id/dtTxtPIniciarSessioClientPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginBottom="32dp"
+                android:autofillHints="password"
+                android:ems="10"
+                android:inputType="numberPassword"
+                app:layout_constraintBottom_toTopOf="@+id/btnPiniciarSessioClient"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-        <Button
-            android:id="@+id/btnPiniciarSessioClient"
-            android:layout_width="227dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="92dp"
-            android:layout_marginBottom="26dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="@string/iniciarSessio"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/txtPiniciarSessioClientOblidatContrasenya"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+            <Button
+                android:id="@+id/btnPiniciarSessioClient"
+                android:layout_width="227dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="92dp"
+                android:layout_marginBottom="26dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/iniciarSessio"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/txtPiniciarSessioClientOblidatContrasenya"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,TextContrastCheck,TextContrastCheck" />
 
-        <TextView
-            android:id="@+id/txtPiniciarSessioClientOblidatContrasenya"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="117dp"
-            android:layout_marginEnd="118dp"
-            android:layout_marginBottom="35dp"
-            android:clickable="true"
-            android:text="@string/oblidatContrasenya"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/txtPiniciarSessioClientRegistre"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="TouchTargetSizeCheck"
-            android:focusable="true" />
+            <TextView
+                android:id="@+id/txtPiniciarSessioClientOblidatContrasenya"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="117dp"
+                android:layout_marginEnd="118dp"
+                android:layout_marginBottom="35dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/oblidatContrasenya"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/txtPiniciarSessioClientRegistre"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
 
-        <TextView
-            android:id="@+id/txtPiniciarSessioClientRegistre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="175dp"
-            android:layout_marginEnd="175dp"
-            android:layout_marginBottom="76dp"
-            android:clickable="true"
-            android:text="@string/registrat"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="TouchTargetSizeCheck"
-            android:focusable="true" />
+            <TextView
+                android:id="@+id/txtPiniciarSessioClientRegistre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="175dp"
+                android:layout_marginEnd="175dp"
+                android:layout_marginBottom="76dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/registrat"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
 
-        <ImageView
-            android:id="@+id/imageViewEye"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="41dp"
-            android:src="@drawable/pasword_eye"
-            app:layout_constraintBottom_toTopOf="@+id/btnPiniciarSessioClient"
-            app:layout_constraintStart_toEndOf="@+id/dtTxtPIniciarSessioClientPassword"
-            android:contentDescription="@string/image_view_eye" />
+            <ImageView
+                android:id="@+id/passwordEyePIniciSessio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:contentDescription="@string/image_view_eye"
+                android:focusable="true"
+                android:src="@drawable/password_eye"
+                app:layout_constraintBottom_toBottomOf="@+id/dtTxtPIniciarSessioClientPassword"
+                app:layout_constraintEnd_toEndOf="@+id/dtTxtPIniciarSessioClientPassword"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientPassword"
+                app:layout_constraintTop_toTopOf="@+id/dtTxtPIniciarSessioClientPassword"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </layout>

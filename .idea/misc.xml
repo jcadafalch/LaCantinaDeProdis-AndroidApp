@@ -36,13 +36,15 @@
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/activity_main.xml" value="0.12182971014492754" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_administrador_modificar_usuari.xml" value="0.17119565217391305" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_administrador_nou_producte.xml" value="0.17119565217391305" />
+        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_administrador_nou_usuari.xml" value="0.1802536231884058" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_administrador_principal.xml" value="0.15208333333333332" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_inici_sessio.xml" value="0.16621376811594202" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_inici_sessio_caixer_cuiner_cambrer.xml" value="0.1539855072463768" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_principal.xml" value="0.17708333333333334" />
+        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_recuperar_contrasenya2.xml" value="0.264" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_registre.xml" value="0.16032608695652173" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_resum_comandes.xml" value="0.1539855072463768" />
-        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_seleccio_atributs_beguda.xml" value="0.15964912280701754" />
+        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_seleccio_atributs_beguda.xml" value="0.4" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_seleccio_atributs_bocata.xml" value="0.2480553154710458" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_seleccio_beguda_calenta.xml" value="0.15208333333333332" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_seleccio_beguda_freda.xml" value="0.15208333333333332" />
