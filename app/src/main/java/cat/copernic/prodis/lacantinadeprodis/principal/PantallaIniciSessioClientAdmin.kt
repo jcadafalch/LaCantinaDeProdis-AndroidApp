@@ -39,6 +39,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         binding.btnPiniciarSessioClient.setOnClickListener {
             val dni = binding.dtTxtPIniciarSessioClientDni.text.toString().uppercase()
             var passwd = binding.dtTxtPIniciarSessioClientPassword.text.toString()
+            var bool = false
             if (binding.dtTxtPIniciarSessioClientDni.text.isNotEmpty() &&
                 binding.dtTxtPIniciarSessioClientPassword.text.isNotEmpty()
             ) {
@@ -46,6 +47,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
                 db.collection("users").get().addOnSuccessListener { result ->
                     for (document in result) {
                         if (document.id == dni) {
+                            bool = true
                             auth.signInWithEmailAndPassword(
                                 document.get("email").toString(),
                                 passwd,
@@ -57,6 +59,9 @@ class PantallaIniciSessioClientAdmin : Fragment() {
                                 }
                             }
                         }
+                    }
+                    if (!bool){
+                        showAlert("L\'usuari no està registrat")
                     }
                 }
 
