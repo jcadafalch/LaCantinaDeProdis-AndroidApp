@@ -13,17 +13,17 @@ import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.activities.ComandesActivity
 import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityMainBinding
-import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioCaixerCuinerCambrerBinding
+import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioClientAdminBinding
 
 class PantallaIniciSessioCaixerCuinerCambrer : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: FragmentPantallaIniciSessioCaixerCuinerCambrerBinding =
+        val binding: FragmentPantallaIniciSessioClientAdminBinding =
             DataBindingUtil.inflate(
                 inflater,
-                R.layout.fragment_pantalla_inici_sessio_caixer_cuiner_cambrer,
+                R.layout.fragment_pantalla_inici_sessio_client_admin,
                 container,
                 false
             )

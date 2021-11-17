@@ -23,7 +23,7 @@ class PantallaRecuperarContrasenya2 : Fragment() {
         val args = PantallaRecuperarContrasenya2Args.fromBundle(requireArguments())
         val usertype = args.usertype
 
-        binding.btnPRecuperarContrasenya2Continuar.setOnClickListener {
+        binding.btnPrecuperarContrasenya2Continuar.setOnClickListener {
             view?.findNavController()?.navigate(PantallaRecuperarContrasenya2Directions.actionPantallaRecuperarContrasenya2ToPantallaIniciSessioClientAdmin(usertype))
         }
 
