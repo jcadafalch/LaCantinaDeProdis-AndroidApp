@@ -11,12 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaRegistreBinding
-import com.google.firebase.analytics.FirebaseAnalytics
+/*import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestore*/
 
 class PantallaRegistre : Fragment() {
-    private val db = FirebaseFirestore.getInstance()
+    //private val db = FirebaseFirestore.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -73,7 +73,7 @@ class PantallaRegistre : Fragment() {
         usertype: String
     ) {
         var bool: Boolean
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+        /*FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful){
                 bool = true
 
@@ -89,7 +89,7 @@ class PantallaRegistre : Fragment() {
 
         if (bool){
             Toast.makeText(this.context, "T\'has registrat correctament", Toast.LENGTH_SHORT).show()
-        }
+        }*/
     }
 
     private fun datavalids(
