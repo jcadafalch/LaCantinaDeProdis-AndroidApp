@@ -19,7 +19,7 @@ class PantallaSeleccioBegudaCalenta : Fragment() {
         )
         binding.button2.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(PantallaSeleccioBegudaFredaDirections.actionPantallaSeleccioBegudaFredaToPantallaSeleccioAtributsBeguda())
+                .navigate(PantallaSeleccioBegudaCalentaDirections.actionPantallaSeleccioBegudaCalentaToPantallaSeleccioAtributsBeguda())
         }
         return binding.root
     }

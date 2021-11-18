@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
-import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioCaixerCuinerCambrerBinding
-import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaPrincipalBinding
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioResumComandaBinding
 
 class PantallaSeleccioResumComanda : Fragment() {
@@ -22,7 +20,6 @@ class PantallaSeleccioResumComanda : Fragment() {
             inflater, R.layout.fragment_pantalla_seleccio_resum_comanda, container, false
         )
 
-        //TODO Fer el navigate amb el fitxer Navigation
         binding.button.setOnClickListener { view: View ->
              view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioClientAdmin)
         }

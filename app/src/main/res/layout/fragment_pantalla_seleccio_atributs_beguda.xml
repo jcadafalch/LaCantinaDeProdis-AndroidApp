@@ -22,7 +22,6 @@
             android:id="@+id/imgSenseSucre"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -92,7 +91,7 @@
             android:id="@+id/radioButton4"
             android:layout_width="143dp"
             android:layout_height="48dp"
-            android:text="@string/sacarina"
+            android:text="@string/sacarnia"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgSacarina" />
@@ -137,7 +136,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/editTxtCognom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/torna_enrere"

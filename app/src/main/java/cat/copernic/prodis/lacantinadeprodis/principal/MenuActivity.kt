@@ -1,29 +1,19 @@
-package cat.copernic.prodis.lacantinadeprodis.activities
+package cat.copernic.prodis.lacantinadeprodis.principal
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import cat.copernic.prodis.lacantinadeprodis.AdministradorActivity
 import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
+import cat.copernic.prodis.lacantinadeprodis.activities.PantallaEdicioPerfil
 
-class CambrerActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cambrer)
 
-       /* val bundle = intent.extras
-        val username: String? = bundle?.getString("username")
-
-        setup(username ?: "")*/
-    }
-
-    private fun setup (username: String){
-
-    }
-
+class MenuActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu, menu)

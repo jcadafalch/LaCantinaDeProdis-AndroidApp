@@ -13,7 +13,7 @@
             android:layout_width="216dp"
             android:layout_height="156dp"
             android:layout_marginTop="80dp"
-            android:contentDescription="@string/descripció_img_tomaquet"
+            android:contentDescription="@string/descripcio_img_tomaquet"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
             android:id="@+id/imgBossa"
             android:layout_width="240dp"
             android:layout_height="202dp"
-            android:contentDescription="@string/img_bossa_description"
+            android:contentDescription="@string/descripcio_img_bossa"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +89,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/txtTornarEnrerre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/torna_enrere"
