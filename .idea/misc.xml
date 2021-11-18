@@ -23,6 +23,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/mipmap-anydpi-v26/logOut_round.xml" value="0.1" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/drawable/home_foreground.xml" value="0.22962962962962963" />
+        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/drawable/ic_baseline_arrow_right_alt_24.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/drawable/ic_baseline_check_circle_outline_24.xml" value="0.22962962962962963" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/drawable/ic_fletxa_enrerre.xml" value="0.22592592592592592" />
@@ -38,11 +39,12 @@
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_administrador_nou_producte.xml" value="0.17119565217391305" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_administrador_nou_usuari.xml" value="0.1802536231884058" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_administrador_principal.xml" value="0.15208333333333332" />
+        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_edicio_perfil.xml" value="1.0" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_inici_sessio.xml" value="0.16621376811594202" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_inici_sessio_caixer_cuiner_cambrer.xml" value="0.1539855072463768" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_principal.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_recuperar_contrasenya2.xml" value="0.264" />
-        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_registre.xml" value="0.16032608695652173" />
+        <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_registre.xml" value="0.4" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_resum_comandes.xml" value="0.1539855072463768" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_seleccio_atributs_beguda.xml" value="0.4" />
         <entry key="..\:/Users/studio/Desktop/Clone/app/src/main/res/layout/fragment_pantalla_seleccio_atributs_bocata.xml" value="0.2480553154710458" />

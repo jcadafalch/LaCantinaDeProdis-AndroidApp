@@ -9,9 +9,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import cat.copernic.prodis.lacantinadeprodis.AdministradorActivity
+import cat.copernic.prodis.lacantinadeprodis.CaixerActivity
 import cat.copernic.prodis.lacantinadeprodis.R
-import cat.copernic.prodis.lacantinadeprodis.activities.AdministradorActivity
 import cat.copernic.prodis.lacantinadeprodis.activities.CambrerActivity
+import cat.copernic.prodis.lacantinadeprodis.activities.ComandesActivity
+import cat.copernic.prodis.lacantinadeprodis.activities.CuinerActivity
 import cat.copernic.prodis.lacantinadeprodis.administrador.PantallaAdministradorPrincipal
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioClientAdminBinding
 import android.widget.Toast.makeText as makeText
@@ -57,24 +60,31 @@ class PantallaIniciSessioClientAdmin : Fragment() {
     }
 
     private fun showCambrerClient(username: String){
-        requireActivity().let {
-            it.startActivity(Intent(it, CambrerActivity::class.java))
+        val intent = Intent(this.context, ComandesActivity::class.java).apply{
+
         }
+        startActivity(intent)
     }
 
     private fun showCaixer(){
+        val intent = Intent(this.context, CaixerActivity::class.java).apply{
 
+        }
+        startActivity(intent)
     }
 
     private fun showCuiner(){
+        val intent = Intent(this.context, CuinerActivity::class.java).apply{
 
+        }
+        startActivity(intent)
     }
 
     private fun showAdmin(){
-        requireActivity().let {
-            it.startActivity(Intent(it, PantallaAdministradorPrincipal::class.java))
-        }
+        val intent = Intent(this.context, AdministradorActivity::class.java).apply{
 
+        }
+        startActivity(intent)
 
     }
 }

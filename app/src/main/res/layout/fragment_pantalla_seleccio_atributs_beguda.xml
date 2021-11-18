@@ -136,7 +136,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/editTxtCognom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/torna_enrere"
