@@ -188,15 +188,15 @@ class PantallaRegistre : Fragment() {
         return dniLletra == lletraDni[dniNum.toInt() % 23].toString()
     }
 
-  private fun checkEmailFormat(email: String): Boolean{
-      val EMAIL_ADDRESS_PATTERN = Pattern.compile(
-          "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
-                  "\\@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
-                  "(" + "\\." + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
-                  ")+"
-      )
-      return EMAIL_ADDRESS_PATTERN.matcher(email).matches()
-  }
+    private fun checkEmailFormat(email: String): Boolean{
+        val EMAIL_ADDRESS_PATTERN = Pattern.compile(
+            "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                    "\\@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                    "(" + "\\." + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                    ")+"
+        )
+        return EMAIL_ADDRESS_PATTERN.matcher(email).matches()
+    }
 
     private fun showAlert(message: String) {
         val builder = AlertDialog.Builder(this.requireContext())
