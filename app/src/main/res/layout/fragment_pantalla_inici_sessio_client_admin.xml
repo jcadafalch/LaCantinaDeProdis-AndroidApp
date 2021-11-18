@@ -27,29 +27,27 @@
 
             <TextView
                 android:id="@+id/txtPIniciarSessioClient"
-                android:layout_width="wrap_content"
+                android:layout_width="146dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/iniciarSessio"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientBenvinguda"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.109"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/txtPIniciarSessioClientBenvinguda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
                 android:layout_marginBottom="32dp"
                 android:text="@string/txtPIniciarSessio_benvinguda"
                 android:textColor="#616161"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientDni"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/txtPIniciarSessioClientDni"
@@ -66,13 +64,15 @@
                 android:id="@+id/dtTxtPIniciarSessioClientDni"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
                 android:layout_marginBottom="47dp"
                 android:autofillHints="nif"
                 android:ems="10"
                 android:hint="@string/editDni"
                 android:inputType="textPersonName"
+                android:maxLength="9"
                 app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientContrasenya"
-                app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientPassword"
+                app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="LabelFor,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
 
@@ -80,24 +80,34 @@
                 android:id="@+id/txtPIniciarSessioClientContrasenya"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
                 android:text="@string/contrasenya"
                 android:textColor="#00796B"
                 android:textSize="@dimen/txtRegistreIniciSessio"
-                app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientPassword"
-                app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientPassword" />
+                app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientPasswordL"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
-                android:id="@+id/dtTxtPIniciarSessioClientPassword"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dtTxtPIniciarSessioClientPasswordL"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="29dp"
-                android:layout_marginBottom="32dp"
-                android:autofillHints="password"
-                android:ems="10"
-                android:inputType="numberPassword"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="169dp"
+                android:layout_marginBottom="30dp"
+                app:endIconMode="password_toggle"
                 app:layout_constraintBottom_toTopOf="@+id/btnPiniciarSessioClient"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dtTxtPIniciarSessioClientPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/contrasenya"
+                    android:inputType="numberPassword"
+                    android:maxLength="4"
+                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnPiniciarSessioClient"
@@ -146,21 +156,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TouchTargetSizeCheck" />
-
-            <ImageView
-                android:id="@+id/passwordEyePIniciSessio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:contentDescription="@string/image_view_eye"
-                android:focusable="true"
-                android:src="@drawable/password_eye"
-                app:layout_constraintBottom_toBottomOf="@+id/dtTxtPIniciarSessioClientPassword"
-                app:layout_constraintEnd_toEndOf="@+id/dtTxtPIniciarSessioClientPassword"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientPassword"
-                app:layout_constraintTop_toTopOf="@+id/dtTxtPIniciarSessioClientPassword"
-                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
