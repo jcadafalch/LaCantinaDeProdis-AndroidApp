@@ -40,8 +40,8 @@ class PantallaRegistre : Fragment() {
                     bdng.dtTxtPRegistrePersonName.text.toString(),
                     bdng.dtTxtPRegistreDni.text.toString(),
                     bdng.dtTxtPRegistreEmail.text.toString(),
-                    bdng.dtTxtPRegistrePassword.text.toString(),
-                    bdng.dtTxtPRegistreRepeteixPassword.text.toString(),
+                    bdng.dtTxtPRegistrePassword.toString(),
+                    bdng.dtTxtPRegistreRepeteixPassword.toString(),
                     bdng.checkBox.isChecked
                 )
             ) {
@@ -49,7 +49,7 @@ class PantallaRegistre : Fragment() {
                     bdng.dtTxtPRegistrePersonName.text.toString(),
                     bdng.dtTxtPRegistreDni.text.toString(),
                     bdng.dtTxtPRegistreEmail.text.toString(),
-                    bdng.dtTxtPRegistrePassword.text.toString(),
+                    bdng.dtTxtPRegistrePassword.toString(),
                     usertype)
                 view.findNavController().navigate(
                     PantallaRegistreDirections.actionPantallaRegistreToPantallaIniciSessioClientAdmin(

@@ -74,19 +74,6 @@
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreRepeteixPassword"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
 
-            <ImageView
-                android:id="@+id/passwordEyePRecuperarContrasenya1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="184dp"
-                android:clickable="true"
-                android:contentDescription="@string/image_view_eye"
-                android:focusable="true"
-                android:src="@drawable/password_eye"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/dtTxtPRegistrePassword" />
-
             <TextView
                 android:id="@+id/txtPRegistreRepeteixContrasenya"
                 android:layout_width="wrap_content"
@@ -115,19 +102,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
-
-            <ImageView
-                android:id="@+id/passwordEyePRecuperarContrasenya2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="75dp"
-                android:layout_marginEnd="184dp"
-                android:clickable="true"
-                android:contentDescription="@string/image_view_eye"
-                android:focusable="true"
-                android:src="@drawable/password_eye"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordEyePRecuperarContrasenya1" />
 
             <Button
                 android:id="@+id/btnPRecuperarContrasenya2_continuar"

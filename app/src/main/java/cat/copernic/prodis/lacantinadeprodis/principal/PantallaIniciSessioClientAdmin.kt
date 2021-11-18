@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isNotEmpty
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
@@ -21,7 +22,6 @@ import com.google.firebase.ktx.Firebase
 class PantallaIniciSessioClientAdmin : Fragment() {
 
     private val db = Firebase.firestore
-    private var Email = ""
     private var auth = FirebaseAuth.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,22 +41,26 @@ class PantallaIniciSessioClientAdmin : Fragment() {
             var passwd = binding.dtTxtPIniciarSessioClientPassword.text.toString()
             var bool = false
             if (binding.dtTxtPIniciarSessioClientDni.text.isNotEmpty() &&
-                binding.dtTxtPIniciarSessioClientPassword.text.isNotEmpty()
+                !binding.dtTxtPIniciarSessioClientPassword.text.isNullOrEmpty()
             ) {
                 passwd += "prodis"
                 db.collection("users").get().addOnSuccessListener { result ->
                     for (document in result) {
                         if (document.id == dni) {
                             bool = true
-                            auth.signInWithEmailAndPassword(
-                                document.get("email").toString(),
-                                passwd,
-                            ).addOnCompleteListener {
-                                if (it.isSuccessful) {
-                                    startActivity(usertype)
-                                } else {
-                                    showAlert("Error en inici de sessió")
+                            if (document.get("usertype").toString() == usertype){
+                                auth.signInWithEmailAndPassword(
+                                    document.get("email").toString(),
+                                    passwd,
+                                ).addOnCompleteListener {
+                                    if (it.isSuccessful) {
+                                        startActivity(usertype)
+                                    } else {
+                                        showAlert("Error en inici de sessió")
+                                    }
                                 }
+                            }else{
+                                showAlert("Aquest usuari no és de tipus $usertype")
                             }
                         }
                     }
@@ -66,7 +70,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
                 }
 
             } else {
-                Toast.makeText(this.context, "L\'usuari no existeix", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, "Falta omplir els camps", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -87,9 +91,6 @@ class PantallaIniciSessioClientAdmin : Fragment() {
             )
         }
 
-        binding.passwordEyePIniciSessio.setOnClickListener {
-
-        }
         return binding.root
     }
 

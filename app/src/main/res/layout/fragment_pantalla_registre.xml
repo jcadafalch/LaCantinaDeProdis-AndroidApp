@@ -23,6 +23,7 @@
                 android:contentDescription="@string/logo_lacantinadeprodis"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@mipmap/logo_foreground" />
 
@@ -51,13 +52,14 @@
                 android:id="@+id/dtTxtPRegistrePersonName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
                 android:ems="10"
                 android:hint="@string/juan_rodriguez_gonalez"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreDni"
-                tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck"
-                tools:layout_editor_absoluteX="35dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
             <TextView
                 android:id="@+id/txtPRegistreDni"
@@ -100,101 +102,86 @@
                 android:id="@+id/dtTxtPRegistreEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="166dp"
                 android:ems="10"
                 android:hint="@string/jrodirezgonzalez_prodiscat"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
                 android:textColor="#616161"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreContrasenya"
-                app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistrePassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
             <TextView
                 android:id="@+id/txtPRegistreContrasenya"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="297dp"
+                android:layout_marginBottom="1dp"
                 android:text="@string/contrasenya"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/txtRegistreIniciSessio"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistrePassword"
-                app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistrePassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dtTxtPRegistrePassword"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/contrasenya"
-                android:importantForAutofill="no"
-                android:inputType="textPassword"
-                android:textColor="#616161"
-                android:maxLength="4"
-                app:layout_constraintBottom_toTopOf="@+id/txtPRegistreRepeteixContrasenya"
-                app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreRepeteixPassword"
-                tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
+                android:layout_marginEnd="169dp"
+                app:endIconMode="password_toggle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/txtPRegistreRepeteixContrasenya"
+                app:layout_constraintTop_toBottomOf="@+id/txtPRegistreContrasenya">
 
-            <ImageView
-                android:id="@+id/passwordEyePRegistre1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:contentDescription="@string/image_view_eye"
-                android:focusable="true"
-                android:src="@drawable/password_eye"
-                app:layout_constraintBottom_toBottomOf="@+id/dtTxtPRegistrePassword"
-                app:layout_constraintEnd_toEndOf="@+id/dtTxtPRegistrePassword"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistrePassword"
-                app:layout_constraintTop_toBottomOf="@+id/dtTxtPRegistreEmail"
-                app:layout_constraintVertical_bias="0.75"
-                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/contrasenya"
+                    android:inputType="numberPassword"
+                    android:maxLength="4"
+                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txtPRegistreRepeteixContrasenya"
                 android:layout_width="287dp"
                 android:layout_height="22dp"
+                android:layout_marginEnd="90dp"
                 android:text="@string/repeteix_contrasenya"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/txtRegistreIniciSessio"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistreRepeteixPassword"
-                app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreRepeteixPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dtTxtPRegistrePassword"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
 
-
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dtTxtPRegistreRepeteixPassword"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
-                android:layout_marginEnd="165dp"
-                android:layout_marginBottom="4dp"
-                android:ems="10"
-                android:hint="@string/contrasenyaRepetida"
-                android:maxLength="4"
-                android:importantForAutofill="no"
-                android:inputType="textPassword"
+                android:layout_marginEnd="169dp"
+                android:layout_marginBottom="30dp"
+                app:endIconMode="password_toggle"
                 app:layout_constraintBottom_toTopOf="@+id/checkBox"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
+                app:layout_constraintStart_toStartOf="parent">
 
-            <ImageView
-                android:id="@+id/passwordEyePRegistre2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:contentDescription="@string/image_view_eye"
-                android:focusable="true"
-                android:src="@drawable/password_eye"
-                app:layout_constraintBottom_toBottomOf="@+id/dtTxtPRegistreRepeteixPassword"
-                app:layout_constraintEnd_toEndOf="@+id/dtTxtPRegistreRepeteixPassword"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreRepeteixPassword"
-                app:layout_constraintTop_toBottomOf="@+id/txtPRegistreRepeteixContrasenya"
-                app:layout_constraintVertical_bias="0.476"
-                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/contrasenya"
+                    android:inputType="numberPassword"
+                    android:maxLength="4"
+                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnPregistre"
