@@ -6,7 +6,7 @@
     app:startDestination="@id/pantallaCuiner">
     <fragment
         android:id="@+id/pantallaCuiner"
-        android:name="cat.copernic.prodis.lacantinadeprodis.cuiner.PantallaCuiner"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.cuiner.PantallaCuiner"
         android:label="fragment_pantalla_cuiner"
         tools:layout="@layout/fragment_pantalla_cuiner" />
 </navigation>

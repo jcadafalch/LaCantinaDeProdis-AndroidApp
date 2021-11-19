@@ -18,9 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ComandesActivity" android:label="ComandesActivity" />
-        <activity android:name=".CaixerActivity" android:label="CaixerActivity" />
-        <activity android:name=".AdministradorActivity" android:label="AdministradorAcivity" />
-        <activity android:name=".activities.PantallaEdicioPerfil" android:label="PantallaEdicioPerfil" />
+        <activity android:name="cat.copernic.prodis.lacantinadeprodis.ui.activities.ComandesActivity" android:label="ComandesActivity" />
+        <activity android:name="cat.copernic.prodis.lacantinadeprodis.ui.activities.CaixerActivity" android:label="CaixerActivity" />
+        <activity android:name="cat.copernic.prodis.lacantinadeprodis.ui.activities.AdministradorActivity" android:label="AdministradorAcivity" />
+        <activity android:name="cat.copernic.prodis.lacantinadeprodis.ui.activities.PantallaEdicioPerfil" android:label="PantallaEdicioPerfil" />
     </application>
 </manifest>

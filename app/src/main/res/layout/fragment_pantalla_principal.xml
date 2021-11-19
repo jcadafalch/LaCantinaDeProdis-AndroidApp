@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".principal.PantallaPrincipal">
+    tools:context=".ui.principal.PantallaPrincipal">
 
     <ScrollView
         android:layout_width="match_parent"
