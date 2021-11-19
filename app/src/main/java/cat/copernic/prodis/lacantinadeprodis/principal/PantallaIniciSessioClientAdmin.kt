@@ -11,9 +11,10 @@ import android.widget.Toast
 import androidx.core.view.isNotEmpty
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import cat.copernic.prodis.lacantinadeprodis.AdministradorActivity
+import cat.copernic.prodis.lacantinadeprodis.CaixerActivity
 import cat.copernic.prodis.lacantinadeprodis.R
-import cat.copernic.prodis.lacantinadeprodis.activities.AdministradorActivity
-import cat.copernic.prodis.lacantinadeprodis.activities.CambrerActivity
+import cat.copernic.prodis.lacantinadeprodis.activities.ComandesActivity
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioClientAdminBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -48,7 +49,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
                     for (document in result) {
                         if (document.id == dni) {
                             bool = true
-                            if (document.get("usertype").toString() == usertype) {
+                            if (document.get("usertype").toString() == usertype){
                                 auth.signInWithEmailAndPassword(
                                     document.get("email").toString(),
                                     passwd,
@@ -59,12 +60,12 @@ class PantallaIniciSessioClientAdmin : Fragment() {
                                         showAlert("Error en inici de sessió")
                                     }
                                 }
-                            } else {
+                            }else{
                                 showAlert("Aquest usuari no és de tipus $usertype")
                             }
                         }
                     }
-                    if (!bool) {
+                    if (!bool){
                         showAlert("L\'usuari no està registrat")
                     }
                 }
@@ -105,21 +106,21 @@ class PantallaIniciSessioClientAdmin : Fragment() {
     }
 
     private fun showCambrerClient(username: String) {
-        val intent = Intent(this.context, CambrerActivity::class.java).apply {
+        val intent = Intent(this.context, ComandesActivity::class.java).apply {
             putExtra("usertype", username)
         }
         startActivity(intent)
     }
 
     private fun showCaixer() {
-        /*val intent = Intent(this.context, CaixerActivity::class.java).apply { }
+        val intent = Intent(this.context, CaixerActivity::class.java).apply { }
 
-        startActivity(intent)*/
+        startActivity(intent)
     }
 
     private fun showCuiner() {
-        /*val intent =Intent(this.context, CuinerActivity::class.java).apply { }
-        startActivity(intent)*/
+        val intent =Intent(this.context, ComandesActivity::class.java).apply { }
+        startActivity(intent)
     }
 
     private fun showAdmin() {

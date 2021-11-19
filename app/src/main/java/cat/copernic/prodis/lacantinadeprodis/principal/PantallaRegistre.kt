@@ -36,12 +36,14 @@ class PantallaRegistre : Fragment() {
         analytics?.logEvent("InitScreen", bundle)
 
         bdng.btnPregistre.setOnClickListener { view: View ->
+            println(bdng.dtTxtPRegistrePassword.text.toString())
+            println(bdng.dtTxtPRegistreRepeteixPassword.text.toString())
             if (datavalids(
                     bdng.dtTxtPRegistrePersonName.text.toString(),
                     bdng.dtTxtPRegistreDni.text.toString(),
                     bdng.dtTxtPRegistreEmail.text.toString(),
-                    bdng.dtTxtPRegistrePassword.toString(),
-                    bdng.dtTxtPRegistreRepeteixPassword.toString(),
+                    bdng.dtTxtPRegistrePassword.text.toString(),
+                    bdng.dtTxtPRegistreRepeteixPassword.text.toString(),
                     bdng.checkBox.isChecked
                 )
             ) {
@@ -49,7 +51,7 @@ class PantallaRegistre : Fragment() {
                     bdng.dtTxtPRegistrePersonName.text.toString(),
                     bdng.dtTxtPRegistreDni.text.toString(),
                     bdng.dtTxtPRegistreEmail.text.toString(),
-                    bdng.dtTxtPRegistrePassword.toString(),
+                    bdng.dtTxtPRegistrePassword.text.toString(),
                     usertype)
                 view.findNavController().navigate(
                     PantallaRegistreDirections.actionPantallaRegistreToPantallaIniciSessioClientAdmin(
@@ -78,6 +80,7 @@ class PantallaRegistre : Fragment() {
         usertype: String
     ) {
         val passwd = password + "prodis"
+        println(passwd)
         var bool = false
         var bool1 = false
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passwd)
@@ -184,7 +187,6 @@ class PantallaRegistre : Fragment() {
         val dniLletra = dni.substring(dni.length -1).uppercase()
         val lletraDni = "TRWAGMYFPDXBNJZSQVHLCKE"
 
-        println(lletraDni[dniNum.toInt() % 23])
         return dniLletra == lletraDni[dniNum.toInt() % 23].toString()
     }
 

@@ -124,13 +124,13 @@
                 android:text="@string/contrasenya"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/txtRegistreIniciSessio"
-                app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistrePassword"
+                app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistrePasswordT"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/dtTxtPRegistrePassword"
+                android:id="@+id/dtTxtPRegistrePasswordT"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="169dp"
@@ -140,6 +140,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtPRegistreContrasenya">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dtTxtPRegistrePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/contrasenya"
@@ -156,13 +157,13 @@
                 android:text="@string/repeteix_contrasenya"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/txtRegistreIniciSessio"
-                app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistreRepeteixPassword"
+                app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistreRepeteixPasswordT"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dtTxtPRegistrePassword"
+                app:layout_constraintTop_toBottomOf="@+id/dtTxtPRegistrePasswordT"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/dtTxtPRegistreRepeteixPassword"
+                android:id="@+id/dtTxtPRegistreRepeteixPasswordT"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
@@ -175,6 +176,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dtTxtPRegistreRepeteixPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/contrasenya"
