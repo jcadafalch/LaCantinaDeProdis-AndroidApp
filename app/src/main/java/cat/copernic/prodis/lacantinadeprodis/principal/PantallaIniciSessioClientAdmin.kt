@@ -49,6 +49,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
                         if (document.id == dni) {
                             bool = true
                             if (document.get("usertype").toString() == usertype){
+                                val email = document.get("email")
                                 auth.signInWithEmailAndPassword(
                                     document.get("email").toString(),
                                     passwd,
