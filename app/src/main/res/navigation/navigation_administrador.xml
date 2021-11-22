@@ -32,7 +32,11 @@
         android:id="@+id/pantallaAdministradorNouUsuari"
         android:name="cat.copernic.prodis.lacantinadeprodis.administrador.PantallaAdministradorNouUsuari"
         android:label="fragment_pantalla_administrador_nou_usuari"
-        tools:layout="@layout/fragment_pantalla_administrador_nou_usuari" />
+        tools:layout="@layout/fragment_pantalla_administrador_nou_usuari" >
+        <action
+            android:id="@+id/action_pantallaAdministradorNouUsuari_to_pantallaAdministradorPrincipal"
+            app:destination="@id/pantallaAdministradorPrincipal" />
+    </fragment>
     <fragment
         android:id="@+id/pantallaAdministradorNouProducte"
         android:name="cat.copernic.prodis.lacantinadeprodis.administrador.PantallaAdministradorNouProducte"
