@@ -63,7 +63,9 @@ class PantallaAdministradorNouUsuari : Fragment() {
     }
 
     private fun newUser(username: String, usersurname: String) {
-        val documentid = username+usersurname
+        val userName = username.replace(" ", "")
+        val userSurname = usersurname.replace(" ", "")
+        val documentid = userName+userSurname
         db.collection("users").document(documentid).get().addOnSuccessListener { document->
             if (!document.exists()){
                 db.collection("users").document(documentid).set(
