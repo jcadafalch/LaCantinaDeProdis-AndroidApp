@@ -30,25 +30,17 @@ class PantallaRecuperarContrasenya1 : Fragment() {
         )
         val args = PantallaRecuperarContrasenya1Args.fromBundle(requireArguments())
         usertype = args.usertype
-       // val dni = binding.//binding.dtTxtPRecuperarContrasenya1DNI.text.toString().uppercase()
-        val dni = binding.dtTxtPRecuperarContrasenya1DNI.text.toString().uppercase()
         binding.btnPRecuperarContrasenya1Continuar.setOnClickListener {
             println("SET ON CLICK LISTENER")
-            println("DNI  = $dni")
-            if (dni.isNotEmpty()){
-                println("NOT EMPTY")
-                getEmail(dni)
-                /*if (email != ""){
-                    auth.setLanguageCode("es")
-                    resetpassd()
-                }else{
-                    println("GOOL - $email")
-                }*/
+            println(binding.dtTxtPRecuperarContrasenya1DNI.text.toString())
+            if (binding.dtTxtPRecuperarContrasenya1DNI.text.toString().isNotEmpty()){
+
+                getEmail(binding.dtTxtPRecuperarContrasenya1DNI.text.toString())
+
             }else{
                 Toast.makeText(this.context, "El camp DNI està buit", Toast.LENGTH_SHORT).show()
             }
 
-            //view?.findNavController()?.navigate(PantallaRecuperarContrasenya1Directions.actionPantallaRecuperarContrasenya1ToPantallaRecuperarContrasenya2(usertype))
         }
         return binding.root
     }
@@ -59,14 +51,11 @@ class PantallaRecuperarContrasenya1 : Fragment() {
         for (document in result){
             if (document.id == dni){
                 bool = true
-                println("DOCUMENT IDD " + document.id + " -  EMAIL: "  + document.get("email").toString())
                 email = document.get("email").toString()
-                println("EMAIL == $email")
-                auth.setLanguageCode("es")
+                auth.setLanguageCode("ca")
                 auth.sendPasswordResetEmail(email).addOnCompleteListener {
-                    println("RESET PASSWORD EMAIL")
                     if (it.isSuccessful){
-                        println("SUCCESSFUL")
+                        bool = true
                         Toast.makeText(this.context, "S\'ha enviat un correu a: $email, per restablir la contrasenya", Toast.LENGTH_SHORT).show()
                         view?.findNavController()?.navigate(PantallaRecuperarContrasenya1Directions.actionPantallaRecuperarContrasenya1ToPantallaIniciSessioClientAdmin(usertype))
                     }else{
@@ -78,27 +67,11 @@ class PantallaRecuperarContrasenya1 : Fragment() {
                 println("DOCUMENT ID  = " + document.id.toString())
             }
         }
-        /*email = document.get("email").toString()
-            do {
-                println(email)
-            }while (email == "")*/
         }
         if (!bool){
             showAlert("L\'usuari no està registrat")
         }
     }
-
-    private fun resetpassd(){
-        auth.setLanguageCode("es")
-        auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
-            if (task.isSuccessful){
-                Toast.makeText(this.context, "S\'ha enviat un correu a: $email, per restablir la contrasenya", Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this.context, "No s\'ha pogut enviar un correu per restablir contrasenya", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
     private fun showAlert(msg: String) {
         val builder = AlertDialog.Builder(this.context)
         builder.setTitle("ERROR")
