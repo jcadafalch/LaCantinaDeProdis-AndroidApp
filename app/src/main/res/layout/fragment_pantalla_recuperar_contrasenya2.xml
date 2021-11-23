@@ -10,7 +10,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorFons"
             android:orientation="vertical">
 
@@ -68,7 +68,8 @@
                 android:ems="10"
                 android:hint="@string/contrasenya"
                 android:importantForAutofill="no"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
+                android:maxLength="4"
                 android:textColor="#616161"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreRepeteixContrasenya"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreRepeteixPassword"
@@ -96,7 +97,8 @@
                 android:ems="10"
                 android:hint="@string/contrasenyaRepetida"
                 android:importantForAutofill="no"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
+                android:maxLength="4"
                 app:layout_constraintBottom_toTopOf="@+id/btnPRecuperarContrasenya2_continuar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

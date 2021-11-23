@@ -52,6 +52,9 @@
         <argument
             android:name="usertype"
             app:argType="string" />
+        <argument
+            android:name="dni"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/pantallaIniciSessioClientAdmin"
