@@ -23,6 +23,8 @@ class PantallaIniciSessioClientAdmin : Fragment() {
 
     private val db = Firebase.firestore
     private var auth = FirebaseAuth.getInstance()
+    private lateinit var dni: String
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,7 +39,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         val usertype = args.usertype
 
         binding.btnPiniciarSessioClient.setOnClickListener {
-            val dni = binding.dtTxtPIniciarSessioClientDni.text.toString().uppercase()
+            dni = binding.dtTxtPIniciarSessioClientDni.text.toString().uppercase()
             var passwd = binding.dtTxtPIniciarSessioClientPassword.text.toString()
             var bool = false
             if (binding.dtTxtPIniciarSessioClientDni.text.isNotEmpty() &&
@@ -96,34 +98,41 @@ class PantallaIniciSessioClientAdmin : Fragment() {
 
     private fun startActivity(usertype: String) {
         when (usertype) {
-            "client" -> showCambrerClient(usertype)
-            "cambrer" -> showCambrerClient(usertype)
-            "caixer" -> showCaixer()
-            "cuiner" -> showCuiner()
-            "admin" -> showAdmin()
+            "client" -> showCambrerClient(usertype, dni)
+            "cambrer" -> showCambrerClient(usertype, dni)
+            "caixer" -> showCaixer(dni)
+            "cuiner" -> showCuiner(dni)
+            "admin" -> showAdmin(dni)
         }
     }
 
-    private fun showCambrerClient(username: String) {
+    private fun showCambrerClient(username: String, dni: String) {
         val intent = Intent(this.context, ComandesActivity::class.java).apply {
             putExtra("usertype", username)
+            putExtra("dni", dni)
         }
         startActivity(intent)
     }
 
-    private fun showCaixer() {
-        val intent = Intent(this.context, CaixerActivity::class.java).apply { }
+    private fun showCaixer(dni: String) {
+        val intent = Intent(this.context, CaixerActivity::class.java).apply {
+            putExtra("dni", dni)
+        }
 
         startActivity(intent)
     }
 
-    private fun showCuiner() {
-        val intent =Intent(this.context, ComandesActivity::class.java).apply { }
+    private fun showCuiner(dni: String) {
+        val intent =Intent(this.context, ComandesActivity::class.java).apply {
+            putExtra("dni", dni)
+        }
         startActivity(intent)
     }
 
-    private fun showAdmin() {
-        val intent = Intent(this.context, AdministradorActivity::class.java).apply { }
+    private fun showAdmin(dni: String) {
+        val intent = Intent(this.context, AdministradorActivity::class.java).apply {
+            putExtra("dni", dni)
+        }
         startActivity(intent)
     }
 

@@ -12,9 +12,17 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityComandesBinding
 
 class ComandesActivity: AppCompatActivity() {
+    private lateinit var usertype: String
+    private lateinit var dni: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityComandesBinding>(this, R.layout.activity_comandes)
+
+        var bundle = intent.extras
+        usertype = bundle?.getString("usertype").toString()
+        dni = bundle?.getString("dni").toString()
+
 
         //val navController = this.findNavController(R.id.myNavHostFragment)
 
@@ -39,6 +47,7 @@ class ComandesActivity: AppCompatActivity() {
             }
             R.id.profileBttn -> {
                 val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
+                    putExtra("dni", dni)
                 }
                 startActivity(intent)
                 true

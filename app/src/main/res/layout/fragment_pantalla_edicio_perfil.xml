@@ -13,7 +13,7 @@
             android:id="@+id/userIcon"
             android:layout_width="120dp"
             android:layout_height="122dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:contentDescription="@string/imatge_del_usuari"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
