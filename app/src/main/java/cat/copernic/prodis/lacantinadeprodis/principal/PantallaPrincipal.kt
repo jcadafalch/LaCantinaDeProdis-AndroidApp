@@ -20,7 +20,6 @@ class PantallaPrincipal : Fragment() {
         val binding: FragmentPantallaPrincipalBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_principal, container, false
         )
-
         binding.btnPprincipalClient.setOnClickListener { view : View ->
             view.findNavController().navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin("client"))
         }

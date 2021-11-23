@@ -16,6 +16,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/drawable/pasword_eye_foreground.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/drawable/profile_foreground.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/drawable/splashscreen.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout-v23/fragment_pantalla_principal.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/activity_administrador.xml" value="0.25025641025641027" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_administrador_administrar_producte.xml" value="0.10989583333333333" />
@@ -27,11 +28,11 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_edicio_perfil.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_inici_sessio.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_inici_sessio_caixer_cuiner_cambrer.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_inici_sessio_client_admin.xml" value="0.42397914856646396" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_inici_sessio_client_admin.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_principal.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_recuperar_contrasenya1.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_recuperar_contrasenya2.xml" value="0.264" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_registre.xml" value="0.4" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_registre.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_seleccio_atributs_bocata.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/fragment_pantalla_seleccio_bocata.xml" value="0.1962962962962963" />
         <entry key="..\:/Users/User/AndroidStudioProjects/LaCantinaDeProdis/app/src/main/res/layout/pantalla_inici_sessio.xml" value="0.13020833333333334" />

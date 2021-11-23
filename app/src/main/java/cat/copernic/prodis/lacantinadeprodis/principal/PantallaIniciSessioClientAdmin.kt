@@ -36,6 +36,10 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         val args = PantallaIniciSessioClientAdminArgs.fromBundle(requireArguments())
         val usertype = args.usertype
 
+        if(usertype == "admin"){
+            binding.txtPiniciarSessioClientRegistre.visibility = View.INVISIBLE
+        }
+
         binding.btnPiniciarSessioClient.setOnClickListener {
             val dni = binding.dtTxtPIniciarSessioClientDni.text.toString().uppercase()
             var passwd = binding.dtTxtPIniciarSessioClientPassword.text.toString()
@@ -49,7 +53,6 @@ class PantallaIniciSessioClientAdmin : Fragment() {
                         if (document.id == dni) {
                             bool = true
                             if (document.get("usertype").toString() == usertype){
-                                val email = document.get("email")
                                 auth.signInWithEmailAndPassword(
                                     document.get("email").toString(),
                                     passwd,

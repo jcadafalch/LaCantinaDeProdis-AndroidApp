@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isNotEmpty
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
@@ -32,58 +33,88 @@ class PantallaRecuperarContrasenya2 : Fragment() {
         val dni = args.dni
 
         binding.btnPRecuperarContrasenya2Continuar.setOnClickListener {
-            if (binding.dtTxtPRegistrePassword.text.isNotEmpty() &&
-                binding.dtTxtPRegistreRepeteixPassword.text.isNotEmpty()
+            if (dataValid(
+                    binding.dtTxtPRegistrePassword.toString(),
+                    binding.dtTxtPRegistreRepeteixPassword.toString()
+                )
             ) {
-                if (binding.dtTxtPRegistrePassword.text.toString() ==
-                    binding.dtTxtPRegistreRepeteixPassword.text.toString()
-                ) {
-                    println("CONTRASENYES IGUALS")
+                println("CONTRASENYES IGUALS")
 
-                    val psswd = binding.dtTxtPRegistrePassword.text.toString() + "prodis"
-                    changePassword(dni,psswd, usertype)
+                val psswd = binding.dtTxtPRegistrePassword.toString() + "prodis"
+                changePassword(dni, psswd, usertype)
 
-                } else {
-                    showAlert("Les contrasenyes no coincideixen.")
-                }
-            } else {
-                showAlert("Els camps no están plens")
             }
         }
 
         return binding.root
     }
 
-    private fun changePassword(dni: String, psswd: String, usertype: String){
+    private fun dataValid(psswd1: String, psswd2: String): Boolean {
+        var bool = true
+        var errorMessage = ""
+
+        if (psswd1.isEmpty()) {
+            errorMessage += "Falta introduir la contrasenya.\n"
+            bool = false
+        }
+        if (psswd2.isEmpty()) {
+            errorMessage += "Falta introduir la contrasenya repetida.\n"
+            bool = false
+        }
+
+
+        if (psswd1.isNotEmpty() && psswd2.isNotEmpty()) {
+            if (psswd1 != psswd2) {
+                errorMessage += "Les contrasenyes no coincideixen.\n"
+                bool = false
+            }
+        }
+
+        if (errorMessage != "") {
+            showAlert(errorMessage)
+        }
+
+        return bool
+    }
+
+    private fun changePassword(dni: String, psswd: String, usertype: String) {
         var bool = false
         db.collection("users").get().addOnSuccessListener { result ->
             for (document in result) {
                 if (document.id == dni) {
                     bool = true
-                        auth.signInWithEmailAndPassword(
-                            document.get("email").toString(),
-                            document.get("password").toString(),
-                        ).addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                val currentUser = auth.currentUser
-                                currentUser?.updatePassword(psswd)?.addOnSuccessListener {
-                                    println("SUCCESSFUL")
-                                    db.collection("users").document(dni).update(
-                                        hashMapOf(
-                                            "password" to psswd
-                                        ) as Map<String, Any>
+                    auth.signInWithEmailAndPassword(
+                        document.get("email").toString(),
+                        document.get("password").toString(),
+                    ).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            val currentUser = auth.currentUser
+                            currentUser?.updatePassword(psswd)?.addOnSuccessListener {
+                                println("SUCCESSFUL")
+                                db.collection("users").document(dni).update(
+                                    hashMapOf(
+                                        "password" to psswd
+                                    ) as Map<String, Any>
+                                )
+                                auth.signOut()
+                                Toast.makeText(
+                                    this.context,
+                                    "S'ha canbiat la contrasenya",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                view?.findNavController()?.navigate(
+                                    PantallaRecuperarContrasenya2Directions.actionPantallaRecuperarContrasenya2ToPantallaIniciSessioClientAdmin(
+                                        usertype
                                     )
-                                    auth.signOut()
-                                    Toast.makeText(this.context, "S'ha canbiat la contrasenya", Toast.LENGTH_SHORT).show()
-                                    view?.findNavController()?.navigate(PantallaRecuperarContrasenya2Directions.actionPantallaRecuperarContrasenya2ToPantallaIniciSessioClientAdmin(usertype))
-                                }
-                            } else {
-                                showAlert("Error en inici de sessió")
+                                )
                             }
+                        } else {
+                            showAlert("Error en inici de sessió")
                         }
+                    }
                 }
             }
-            if (!bool){
+            if (!bool) {
                 showAlert("L\'usuari no està registrat")
             }
         }
