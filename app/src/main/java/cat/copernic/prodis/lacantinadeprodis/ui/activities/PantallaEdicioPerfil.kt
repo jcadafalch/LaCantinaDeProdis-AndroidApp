@@ -1,6 +1,10 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.activities
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,15 +13,37 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaEdicioPerfilBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.regex.Pattern
+import android.provider.MediaStore
+import android.widget.LinearLayout
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
+import androidx.lifecycle.lifecycleScope
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.processNextEventInCurrentThread
+import java.io.File
+
 
 class PantallaEdicioPerfil : AppCompatActivity() {
     private lateinit var dni: String
 
     private val db = FirebaseFirestore.getInstance()
 
+    lateinit var binding: FragmentPantallaEdicioPerfilBinding
+    private var latestTmpUri: Uri? = null
+    val takeImageResult =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
+            if (isSuccess) {
+                latestTmpUri?.let { uri ->
+                    binding.userIcon.setImageURI(uri)
+                }
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<FragmentPantallaEdicioPerfilBinding>(
+        binding = DataBindingUtil.setContentView<FragmentPantallaEdicioPerfilBinding>(
             this,
             R.layout.fragment_pantalla_edicio_perfil
         )
@@ -25,8 +51,9 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         var bundle = intent.extras
         dni = bundle?.getString("dni").toString()
 
-        var nomBinding = binding.editTxtNom.text.toString()
-        var cognomBinding = binding.editTxtCognom.text.toString()
+        binding.btnCambiarFoto.setOnClickListener() { view: View ->
+            triaCamGaleria()
+        }
 
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
@@ -42,8 +69,14 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                 }
             }
 
+        db.collection("users").document(dni).get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    binding.editTextCorreu.setHint(document.get("email").toString())
+                }
+            }
+
         binding.btnGuardar.setOnClickListener() { view: View ->
-            println(nomBinding)
             if (datavalids(
                     binding.editTxtNom.text.toString(),
                     binding.editTxtCognom.text.toString(),
@@ -54,29 +87,46 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                     hashMapOf(
                         "username" to binding.editTxtNom.text.toString(),
                         "usersurname" to binding.editTxtCognom.text.toString(),
-                        "email" to binding.editTextCorreu.text.toString()
                     ) as Map<String, Any>
                 )
+                val currentUser =
+                    FirebaseAuth.getInstance().currentUser ?: return@setOnClickListener
+                if (binding.editTextCorreu.text.toString() != currentUser.email) {
+                    currentUser
+                        .updateEmail(binding.editTextCorreu.text.toString())
+                        .addOnSuccessListener {
+                            db.collection("users").document(dni).update(
+                                hashMapOf(
+                                    "email" to binding.editTextCorreu.text.toString()
+                                ) as Map<String, Any>
+                            )
+                        }
+                }
+                currentUser.updatePassword(binding.editTextContrassenya.text.toString()).addOnSuccessListener {
+                    db.collection("users").document(dni).update(
+                        hashMapOf(
+                            "password" to binding.editTextContrassenya.text.toString()
+                        ) as Map<String, Any>
+                    )
+                }
             }
         }
     }
+
     private fun datavalids(nom: String, cognom: String, correu: String): Boolean {
         var error = ""
         var bool = true
         if (nom.isEmpty()) {
             error += "Has d'introduïr el nom\r"
             bool = false
-            println("El nom está buiy")
         }
         if (cognom.isEmpty()) {
             error += "Has d'introduïr el cognom\r"
             bool = false
-            println("El cognom está buit")
         }
         if (correu.isEmpty()) {
             error += "Has d'introduïr el correu\r"
             bool = false
-            println("El correu está buit")
         } else if (!checkEmailFormat(correu)) {
             error = "El format del correu no es correcte"
             bool = false
@@ -106,5 +156,71 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         dialog.show()
     }
 
-}
+    private fun cam() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_PICK
+        intent.type = "image/*"
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+    }
 
+    private val startForActivityGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data?.data
+            //setImageUri només funciona per rutes locals, no a internet
+            binding?.userIcon?.setImageURI(data)
+        }
+    }
+
+    private fun obrirGaleria() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startForActivityGallery.launch(intent)
+    }
+
+    private fun obrirCamera() {
+        lifecycleScope.launchWhenStarted {
+            getTmpFileUri().let { uri ->
+                latestTmpUri = uri
+
+                takeImageResult.launch(uri)
+            }
+        }
+    }
+
+    private fun getTmpFileUri(): Uri {
+        val tmpFile = File.createTempFile("tmp_image_file", ".png", cacheDir).apply {
+            createNewFile()
+            deleteOnExit()
+        }
+
+        return FileProvider.getUriForFile(
+            applicationContext,
+            "cat.copernic.prodis.lacantinadeprodis.provider",
+            tmpFile
+        )
+    }
+    fun triaCamGaleria() {
+
+        val alertDialog = AlertDialog.Builder(this).create()
+        alertDialog.setTitle("D'on vols treure la foto?")
+        alertDialog.setMessage("Selecciona un:")
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "GALERIA"
+        ) { dialog, which ->  obrirGaleria()}
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CAMARA"
+        ) { dialog, which -> obrirCamera() }
+        alertDialog.show()
+
+        val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+
+        val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+        layoutParams.weight = 10f
+        btnPositive.layoutParams = layoutParams
+        btnNegative.layoutParams = layoutParams
+    }
+}

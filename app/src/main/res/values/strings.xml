@@ -74,7 +74,7 @@
     <string name="nom">Nom:</string>
     <string name="cognom">Cognom:</string>
     <string name="correu">Correu electronic:</string>
-    <string name="oblidat_contrassenya"><u>Has oblidat la contrassenya?</u></string>
+    <string name="oblidat_contrsenya"><u>Has oblidat la contrasenya?</u></string>
     <string name="tamany_lletra">Tamany de la lletra</string>
     <string name="cambiar_foto">Cambiar foto</string>
     <string name="tamany_gran">Aa</string>
@@ -83,5 +83,7 @@
     <string name="posa_aqui_el_teu_nom">Posa aqui el teu nom</string>
     <string name="posa_aqui_el_teu_cognom">Posa aqui el teu cognom</string>
     <string name="tamany_petit">Aa</string>
+    <string name="cambiar_contrasenya">Cambiar contrasenya</string>
+    <string name="posa_aqui_la_contrasenya">Posa aqui la teva nova contrasenya (opcional)</string>
 
 </resources>
