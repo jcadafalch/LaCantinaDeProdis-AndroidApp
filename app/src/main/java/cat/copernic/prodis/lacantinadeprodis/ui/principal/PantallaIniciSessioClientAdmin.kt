@@ -38,6 +38,10 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         val args = PantallaIniciSessioClientAdminArgs.fromBundle(requireArguments())
         val usertype = args.usertype
 
+        if(usertype == "admin"){
+            binding.txtPiniciarSessioClientRegistre.visibility = View.INVISIBLE
+        }
+
         binding.btnPiniciarSessioClient.setOnClickListener {
             dni = binding.dtTxtPIniciarSessioClientDni.text.toString().uppercase()
             var passwd = binding.dtTxtPIniciarSessioClientPassword.text.toString()
