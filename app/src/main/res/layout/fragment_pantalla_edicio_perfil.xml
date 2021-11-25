@@ -198,6 +198,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="2dp"
                 android:autofillHints=""
+                android:maxLength="4"
                 android:hint="@string/posa_aqui_la_contrasenya"
                 android:inputType="text"
                 android:minHeight="48dp"

@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.util.regex.Pattern
 import android.provider.MediaStore
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
@@ -102,13 +103,20 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                             )
                         }
                 }
-                currentUser.updatePassword(binding.editTextContrassenya.text.toString()).addOnSuccessListener {
-                    db.collection("users").document(dni).update(
-                        hashMapOf(
-                            "password" to binding.editTextContrassenya.text.toString()
-                        ) as Map<String, Any>
-                    )
-                }
+
+                val currentUserPass =
+                    FirebaseAuth.getInstance().currentUser
+
+                currentUserPass?.updatePassword(binding.editTextContrassenya.text.toString())
+                    ?.addOnSuccessListener {
+                        println("Entra en succeslistener")
+                        db.collection("users").document(dni).update(
+                            hashMapOf(
+                                "passwd" to binding.editTextContrassenya.text.toString()
+                            ) as Map<String, Any>
+                        )
+                    }
+                Toast.makeText(this, "Els canvis s'han fet amb èxit", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -202,16 +210,19 @@ class PantallaEdicioPerfil : AppCompatActivity() {
             tmpFile
         )
     }
+
     fun triaCamGaleria() {
 
         val alertDialog = AlertDialog.Builder(this).create()
         alertDialog.setTitle("D'on vols treure la foto?")
         alertDialog.setMessage("Selecciona un:")
 
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "GALERIA"
-        ) { dialog, which ->  obrirGaleria()}
+        alertDialog.setButton(
+            AlertDialog.BUTTON_POSITIVE, "GALERIA"
+        ) { dialog, which -> obrirGaleria() }
 
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CAMARA"
+        alertDialog.setButton(
+            AlertDialog.BUTTON_NEGATIVE, "CÀMERA"
         ) { dialog, which -> obrirCamera() }
         alertDialog.show()
 
