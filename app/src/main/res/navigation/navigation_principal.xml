@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/pantallaPrincipal"
-        android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaPrincipal"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaPrincipal"
         android:label="fragment_pantalla_principal"
         tools:layout="@layout/fragment_pantalla_principal" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantallaRegistre"
-        android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaRegistre"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaRegistre"
         android:label="PantallaRegistre"
         tools:layout="@layout/fragment_pantalla_registre" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantallaRecuperarContrasenya1"
-        android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaRecuperarContrasenya1"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaRecuperarContrasenya1"
         android:label="fragment_pantalla_recuperar_contrasenya1"
         tools:layout="@layout/fragment_pantalla_recuperar_contrasenya1" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantallaRecuperarContrasenya2"
-        android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaRecuperarContrasenya2"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaRecuperarContrasenya2"
         android:label="fragment_pantalla_recuperar_contrasenya2"
         tools:layout="@layout/fragment_pantalla_recuperar_contrasenya2" >
         <action
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantallaIniciSessioClientAdmin"
-        android:name="cat.copernic.prodis.lacantinadeprodis.principal.PantallaIniciSessioClientAdmin"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaIniciSessioClientAdmin"
         android:label="fragment_pantalla_inici_sessio_client_admin"
         tools:layout="@layout/fragment_pantalla_inici_sessio_client_admin" >
         <action

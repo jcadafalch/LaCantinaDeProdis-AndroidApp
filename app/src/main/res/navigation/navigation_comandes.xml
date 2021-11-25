@@ -6,7 +6,7 @@
     app:startDestination="@id/pantalla_seleccio_tipus_producte">
     <fragment
         android:id="@+id/pantalla_seleccio_tipus_producte"
-        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.PantallaSeleccioTipusProducte"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioTipusProducte"
         android:label="pantalla_seleccio_tipus_producte"
         tools:layout="@layout/fragment_pantalla_seleccio_tipus_producte">
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_bocata"
-        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.PantallaSeleccioBocata"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioBocata"
         android:label="pantalla_seleccio_bocata"
         tools:layout="@layout/fragment_pantalla_seleccio_bocata" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantallaSeleccioBegudaFreda"
-        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.PantallaSeleccioBegudaFreda"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioBegudaFreda"
         android:label="PantallaSeleccioBegudaFreda"
         tools:layout="@layout/fragment_pantalla_seleccio_beguda_freda">
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantallaSeleccioBegudaCalenta"
-        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.PantallaSeleccioBegudaCalenta"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioBegudaCalenta"
         android:label="PantallaSeleccioBegudaCalenta"
         tools:layout="@layout/fragment_pantalla_seleccio_beguda_calenta">
         <action
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_atributs_beguda"
-        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.pantalla_seleccio_atributs_beguda"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.pantalla_seleccio_atributs_beguda"
         android:label="pantalla_seleccio_atributs_beguda"
         tools:layout="@layout/fragment_pantalla_seleccio_atributs_beguda" >
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_atributs_bocata"
-        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.pantalla_seleccio_atributs_bocata"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.pantalla_seleccio_atributs_bocata"
         android:label="pantalla_seleccio_atributs_bocata"
         tools:layout="@layout/fragment_pantalla_seleccio_atributs_bocata">
         <action
@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_nom_client_comanda"
-        android:name="cat.copernic.prodis.lacantinadeprodis.comandes.pantalla_seleccio_nom_client_comanda"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.pantalla_seleccio_nom_client_comanda"
         android:label="pantalla_seleccio_nom_client_comanda"
         tools:layout="@layout/fragment_pantalla_seleccio_nom_client_comanda"
         >

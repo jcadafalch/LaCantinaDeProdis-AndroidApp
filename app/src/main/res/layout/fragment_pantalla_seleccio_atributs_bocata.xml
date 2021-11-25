@@ -4,7 +4,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".comandes.pantalla_seleccio_atributs_bocata">
+        tools:context=".ui.comandes.pantalla_seleccio_atributs_bocata">
 
         <!-- TODO: Update blank fragment layout -->
         <TextView

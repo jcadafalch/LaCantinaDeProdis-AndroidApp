@@ -34,7 +34,7 @@
     <string name="torna_enrere">Torna enrere</string>
     <string name="recuperar_contrasenya">Recuperar Contrasenya</string>
     <string name="text_recuperar_contrasenya">Introdueix el DNI que fas servir per iniciar \n sessió en: La Cantina de Prodis</string>
-    <string name="text_recuperar_contrasenya_dos">Ara et toca pensar en una nova contrasenya per \n iniciar sessió. Intenta que no se t\'oblidi</string>
+    <string name="text_recuperar_contrasenya_dos">Ara et toca pensar en una nova contrasenya \nper iniciar sessió. Intenta que no se t\'oblidi</string>
     <string name="introdueix_el_dni">Introdueix el DNI</string>
     <string name="nova_repeteix_contrasenya">Torna a introduir la nova contrasenya</string>
     <string name="nova_contrasenya">Introdueix la nova contrasenya</string>

@@ -9,9 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaCantinaDeProdis">
         <activity
-            android:name=".activities.CambrerActivity"
+            android:name="cat.copernic.prodis.lacantinadeprodis.ui.activities.CambrerActivity"
             android:exported="false"/>
-        <activity android:name=".activities.AdministradorActivity" android:label="AdministradorActivity"/>
+        <activity android:name="cat.copernic.prodis.lacantinadeprodis.ui.activities.AdministradorActivity" android:label="AdministradorActivity"/>
         <activity
             android:name="cat.copernic.prodis.lacantinadeprodis.MainActivity"
             android:exported="true"
