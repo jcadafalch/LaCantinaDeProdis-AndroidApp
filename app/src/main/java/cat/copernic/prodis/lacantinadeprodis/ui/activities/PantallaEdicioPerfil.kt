@@ -17,8 +17,10 @@ import android.provider.MediaStore
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.NonNull
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.processNextEventInCurrentThread
@@ -59,21 +61,28 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    binding.editTxtNom.setHint(document.get("username").toString())
+                    binding.editTxtNom.setText(document.get("username").toString())
                 }
             }
 
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    binding.editTxtCognom.setHint(document.get("usersurname").toString())
+                    binding.editTxtCognom.setText(document.get("usersurname").toString())
                 }
             }
 
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    binding.editTextCorreu.setHint(document.get("email").toString())
+                    binding.editTextCorreu.setText(document.get("email").toString())
+                }
+            }
+
+        db.collection("users").document(dni).get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    binding.editTextContrassenya.setHint(document.get("password").toString())
                 }
             }
 
@@ -103,19 +112,7 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                             )
                         }
                 }
-
-                val currentUserPass =
-                    FirebaseAuth.getInstance().currentUser
-
-                currentUserPass?.updatePassword(binding.editTextContrassenya.text.toString())
-                    ?.addOnSuccessListener {
-                        println("Entra en succeslistener")
-                        db.collection("users").document(dni).update(
-                            hashMapOf(
-                                "passwd" to binding.editTextContrassenya.text.toString()
-                            ) as Map<String, Any>
-                        )
-                    }
+                //changePass()
                 Toast.makeText(this, "Els canvis s'han fet amb èxit", Toast.LENGTH_SHORT).show()
             }
         }
@@ -233,5 +230,30 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         layoutParams.weight = 10f
         btnPositive.layoutParams = layoutParams
         btnNegative.layoutParams = layoutParams
+    }
+
+
+    fun changePass(email: String, passw: String, dni: String) {
+        val currentUserPass =
+            FirebaseAuth.getInstance().currentUser
+
+        db.collection("users").get().addOnSuccessListener {
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, passw)
+                .addOnCompleteListener() {
+                    if (it.isSuccessful) {
+                    }
+                }
+        }
+        currentUserPass?.updatePassword(binding.editTextContrassenya.text.toString())
+            ?.addOnSuccessListener {
+                //if (task.isSuccessful) {
+                println("Entra en succeslistener")
+                db.collection("users").document(dni).update(
+                    hashMapOf(
+                        "password" to binding.editTextContrassenya.text.toString()
+                    ) as Map<String, Any>
+                )
+                // }
+            }
     }
 }
