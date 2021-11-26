@@ -12,46 +12,29 @@ import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaPrincip
 
 class PantallaPrincipal : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View {
         val binding: FragmentPantallaPrincipalBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_principal, container, false
         )
-
-        binding.btnPprincipalClient.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin("client"))
-            // view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioClientAdmin)
+        binding.btnPprincipalClient.setOnClickListener { view : View ->
+            view.findNavController().navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin("client"))
         }
 
-        binding.btnPprincipalCambrer.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin("cambrer"))
-
-            //view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer)
+        binding.btnPprincipalCambrer.setOnClickListener{ view : View ->
+            view.findNavController().navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin("cambrer"))
         }
 
-        binding.btnPprincipalCaixer.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin("caixer"))
-
-            //view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer)
+        binding.btnPprincipalCaixer.setOnClickListener{ view : View ->
+            view.findNavController().navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin("caixer"))
         }
 
-        binding.btnPprincipalCuiner.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin("cuiner"))
-
-            //view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioCaixerCuinerCambrer)
+        binding.btnPprincipalCuiner.setOnClickListener{ view : View ->
+            view.findNavController().navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin("cuiner"))
         }
 
-        binding.btnPprincipalAdministrador.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin("admin"))
-
-            //view.findNavController().navigate(R.id.action_pantallaPrincipal_to_pantallaIniciSessioClientAdmin)
+        binding.btnPprincipalAdministrador.setOnClickListener{ view : View ->
+            view.findNavController().navigate(PantallaPrincipalDirections.actionPantallaPrincipalToPantallaIniciSessioClientAdmin("admin"))
         }
 
         return binding.root

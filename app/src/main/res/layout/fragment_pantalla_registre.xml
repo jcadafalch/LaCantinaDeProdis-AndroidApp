@@ -17,26 +17,30 @@
 
             <ImageView
                 android:id="@+id/imageViewLogo"
-                android:layout_width="708dp"
-                android:layout_height="483dp"
-                android:layout_marginBottom="364dp"
+                android:layout_width="366dp"
+                android:layout_height="268dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginEnd="27dp"
+                android:background="@mipmap/logo_foreground"
                 android:contentDescription="@string/logo_lacantinadeprodis"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintHorizontal_bias="0.555"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@mipmap/logo_foreground" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txtPRegistre"
                 android:layout_width="146dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="185dp"
                 android:paddingBottom="15dp"
                 android:text="@string/registrat"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textPRegistre"
-                app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistrePersonName" />
+                app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistrePersonName"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textPRegistre"
@@ -143,10 +147,10 @@
                     android:id="@+id/dtTxtPRegistrePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/contrasenya"
+                    android:background="@color/colorFons"
                     android:inputType="numberPassword"
                     android:maxLength="4"
-                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -179,10 +183,10 @@
                     android:id="@+id/dtTxtPRegistreRepeteixPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/contrasenya"
+                    android:background="@color/colorFons"
                     android:inputType="numberPassword"
                     android:maxLength="4"
-                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -230,7 +234,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
                 android:layout_marginEnd="125dp"
-                android:layout_marginBottom="44dp"
+                android:layout_marginBottom="30dp"
                 android:text="@string/condicions_servei_privacitat"
                 app:layout_constraintBottom_toTopOf="@+id/btnPregistre"
                 app:layout_constraintEnd_toEndOf="parent"

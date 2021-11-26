@@ -37,6 +37,9 @@
         <argument
             android:name="usertype"
             app:argType="string" />
+        <action
+            android:id="@+id/action_pantallaRecuperarContrasenya1_to_pantallaIniciSessioClientAdmin"
+            app:destination="@id/pantallaIniciSessioClientAdmin" />
     </fragment>
     <fragment
         android:id="@+id/pantallaRecuperarContrasenya2"
@@ -48,6 +51,9 @@
             app:destination="@id/pantallaIniciSessioClientAdmin" />
         <argument
             android:name="usertype"
+            app:argType="string" />
+        <argument
+            android:name="dni"
             app:argType="string" />
     </fragment>
     <fragment
