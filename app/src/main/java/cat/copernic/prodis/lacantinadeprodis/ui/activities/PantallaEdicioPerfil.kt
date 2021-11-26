@@ -20,6 +20,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.NonNull
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaRecuperarContrasenya2Directions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -31,6 +33,8 @@ class PantallaEdicioPerfil : AppCompatActivity() {
     private lateinit var dni: String
 
     private val db = FirebaseFirestore.getInstance()
+
+    private val auth = FirebaseAuth.getInstance()
 
     lateinit var binding: FragmentPantallaEdicioPerfilBinding
     private var latestTmpUri: Uri? = null
@@ -112,8 +116,9 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                             )
                         }
                 }
+                changePassword(dni, binding.editTextContrassenya.text.toString(),"client")
                 //changePass()
-                Toast.makeText(this, "Els canvis s'han fet amb èxit", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Els canvis s'han fet amb èxit", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -233,7 +238,48 @@ class PantallaEdicioPerfil : AppCompatActivity() {
     }
 
 
-    fun changePass(email: String, passw: String, dni: String) {
+
+    private fun changePassword(dni: String, psswd: String, usertype: String){
+        var bool = false
+        db.collection("users").get().addOnSuccessListener { result ->
+            for (document in result) {
+                if (document.id == dni) {
+                    bool = true
+                    println("FIND DOCUMENT")
+                    println("EMAIL ID = " + document.get("email").toString())
+                    println("ID PASSWORD  = " + document.get("password").toString())
+                    println("PSSWD = $psswd")
+                    auth.signInWithEmailAndPassword(
+                        document.get("email").toString(),
+                        document.get("password").toString(),
+                    ).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            println("SUCCESSFUL")
+                            val currentUser = auth.currentUser
+                            currentUser?.updatePassword(psswd)?.addOnSuccessListener {
+                                println("SUCCESSFUL")
+                                db.collection("users").document(dni).update(
+                                    hashMapOf(
+                                        "password" to psswd
+                                    ) as Map<String, Any>
+                                )
+                                auth.signOut()
+                                Toast.makeText(this, "S'ha canbiat la contrasenya", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            showAlert("Error en inici de sessió")
+                        }
+                    }
+                }
+            }
+            if (!bool){
+                showAlert("L\'usuari no està registrat")
+            }
+        }
+
+    }
+
+/*fun changePass(email: String, passw: String, dni: String) {
         val currentUserPass =
             FirebaseAuth.getInstance().currentUser
 
@@ -255,5 +301,5 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                 )
                 // }
             }
-    }
+    }*/
 }

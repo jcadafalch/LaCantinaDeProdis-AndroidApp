@@ -6,7 +6,7 @@
     app:startDestination="@id/pantalla_seleccio_tipus_producte">
     <fragment
         android:id="@+id/pantalla_seleccio_tipus_producte"
-        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioTipusProducte"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.Pantalla"
         android:label="pantalla_seleccio_tipus_producte"
         tools:layout="@layout/fragment_pantalla_seleccio_tipus_producte">
         <action
