@@ -79,6 +79,7 @@
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreRepeteixPassword">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dtTxtPRegistrePasswordText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorFons"
@@ -114,6 +115,7 @@
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dtTxtPRegistreRepeteixPasswordText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorFons"
