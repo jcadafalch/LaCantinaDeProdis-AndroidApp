@@ -116,7 +116,7 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                             )
                         }
                 }
-                changePassword(dni, binding.editTextContrassenya.text.toString(),"client")
+                changePassword(dni, binding.editTextContrassenya.text.toString(), "client")
                 //changePass()
                 //Toast.makeText(this, "Els canvis s'han fet amb èxit", Toast.LENGTH_SHORT).show()
             }
@@ -238,8 +238,7 @@ class PantallaEdicioPerfil : AppCompatActivity() {
     }
 
 
-
-    private fun changePassword(dni: String, psswd: String, usertype: String){
+    private fun changePassword(dni: String, psswd: String, usertype: String) {
         var bool = false
         db.collection("users").get().addOnSuccessListener { result ->
             for (document in result) {
@@ -256,15 +255,21 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                         if (it.isSuccessful) {
                             println("SUCCESSFUL")
                             val currentUser = auth.currentUser
-                            currentUser?.updatePassword(psswd)?.addOnSuccessListener {
-                                println("SUCCESSFUL")
-                                db.collection("users").document(dni).update(
-                                    hashMapOf(
-                                        "password" to psswd
-                                    ) as Map<String, Any>
-                                )
+                            currentUser!!.updatePassword(psswd).addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    println("SUCCESSFUL")
+                                    db.collection("users").document(dni).update(
+                                        hashMapOf(
+                                            "password" to psswd + "prodis"
+                                        ) as Map<String, Any>
+                                    )
+                                }
                                 auth.signOut()
-                                Toast.makeText(this, "S'ha canbiat la contrasenya", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "S'ha canbiat la contrasenya",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         } else {
                             showAlert("Error en inici de sessió")
@@ -272,7 +277,7 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                     }
                 }
             }
-            if (!bool){
+            if (!bool) {
                 showAlert("L\'usuari no està registrat")
             }
         }
