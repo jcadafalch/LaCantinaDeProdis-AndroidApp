@@ -10,9 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.ui.activities.AdministradorActivity
-import cat.copernic.prodis.lacantinadeprodis.ui.activities.CambrerActivity
+import cat.copernic.prodis.lacantinadeprodis.ui.activities.CaixerActivity
+import cat.copernic.prodis.lacantinadeprodis.R
+import cat.copernic.prodis.lacantinadeprodis.ui.activities.ComandesActivity
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioClientAdminBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -22,6 +23,8 @@ class PantallaIniciSessioClientAdmin : Fragment() {
 
     private val db = Firebase.firestore
     private var auth = FirebaseAuth.getInstance()
+    private lateinit var dni: String
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,7 +43,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         }
 
         binding.btnPiniciarSessioClient.setOnClickListener {
-            val dni = binding.dtTxtPIniciarSessioClientDni.text.toString().uppercase()
+            dni = binding.dtTxtPIniciarSessioClientDni.text.toString().uppercase()
             var passwd = binding.dtTxtPIniciarSessioClientPassword.text.toString()
             var bool = false
             if (binding.dtTxtPIniciarSessioClientDni.text.isNotEmpty() &&
@@ -99,34 +102,41 @@ class PantallaIniciSessioClientAdmin : Fragment() {
 
     private fun startActivity(usertype: String) {
         when (usertype) {
-            "client" -> showCambrerClient(usertype)
-            "cambrer" -> showCambrerClient(usertype)
-            "caixer" -> showCaixer()
-            "cuiner" -> showCuiner()
-            "admin" -> showAdmin()
+            "client" -> showCambrerClient(usertype, dni)
+            "cambrer" -> showCambrerClient(usertype, dni)
+            "caixer" -> showCaixer(dni)
+            "cuiner" -> showCuiner(dni)
+            "admin" -> showAdmin(dni)
         }
     }
 
-    private fun showCambrerClient(username: String) {
-        val intent = Intent(this.context, CambrerActivity::class.java).apply {
+    private fun showCambrerClient(username: String, dni: String) {
+        val intent = Intent(this.context, ComandesActivity::class.java).apply {
             putExtra("usertype", username)
+            putExtra("dni", dni)
         }
         startActivity(intent)
     }
 
-    private fun showCaixer() {
-        /*val intent = Intent(this.context, CaixerActivity::class.java).apply { }
+    private fun showCaixer(dni: String) {
+        val intent = Intent(this.context, CaixerActivity::class.java).apply {
+            putExtra("dni", dni)
+        }
 
-        startActivity(intent)*/
+        startActivity(intent)
     }
 
-    private fun showCuiner() {
-        /*val intent =Intent(this.context, CuinerActivity::class.java).apply { }
-        startActivity(intent)*/
+    private fun showCuiner(dni: String) {
+        val intent =Intent(this.context, ComandesActivity::class.java).apply {
+            putExtra("dni", dni)
+        }
+        startActivity(intent)
     }
 
-    private fun showAdmin() {
-        val intent = Intent(this.context, AdministradorActivity::class.java).apply { }
+    private fun showAdmin(dni: String) {
+        val intent = Intent(this.context, AdministradorActivity::class.java).apply {
+            putExtra("dni", dni)
+        }
         startActivity(intent)
     }
 

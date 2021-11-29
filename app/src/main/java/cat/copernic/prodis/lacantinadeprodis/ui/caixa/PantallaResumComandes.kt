@@ -11,13 +11,14 @@ import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaResumCo
 
 class PantallaResumComandes : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val binding: FragmentPantallaResumComandesBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_resum_comandes, container, false
         )
 
         return binding.root
     }
-
 }

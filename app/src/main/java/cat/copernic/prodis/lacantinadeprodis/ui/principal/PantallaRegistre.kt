@@ -36,13 +36,15 @@ class PantallaRegistre : Fragment() {
         analytics?.logEvent("InitScreen", bundle)
 
         bdng.btnPregistre.setOnClickListener { view: View ->
+            println(bdng.dtTxtPRegistrePassword.text.toString())
+            println(bdng.dtTxtPRegistreRepeteixPassword.text.toString())
             if (datavalids(
                     bdng.dtTxtPRegistrePersonName.text.toString(),
                     bdng.dtTxtPRegistrePersonSurname.text.toString(),
                     bdng.dtTxtPRegistreDni.text.toString(),
                     bdng.dtTxtPRegistreEmail.text.toString(),
-                    bdng.dtTxtPRegistrePassword.toString(),
-                    bdng.dtTxtPRegistreRepeteixPassword.toString(),
+                    bdng.dtTxtPRegistrePassword.text.toString(),
+                    bdng.dtTxtPRegistreRepeteixPassword.text.toString(),
                     bdng.checkBox.isChecked
                 )
             ) {
@@ -51,7 +53,7 @@ class PantallaRegistre : Fragment() {
                     bdng.dtTxtPRegistrePersonSurname.text.toString(),
                     bdng.dtTxtPRegistreDni.text.toString(),
                     bdng.dtTxtPRegistreEmail.text.toString(),
-                    bdng.dtTxtPRegistrePassword.toString(),
+                    bdng.dtTxtPRegistrePassword.text.toString(),
                     usertype)
                 view.findNavController().navigate(
                     PantallaRegistreDirections.actionPantallaRegistreToPantallaIniciSessioClientAdmin(
@@ -81,6 +83,7 @@ class PantallaRegistre : Fragment() {
         usertype: String
     ) {
         val passwd = password + "prodis"
+        println(passwd)
         var bool = false
         var bool1 = false
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passwd)
@@ -194,19 +197,18 @@ class PantallaRegistre : Fragment() {
         val dniLletra = dni.substring(dni.length -1).uppercase()
         val lletraDni = "TRWAGMYFPDXBNJZSQVHLCKE"
 
-        println(lletraDni[dniNum.toInt() % 23])
         return dniLletra == lletraDni[dniNum.toInt() % 23].toString()
     }
 
-  private fun checkEmailFormat(email: String): Boolean{
-      val EMAIL_ADDRESS_PATTERN = Pattern.compile(
-          "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
-                  "\\@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
-                  "(" + "\\." + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
-                  ")+"
-      )
-      return EMAIL_ADDRESS_PATTERN.matcher(email).matches()
-  }
+    private fun checkEmailFormat(email: String): Boolean{
+        val EMAIL_ADDRESS_PATTERN = Pattern.compile(
+            "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                    "\\@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                    "(" + "\\." + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                    ")+"
+        )
+        return EMAIL_ADDRESS_PATTERN.matcher(email).matches()
+    }
 
     private fun showAlert(message: String) {
         val builder = AlertDialog.Builder(this.requireContext())

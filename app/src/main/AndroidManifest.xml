@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cat.copernic.prodis.lacantinadeprodis">
+
+    <uses-feature android:name="android:hardware.camera"
+        android:required="true"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -8,10 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LaCantinaDeProdis">
-        <activity
-            android:name="cat.copernic.prodis.lacantinadeprodis.ui.activities.CambrerActivity"
-            android:exported="false"/>
-        <activity android:name="cat.copernic.prodis.lacantinadeprodis.ui.activities.AdministradorActivity" android:label="AdministradorActivity"/>
         <activity
             android:name="cat.copernic.prodis.lacantinadeprodis.MainActivity"
             android:exported="true"
@@ -22,6 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="cat.copernic.prodis.lacantinadeprodis.ui.activities.ComandesActivity" android:label="ComandesActivity" />
+        <activity android:name="cat.copernic.prodis.lacantinadeprodis.ui.activities.CaixerActivity" android:label="CaixerActivity" />
+        <activity android:name="cat.copernic.prodis.lacantinadeprodis.ui.activities.AdministradorActivity" android:label="AdministradorAcivity" />
+        <activity android:name="cat.copernic.prodis.lacantinadeprodis.ui.activities.PantallaEdicioPerfil" android:label="PantallaEdicioPerfil" />
+        <provider
+            android:authorities="cat.copernic.prodis.lacantinadeprodis.provider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
     </application>
-
 </manifest>

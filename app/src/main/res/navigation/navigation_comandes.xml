@@ -6,7 +6,7 @@
     app:startDestination="@id/pantalla_seleccio_tipus_producte">
     <fragment
         android:id="@+id/pantalla_seleccio_tipus_producte"
-        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioTipusProducte"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioTipusProdcute"
         android:label="pantalla_seleccio_tipus_producte"
         tools:layout="@layout/fragment_pantalla_seleccio_tipus_producte">
         <action
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_atributs_beguda"
-        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.pantalla_seleccio_atributs_beguda"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioAtributsBeguda"
         android:label="pantalla_seleccio_atributs_beguda"
         tools:layout="@layout/fragment_pantalla_seleccio_atributs_beguda" >
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_atributs_bocata"
-        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.pantalla_seleccio_atributs_bocata"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioAtributsBocata"
         android:label="pantalla_seleccio_atributs_bocata"
         tools:layout="@layout/fragment_pantalla_seleccio_atributs_bocata">
         <action
@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_nom_client_comanda"
-        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.pantalla_seleccio_nom_client_comanda"
+        android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioNomCientComanda"
         android:label="pantalla_seleccio_nom_client_comanda"
         tools:layout="@layout/fragment_pantalla_seleccio_nom_client_comanda"
         >
