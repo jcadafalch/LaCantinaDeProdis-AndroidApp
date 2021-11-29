@@ -94,5 +94,8 @@
     <string name="introdueix_el_nom_del_producte_promoci">Introdueix el nom del producte / promoció</string>
     <string name="selecciona_el_preu">Selecciona el preu</string>
     <string name="afegeix_una_foto">Afegeix una foto</string>
+    <string name="_1">1€</string>
+    <string name="_2">2€</string>
+    <string name="altre_preu">Altre preu</string>
 
 </resources>
