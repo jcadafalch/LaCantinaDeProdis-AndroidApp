@@ -2,7 +2,6 @@ package cat.copernic.prodis.lacantinadeprodis.ui.activities
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,15 +12,12 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaEdicioPerfilBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.regex.Pattern
-import android.provider.MediaStore
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.processNextEventInCurrentThread
 import java.io.File
 
 
@@ -164,21 +160,13 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun cam() {
-        val intent = Intent()
-        intent.action = Intent.ACTION_PICK
-        intent.type = "image/*"
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
-    }
-
     private val startForActivityGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val data = result.data?.data
             //setImageUri només funciona per rutes locals, no a internet
-            binding?.userIcon?.setImageURI(data)
+            binding.userIcon.setImageURI(data)
         }
     }
 
