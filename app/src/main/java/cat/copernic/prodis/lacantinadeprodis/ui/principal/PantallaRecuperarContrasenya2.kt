@@ -32,61 +32,50 @@ class PantallaRecuperarContrasenya2 : Fragment() {
         val dni = args.dni
 
         binding.btnPRecuperarContrasenya2Continuar.setOnClickListener {
-            if (dataValid(
-                    binding.dtTxtPRegistrePassword.toString(),
-                    binding.dtTxtPRegistreRepeteixPassword.toString()
-                )
+            if (!binding.dtTxtPRegistrePasswordText.text.isNullOrEmpty() &&
+                !binding.dtTxtPRegistreRepeteixPasswordText.text.isNullOrEmpty()
             ) {
-                println("CONTRASENYES IGUALS")
+                println("NOT NULL")
+                if (binding.dtTxtPRegistrePasswordText.text.toString() ==
+                    binding.dtTxtPRegistreRepeteixPasswordText.text.toString()
+                ) {
+                    println("CONTRASENYES IGUALS")
+                    println("PSW1  = " + binding.dtTxtPRegistrePasswordText.text.toString())
+                    println("PSW2 = "+ binding.dtTxtPRegistreRepeteixPasswordText.text.toString())
 
-                val psswd = binding.dtTxtPRegistrePassword.toString() + "prodis"
-                changePassword(dni, psswd, usertype)
+                    val psswd = binding.dtTxtPRegistreRepeteixPasswordText.text.toString()+ "prodis"
+                    println("PSSWD = $psswd DNI = $dni USERTYPE = $usertype")
+                    changePassword(dni,psswd, usertype)
 
+                } else {
+                    println("PSW1  = " + binding.dtTxtPRegistrePasswordText.text.toString())
+                    println("PSW2 = "+ binding.dtTxtPRegistreRepeteixPasswordText.text.toString())
+                    showAlert("Les contrasenyes no coincideixen.")
+                }
+            } else {
+                showAlert("Els camps no están plens")
             }
         }
 
         return binding.root
     }
 
-    private fun dataValid(psswd1: String, psswd2: String): Boolean {
-        var bool = true
-        var errorMessage = ""
-
-        if (psswd1.isEmpty()) {
-            errorMessage += "Falta introduir la contrasenya.\n"
-            bool = false
-        }
-        if (psswd2.isEmpty()) {
-            errorMessage += "Falta introduir la contrasenya repetida.\n"
-            bool = false
-        }
-
-
-        if (psswd1.isNotEmpty() && psswd2.isNotEmpty()) {
-            if (psswd1 != psswd2) {
-                errorMessage += "Les contrasenyes no coincideixen.\n"
-                bool = false
-            }
-        }
-
-        if (errorMessage != "") {
-            showAlert(errorMessage)
-        }
-
-        return bool
-    }
-
-    private fun changePassword(dni: String, psswd: String, usertype: String) {
+    private fun changePassword(dni: String, psswd: String, usertype: String){
         var bool = false
         db.collection("users").get().addOnSuccessListener { result ->
             for (document in result) {
                 if (document.id == dni) {
                     bool = true
+                    println("FIND DOCUMENT")
+                    println("EMAIL ID = " + document.get("email").toString())
+                    println("ID PASSWORD  = " + document.get("password").toString())
+                    println("PSSWD = $psswd")
                     auth.signInWithEmailAndPassword(
                         document.get("email").toString(),
                         document.get("password").toString(),
                     ).addOnCompleteListener {
                         if (it.isSuccessful) {
+                            println("SUCCESSFUL")
                             val currentUser = auth.currentUser
                             currentUser?.updatePassword(psswd)?.addOnSuccessListener {
                                 println("SUCCESSFUL")
@@ -96,16 +85,8 @@ class PantallaRecuperarContrasenya2 : Fragment() {
                                     ) as Map<String, Any>
                                 )
                                 auth.signOut()
-                                Toast.makeText(
-                                    this.context,
-                                    "S'ha canbiat la contrasenya",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                view?.findNavController()?.navigate(
-                                    PantallaRecuperarContrasenya2Directions.actionPantallaRecuperarContrasenya2ToPantallaIniciSessioClientAdmin(
-                                        usertype
-                                    )
-                                )
+                                Toast.makeText(this.context, "S'ha canbiat la contrasenya", Toast.LENGTH_SHORT).show()
+                                view?.findNavController()?.navigate(PantallaRecuperarContrasenya2Directions.actionPantallaRecuperarContrasenya2ToPantallaIniciSessioClientAdmin(usertype))
                             }
                         } else {
                             showAlert("Error en inici de sessió")
@@ -113,7 +94,7 @@ class PantallaRecuperarContrasenya2 : Fragment() {
                     }
                 }
             }
-            if (!bool) {
+            if (!bool){
                 showAlert("L\'usuari no està registrat")
             }
         }

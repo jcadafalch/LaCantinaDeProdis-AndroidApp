@@ -46,7 +46,7 @@
                 android:id="@+id/textPRegistre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/nom_i_cognoms"
+                android:text="@string/nom"
                 android:textColor="#00796B"
                 android:textSize="@dimen/txtRegistreIniciSessio"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistrePersonName"
@@ -56,14 +56,45 @@
                 android:id="@+id/dtTxtPRegistrePersonName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="80dp"
                 android:ems="10"
-                android:hint="@string/juan_rodriguez_gonalez"
+                android:hint="@string/juan"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreDni"
                 app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+
+            <EditText
+                android:id="@+id/dtTxtPRegistrePersonSurname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="31dp"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="@string/rodriguez_gonzalez"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/txtPRegistreDni"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dtTxtPRegistrePersonName"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/textPRegistreSurname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/cognoms"
+                android:textColor="#00796B"
+                android:textSize="@dimen/txtRegistreIniciSessio"
+                app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistrePersonSurname"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dtTxtPRegistrePersonName"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/txtPRegistreDni"
@@ -187,6 +218,19 @@
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="125dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/condicions_servei_privacitat"
+                app:layout_constraintBottom_toTopOf="@+id/btnPregistre"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <Button
                 android:id="@+id/btnPregistre"
                 android:layout_width="227dp"
@@ -225,19 +269,6 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="125dp"
-                android:layout_marginBottom="30dp"
-                android:text="@string/condicions_servei_privacitat"
-                app:layout_constraintBottom_toTopOf="@+id/btnPregistre"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

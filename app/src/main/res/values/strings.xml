@@ -20,8 +20,10 @@
     <string name="txtAdministrarProductes">Administrar Productes</string>
     <string name="image_view_eye">image View eye</string>
     <string name="logo_lacantinadeprodis">logo laCantinaDeProdis</string>
-    <string name="nom_i_cognoms">Nom i cognoms</string>
-    <string name="juan_rodriguez_gonalez">Juan Rodriguez Gonález</string>
+    <string name="nom">Nom</string>
+    <string name="cognoms">Cognoms</string>
+    <string name="Juan">Juan </string>
+    <string name="rodriguez_gonzalez">Rodriguez Gonález</string>
     <string name="correu_electronic">Correu electrònic</string>
     <string name="jrodirezgonzalez_prodiscat">jrodirezgonzalez@prodis.cat</string>
     <string name="repeteix_contrasenya">Torna a introduir la contrasenya</string>

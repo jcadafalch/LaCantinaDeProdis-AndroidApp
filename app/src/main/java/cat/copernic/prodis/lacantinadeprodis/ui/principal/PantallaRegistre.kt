@@ -38,6 +38,7 @@ class PantallaRegistre : Fragment() {
         bdng.btnPregistre.setOnClickListener { view: View ->
             if (datavalids(
                     bdng.dtTxtPRegistrePersonName.text.toString(),
+                    bdng.dtTxtPRegistrePersonSurname.text.toString(),
                     bdng.dtTxtPRegistreDni.text.toString(),
                     bdng.dtTxtPRegistreEmail.text.toString(),
                     bdng.dtTxtPRegistrePassword.toString(),
@@ -47,6 +48,7 @@ class PantallaRegistre : Fragment() {
             ) {
                 makeregister(
                     bdng.dtTxtPRegistrePersonName.text.toString(),
+                    bdng.dtTxtPRegistrePersonSurname.text.toString(),
                     bdng.dtTxtPRegistreDni.text.toString(),
                     bdng.dtTxtPRegistreEmail.text.toString(),
                     bdng.dtTxtPRegistrePassword.toString(),
@@ -71,7 +73,8 @@ class PantallaRegistre : Fragment() {
     }
 
     private fun makeregister(
-        nomCognom: String,
+        nom: String,
+        cognom: String,
         dni: String,
         email: String,
         password: String,
@@ -92,7 +95,8 @@ class PantallaRegistre : Fragment() {
 
         db.collection("users").document(dni).set(
             hashMapOf(
-                "username" to nomCognom,
+                "username" to nom,
+                "usersurname" to cognom,
                 "dni" to dni,
                 "email" to email,
                 "password" to passwd,
@@ -112,7 +116,8 @@ class PantallaRegistre : Fragment() {
     }
 
     private fun datavalids(
-        nomCognom: String,
+        nom: String,
+        cognom: String,
         dni: String,
         email: String,
         password: String,
@@ -122,8 +127,13 @@ class PantallaRegistre : Fragment() {
         var errorMessage = ""
         var bool = true
 
-        if (nomCognom.isEmpty()) {
-            errorMessage += "Falta introduir el nom i cognoms\n"
+        if (nom.isEmpty()) {
+            errorMessage += "Falta introduir el nom\n"
+            bool = false
+        }
+
+        if(cognom.isEmpty()){
+            errorMessage+="Falta introduir els cognoms\n"
             bool = false
         }
 

@@ -47,12 +47,13 @@
                 android:id="@+id/txtPRecuperarContrasenya1_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
                 android:layout_marginBottom="32dp"
                 android:text="@string/text_recuperar_contrasenya_dos"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreContrasenya"
-                tools:ignore="TextContrastCheck,TextContrastCheck"
-                tools:layout_editor_absoluteX="35dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TextContrastCheck,TextContrastCheck" />
 
             <TextView
                 android:id="@+id/txtPRegistreContrasenya"
@@ -78,6 +79,7 @@
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreRepeteixPassword">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dtTxtPRegistrePasswordText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorFons"
@@ -113,6 +115,7 @@
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dtTxtPRegistreRepeteixPasswordText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorFons"
