@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.administrador.PantallaAdministradorNouProducte">
 
-    <ScrollView
+    <!--<ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent">-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorFons"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:background="@color/colorFons">
 
 
             <TextView
@@ -45,23 +44,124 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouProducte" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="284dp"
-                android:layout_height="36dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginEnd="64dp"
+
+            <Spinner
+                android:id="@+id/spinTipusProducte"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouProducte_nouProducte" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouProducte_nouProducte"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+
+            <TextView
+                android:id="@+id/txtIntrodueixNom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/introdueix_el_nom_del_producte_promoci"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.238"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinTipusProducte" />
+
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/producte"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtIntrodueixNom" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="70dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/txtSeleccionaPreu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/selecciona_el_preu"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
 
             <Button
                 android:id="@+id/btnPAdministradorNouProducte_guardar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/guardar"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="391dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtSeleccionaPreu"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/txtAfegeixFoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="152dp"
-                android:layout_marginBottom="105dp"
-                android:text="@string/guardar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginTop="10dp"
+                android:text="@string/afegeix_una_foto"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+            <ImageView
+                android:id="@+id/imgFotoCamera"
+                android:layout_width="60dp"
+                android:layout_height="61dp"
+                android:layout_marginStart="104dp"
+                android:layout_marginTop="112dp"
+                android:src="@drawable/ic_baseline_camera_alt_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtAfegeixFoto" />
+
+            <ImageView
+                android:id="@+id/imgFotoGaleria"
+                android:layout_width="68dp"
+                android:layout_height="61dp"
+                android:layout_marginTop="108dp"
+                android:layout_marginEnd="84dp"
+                android:src="@drawable/ic_baseline_file_upload_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtAfegeixFoto" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
 </layout>

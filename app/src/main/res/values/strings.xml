@@ -85,5 +85,14 @@
     <string name="tamany_petit">Aa</string>
     <string name="cambiar_contrasenya">Cambiar contrasenya</string>
     <string name="posa_aqui_la_contrasenya">Posa aqui la teva nova contrasenya (opcional)</string>
+    <string-array name="tipus_producte">
+        <item>Bocata</item>
+        <item>Beguda calenta</item>
+        <item>Beguda freda</item>
+    </string-array>
+    <string name="producte">Producte</string>
+    <string name="introdueix_el_nom_del_producte_promoci">Introdueix el nom del producte / promoció</string>
+    <string name="selecciona_el_preu">Selecciona el preu</string>
+    <string name="afegeix_una_foto">Afegeix una foto</string>
 
 </resources>
