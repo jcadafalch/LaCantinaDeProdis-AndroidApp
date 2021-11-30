@@ -28,16 +28,19 @@ class PantallaRecuperarContrasenya1 : Fragment() {
         usertype = args.usertype
         binding.btnPRecuperarContrasenya1Continuar.setOnClickListener {
             println(binding.dtTxtPRecuperarContrasenya1DNI.text.toString())
-            if (binding.dtTxtPRecuperarContrasenya1DNI.text.toString().isNotEmpty()){
-                db.collection("users").get().addOnSuccessListener {result ->
-                    for (document in result){
-                        if (document.id == binding.dtTxtPRecuperarContrasenya1DNI.text.toString()) {
-                            view?.findNavController()?.navigate(PantallaRecuperarContrasenya1Directions.actionPantallaRecuperarContrasenya1ToPantallaRecuperarContrasenya2(usertype, document.get("dni").toString()))
-                        }
+            if (binding.dtTxtPRecuperarContrasenya1DNI.text.toString().isNotEmpty()) {
+                db.collection("users")
+                    .document(binding.dtTxtPRecuperarContrasenya1DNI.text.toString()).get()
+                    .addOnSuccessListener { result ->
+                        view?.findNavController()?.navigate(
+                            PantallaRecuperarContrasenya1Directions.actionPantallaRecuperarContrasenya1ToPantallaRecuperarContrasenya2(
+                                usertype,
+                                result.get("dni").toString()
+                            )
+                        )
                     }
-                }
 
-            }else{
+            } else {
                 Toast.makeText(this.context, "El camp DNI està buit", Toast.LENGTH_SHORT).show()
             }
         }

@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_pantallaAdministradorModificarUsuari_to_pantallaAdministradorPrincipal"
             app:destination="@id/pantallaAdministradorPrincipal" />
+        <argument
+            android:name="userArr"
+            app:argType="java.util.ArrayList" />
     </fragment>
     <fragment
         android:id="@+id/pantallaAdministradorNouUsuari"

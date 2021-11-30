@@ -9,14 +9,20 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaAdministradorPrincipalBinding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import java.util.ArrayList
 
 
 class PantallaAdministradorPrincipal : Fragment() {
 
+    private val db = Firebase.firestore
+    private var arrUser = ArrayList<String>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = DataBindingUtil.inflate<FragmentPantallaAdministradorPrincipalBinding>(inflater,
             R.layout.fragment_pantalla_administrador_principal,container,false)
 
@@ -25,7 +31,23 @@ class PantallaAdministradorPrincipal : Fragment() {
         }
 
         binding.btnPAdministradorPrincipalElimiarModificarUsuari.setOnClickListener {
-            view?.findNavController()?.navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorModificarUsuari())
+            db.collection("users").get().addOnSuccessListener { result ->
+                for (document in result) {
+                    val user = document.get("username").toString() + " " + document.get("usersurname").toString()
+                    println("USERNAME ==== "+document.get("username").toString())
+                    println("USERSURNAME ===== " + document.get("usersurname").toString() )
+                    println("----------------------------------------------------------")
+                    arrUser.add(user)
+                }
+                println("*************************")
+                println(arrUser)
+                println("------------------------------")
+                view?.findNavController()?.navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorModificarUsuari(
+                    arrUser
+                ))
+
+            }
+
         }
 
         binding.btnPAdministradorPrincipalNouProducte.setOnClickListener {
@@ -38,5 +60,4 @@ class PantallaAdministradorPrincipal : Fragment() {
 
         return binding.root
     }
-
 }

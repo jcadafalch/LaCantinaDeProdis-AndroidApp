@@ -54,7 +54,8 @@ class PantallaRegistre : Fragment() {
                     bdng.dtTxtPRegistreDni.text.toString(),
                     bdng.dtTxtPRegistreEmail.text.toString(),
                     bdng.dtTxtPRegistrePassword.text.toString(),
-                    usertype)
+                    usertype
+                )
                 view.findNavController().navigate(
                     PantallaRegistreDirections.actionPantallaRegistreToPantallaIniciSessioClientAdmin(
                         usertype
@@ -84,38 +85,34 @@ class PantallaRegistre : Fragment() {
     ) {
         val passwd = password + "prodis"
         println(passwd)
-        var bool = false
-        var bool1 = false
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passwd)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    bool = true
+                    db.collection("users").document(dni).set(
+                        hashMapOf(
+                            "username" to nom,
+                            "usersurname" to cognom,
+                            "dni" to dni,
+                            "email" to email,
+                            "password" to passwd,
+                            "usertype" to usertype
+                        )
+                    ).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            Toast.makeText(
+                                this.context,
+                                "T\'has registrat correctament",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            showAlert("Error a l\'hora de fer el guardat de dades")
+                        }
+                    }
 
                 } else {
                     showAlert("Error a l\'hora de fer l\'autenticació")
                 }
             }
-
-        db.collection("users").document(dni).set(
-            hashMapOf(
-                "username" to nom,
-                "usersurname" to cognom,
-                "dni" to dni,
-                "email" to email,
-                "password" to passwd,
-                "usertype" to usertype
-            )
-        ).addOnCompleteListener {
-            if (it.isSuccessful) {
-                bool1 = true
-            } else {
-                showAlert("Error a l\'hora de fer el guardat de dades")
-            }
-        }
-
-        if (bool && bool1) {
-            Toast.makeText(this.context, "T\'has registrat correctament", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun datavalids(
@@ -135,8 +132,8 @@ class PantallaRegistre : Fragment() {
             bool = false
         }
 
-        if(cognom.isEmpty()){
-            errorMessage+="Falta introduir els cognoms\n"
+        if (cognom.isEmpty()) {
+            errorMessage += "Falta introduir els cognoms\n"
             bool = false
         }
 
@@ -151,7 +148,7 @@ class PantallaRegistre : Fragment() {
         if (email.isEmpty()) {
             errorMessage += "Falta introduir el correu electronic.\n"
             bool = false
-        }else if (!checkEmailFormat(email)){
+        } else if (!checkEmailFormat(email)) {
             errorMessage += "Format correu electronic incorrecte.\n"
             bool = false
         }
@@ -187,20 +184,20 @@ class PantallaRegistre : Fragment() {
 
     }
 
-    private fun checkDni(dni: String): Boolean{
-        val dniNum = dni.substring(0, dni.length -1)
-        if (dni.isDigitsOnly()){
+    private fun checkDni(dni: String): Boolean {
+        val dniNum = dni.substring(0, dni.length - 1)
+        if (dni.isDigitsOnly()) {
             println("DIGIT ONLY")
             return false
         }
 
-        val dniLletra = dni.substring(dni.length -1).uppercase()
+        val dniLletra = dni.substring(dni.length - 1).uppercase()
         val lletraDni = "TRWAGMYFPDXBNJZSQVHLCKE"
 
         return dniLletra == lletraDni[dniNum.toInt() % 23].toString()
     }
 
-    private fun checkEmailFormat(email: String): Boolean{
+    private fun checkEmailFormat(email: String): Boolean {
         val EMAIL_ADDRESS_PATTERN = Pattern.compile(
             "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                     "\\@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +

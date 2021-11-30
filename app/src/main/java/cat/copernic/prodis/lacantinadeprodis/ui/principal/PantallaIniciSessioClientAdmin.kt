@@ -38,40 +38,34 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         val args = PantallaIniciSessioClientAdminArgs.fromBundle(requireArguments())
         val usertype = args.usertype
 
-        if(usertype == "admin"){
+        if (usertype == "admin") {
             binding.txtPiniciarSessioClientRegistre.visibility = View.INVISIBLE
         }
 
         binding.btnPiniciarSessioClient.setOnClickListener {
             dni = binding.dtTxtPIniciarSessioClientDni.text.toString().uppercase()
             var passwd = binding.dtTxtPIniciarSessioClientPassword.text.toString()
-            var bool = false
             if (binding.dtTxtPIniciarSessioClientDni.text.isNotEmpty() &&
                 !binding.dtTxtPIniciarSessioClientPassword.text.isNullOrEmpty()
             ) {
                 passwd += "prodis"
-                db.collection("users").get().addOnSuccessListener { result ->
-                    for (document in result) {
-                        if (document.id == dni) {
-                            bool = true
-                            if (document.get("usertype").toString() == usertype){
-                                auth.signInWithEmailAndPassword(
-                                    document.get("email").toString(),
-                                    passwd,
-                                ).addOnCompleteListener {
-                                    if (it.isSuccessful) {
-                                        startActivity(usertype)
-                                    } else {
-                                        showAlert("Error en inici de sessió")
-                                    }
-                                }
-                            }else{
-                                showAlert("Aquest usuari no és de tipus $usertype")
+                db.collection("users").document(dni).get().addOnSuccessListener { result ->
+                    if (result.get("usertype").toString() == usertype) {
+                        auth.signInWithEmailAndPassword(
+                            result.get("email").toString(),
+                            passwd,
+                        ).addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                startActivity(usertype)
+                            } else {
+                                showAlert("Error en inici de sessió")
                             }
                         }
-                    }
-                    if (!bool){
-                        showAlert("L\'usuari no està registrat")
+                            .addOnFailureListener {
+                                showAlert("L\'usuari no està registrat")
+                            }
+                    } else {
+                        showAlert("Aquest usuari no és de tipus $usertype")
                     }
                 }
 
@@ -127,7 +121,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
     }
 
     private fun showCuiner(dni: String) {
-        val intent =Intent(this.context, ComandesActivity::class.java).apply {
+        val intent = Intent(this.context, ComandesActivity::class.java).apply {
             putExtra("dni", dni)
         }
         startActivity(intent)

@@ -73,7 +73,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="perfil_info">Aqui pots cambiar la informació del teu perfil!</string>
-    <string name="nom">Nom:</string>
     <string name="cognom">Cognom:</string>
     <string name="correu">Correu electronic:</string>
     <string name="oblidat_contrsenya"><u>Has oblidat la contrasenya?</u></string>
@@ -91,6 +90,11 @@
         <item>Bocata</item>
         <item>Beguda calenta</item>
         <item>Beguda freda</item>
+    </string-array>
+    <string-array name="llistat_usuaris">
+        <item>Jaume Cadafalch Miró</item>
+        <item>Adrià Tomas Jimenez</item>
+        <item>Juan Rodriguez Gonzalez</item>
     </string-array>
     <string name="producte">Producte</string>
     <string name="introdueix_el_nom_del_producte_promoci">Introdueix el nom del producte / promoció</string>
