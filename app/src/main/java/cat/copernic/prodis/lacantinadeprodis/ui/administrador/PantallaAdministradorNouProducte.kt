@@ -18,6 +18,7 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaAdministradorNouProducteBinding
 import java.io.File
 import kotlin.properties.Delegates
+import android.widget.RadioGroup
 
 class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -60,21 +61,24 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
         spinner.onItemSelectedListener = this
 
-        binding.imgFotoCamera.setOnClickListener(){
+        binding.imgFotoCamera.setOnClickListener() {
             obrirCamera()
             binding.imgProducte.visibility = View.VISIBLE
-            }
+        }
 
-        binding.imgFotoGaleria.setOnClickListener(){
+        binding.imgFotoGaleria.setOnClickListener() {
             obrirGaleria()
             binding.imgProducte.visibility = View.VISIBLE
         }
 
-        binding.btnPAdministradorNouProducteGuardar.setOnClickListener{
+        setPreu()
 
-            preu = binding.editTextNumberDecimal2.text.toString().toDouble()
-            println(id)
-            println(preu)
+
+
+        binding.btnPAdministradorNouProducteGuardar.setOnClickListener {
+            if(!binding.editTextNumberDecimal2.text.toString().isEmpty()){
+                preu = binding.editTextNumberDecimal2.text.toString().toDouble()
+            }
         }
 
         return binding.root
@@ -124,10 +128,11 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
     }
 
     private fun getTmpFileUri(): Uri {
-        val tmpFile = File.createTempFile("tmp_image_file", ".png", requireContext().cacheDir).apply {
-            createNewFile()
-            deleteOnExit()
-        }
+        val tmpFile =
+            File.createTempFile("tmp_image_file", ".png", requireContext().cacheDir).apply {
+                createNewFile()
+                deleteOnExit()
+            }
 
         return FileProvider.getUriForFile(
             requireContext().applicationContext,
@@ -136,27 +141,25 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         )
     }
 
-    fun setPreu(view: View) {
-
-        if (view is RadioButton) {
-            val checked = (view as RadioButton).isChecked
-
-            when ((view as RadioButton).getId()) {
-                R.id.radio1Euro ->
-                    if (checked) {
+    fun setPreu() {
+        binding.radioGroup
+            .setOnCheckedChangeListener { group, checkedId ->
+                when (checkedId) {
+                    R.id.radio1Euro -> {
                         preu = 1.0
+                        binding.editTextNumberDecimal2.visibility = View.INVISIBLE
+
                     }
-                R.id.radio2Euro ->
-                    if (checked) {
+                    R.id.radio2Euro -> {
                         preu = 2.0
+                        binding.editTextNumberDecimal2.visibility = View.INVISIBLE
+
                     }
-                R.id.radioAltrePreu ->
-                    if (checked) {
+                    R.id.radioAltrePreu -> {
                         binding.editTextNumberDecimal2.visibility = View.VISIBLE
 
-                        preu = binding.editTextNumberDecimal2.text.toString().toDouble()
                     }
+                }
             }
-        }
     }
 }

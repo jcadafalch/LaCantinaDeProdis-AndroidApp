@@ -97,5 +97,9 @@
     <string name="_1">1€</string>
     <string name="_2">2€</string>
     <string name="altre_preu">Altre preu</string>
+    <string name="imatge_de_una_camera_de_fotos">Imatge de una camera de fotos</string>
+    <string name="introdueix_el_preu">Introdueix el preu</string>
+    <string name="fletxa_per_pujar_fotos">Imatge de una fletxa per indicar que es poden pujar fotos</string>
+    <string name="foto_del_producte">Foto del producte</string>
 
 </resources>
