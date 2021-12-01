@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.administrador.PantallaAdministradorNouUsuari">
 
-   <ScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="53dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="90dp"
                 android:layout_marginEnd="54dp"
                 android:layout_marginBottom="37dp"
                 android:text="@string/txtAfegirNouUsuari"
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="80dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="80dp"
                 android:text="@string/txt_nou_usuari"
                 android:textColor="@color/black"
@@ -49,7 +49,7 @@
                 android:id="@+id/txtPAdministradorNouUsuari_nomUsuari"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="154dp"
                 android:layout_marginBottom="1dp"
                 android:text="@string/introdueix_el_nom_de_l_usuari"
@@ -90,6 +90,7 @@
                 android:textSize="@dimen/txtRegistreIniciSessio"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPAdministradorNouUsuari_PersonSurname"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPAdministradorNouUsuari_PersonSurname"
                 app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouUsuari_nouUsuari"
                 app:layout_constraintVertical_bias="1.0" />
@@ -111,20 +112,53 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouUsuari_cognomUsuari"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
+            <TextView
+                android:id="@+id/txtPAdministradorNouUsuari_dni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="118dp"
+                android:text="@string/introdueix_el_dni"
+                android:textColor="#00796B"
+                android:textSize="@dimen/txtRegistreIniciSessio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/dtTxtPAdministradorNouUsuari_PersonSurname"
+                app:layout_constraintTop_toBottomOf="@+id/dtTxtPAdministradorNouUsuari_PersonSurname" />
+
+            <EditText
+                android:id="@+id/dtTxtPAdministradorNouUsuari_dni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="86dp"
+                android:layout_marginEnd="116dp"
+                android:ems="10"
+                android:hint="@string/dni"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:maxLength="9"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouUsuari_dni"
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
+
             <Button
                 android:id="@+id/btnPNouUsuari_gurardar"
                 android:layout_width="227dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="92dp"
-                android:layout_marginTop="75dp"
+                android:layout_marginTop="52dp"
                 android:layout_marginEnd="92dp"
-                android:layout_marginBottom="100dp"
+                android:layout_marginBottom="68dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/guardar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dtTxtPAdministradorNouUsuari_PersonSurname"
+                app:layout_constraintTop_toBottomOf="@+id/dtTxtPAdministradorNouUsuari_dni"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
