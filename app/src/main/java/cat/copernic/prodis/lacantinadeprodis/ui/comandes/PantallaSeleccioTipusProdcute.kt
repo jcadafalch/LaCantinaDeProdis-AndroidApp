@@ -19,7 +19,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
         val binding: FragmentPantallaSeleccioTipusProducteBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_tipus_producte, container, false
         )
-        binding.imgBocata.setOnClickListener { view: View ->
+        /*binding.imgBocata.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_bocata)
         }
@@ -30,7 +30,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
         binding.txtBegudesCalentes.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantallaSeleccioBegudaCalenta)
-        }
+        }*/
         binding.btnConfirmar.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(R.id.action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_nom_client_comanda)
