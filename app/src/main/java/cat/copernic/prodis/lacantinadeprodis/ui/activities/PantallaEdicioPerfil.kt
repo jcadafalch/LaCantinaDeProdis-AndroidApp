@@ -56,7 +56,19 @@ class PantallaEdicioPerfil : AppCompatActivity() {
             .addOnSuccessListener { document ->
                 if (document != null) {
                     binding.editTxtNom.setHint(document.get("username").toString())
+                }
+            }
+
+        db.collection("users").document(dni).get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
                     binding.editTxtCognom.setHint(document.get("usersurname").toString())
+                }
+            }
+
+        db.collection("users").document(dni).get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
                     binding.editTextCorreu.setHint(document.get("email").toString())
                 }
             }

@@ -19,6 +19,9 @@ import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaAdminis
 import java.io.File
 import kotlin.properties.Delegates
 import android.widget.RadioGroup
+import androidx.lifecycle.ViewModelProvider
+import cat.copernic.prodis.lacantinadeprodis.viewmodel.PantallaAdminsistradorNouProducteViewModel
+import cat.copernic.prodis.lacantinadeprodis.viewmodel.viewmodel
 
 class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -27,6 +30,8 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
     lateinit var binding: FragmentPantallaAdministradorNouProducteBinding
 
     private var latestTmpUri: Uri? = null
+
+
     val takeImageResult =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
             if (isSuccess) {
@@ -71,12 +76,12 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             binding.imgProducte.visibility = View.VISIBLE
         }
 
+        binding.imgProducte.isEnabled = false
+
         setPreu()
 
-
-
         binding.btnPAdministradorNouProducteGuardar.setOnClickListener {
-            if(!binding.editTextNumberDecimal2.text.toString().isEmpty()){
+            if (!binding.editTextNumberDecimal2.text.toString().isEmpty()) {
                 preu = binding.editTextNumberDecimal2.text.toString().toDouble()
             }
         }
@@ -107,7 +112,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         if (result.resultCode == Activity.RESULT_OK) {
             val data = result.data?.data
             //setImageUri només funciona per rutes locals, no a internet
-            binding?.imgProducte?.setImageURI(data)
+            binding.imgProducte.setImageURI(data)
         }
     }
 

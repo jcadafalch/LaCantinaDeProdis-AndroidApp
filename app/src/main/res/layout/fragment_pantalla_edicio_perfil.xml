@@ -228,13 +228,17 @@
                 android:text="@string/tamany_lletra"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view5" />
+                app:layout_constraintTop_toBottomOf="@+id/view5"
+                android:textColor="@color/colorPrimary"
+                />
 
             <RadioGroup
                 android:id="@id/radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra"
+                >
 
                 <RadioButton
                     android:id="@+id/radioGran"
@@ -274,7 +278,7 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/radioGroup"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
