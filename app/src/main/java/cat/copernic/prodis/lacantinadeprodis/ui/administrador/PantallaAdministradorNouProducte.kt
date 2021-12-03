@@ -1,6 +1,7 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.administrador
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,17 +12,14 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaAdministradorNouProducteBinding
 import java.io.File
-import kotlin.properties.Delegates
-import android.widget.RadioGroup
-import androidx.lifecycle.ViewModelProvider
-import cat.copernic.prodis.lacantinadeprodis.viewmodel.PantallaAdminsistradorNouProducteViewModel
-import cat.copernic.prodis.lacantinadeprodis.viewmodel.viewmodel
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -30,7 +28,6 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
     lateinit var binding: FragmentPantallaAdministradorNouProducteBinding
 
     private var latestTmpUri: Uri? = null
-
 
     val takeImageResult =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
@@ -43,6 +40,10 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
     private var preu: Double = 0.0
 
+    private val db = Firebase.firestore
+
+    private var accepta: Boolean = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +51,8 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_administrador_nou_producte, container, false
         )
+
+        tipusProducte = ""
 
         val spinner: Spinner = binding.spinTipusProducte
 
@@ -80,12 +83,63 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
         setPreu()
 
+        when (tipusProducte) {
+            "Bocata" -> tipusProducte = "bocata"
+            "Beguda calenta" -> tipusProducte = "bCalenta"
+            "Beguda freda" -> tipusProducte = "bFreda"
+        }
+
+        var num: Int
+        num = 0
+
         binding.btnPAdministradorNouProducteGuardar.setOnClickListener {
             if (!binding.editTextNumberDecimal2.text.toString().isEmpty()) {
                 preu = binding.editTextNumberDecimal2.text.toString().toDouble()
             }
-        }
 
+            db.collection("productes").get().addOnSuccessListener { result ->
+                for (document in result) {
+
+                    println(
+                        "ESTE DOCUMENTO -> " + document.id + " tiene su nomid igual que format correcte: " + document.get(
+                            "nomid"
+                        ).toString().equals(formatCorrecte())
+                    )
+                    if (!document.get("nomid").toString().equals(formatCorrecte())) {
+                        if (!document.id.equals(num.toString())) {
+                            db.collection("productes").document(num.toString()).set(
+                                hashMapOf(
+                                    "nom" to binding.editTextNomProducte.text.toString(),
+                                    "preu" to preu,
+                                    "tipus" to tipusProducte,
+                                    "visible" to true,
+                                    "nomid" to formatCorrecte()
+                                ) as Map<String, Any>
+                            )
+                            break
+
+                        } else {
+                            num++
+                        }
+                    } /*else if(sobreescriure()) {
+                        println(sobreescriure())
+                        db.collection("productes").document(num.toString()).update(
+                            hashMapOf(
+                                "nom" to binding.editTextNomProducte.text.toString(),
+                                "preu" to preu,
+                                "tipus" to tipusProducte,
+                                "visible" to true,
+                                "nomid" to formatCorrecte()
+                            ) as Map<String, Any>
+                        )
+                        break
+                    }*/
+
+                }
+            }
+            Toast.makeText(this.requireContext(), "S'ha afegit el producte amb éxit", Toast.LENGTH_SHORT).show()
+            num = 0
+        }
         return binding.root
     }
 
@@ -153,11 +207,13 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
                     R.id.radio1Euro -> {
                         preu = 1.0
                         binding.editTextNumberDecimal2.visibility = View.INVISIBLE
+                        binding.editTextNumberDecimal2.setText("")
 
                     }
                     R.id.radio2Euro -> {
                         preu = 2.0
                         binding.editTextNumberDecimal2.visibility = View.INVISIBLE
+                        binding.editTextNumberDecimal2.setText("")
 
                     }
                     R.id.radioAltrePreu -> {
@@ -166,5 +222,56 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
                     }
                 }
             }
+    }
+
+    fun formatCorrecte(): String {
+        var string = binding.editTextNomProducte.text.toString()
+
+        string = string.lowercase(Locale.getDefault())
+
+        string = string.replace(
+            " de ",
+            ""
+        )
+
+        string = string.replace(
+            " ",
+            ""
+        )
+
+        string = string.replace(
+            " amb ",
+            ""
+        )
+
+        string = string.trim()
+
+        return string
+    }
+
+    private fun sobreescriure() : Boolean {
+
+        val alertDialog = AlertDialog.Builder(this.requireContext()).create()
+        alertDialog.setTitle("ATENCIÓ! PRODUCTE DUPLICAT!")
+        alertDialog.setMessage("Ja hi ha un producte amb aquest nom.\r Vols sobreescriure els canvis?")
+
+        alertDialog.setButton(
+            AlertDialog.BUTTON_POSITIVE, "Si"
+        ) { dialog, which -> accepta = true  }
+
+        alertDialog.setButton(
+            AlertDialog.BUTTON_NEGATIVE, "No"
+        ) { dialog, which -> accepta = false }
+        alertDialog.show()
+
+        val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+
+        val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+        layoutParams.weight = 10f
+        btnPositive.layoutParams = layoutParams
+        btnNegative.layoutParams = layoutParams
+
+        return accepta
     }
 }
