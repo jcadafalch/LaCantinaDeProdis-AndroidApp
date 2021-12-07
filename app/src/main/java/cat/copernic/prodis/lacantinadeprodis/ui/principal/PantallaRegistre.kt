@@ -181,9 +181,7 @@ class PantallaRegistre : Fragment() {
         }
 
 
-        if (errorMessage != "") {
-            showAlert(errorMessage)
-        }
+        if (errorMessage != "") showAlert(errorMessage)
 
         return bool
 

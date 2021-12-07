@@ -34,6 +34,12 @@
         <argument
             android:name="userArr"
             app:argType="java.util.ArrayList" />
+        <argument
+            android:name="userArrId"
+            app:argType="java.util.ArrayList" />
+        <argument
+            android:name="usertypeArr"
+            app:argType="java.util.ArrayList" />
     </fragment>
     <fragment
         android:id="@+id/pantallaAdministradorNouUsuari"
@@ -43,6 +49,9 @@
         <action
             android:id="@+id/action_pantallaAdministradorNouUsuari_to_pantallaAdministradorPrincipal"
             app:destination="@id/pantallaAdministradorPrincipal" />
+        <argument
+            android:name="usertypeArr"
+            app:argType="java.util.ArrayList" />
     </fragment>
     <fragment
         android:id="@+id/pantallaAdministradorNouProducte"

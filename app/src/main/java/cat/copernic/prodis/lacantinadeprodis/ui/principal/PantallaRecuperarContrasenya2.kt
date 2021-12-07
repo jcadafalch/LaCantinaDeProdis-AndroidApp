@@ -62,38 +62,30 @@ class PantallaRecuperarContrasenya2 : Fragment() {
     }
 
     private fun changePassword(dni: String, psswd: String, usertype: String) {
-        var bool = false
         db.collection("users").document(dni).get().addOnSuccessListener { result ->
-            println("FIND DOCUMENT")
-            println("EMAIL ID = " + result.get("email").toString())
-            println("ID PASSWORD  = " + result.get("password").toString())
-            println("PSSWD = $psswd")
             auth.signInWithEmailAndPassword(
                 result.get("email").toString(),
                 result.get("password").toString(),
             ).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    println("SUCCESSFUL")
                     val currentUser = auth.currentUser
                     currentUser?.updatePassword(psswd)?.addOnSuccessListener {
-                        println("SUCCESSFUL")
-                        db.collection("users").document(dni).update(
-                            hashMapOf(
-                                "password" to psswd
-                            ) as Map<String, Any>
-                        )
                         auth.signOut()
                         Toast.makeText(
                             this.context,
                             "S'ha canbiat la contrasenya",
                             Toast.LENGTH_SHORT
                         ).show()
-                        view?.findNavController()?.navigate(
-                            PantallaRecuperarContrasenya2Directions.actionPantallaRecuperarContrasenya2ToPantallaIniciSessioClientAdmin(
-                                usertype
-                            )
-                        )
                     }
+                    val pas = hashMapOf("password" to psswd)
+                    db.collection("users").document(dni).update(
+                        pas as Map<String, Any>
+                    )
+                    view?.findNavController()?.navigate(
+                        PantallaRecuperarContrasenya2Directions.actionPantallaRecuperarContrasenya2ToPantallaIniciSessioClientAdmin(
+                            usertype
+                        )
+                    )
                 } else {
                     showAlert("Error en inici de sessió")
                 }
