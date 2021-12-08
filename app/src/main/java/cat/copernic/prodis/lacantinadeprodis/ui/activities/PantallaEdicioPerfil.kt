@@ -3,6 +3,8 @@ package cat.copernic.prodis.lacantinadeprodis.ui.activities
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -17,7 +19,14 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
+import java.io.ByteArrayOutputStream
 import java.io.File
 
 
@@ -37,6 +46,8 @@ class PantallaEdicioPerfil : AppCompatActivity() {
             }
         }
 
+    lateinit var storageRef: StorageReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -48,6 +59,8 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         var bundle = intent.extras
         dni = bundle?.getString("dni").toString()
 
+        agafarImatgeUsuari()
+
         binding.btnCambiarFoto.setOnClickListener() { view: View ->
             triaCamGaleria()
         }
@@ -55,9 +68,14 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
+                    println("entra")
                     binding.editTxtNom.setHint(document.get("username").toString())
+                    println(document.get("username").toString())
+                    println(dni)
                 }
             }
+
+
 
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
@@ -74,6 +92,7 @@ class PantallaEdicioPerfil : AppCompatActivity() {
             }
 
         binding.btnGuardar.setOnClickListener() { view: View ->
+            pujarImatge(view)
             if (datavalids(
                     binding.editTxtNom.text.toString(),
                     binding.editTxtCognom.text.toString(),
@@ -221,5 +240,46 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         layoutParams.weight = 10f
         btnPositive.layoutParams = layoutParams
         btnNegative.layoutParams = layoutParams
+    }
+
+    fun pujarImatge(view: View) {
+        // pujar imatge al Cloud Storage de Firebase
+        // https://firebase.google.com/docs/storage/android/upload-files?hl=es
+
+        // Creem una referència amb el path i el nom de la imatge per pujar la imatge
+        val pathReference = storageRef.child("users/" + dni + ".jpg")
+        val bitmap =
+            (binding.userIcon.drawable as BitmapDrawable).bitmap // agafem la imatge del imageView
+        val baos = ByteArrayOutputStream() // declarem i inicialitzem un outputstream
+
+        bitmap.compress(
+            Bitmap.CompressFormat.JPEG,
+            100,
+            baos
+        ) // convertim el bitmap en outputstream
+        val data = baos.toByteArray() //convertim el outputstream en array de bytes.
+
+        val uploadTask = pathReference.putBytes(data)
+        uploadTask.addOnFailureListener {
+            Snackbar.make(view, "Error al pujar la foto", Snackbar.LENGTH_LONG).show()
+            it.printStackTrace()
+
+        }.addOnSuccessListener {
+            Snackbar.make(view, "Exit al pujar la foto", Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+    fun agafarImatgeUsuari() {
+        storageRef = FirebaseStorage.getInstance().getReference()
+
+        var imgRef = Firebase.storage.reference.child("users/" + dni + ".jpg")
+
+
+        imgRef.downloadUrl.addOnSuccessListener { Uri ->
+            val imgUrl = Uri.toString()
+
+            Glide.with(this).load(imgUrl).into(binding.userIcon)
+        }
+
     }
 }

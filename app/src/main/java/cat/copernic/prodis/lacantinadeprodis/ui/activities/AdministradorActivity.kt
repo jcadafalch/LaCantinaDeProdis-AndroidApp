@@ -11,6 +11,8 @@ import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityAdministradorBi
 
 class AdministradorActivity : AppCompatActivity() {
 
+    private lateinit var dni: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityAdministradorBinding>(this,
@@ -21,6 +23,9 @@ class AdministradorActivity : AppCompatActivity() {
 
         //Fletxa enderrere i faltaria metode onSupportNavigateUp
         //NavigationUI.setupActionBarWithNavController(this, navController)
+
+        var bundle = intent.extras
+        dni = bundle?.getString("dni").toString()
 
     }
 
@@ -40,6 +45,9 @@ class AdministradorActivity : AppCompatActivity() {
             }
             R.id.profileBttn -> {
                 val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
+                    putExtra("dni", dni)
+
+
                 }
                 startActivity(intent)
                 true

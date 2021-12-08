@@ -3,6 +3,8 @@ package cat.copernic.prodis.lacantinadeprodis.ui.administrador
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,10 +18,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaAdministradorNouProducteBinding
+import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.io.ByteArrayOutputStream
 import java.util.*
+import kotlin.collections.ArrayList
 
 class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -44,6 +51,8 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
     private var accepta: Boolean = false
 
+    lateinit var storageRef: StorageReference
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,11 +61,21 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             inflater, R.layout.fragment_pantalla_administrador_nou_producte, container, false
         )
 
+        storageRef = FirebaseStorage.getInstance().getReference()
+
         tipusProducte = ""
 
         val spinner: Spinner = binding.spinTipusProducte
 
         val context = this.requireContext()
+
+        var tipusProducteArray: MutableList<String> = ArrayList()
+
+        /*db.collection("productes").document("categories").get().addOnSuccessListener { result ->
+            for (document in result){
+
+            }
+        }*/
 
         ArrayAdapter.createFromResource(
             context,
@@ -93,18 +112,13 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         num = 0
 
         binding.btnPAdministradorNouProducteGuardar.setOnClickListener {
+            pujarImatge(it)
             if (!binding.editTextNumberDecimal2.text.toString().isEmpty()) {
                 preu = binding.editTextNumberDecimal2.text.toString().toDouble()
             }
 
             db.collection("productes").get().addOnSuccessListener { result ->
                 for (document in result) {
-
-                    println(
-                        "ESTE DOCUMENTO -> " + document.id + " tiene su nomid igual que format correcte: " + document.get(
-                            "nomid"
-                        ).toString().equals(formatCorrecte())
-                    )
                     if (!document.get("nomid").toString().equals(formatCorrecte())) {
                         if (!document.id.equals(num.toString())) {
                             db.collection("productes").document(num.toString()).set(
@@ -113,7 +127,8 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
                                     "preu" to preu,
                                     "tipus" to tipusProducte,
                                     "visible" to true,
-                                    "nomid" to formatCorrecte()
+                                    "nomid" to formatCorrecte(),
+                                    "img" to "productes/"+binding.editTextNomProducte.text.toString()+".jpg"
                                 ) as Map<String, Any>
                             )
                             break
@@ -273,5 +288,27 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         btnNegative.layoutParams = layoutParams
 
         return accepta
+    }
+
+    fun pujarImatge(view: View){
+        // pujar imatge al Cloud Storage de Firebase
+        // https://firebase.google.com/docs/storage/android/upload-files?hl=es
+
+        // Creem una referència amb el path i el nom de la imatge per pujar la imatge
+        val pathReference = storageRef.child("productes/"+binding.editTextNomProducte.text.toString()+".jpg")
+        val bitmap = (binding.imgProducte.drawable as BitmapDrawable).bitmap // agafem la imatge del imageView
+        val baos = ByteArrayOutputStream() // declarem i inicialitzem un outputstream
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos) // convertim el bitmap en outputstream
+        val data = baos.toByteArray() //convertim el outputstream en array de bytes.
+
+        val uploadTask = pathReference.putBytes(data)
+        uploadTask.addOnFailureListener {
+            Snackbar.make(view, "Error al pujar la foto", Snackbar.LENGTH_LONG).show()
+            it.printStackTrace()
+
+        }.addOnSuccessListener {
+            Snackbar.make(view, "Exit al pujar la foto" , Snackbar.LENGTH_LONG).show()
+        }
     }
 }
