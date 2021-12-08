@@ -102,17 +102,20 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
         setPreu()
 
-        when (tipusProducte) {
-            "Bocata" -> tipusProducte = "bocata"
-            "Beguda calenta" -> tipusProducte = "bCalenta"
-            "Beguda freda" -> tipusProducte = "bFreda"
-        }
+
 
         var num: Int
         num = 0
 
         binding.btnPAdministradorNouProducteGuardar.setOnClickListener {
             pujarImatge(it)
+
+            when (tipusProducte) {
+                "Bocata" -> tipusProducte = "bocata"
+                "Beguda calenta" -> tipusProducte = "bCalenta"
+                "Beguda freda" -> tipusProducte = "bFreda"
+            }
+
             if (!binding.editTextNumberDecimal2.text.toString().isEmpty()) {
                 preu = binding.editTextNumberDecimal2.text.toString().toDouble()
             }

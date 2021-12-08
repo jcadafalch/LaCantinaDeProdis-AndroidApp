@@ -68,10 +68,7 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    println("entra")
                     binding.editTxtNom.setHint(document.get("username").toString())
-                    println(document.get("username").toString())
-                    println(dni)
                 }
             }
 
