@@ -7,45 +7,27 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.prodis.lacantinadeprodis.R
-import cat.copernic.prodis.lacantinadeprodis.adapters.PantallaSeleccioTipusProducte_Adapter.*
+import cat.copernic.prodis.lacantinadeprodis.model.dtclss_productes
 
-class PantallaSeleccioTipusProducte_Adapter(private val producteList: ArrayList<String>) :
-    RecyclerView.Adapter<ViewHolder>(){
+class bcalenta_adapter(private val productesList: ArrayList<dtclss_productes>): RecyclerView.Adapter<bcalenta_adapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): bcalenta_adapter.ViewHolder {
         val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_layout, viewGroup, false)
         return ViewHolder(v)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        val nomProducte: String = producteList[i]
-        viewHolder.itemNom.text = nomProducte
+        val nomProducte: dtclss_productes = productesList[i]
+        viewHolder.itemNom.text = nomProducte.nom
         viewHolder.imageView.setImageResource(R.drawable.arrow_back_foreground)
-
-
-       /* if(i == 0){
-            viewHolder.itemNom.setOnClickListener{
-                viewB
-            }
-            viewHolder.imageView.setOnClickListener {
-                viewB
-            }
-        }else if(i == 1){
-
-        }else if(i == 2){
-
-        }*/
-
-
     }
 
     override fun getItemCount(): Int {
-        return producteList.size
+        return  productesList.size
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.item_image)
         val itemNom: TextView = itemView.findViewById(R.id.item_nomTipusProducte)
     }
-
 }

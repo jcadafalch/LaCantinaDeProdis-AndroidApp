@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_pantalla_seleccio_bocata_to_pantalla_seleccio_atributs_bocata"
             app:destination="@id/pantalla_seleccio_atributs_bocata" />
+        <action
+            android:id="@+id/action_pantalla_seleccio_bocata_to_pantalla_seleccio_tipus_producte"
+            app:destination="@id/pantalla_seleccio_tipus_producte" />
     </fragment>
     <fragment
         android:id="@+id/pantallaSeleccioBegudaFreda"
@@ -39,6 +42,12 @@
         <action
             android:id="@+id/action_pantallaSeleccioBegudaFreda_to_pantalla_seleccio_atributs_beguda"
             app:destination="@id/pantalla_seleccio_atributs_beguda" />
+        <action
+            android:id="@+id/action_pantallaSeleccioBegudaFreda_to_pantalla_seleccio_tipus_producte"
+            app:destination="@id/pantalla_seleccio_tipus_producte" />
+        <action
+            android:id="@+id/action_pantallaSeleccioBegudaFreda_to_pantalla_seleccio_tipus_producte2"
+            app:destination="@id/pantalla_seleccio_tipus_producte" />
     </fragment>
     <fragment
         android:id="@+id/pantallaSeleccioBegudaCalenta"
@@ -48,6 +57,9 @@
         <action
             android:id="@+id/action_pantallaSeleccioBegudaCalenta_to_pantalla_seleccio_atributs_beguda"
             app:destination="@id/pantalla_seleccio_atributs_beguda" />
+        <action
+            android:id="@+id/action_pantallaSeleccioBegudaCalenta_to_pantalla_seleccio_tipus_producte"
+            app:destination="@id/pantalla_seleccio_tipus_producte" />
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_atributs_beguda"
