@@ -9,9 +9,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaAdministradorPrincipalBinding
-
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class PantallaAdministradorPrincipal : Fragment() {
+
+    private val db = Firebase.firestore
+    private var arrayTipusProducte = ArrayList<String>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -19,6 +24,18 @@ class PantallaAdministradorPrincipal : Fragment() {
         val binding: FragmentPantallaAdministradorPrincipalBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_administrador_principal, container, false
         )
+
+
+        db.collection("productes").document("categories").get().addOnSuccessListener { document ->
+            val bCalenta = document.get("bCalenta").toString()
+            val bFreda =  document.get("bFreda").toString()
+            val bocata = document.get("bocata").toString()
+
+            arrayTipusProducte.add(bCalenta)
+            arrayTipusProducte.add(bFreda)
+            arrayTipusProducte.add(bocata)
+        }
+
         binding.btnPAdministradorPrincipalNouUsuari.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorNouUsuari())
@@ -29,7 +46,7 @@ class PantallaAdministradorPrincipal : Fragment() {
         }
         binding.btnPAdministradorPrincipalNouProducte.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorNouProducte())
+                .navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorNouProducte(arrayTipusProducte))
         }
         binding.btnPAdministradorPrincipalAdministrarProductes.setOnClickListener { view: View ->
             view.findNavController()

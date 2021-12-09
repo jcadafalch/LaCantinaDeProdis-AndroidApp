@@ -37,7 +37,11 @@
         android:id="@+id/pantallaAdministradorNouProducte"
         android:name="cat.copernic.prodis.lacantinadeprodis.ui.administrador.PantallaAdministradorNouProducte"
         android:label="fragment_pantalla_administrador_nou_producte"
-        tools:layout="@layout/fragment_pantalla_administrador_nou_producte" />
+        tools:layout="@layout/fragment_pantalla_administrador_nou_producte" >
+        <argument
+            android:name="arrayTipusProducte"
+            app:argType="java.util.ArrayList" />
+    </fragment>
     <fragment
         android:id="@+id/pantallaAdministradorAdministrarProducte"
         android:name="cat.copernic.prodis.lacantinadeprodis.ui.administrador.PantallaAdministradorAdministrarProducte"

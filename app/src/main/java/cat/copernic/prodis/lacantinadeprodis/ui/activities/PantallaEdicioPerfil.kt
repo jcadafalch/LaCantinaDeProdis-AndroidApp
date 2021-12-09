@@ -68,7 +68,7 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    binding.editTxtNom.setHint(document.get("username").toString())
+                    binding.editTxtNom.setText(document.get("username").toString())
                 }
             }
 
@@ -77,14 +77,14 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    binding.editTxtCognom.setHint(document.get("usersurname").toString())
+                    binding.editTxtCognom.setText(document.get("usersurname").toString())
                 }
             }
 
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    binding.editTextCorreu.setHint(document.get("email").toString())
+                    binding.editTextCorreu.setText(document.get("email").toString())
                 }
             }
 

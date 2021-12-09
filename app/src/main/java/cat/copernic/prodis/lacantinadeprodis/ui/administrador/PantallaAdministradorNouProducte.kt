@@ -24,6 +24,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.protobuf.Empty
 import java.io.ByteArrayOutputStream
 import java.util.*
 import kotlin.collections.ArrayList
@@ -53,6 +54,10 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
     lateinit var storageRef: StorageReference
 
+    private lateinit var adapter: ArrayAdapter<*>
+
+    var arrayTipusProducte = ArrayList<String>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -69,22 +74,16 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
         val context = this.requireContext()
 
-        var tipusProducteArray: MutableList<String> = ArrayList()
+        val args = PantallaAdministradorNouProducteArgs.fromBundle(requireArguments())
+        arrayTipusProducte = args.arrayTipusProducte as ArrayList<String>
 
-        /*db.collection("productes").document("categories").get().addOnSuccessListener { result ->
-            for (document in result){
 
-            }
-        }*/
 
-        ArrayAdapter.createFromResource(
-            context,
-            R.array.tipus_producte,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
-        }
+        adapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, arrayTipusProducte)
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        spinner.adapter = adapter
 
         spinner.onItemSelectedListener = this
 
@@ -101,7 +100,6 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         binding.imgProducte.isEnabled = false
 
         setPreu()
-
 
 
         var num: Int
@@ -131,7 +129,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
                                     "tipus" to tipusProducte,
                                     "visible" to true,
                                     "nomid" to formatCorrecte(),
-                                    "img" to "productes/"+binding.editTextNomProducte.text.toString()+".jpg"
+                                    "img" to "productes/" + binding.editTextNomProducte.text.toString() + ".jpg"
                                 ) as Map<String, Any>
                             )
                             break
@@ -139,23 +137,14 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
                         } else {
                             num++
                         }
-                    } /*else if(sobreescriure()) {
-                        println(sobreescriure())
-                        db.collection("productes").document(num.toString()).update(
-                            hashMapOf(
-                                "nom" to binding.editTextNomProducte.text.toString(),
-                                "preu" to preu,
-                                "tipus" to tipusProducte,
-                                "visible" to true,
-                                "nomid" to formatCorrecte()
-                            ) as Map<String, Any>
-                        )
-                        break
-                    }*/
-
+                    }
                 }
             }
-            Toast.makeText(this.requireContext(), "S'ha afegit el producte amb éxit", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this.requireContext(),
+                "S'ha afegit el producte amb éxit",
+                Toast.LENGTH_SHORT
+            ).show()
             num = 0
         }
         return binding.root
@@ -262,12 +251,17 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             ""
         )
 
+        string = string.replace(
+            " i ",
+            ""
+        )
+
         string = string.trim()
 
         return string
     }
 
-    private fun sobreescriure() : Boolean {
+    /*private fun sobreescriure(): Boolean {
 
         val alertDialog = AlertDialog.Builder(this.requireContext()).create()
         alertDialog.setTitle("ATENCIÓ! PRODUCTE DUPLICAT!")
@@ -275,7 +269,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
         alertDialog.setButton(
             AlertDialog.BUTTON_POSITIVE, "Si"
-        ) { dialog, which -> accepta = true  }
+        ) { dialog, which -> accepta = true }
 
         alertDialog.setButton(
             AlertDialog.BUTTON_NEGATIVE, "No"
@@ -291,18 +285,24 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         btnNegative.layoutParams = layoutParams
 
         return accepta
-    }
+    }*/
 
-    fun pujarImatge(view: View){
+    fun pujarImatge(view: View) {
         // pujar imatge al Cloud Storage de Firebase
         // https://firebase.google.com/docs/storage/android/upload-files?hl=es
 
         // Creem una referència amb el path i el nom de la imatge per pujar la imatge
-        val pathReference = storageRef.child("productes/"+binding.editTextNomProducte.text.toString()+".jpg")
-        val bitmap = (binding.imgProducte.drawable as BitmapDrawable).bitmap // agafem la imatge del imageView
+        val pathReference =
+            storageRef.child("productes/" + binding.editTextNomProducte.text.toString() + ".png")
+        val bitmap =
+            (binding.imgProducte.drawable as BitmapDrawable).bitmap // agafem la imatge del imageView
         val baos = ByteArrayOutputStream() // declarem i inicialitzem un outputstream
 
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos) // convertim el bitmap en outputstream
+        bitmap.compress(
+            Bitmap.CompressFormat.JPEG,
+            100,
+            baos
+        ) // convertim el bitmap en outputstream
         val data = baos.toByteArray() //convertim el outputstream en array de bytes.
 
         val uploadTask = pathReference.putBytes(data)
@@ -311,7 +311,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             it.printStackTrace()
 
         }.addOnSuccessListener {
-            Snackbar.make(view, "Exit al pujar la foto" , Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, "Exit al pujar la foto", Snackbar.LENGTH_LONG).show()
         }
     }
 }
