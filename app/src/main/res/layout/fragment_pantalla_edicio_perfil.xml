@@ -141,45 +141,6 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:id="@+id/txtCorreu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/correu_electronic"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view3" />
-
-            <EditText
-                android:id="@+id/editTextCorreu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="2dp"
-                android:autofillHints=""
-                android:hint="@string/posa_correu"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:textColorHint="@android:color/darker_gray"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCorreu" />
-
-            <View
-                android:id="@+id/view4"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="70dp"
-                android:background="@android:color/darker_gray"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextCorreu"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
                 android:id="@+id/txtContrasenya"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -189,7 +150,7 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view4" />
+                app:layout_constraintTop_toBottomOf="@+id/view3" />
 
             <EditText
                 android:id="@+id/editTextContrassenya"

@@ -72,8 +72,6 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                 }
             }
 
-
-
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
@@ -81,19 +79,11 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                 }
             }
 
-        db.collection("users").document(dni).get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    binding.editTextCorreu.setText(document.get("email").toString())
-                }
-            }
-
         binding.btnGuardar.setOnClickListener() { view: View ->
             pujarImatge(view)
             if (datavalids(
                     binding.editTxtNom.text.toString(),
-                    binding.editTxtCognom.text.toString(),
-                    binding.editTextCorreu.text.toString()
+                    binding.editTxtCognom.text.toString()
                 )
             ) {
                 db.collection("users").document(dni).update(
@@ -102,20 +92,6 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                         "usersurname" to binding.editTxtCognom.text.toString(),
                     ) as Map<String, Any>
                 )
-                val currentUser =
-                    FirebaseAuth.getInstance().currentUser ?: return@setOnClickListener
-                if (binding.editTextCorreu.text.toString() != currentUser.email) {
-                    currentUser
-                        .updateEmail(binding.editTextCorreu.text.toString())
-                        .addOnSuccessListener {
-                            db.collection("users").document(dni).update(
-                                hashMapOf(
-                                    "email" to binding.editTextCorreu.text.toString()
-                                ) as Map<String, Any>
-                            )
-                        }
-                }
-
                 val currentUserPass =
                     FirebaseAuth.getInstance().currentUser
 
@@ -133,7 +109,7 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         }
     }
 
-    private fun datavalids(nom: String, cognom: String, correu: String): Boolean {
+    private fun datavalids(nom: String, cognom: String): Boolean {
         var error = ""
         var bool = true
         if (nom.isEmpty()) {
@@ -142,13 +118,6 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         }
         if (cognom.isEmpty()) {
             error += "Has d'introduïr el cognom\r"
-            bool = false
-        }
-        if (correu.isEmpty()) {
-            error += "Has d'introduïr el correu\r"
-            bool = false
-        } else if (!checkEmailFormat(correu)) {
-            error = "El format del correu no es correcte"
             bool = false
         }
         if (error != "") {

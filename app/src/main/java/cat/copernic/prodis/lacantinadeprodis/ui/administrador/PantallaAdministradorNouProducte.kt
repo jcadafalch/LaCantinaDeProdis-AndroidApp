@@ -75,11 +75,14 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         val context = this.requireContext()
 
         val args = PantallaAdministradorNouProducteArgs.fromBundle(requireArguments())
-        arrayTipusProducte = args.arrayTipusProducte as ArrayList<String>
 
+        if (arrayTipusProducte.isEmpty()) {
+            println("Is empty")
+            arrayTipusProducte = args.arrayTipusProducte as ArrayList<String>
+        }
 
-
-        adapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, arrayTipusProducte)
+        adapter =
+            ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, arrayTipusProducte)
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 

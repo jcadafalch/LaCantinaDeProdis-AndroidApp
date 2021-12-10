@@ -28,12 +28,13 @@ class PantallaAdministradorPrincipal : Fragment() {
 
         db.collection("productes").document("categories").get().addOnSuccessListener { document ->
             val bCalenta = document.get("bCalenta").toString()
-            val bFreda =  document.get("bFreda").toString()
+            val bFreda = document.get("bFreda").toString()
             val bocata = document.get("bocata").toString()
-
-            arrayTipusProducte.add(bCalenta)
-            arrayTipusProducte.add(bFreda)
-            arrayTipusProducte.add(bocata)
+            if (arrayTipusProducte.isEmpty()) {
+                arrayTipusProducte.add(bCalenta)
+                arrayTipusProducte.add(bFreda)
+                arrayTipusProducte.add(bocata)
+            }
         }
 
         binding.btnPAdministradorPrincipalNouUsuari.setOnClickListener { view: View ->
@@ -46,7 +47,11 @@ class PantallaAdministradorPrincipal : Fragment() {
         }
         binding.btnPAdministradorPrincipalNouProducte.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorNouProducte(arrayTipusProducte))
+                .navigate(
+                    PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorNouProducte(
+                        arrayTipusProducte
+                    )
+                )
         }
         binding.btnPAdministradorPrincipalAdministrarProductes.setOnClickListener { view: View ->
             view.findNavController()
