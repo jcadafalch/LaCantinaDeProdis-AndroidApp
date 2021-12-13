@@ -126,7 +126,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextProductName"
                 tools:ignore="MissingConstraints" />
 
             <TextView
@@ -148,8 +148,8 @@
                 android:text="@string/preu_del_producte"
                 android:textColor="#00796B"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                app:layout_constraintStart_toStartOf="@+id/editTextTextProductName"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextProductName" />
 
             <TextView
                 android:id="@+id/txtProducteVisible4"
@@ -163,7 +163,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal3" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/editTextTextProductName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"

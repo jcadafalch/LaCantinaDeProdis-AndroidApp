@@ -1,7 +1,6 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.administrador
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -24,7 +23,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.google.protobuf.Empty
 import java.io.ByteArrayOutputStream
 import java.util.*
 import kotlin.collections.ArrayList
@@ -77,7 +75,6 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         val args = PantallaAdministradorNouProducteArgs.fromBundle(requireArguments())
 
         if (arrayTipusProducte.isEmpty()) {
-            println("Is empty")
             arrayTipusProducte = args.arrayTipusProducte as ArrayList<String>
         }
 
@@ -234,7 +231,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             }
     }
 
-    fun formatCorrecte(): String {
+    private fun formatCorrecte(): String {
         var string = binding.editTextNomProducte.text.toString()
 
         string = string.lowercase(Locale.getDefault())

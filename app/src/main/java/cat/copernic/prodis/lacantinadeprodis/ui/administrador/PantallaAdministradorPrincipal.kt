@@ -16,6 +16,7 @@ class PantallaAdministradorPrincipal : Fragment() {
 
     private val db = Firebase.firestore
     private var arrayTipusProducte = ArrayList<String>()
+    private var arrayProductes = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +25,8 @@ class PantallaAdministradorPrincipal : Fragment() {
         val binding: FragmentPantallaAdministradorPrincipalBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_administrador_principal, container, false
         )
+        arrayProductes.clear()
+        arrayTipusProducte.clear()
 
 
         db.collection("productes").document("categories").get().addOnSuccessListener { document ->
@@ -34,6 +37,16 @@ class PantallaAdministradorPrincipal : Fragment() {
                 arrayTipusProducte.add(bCalenta)
                 arrayTipusProducte.add(bFreda)
                 arrayTipusProducte.add(bocata)
+            }
+        }
+
+        db.collection("productes").get().addOnSuccessListener { result ->
+            if (arrayProductes.isEmpty()) {
+                for (document in result) {
+                    if (document != null) {
+                        arrayProductes.add(document.get("nom").toString())
+                    }
+                }
             }
         }
 
@@ -55,7 +68,12 @@ class PantallaAdministradorPrincipal : Fragment() {
         }
         binding.btnPAdministradorPrincipalAdministrarProductes.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorAdministrarProducte())
+                .navigate(
+                    PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorAdministrarProducte(
+                        arrayTipusProducte,
+                        arrayProductes
+                    )
+                )
         }
         return binding.root
     }
