@@ -5,11 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.adapters.PantallaSeleccioTipusProducte_Adapter.*
+import cat.copernic.prodis.lacantinadeprodis.model.dataclass
+import cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioTipusProdcuteDirections
+import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
 
-class PantallaSeleccioTipusProducte_Adapter(private val producteList: ArrayList<String>) :
+class PantallaSeleccioTipusProducte_Adapter(private val producteList: List<dataclass>) :
     RecyclerView.Adapter<ViewHolder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
@@ -17,24 +22,47 @@ class PantallaSeleccioTipusProducte_Adapter(private val producteList: ArrayList<
         return ViewHolder(v)
     }
 
+
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        val nomProducte: String = producteList[i]
-        viewHolder.itemNom.text = nomProducte
-        viewHolder.imageView.setImageResource(R.drawable.arrow_back_foreground)
+        val tProducte: dataclass = producteList[i]
+        val storageRef = FirebaseStorage.getInstance().reference
+        val imageRef = storageRef.child("productes/${tProducte.photo}")
+        imageRef.downloadUrl.addOnSuccessListener { uri ->
+            Glide.with(viewHolder.itemView)
+                .load(uri)
+                .centerCrop()
+                .error(R.drawable.photo_library_foreground)
+                .into(viewHolder.imageView)
+        }
+        viewHolder.itemNom.text = tProducte.producte
 
-
-       /* if(i == 0){
-            viewHolder.itemNom.setOnClickListener{
-                viewB
+        viewHolder.imageView.setOnClickListener { view ->
+            when (i) {
+                0 -> {
+                    view.findNavController().navigate(PantallaSeleccioTipusProdcuteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioBocata())
+                }
+                1 -> {
+                    view.findNavController().navigate(PantallaSeleccioTipusProdcuteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioBegudaFreda())
+                }
+                2 -> {
+                    view.findNavController().navigate(PantallaSeleccioTipusProdcuteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioBegudaCalenta())
+                }
             }
-            viewHolder.imageView.setOnClickListener {
-                viewB
+        }
+
+        viewHolder.itemNom.setOnClickListener{ view ->
+            when (i) {
+                0 -> {
+                    view.findNavController().navigate(PantallaSeleccioTipusProdcuteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioBocata())
+                }
+                1 -> {
+                    view.findNavController().navigate(PantallaSeleccioTipusProdcuteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioBegudaCalenta())
+                }
+                2 -> {
+                    view.findNavController().navigate(PantallaSeleccioTipusProdcuteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioBegudaFreda())
+                }
             }
-        }else if(i == 1){
-
-        }else if(i == 2){
-
-        }*/
+        }
 
 
     }
@@ -44,7 +72,7 @@ class PantallaSeleccioTipusProducte_Adapter(private val producteList: ArrayList<
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.item_image)
+        var imageView: ImageView = itemView.findViewById(R.id.item_image)
         val itemNom: TextView = itemView.findViewById(R.id.item_nomTipusProducte)
     }
 

@@ -10,6 +10,9 @@ import androidx.databinding.DataBindingUtil
 import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityComandesBinding
+import cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaIniciSessioClientAdmin
+import cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaIniciSessioClientAdminArgs
+import com.google.firebase.auth.FirebaseAuth
 
 class ComandesActivity: AppCompatActivity() {
     private lateinit var usertype: String
@@ -23,6 +26,7 @@ class ComandesActivity: AppCompatActivity() {
         usertype = bundle?.getString("usertype").toString()
         dni = bundle?.getString("dni").toString()
 
+        title = ""
 
         //val navController = this.findNavController(R.id.myNavHostFragment)
 
@@ -53,6 +57,8 @@ class ComandesActivity: AppCompatActivity() {
                 true
             }
             R.id.logOutBttn -> {
+                FirebaseAuth.getInstance().signOut()
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

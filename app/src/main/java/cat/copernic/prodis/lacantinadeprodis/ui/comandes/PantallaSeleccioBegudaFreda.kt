@@ -32,13 +32,10 @@ class PantallaSeleccioBegudaFreda : Fragment() {
         val binding: FragmentPantallaSeleccioBegudaFredaBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_beguda_freda, container, false
         )
-        /*binding.button2.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(PantallaSeleccioBegudaFredaDirections.actionPantallaSeleccioBegudaFredaToPantallaSeleccioAtributsBeguda())
-        }*/
 
         binding.backButton.setOnClickListener{
-            view?.findNavController()?.navigate(PantallaSeleccioBegudaFredaDirections.actionPantallaSeleccioBegudaFredaToPantallaSeleccioTipusProducte())
+            view?.findNavController()?.navigate(PantallaSeleccioBegudaFredaDirections.
+            actionPantallaSeleccioBegudaFredaToPantallaSeleccioTipusProducte())
         }
 
         recyclerView = binding.rcyclrVwBfreda
@@ -67,7 +64,7 @@ class PantallaSeleccioBegudaFreda : Fragment() {
                 db.collection("productes").get().addOnSuccessListener { result ->
                     for (document in result){
                         if (document.id != "categories"){
-                            if (document.get("tipus") == "Beguda freda" && document.get("visible") == true){
+                            if (document.get("tipus") == "Beguda Freda" && document.get("visible") == true){
                                 productesArrayList.add(document.toObject(dtclss_productes::class.java))
                             }
                         }

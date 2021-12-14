@@ -34,12 +34,9 @@ class PantallaSeleccioBegudaCalenta : Fragment() {
         val binding: FragmentPantallaSeleccioBegudaCalentaBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_beguda_calenta, container, false
         )
-        /*binding.button2.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(PantallaSeleccioBegudaCalentaDirections.actionPantallaSeleccioBegudaCalentaToPantallaSeleccioAtributsBeguda())
-        }*/
         binding.backButton.setOnClickListener{
-            view?.findNavController()?.navigate(PantallaSeleccioBegudaCalentaDirections.actionPantallaSeleccioBegudaCalentaToPantallaSeleccioTipusProducte())
+            view?.findNavController()?.navigate(PantallaSeleccioBegudaCalentaDirections.
+            actionPantallaSeleccioBegudaCalentaToPantallaSeleccioTipusProducte())
         }
 
         recyclerView = binding.rcyclrVwBcalenta

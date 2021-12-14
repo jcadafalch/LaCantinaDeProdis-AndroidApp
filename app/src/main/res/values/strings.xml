@@ -97,5 +97,8 @@
     <string name="afegeix_una_foto">Afegeix una foto</string>
     <string name="item_image">item image</string>
     <string name="tipus_d_usuari">Tipus d\'usuari</string>
+    <string name="introdueix_el_nom_del_client">Introdueix el nom del client</string>
+    <string name="extern">Extern</string>
+    <string name="juan_rodriguez_gonz_lez">Juan Rodriguez González</string>
 
 </resources>

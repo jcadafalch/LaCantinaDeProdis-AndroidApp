@@ -5,9 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.model.dtclss_productes
+import cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioBocataDirections
+import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
 
 class bocates_adapter(private val productesList: ArrayList<dtclss_productes>): RecyclerView.Adapter<bocates_adapter.ViewHolder>() {
 
@@ -19,8 +23,23 @@ class bocates_adapter(private val productesList: ArrayList<dtclss_productes>): R
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         val nomProducte: dtclss_productes = productesList[i]
+        val storageRef = FirebaseStorage.getInstance().reference
+        val imageRef = storageRef.child("productes/${nomProducte.nom}.png")
         viewHolder.itemNom.text = nomProducte.nom
-        viewHolder.imageView.setImageResource(R.drawable.arrow_back_foreground)
+        imageRef.downloadUrl.addOnSuccessListener { uri ->
+            Glide.with(viewHolder.itemView)
+                .load(uri)
+                .centerCrop()
+                .into(viewHolder.imageView)
+        }
+
+        viewHolder.itemNom.setOnClickListener { view ->
+            view.findNavController().navigate(PantallaSeleccioBocataDirections.actionPantallaSeleccioBocataToPantallaSeleccioAtributsBocata())
+        }
+
+        viewHolder.imageView.setOnClickListener  { view ->
+            view.findNavController().navigate(PantallaSeleccioBocataDirections.actionPantallaSeleccioBocataToPantallaSeleccioAtributsBocata())
+        }
     }
 
     override fun getItemCount(): Int {

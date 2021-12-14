@@ -29,13 +29,10 @@ class PantallaSeleccioBocata : Fragment() {
         val binding: FragmentPantallaSeleccioBocataBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_bocata, container, false
         )
-        /*binding.button2.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(PantallaSeleccioBocataDirections.actionPantallaSeleccioBocataToPantallaSeleccioAtributsBocata())
-        }*/
 
         binding.backButton.setOnClickListener{
-            view?.findNavController()?.navigate(PantallaSeleccioBocataDirections.actionPantallaSeleccioBocataToPantallaSeleccioTipusProducte())
+            view?.findNavController()?.navigate(PantallaSeleccioBocataDirections.
+            actionPantallaSeleccioBocataToPantallaSeleccioTipusProducte())
         }
 
         recyclerView = binding.rcyclrVwBocata

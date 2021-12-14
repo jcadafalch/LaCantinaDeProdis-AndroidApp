@@ -45,7 +45,6 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
         arrUserId = args.userArrId as ArrayList<String>
         arrUserType = args.usertypeArr as ArrayList<String>
 
-        //getUser()
         spinner = binding.spinUsuariModificar
 
         val context = this.requireContext()
@@ -64,6 +63,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
         )
         adapterUType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerUserType.adapter = adapterUType
+        spinnerUserType.onItemSelectedListener = this
 
 
         binding.btnPAdministradorModificarUsuariGuardar.setOnClickListener {
@@ -103,64 +103,95 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         println("ITEM position = $position")
 
-        println("USER ID = " + arrUserId[position])
-        db.collection("users").document(arrUserId[position]).get()
-            .addOnSuccessListener { document ->
-                val pasword = document.get("password").toString()
-                println("PASSWORD  = $pasword")
-                val pswd = pasword.replace("prodis", "")
-                println("PSWD = $pswd")
-                binding.dtTxtPAdministradorModificarUsuariPersonName.setText(
-                    document.get("username").toString()
-                )
-
-                binding.dtTxtPAdministradorModificarUsuariPersonSurname.setText(
-                    document.get("usersurname").toString()
-                )
-
-                binding.dtTxtPAdministradorModificarUsuariDtDni.setText(
-                    document.get("dni").toString()
-                )
-
-                if (document.get("email").toString() != "null") {
-                    binding.txtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
-                    binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
-                    binding.dtTxtPAdministradorModificarUsuariEmail.setText(
-                        document.get("email").toString()
+        //println("USER ID = " + arrUserId[position])
+        println("PARENT = $parent")
+        if (parent == spinner) {
+            db.collection("users").document(arrUserId[position]).get()
+                .addOnSuccessListener { document ->
+                    val pasword = document.get("password").toString()
+                    println("PASSWORD  = $pasword")
+                    val pswd = pasword.replace("prodis", "")
+                    println("PSWD = $pswd")
+                    binding.dtTxtPAdministradorModificarUsuariPersonName.setText(
+                        document.get("username").toString()
                     )
-                } else {
-                    binding.txtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
-                    binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
 
-                }
+                    binding.dtTxtPAdministradorModificarUsuariPersonSurname.setText(
+                        document.get("usersurname").toString()
+                    )
 
-                if (pswd == "null") {
-                    binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
-                        View.INVISIBLE
+                    binding.dtTxtPAdministradorModificarUsuariDtDni.setText(
+                        document.get("dni").toString()
+                    )
 
-                } else {
-                    binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
-                        View.VISIBLE
-                    binding.dtTxtPAdministradorModificarUsuariPassword.setText(pswd)
-                }
+                    if (document.get("email").toString() != "null") {
+                        binding.txtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
+                        binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
+                        binding.dtTxtPAdministradorModificarUsuariEmail.setText(
+                            document.get("email").toString()
+                        )
+                    } else {
+                        binding.txtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
+                        binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
 
-                when (document.get("usertype").toString()) {
-                    "admin" -> spinnerUserType.setSelection(0)
-                    "caixer" -> spinnerUserType.setSelection(1)
-                    "cambrer" -> spinnerUserType.setSelection(2)
-                    "client" -> spinnerUserType.setSelection(3)
-                    "clientR" -> spinnerUserType.setSelection(4)
-                    "cuiner" -> spinnerUserType.setSelection(5)
-                    else -> {
-                        Toast.makeText(
-                            this.context,
-                            "ERROR EN EL TIPUS DE USUARI",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    }
+
+
+                    if (pswd == "null") {
+                        binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
+                            View.INVISIBLE
+
+                    } else {
+                        binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
+                            View.VISIBLE
+                        binding.dtTxtPAdministradorModificarUsuariPassword.setText(pswd)
+                    }
+
+                    if (document.get("usertype").toString() == "null") {
+                        spinnerUserType.visibility = View.INVISIBLE
+                        binding.txtPAdministradorModificarUsuariUsertype.visibility = View.INVISIBLE
+                    } else {
+                        spinnerUserType.visibility = View.VISIBLE
+                        binding.txtPAdministradorModificarUsuariUsertype.visibility = View.VISIBLE
+                    }
+
+                    when (document.get("usertype").toString()) {
+                        "admin" -> spinnerUserType.setSelection(0)
+                        "caixer" -> spinnerUserType.setSelection(1)
+                        "cambrer" -> spinnerUserType.setSelection(2)
+                        "client" -> spinnerUserType.setSelection(3)
+                        "clientR" -> spinnerUserType.setSelection(4)
+                        "cuiner" -> spinnerUserType.setSelection(5)
+                        "null" -> null
+                        else -> {
+                            Toast.makeText(
+                                this.context,
+                                "ERROR EN EL TIPUS DE USUARI",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
-            }
+        }else if (parent == spinnerUserType){
+            if (position == 3){
+                binding.txtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
+                binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
+                binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility = View.INVISIBLE
+            } else{
+                binding.txtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
+                binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
+                binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility = View.VISIBLE
 
+                db.collection("users").document(arrUserId[position]).get()
+                    .addOnSuccessListener { document ->
+                        if (document.get("usertype") == "client"){
+                            binding.dtTxtPAdministradorModificarUsuariEmail.isEnabled = true
+                            binding.dtTxtPAdministradorModificarUsuariEmail.inputType
+
+                        }
+                    }
+            }
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {
@@ -195,7 +226,9 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                                         Toast.LENGTH_SHORT
                                     ).show()
                                     view?.findNavController()
-                                        ?.navigate(PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorPrincipal())
+                                        ?.navigate(
+                                            PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorPrincipal()
+                                        )
                                 }
                                 .addOnFailureListener {
                                     showAlert("L'usuari no s'ha pogut eliminar")
@@ -223,196 +256,36 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
             .addOnSuccessListener { document ->
                 //Si ha canviat i es de tipus Client
                 if (usertype == "client") {
-                    //El nou tipus d'usuari és client i el dni no ha canviat
-                    if (document.get("dni").toString() ==
-                        binding.dtTxtPAdministradorModificarUsuariDtDni.text.toString()
-                    ) {
-                        db.collection("users").document(dni).update(
-                            hashMapOf(
-                                "username" to username,
-                                "usersurname" to usersurname,
-                                "usertype" to usertype
-                            ) as Map<String, Any>
-                        )
-                    } else {
-                        //El nou tipus d'usuari és client i el dni si ha canviat
-                        var b = false
-                        var Bdni = ""
-
-                        //comprovem si el dni ja està registrat
-                        db.collection("users").get().addOnSuccessListener { result ->
-                            for (document in result) {
-
-                                if (document.id == dni) {
-                                    b = true
-                                }
-
-                                if (document.get("username").toString() == username &&
-                                    document.get("usersurname").toString() == usersurname
-                                ) {
-                                    Bdni = document.get("dni").toString()
-
-                                }
-                            }
-                        }
-
-                        //Si esta registrat
-                        if (b) {
-                            val builder =
-                                androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
-                            builder.setTitle("¡¡¡AVIS!!!")
-                            builder.setMessage("El dni: $dni ja està registrat. \n El vols sobreecriure")
-                            builder.setPositiveButton("Si") { _, _ ->
-                                if (deleteUserI(Bdni)) {
-                                    db.collection("users").document(dni).set(
-                                        hashMapOf(
-                                            "dni" to dni,
-                                            "username" to username,
-                                            "usersurname" to usersurname,
-                                            "usertype" to usertype
-                                        )
-                                    )
-                                }
-                            }
-
-                            builder.setNegativeButton("No") { _, _ ->
-                                binding.dtTxtPAdministradorModificarUsuariDtDni.setText(Bdni)
-                            }
-
-                            val dialog: androidx.appcompat.app.AlertDialog =
-                                builder.create()
-                            dialog.show()
-                        } else {
-                            //Si el dni no està regitrat
-                            if (deleteUserI(Bdni)) {
-                                db.collection("users").document(dni).set(
-                                    hashMapOf(
-                                        "dni" to dni,
-                                        "username" to username,
-                                        "usersurname" to usersurname,
-                                        "usertype" to usertype
-                                    )
-                                )
-                            }
-                        }
-                    }
+                    //El nou tipus d'usuari és client
+                    db.collection("users").document(dni).update(
+                        hashMapOf(
+                            "username" to username,
+                            "usersurname" to usersurname,
+                            "usertype" to usertype
+                        ) as Map<String, Any>
+                    )
                 } else {
-                    //El nou tipus d'usuari ha canbiat, NO és client i el dni no ha canviat
-                    if (document.get("dni").toString() == dni
-                    ) {
-
-                        if (document.get("email").toString() != email) {
-                            changeEmail(dni, email)
-                        }
-                        val password = document.get("password")
-                        if (password != passwd) {
-                            changePassword(dni, passwd)
-                        }
-                        db.collection("users").document(dni).update(
-                            hashMapOf(
-                                "email" to email,
-                                "password" to passwd,
-                                "username" to username,
-                                "usersurname" to usersurname,
-                                "usertype" to usertype
-                            ) as Map<String, Any>
-                        )
-                    } else {
-                        ////El nou tipus d'usuari ha canbiat, NO és client i el dni si ha canviat
-                        var b = false
-                        var Bdni = ""
-
-                        //comprovem si el dni ja està registrat
-                        db.collection("users").get().addOnSuccessListener { result ->
-                            for (document in result) {
-
-                                if (document.id == dni) {
-                                    b = true
-                                }
-
-                                if (document.get("username").toString() == username &&
-                                    document.get("usersurname").toString() == usersurname
-                                ) {
-                                    Bdni = document.get("dni").toString()
-
-                                }
-                            }
-                        }
-                        if (b) {
-                            val builder =
-                                androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
-                            builder.setTitle("¡¡¡AVIS!!!")
-                            builder.setMessage("El dni: $dni ja està registrat. \n El vols sobreecriure")
-                            builder.setPositiveButton("Si") { _, _ ->
-                                if (document.get("email").toString() != email) {
-                                    changeEmail(dni, email)
-                                }
-                                val password = document.get("password")
-                                if (password != passwd) {
-                                    changePassword(dni, passwd)
-                                }
-                                if (deleteUserI(Bdni)) {
-                                    db.collection("users").document(dni).set(
-                                        hashMapOf(
-                                            "dni" to dni,
-                                            "username" to username,
-                                            "usersurname" to usersurname,
-                                            "email" to email,
-                                            "password" to passwd,
-                                            "usertype" to usertype
-                                        )
-                                    )
-                                }
-                            }
-
-                            builder.setNegativeButton("No") { _, _ ->
-                                binding.dtTxtPAdministradorModificarUsuariDtDni.setText(Bdni)
-                            }
-
-                            val dialog: androidx.appcompat.app.AlertDialog =
-                                builder.create()
-                            dialog.show()
-                        } else {
-                            //Si el dni no està regitrat
-                            if (deleteUserI(Bdni)) {
-                                db.collection("users").document(dni).set(
-                                    hashMapOf(
-                                        "dni" to dni,
-                                        "username" to username,
-                                        "usersurname" to usersurname,
-                                        "email" to email,
-                                        "password" to passwd,
-                                        "usertype" to usertype
-                                    )
-                                )
-                            }
-                        }
-
+                    //El nou tipus d'usuari ha canbiat, NO és client
+                    val password = document.get("password")
+                    if (password != passwd) {
+                        changePassword(dni, passwd)
                     }
+                    db.collection("users").document(dni).update(
+                        hashMapOf(
+                            "email" to email,
+                            "password" to passwd,
+                            "username" to username,
+                            "usersurname" to usersurname,
+                            "usertype" to usertype
+                        ) as Map<String, Any>
+                    )
                 }
 
             }
-    }
-
-    private fun changeEmail(dni: String, email: String) {
-        db.collection("users").document(dni).get().addOnSuccessListener { result ->
-            auth.signInWithEmailAndPassword(
-                result.get("email").toString(),
-                result.get("password").toString(),
-            ).addOnCompleteListener {
-                if (it.isSuccessful) {
-                    val currentUser = auth.currentUser
-                    currentUser?.updateEmail(email)?.addOnSuccessListener {
-                        auth.signOut()
-                        Toast.makeText(this.context, "S'ha canviat el email", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                }
-            }
-        }
     }
 
     private fun changePassword(dni: String, psswd: String) {
+        val password = psswd + "prodis"
         db.collection("users").document(dni).get().addOnSuccessListener { result ->
             auth.signInWithEmailAndPassword(
                 result.get("email").toString(),
@@ -420,7 +293,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
             ).addOnCompleteListener {
                 if (it.isSuccessful) {
                     val currentUser = auth.currentUser
-                    currentUser?.updatePassword(psswd)?.addOnSuccessListener {
+                    currentUser?.updatePassword(password)?.addOnSuccessListener {
                         auth.signOut()
                         Toast.makeText(
                             this.context,
@@ -428,7 +301,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-                    val pas = hashMapOf("password" to psswd)
+                    val pas = hashMapOf("password" to password)
                     db.collection("users").document(dni).update(
                         pas as Map<String, Any>
                     )
@@ -461,5 +334,45 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
             }
 
         return correct
+    }
+
+    private fun makeregister(
+        nom: String,
+        cognom: String,
+        dni: String,
+        email: String,
+        password: String,
+        usertype: String
+    ) {
+        val passwd = password + "prodis"
+        println(passwd)
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passwd)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    db.collection("users").document(dni).set(
+                        hashMapOf(
+                            "username" to nom,
+                            "usersurname" to cognom,
+                            "dni" to dni,
+                            "email" to email,
+                            "password" to passwd,
+                            "usertype" to usertype
+                        )
+                    ).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            Toast.makeText(
+                                this.context,
+                                "T\'has registrat correctament",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            showAlert("Error a l\'hora de fer el guardat de dades")
+                        }
+                    }
+
+                } else {
+                    showAlert("Error a l\'hora de fer l\'autenticació")
+                }
+            }
     }
 }

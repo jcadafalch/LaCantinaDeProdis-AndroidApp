@@ -110,7 +110,6 @@
                     android:id="@+id/dtTxtPIniciarSessioClientPassword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="@string/contrasenya"
                     android:inputType="numberPassword"
                     android:maxLength="4"
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />

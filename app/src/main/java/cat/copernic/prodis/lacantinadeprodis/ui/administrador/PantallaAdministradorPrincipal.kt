@@ -29,6 +29,9 @@ class PantallaAdministradorPrincipal : Fragment() {
             inflater,
             R.layout.fragment_pantalla_administrador_principal, container, false
         )
+        arrUsertype.clear()
+        arrUser.clear()
+        arrUserId.clear()
         db.collection("users").document("usertypes").get().addOnSuccessListener { document ->
             val admin = document.get("admin").toString()
             val caixer = document.get("caixer").toString()
@@ -47,7 +50,8 @@ class PantallaAdministradorPrincipal : Fragment() {
         binding.btnPAdministradorPrincipalNouUsuari.setOnClickListener {
             view?.findNavController()
                 ?.navigate(
-                    PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorNouUsuari(
+                    PantallaAdministradorPrincipalDirections.
+                    actionPantallaAdministradorPrincipalToPantallaAdministradorNouUsuari(
                         arrUsertype
                     )
                 )
@@ -65,7 +69,8 @@ class PantallaAdministradorPrincipal : Fragment() {
                     }
                 }
                 view?.findNavController()?.navigate(
-                    PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorModificarUsuari(
+                    PantallaAdministradorPrincipalDirections.
+                    actionPantallaAdministradorPrincipalToPantallaAdministradorModificarUsuari(
                         arrUser, arrUserId, arrUsertype
                     )
                 )
@@ -76,12 +81,14 @@ class PantallaAdministradorPrincipal : Fragment() {
 
         binding.btnPAdministradorPrincipalNouProducte.setOnClickListener {
             view?.findNavController()
-                ?.navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorNouProducte())
+                ?.navigate(PantallaAdministradorPrincipalDirections.
+                actionPantallaAdministradorPrincipalToPantallaAdministradorNouProducte())
         }
 
         binding.btnPAdministradorPrincipalAdministrarProductes.setOnClickListener {
             view?.findNavController()
-                ?.navigate(PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorAdministrarProducte())
+                ?.navigate(PantallaAdministradorPrincipalDirections.
+                actionPantallaAdministradorPrincipalToPantallaAdministradorAdministrarProducte())
         }
 
         return binding.root

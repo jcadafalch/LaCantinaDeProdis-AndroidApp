@@ -96,7 +96,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
 
     private fun startActivity(usertype: String) {
         when (usertype) {
-            "client" -> showCambrerClient(usertype, dni)
+            "clientR" -> showCambrerClient(usertype, dni)
             "cambrer" -> showCambrerClient(usertype, dni)
             "caixer" -> showCaixer(dni)
             "cuiner" -> showCuiner(dni)

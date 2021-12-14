@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="53dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="54dp"
             android:text="@string/txtModificarEliminarUsuari"
             android:textColor="@color/black"
@@ -131,7 +131,7 @@
             app:layout_constraintStart_toStartOf="@+id/dtTxtPAdministradorModificarUsuari_dtDni"
             app:layout_constraintTop_toBottomOf="@+id/dtTxtPAdministradorModificarUsuari_PersonSurname" />
 
-        <EditText
+        <TextView
             android:id="@+id/dtTxtPAdministradorModificarUsuari_dtDni"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -140,9 +140,9 @@
             android:ems="10"
             android:hint="@string/editDni"
             android:importantForAutofill="no"
-            android:inputType="textPersonName"
             android:maxLength="9"
             android:textColor="@color/black"
+            android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/txtPAdministradorModificarUsuari_Email"
             app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorModificarUsuari_dni"
@@ -162,7 +162,7 @@
 
 
         <TextView
-            android:id="@+id/txtPAdministradorModificarUsuari_Email2"
+            android:id="@+id/txtPAdministradorModificarUsuari_usertype"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -190,19 +190,21 @@
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorModificarUsuari_Email2"
+            app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorModificarUsuari_usertype"
             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/dtTxtPAdministradorModificarUsuari_Email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="173dp"
+            android:layout_marginEnd="100dp"
+            android:enabled="false"
+            android:inputType="none"
             android:ems="10"
             android:hint="@string/jrodirezgonzalez_prodiscat"
             android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
-            android:textColor="#616161"
+            android:textColor="@color/black"
+            android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/dtTxtPAdministradorModificarUsuari_PasswordL"
             app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorModificarUsuari_Email"
@@ -210,8 +212,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dtTxtPAdministradorModificarUsuari_PasswordL"
-            android:layout_width="0dp"
-            android:layout_height="51dp"
+            android:layout_width="221dp"
+            android:layout_height="57dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="169dp"
@@ -228,6 +230,8 @@
                 android:hint="@string/contrasenya"
                 android:inputType="numberPassword"
                 android:maxLength="4"
+                android:textColor="@color/black"
+                android:textSize="18sp"
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
