@@ -87,7 +87,7 @@ class PantallaRecuperarContrasenya2 : Fragment() {
                         )
                     )
                 } else {
-                    showAlert("Error en inici de sessió")
+                    showAlert("Error en recuperar contrasenya")
                 }
             }
         }

@@ -9,19 +9,16 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.text.isDigitsOnly
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaRegistreBinding
-import cat.copernic.prodis.lacantinadeprodis.viewmodel.RegistreViewModel
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.regex.Pattern
 
 class PantallaRegistre : Fragment() {
-    private lateinit var viewModel: RegistreViewModel
     private val db = FirebaseFirestore.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +27,6 @@ class PantallaRegistre : Fragment() {
         val bdng: FragmentPantallaRegistreBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_registre, container, false
         )
-        viewModel = ViewModelProvider(this).get(RegistreViewModel::class.java)
         val args = PantallaRegistreArgs.fromBundle(requireArguments())
         val usertype = args.usertype
 

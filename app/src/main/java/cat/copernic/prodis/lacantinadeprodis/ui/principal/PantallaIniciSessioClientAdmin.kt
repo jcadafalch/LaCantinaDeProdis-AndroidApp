@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class PantallaIniciSessioClientAdmin : Fragment() {
+class PantallaIniciSessioClientAdmin: Fragment() {
 
     private val db = Firebase.firestore
     private var auth = FirebaseAuth.getInstance()

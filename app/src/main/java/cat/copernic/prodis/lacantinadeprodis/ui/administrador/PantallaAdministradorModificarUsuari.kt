@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaAdministradorModificarUsuariBinding
+import cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaRecuperarContrasenya2Directions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -172,22 +173,48 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                         }
                     }
                 }
-        }else if (parent == spinnerUserType){
-            if (position == 3){
+        } else if (parent == spinnerUserType) {
+            if (position == 3) {
                 binding.txtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
                 binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
                 binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility = View.INVISIBLE
-            } else{
-                binding.txtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
-                binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
-                binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility = View.VISIBLE
-
+            } else {
                 db.collection("users").document(arrUserId[position]).get()
                     .addOnSuccessListener { document ->
-                        if (document.get("usertype") == "client"){
+                        val nom = binding.dtTxtPAdministradorModificarUsuariPersonName.text.toString()
+                        val cognom = binding.dtTxtPAdministradorModificarUsuariPersonSurname.text.toString()
+                        if (document.get("usertype") == "client" && position != 3) {
+                            val builder =
+                                androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
+                            builder.setTitle("¡¡¡ATENCIÓ!!!")
+                            builder.setMessage("Si vols que l'usuari: $nom $cognom deixi de ser client, " +
+                                    "l'has de tornar a afegir desde l'apartat \"Afegir nou usuari\".\n" +
+                                    "Vols anar a \"Afegir nou usuari\" per canviar el tipus d'usuari?")
+                            builder.setPositiveButton("Si") { _, _ ->
+                                view?.findNavController()?.navigate(PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorNouUsuari(arrUserType))
+                            }
+                            builder.setNegativeButton("No") { _, _ ->
+                                spinnerUserType.setSelection(3)
+                            }
+                            val dialog: androidx.appcompat.app.AlertDialog = builder.create()
+                            dialog.show()
+                        } else if (document.get("usertype") == "client") {
+                            binding.txtPAdministradorModificarUsuariEmail.visibility =
+                                View.INVISIBLE
+                            binding.dtTxtPAdministradorModificarUsuariEmail.visibility =
+                                View.INVISIBLE
+                            binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
+                                View.INVISIBLE
+                            /*binding.dtTxtPAdministradorModificarUsuariEmail.text = ""
+                            binding.dtTxtPAdministradorModificarUsuariPassword.setText("")
                             binding.dtTxtPAdministradorModificarUsuariEmail.isEnabled = true
-                            binding.dtTxtPAdministradorModificarUsuariEmail.inputType
-
+                            binding.dtTxtPAdministradorModificarUsuariEmail.inputType*/
+                        } else {
+                            binding.txtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
+                            binding.dtTxtPAdministradorModificarUsuariEmail.visibility =
+                                View.VISIBLE
+                            binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
+                                View.VISIBLE
                         }
                     }
             }
@@ -251,7 +278,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
         val username = binding.dtTxtPAdministradorModificarUsuariPersonName.text.toString()
         val usersurname = binding.dtTxtPAdministradorModificarUsuariPersonSurname.text.toString()
         val email = binding.dtTxtPAdministradorModificarUsuariEmail.text.toString()
-        val passwd = binding.dtTxtPAdministradorModificarUsuariPassword.text.toString()
+        val passwd = binding.dtTxtPAdministradorModificarUsuariPassword.text.toString() + "prodis"
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
                 //Si ha canviat i es de tipus Client
@@ -264,28 +291,71 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                             "usertype" to usertype
                         ) as Map<String, Any>
                     )
+                } else if (usertype == "admin") {
+                    val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
+                    builder.setTitle("¡¡¡AVIS!!!")
+                    builder.setMessage(
+                        "Estas a punt d\'asignar l'usuari $username $usersurname com a administrador\n"
+                                + "Estàs segur d'aquesta acció?"
+                    )
+                    builder.setPositiveButton("Si") { _, _ ->
+                        //El nou tipus d'usuari ha canbiat, ara és de tipus Administrador
+                        val password = document.get("password")
+                        if (password != passwd) {
+                            changePassword(dni, passwd)
+                            db.collection("users").document(dni).update(
+                                hashMapOf(
+                                    "email" to email,
+                                    "username" to username,
+                                    "usersurname" to usersurname,
+                                    "usertype" to usertype
+                                ) as Map<String, Any>
+                            )
+                        } else {
+                            db.collection("users").document(dni).update(
+                                hashMapOf(
+                                    "email" to email,
+                                    "password" to passwd,
+                                    "username" to username,
+                                    "usersurname" to usersurname,
+                                    "usertype" to usertype
+                                ) as Map<String, Any>
+                            )
+                        }
+                    }
+                    builder.setNegativeButton("No", null)
                 } else {
                     //El nou tipus d'usuari ha canbiat, NO és client
                     val password = document.get("password")
                     if (password != passwd) {
                         changePassword(dni, passwd)
+                        db.collection("users").document(dni).update(
+                            hashMapOf(
+                                "email" to email,
+                                "username" to username,
+                                "usersurname" to usersurname,
+                                "usertype" to usertype
+                            ) as Map<String, Any>
+                        )
+                    } else {
+                        db.collection("users").document(dni).update(
+                            hashMapOf(
+                                "email" to email,
+                                "password" to passwd,
+                                "username" to username,
+                                "usersurname" to usersurname,
+                                "usertype" to usertype
+                            ) as Map<String, Any>
+                        )
                     }
-                    db.collection("users").document(dni).update(
-                        hashMapOf(
-                            "email" to email,
-                            "password" to passwd,
-                            "username" to username,
-                            "usersurname" to usersurname,
-                            "usertype" to usertype
-                        ) as Map<String, Any>
-                    )
+
                 }
 
             }
     }
 
     private fun changePassword(dni: String, psswd: String) {
-        val password = psswd + "prodis"
+        println("PASSSWORD  =  " + psswd)
         db.collection("users").document(dni).get().addOnSuccessListener { result ->
             auth.signInWithEmailAndPassword(
                 result.get("email").toString(),
@@ -293,7 +363,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
             ).addOnCompleteListener {
                 if (it.isSuccessful) {
                     val currentUser = auth.currentUser
-                    currentUser?.updatePassword(password)?.addOnSuccessListener {
+                    currentUser?.updatePassword(psswd)?.addOnSuccessListener {
                         auth.signOut()
                         Toast.makeText(
                             this.context,
@@ -301,12 +371,12 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-                    val pas = hashMapOf("password" to password)
+                    val pas = hashMapOf("password" to psswd)
                     db.collection("users").document(dni).update(
                         pas as Map<String, Any>
                     )
                 } else {
-                    showAlert("Error en inici de sessió")
+                    showAlert("Error en canviar la contrasenya")
                 }
             }
         }
@@ -374,5 +444,9 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                     showAlert("Error a l\'hora de fer l\'autenticació")
                 }
             }
+    }
+
+    private fun showafegirUsuari(){
+
     }
 }
