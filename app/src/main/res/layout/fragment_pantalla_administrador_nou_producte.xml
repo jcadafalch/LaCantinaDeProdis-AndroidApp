@@ -158,8 +158,8 @@
 
             <ImageView
                 android:id="@+id/imgProducte"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:contentDescription="@string/foto_del_producte"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"

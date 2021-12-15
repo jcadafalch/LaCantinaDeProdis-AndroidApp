@@ -181,10 +181,21 @@
                 android:ems="10"
                 android:inputType="numberDecimal"
                 android:minHeight="48dp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
                 tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:id="@+id/imgProducte2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtProducteVisible4"
+                tools:src="@tools:sample/avatars" />
 
             <RadioGroup
                 android:id="@+id/radioGroup2"
@@ -196,21 +207,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtProducteVisible3">
 
                 <RadioButton
-                    android:id="@+id/radioButton7"
+                    android:id="@+id/radio1Euro2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/_1"
                     android:textColor="#616161" />
 
                 <RadioButton
-                    android:id="@+id/radioButton6"
+                    android:id="@+id/radio2Euro2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/_2"
                     android:textColor="#616161" />
 
                 <RadioButton
-                    android:id="@+id/radioButton8"
+                    android:id="@+id/radioAltrePreu2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -224,20 +235,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="70dp"
+                android:layout_marginTop="5dp"
                 android:contentDescription="@string/imatge_de_una_camera_de_fotos"
                 android:src="@drawable/ic_baseline_camera_alt_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtProducteVisible4" />
+                app:layout_constraintTop_toBottomOf="@+id/imgProducte2" />
 
             <ImageView
                 android:id="@+id/imgPujarImatge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="70dp"
                 android:contentDescription="@string/fletxa_per_pujar_fotos"
                 android:src="@drawable/ic_baseline_file_upload_24"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtProducteVisible4" />
+                app:layout_constraintTop_toBottomOf="@+id/imgProducte2" />
 
             <Button
                 android:id="@+id/btnGuardar"

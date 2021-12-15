@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
+import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import cat.copernic.prodis.lacantinadeprodis.R
@@ -63,6 +64,9 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_administrador_nou_producte, container, false
         )
+        binding.editTextNumberDecimal2.isGone = true
+        binding.imgProducte.isGone = true
+
 
         storageRef = FirebaseStorage.getInstance().getReference()
 
@@ -90,11 +94,14 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         binding.imgFotoCamera.setOnClickListener() {
             obrirCamera()
             binding.imgProducte.visibility = View.VISIBLE
+            binding.imgProducte.isGone = false
+
         }
 
         binding.imgFotoGaleria.setOnClickListener() {
             obrirGaleria()
             binding.imgProducte.visibility = View.VISIBLE
+            binding.imgProducte.isGone = false
         }
 
         binding.imgProducte.isEnabled = false
@@ -215,17 +222,17 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
                         preu = 1.0
                         binding.editTextNumberDecimal2.visibility = View.INVISIBLE
                         binding.editTextNumberDecimal2.setText("")
-
+                        binding.editTextNumberDecimal2.isGone = true
                     }
                     R.id.radio2Euro -> {
                         preu = 2.0
                         binding.editTextNumberDecimal2.visibility = View.INVISIBLE
                         binding.editTextNumberDecimal2.setText("")
-
+                        binding.editTextNumberDecimal2.isGone = true
                     }
                     R.id.radioAltrePreu -> {
                         binding.editTextNumberDecimal2.visibility = View.VISIBLE
-
+                        binding.editTextNumberDecimal2.isGone = false
                     }
                 }
             }
