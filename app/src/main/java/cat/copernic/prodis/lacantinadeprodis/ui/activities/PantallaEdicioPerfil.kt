@@ -18,7 +18,12 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import cat.copernic.prodis.lacantinadeprodis.viewmodel.PantallaEdicioPerfilViewModel
+import cat.copernic.prodis.lacantinadeprodis.viewmodel.viewmodel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -30,7 +35,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 
 
-class PantallaEdicioPerfil : AppCompatActivity() {
+class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
     private lateinit var dni: String
 
     private val db = FirebaseFirestore.getInstance()
@@ -48,6 +53,8 @@ class PantallaEdicioPerfil : AppCompatActivity() {
 
     lateinit var storageRef: StorageReference
 
+    private lateinit var viewModel: PantallaEdicioPerfilViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -55,6 +62,7 @@ class PantallaEdicioPerfil : AppCompatActivity() {
             this,
             R.layout.fragment_pantalla_edicio_perfil
         )
+        viewModel = ViewModelProvider(this)[PantallaEdicioPerfilViewModel::class.java]
 
         var bundle = intent.extras
         dni = bundle?.getString("dni").toString()
@@ -65,12 +73,12 @@ class PantallaEdicioPerfil : AppCompatActivity() {
             triaCamGaleria()
         }
 
-        db.collection("users").document(dni).get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    binding.editTxtNom.setText(document.get("username").toString())
-                }
-            }
+        binding.editTxtNom.setText(viewModel.nom.value)
+
+        viewModel.nom.observe(this, Observer {
+            binding.editTxtNom.setText(it.toString())
+
+        })
 
         db.collection("users").document(dni).get()
             .addOnSuccessListener { document ->
