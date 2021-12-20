@@ -73,19 +73,15 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
             triaCamGaleria()
         }
 
-        binding.editTxtNom.setText(viewModel.nom.value)
-
         viewModel.nom.observe(this, Observer {
             binding.editTxtNom.setText(it.toString())
 
         })
 
-        db.collection("users").document(dni).get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    binding.editTxtCognom.setText(document.get("usersurname").toString())
-                }
-            }
+        viewModel.cognom.observe(this, Observer {
+            binding.editTxtCognom.setText(it.toString())
+
+        })
 
         binding.btnGuardar.setOnClickListener() { view: View ->
             pujarImatge(view)

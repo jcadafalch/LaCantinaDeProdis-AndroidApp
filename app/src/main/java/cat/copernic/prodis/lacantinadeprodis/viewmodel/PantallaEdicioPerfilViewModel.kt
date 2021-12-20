@@ -27,11 +27,6 @@ class PantallaEdicioPerfilViewModel() : ViewModel() {
         tasca1.let {}
     }
 
-    /*fun setNom(): String? {
-        println("Fuera " + nom.value)
-        return nom.value.toString()
-    }*/
-
     fun crearCorrutina()= GlobalScope.launch(Dispatchers.Main) {
         withContext(Dispatchers.IO){
             val db = FirebaseFirestore.getInstance()
@@ -47,7 +42,7 @@ class PantallaEdicioPerfilViewModel() : ViewModel() {
                             .addOnSuccessListener { document ->
                                 if (document != null) {
                                     _nom.value = document.get("username").toString()
-                                    println("Dentro del for " + _nom.value)
+                                    _cognom.value = document.get("usersurname").toString()
                                 }
                             }
                     }
