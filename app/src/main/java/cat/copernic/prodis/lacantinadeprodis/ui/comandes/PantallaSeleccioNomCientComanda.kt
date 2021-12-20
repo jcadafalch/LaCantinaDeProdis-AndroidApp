@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioNomClientComandaBinding
 
@@ -38,9 +39,8 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
         spinner.adapter = adapter
         spinner.onItemSelectedListener = this
 
-        binding.btnTornaEnrerre.setOnClickListener {
-            view?.findNavController()?.navigate(PantallaSeleccioNomCientComandaDirections.
-            actionPantallaSeleccioNomClientComandaToPantallaSeleccioTipusProducte())
+        binding.btnTornaEnrerre.setOnClickListener{
+            findNavController().popBackStack()
         }
 
 

@@ -14,7 +14,7 @@ class PantallaSeleccioAtributsBocata : Fragment() {
 
     var senseTomaquet : Boolean = false
 
-    var emportar : Boolean = false
+    var perEemportar : Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,19 +29,10 @@ class PantallaSeleccioAtributsBocata : Fragment() {
             view.findNavController()
                 .navigate(R.id.action_pantalla_seleccio_atributs_bocata_to_pantalla_seleccio_tipus_producte)
 
-            /*setResultListener("requestKey") { key, bundle ->
-                // We use a String here, but any type that can be put in a Bundle is supported
-                val result = bundle.getString("bundleKey")
-                // Do something with the result...
-            }*/
+            senseTomaquet = binding.checkBoxSenseTomaquet.isChecked
 
-            if(binding.checkBoxSenseTomaquet.isChecked){
-                senseTomaquet = true
-            }
+            perEemportar = binding.checkBoxPerEmportar.isChecked
 
-            if(binding.checkBoxSenseTomaquet.isChecked){
-                senseTomaquet = true
-            }
         }
         return binding.root
     }

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.prodis.lacantinadeprodis.R
@@ -35,8 +36,7 @@ class PantallaSeleccioBegudaCalenta : Fragment() {
             inflater, R.layout.fragment_pantalla_seleccio_beguda_calenta, container, false
         )
         binding.backButton.setOnClickListener{
-            view?.findNavController()?.navigate(PantallaSeleccioBegudaCalentaDirections.
-            actionPantallaSeleccioBegudaCalentaToPantallaSeleccioTipusProducte())
+            findNavController().popBackStack()
         }
 
         recyclerView = binding.rcyclrVwBcalenta

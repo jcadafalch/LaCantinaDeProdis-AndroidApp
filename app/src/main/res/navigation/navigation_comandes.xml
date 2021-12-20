@@ -21,6 +21,12 @@
         <action
             android:id="@+id/action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_nom_client_comanda"
             app:destination="@id/pantalla_seleccio_nom_client_comanda" />
+        <argument
+            android:name="atributs"
+            app:argType="string" />
+        <argument
+            android:name="perEmportar"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_bocata"
