@@ -40,7 +40,8 @@ class PantallaSeleccioTipusProdcute : Fragment() {
 
         producteList = arrayListOf()
 
-        db.collection("productes").document("categories").get().addOnSuccessListener { document ->
+        db.collection("productes").document("categories")
+            .get().addOnSuccessListener { document ->
             val stBocata = document.get("bocata").toString()
             val stCalenta = document.get("bCalenta").toString()
             val stFreda = document.get("bFreda").toString()
@@ -70,7 +71,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                 }
                 arrUser.add(getString(R.string.extern))
                 view?.findNavController()?.navigate(
-                    PantallaSeleccioTipusProdcuteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioNomClientComanda(
+                    PantallaSeleccioTipusProdcuteDirections .actionPantallaSeleccioTipusProducteToPantallaSeleccioNomClientComanda(
                         arrUser
                     )
                 )

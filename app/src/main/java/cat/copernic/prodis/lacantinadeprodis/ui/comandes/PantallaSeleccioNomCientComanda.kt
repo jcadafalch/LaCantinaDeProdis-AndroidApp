@@ -39,7 +39,8 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
         spinner.onItemSelectedListener = this
 
         binding.btnTornaEnrerre.setOnClickListener {
-            view?.findNavController()?.navigate(PantallaSeleccioNomCientComandaDirections.actionPantallaSeleccioNomClientComandaToPantallaSeleccioTipusProducte())
+            view?.findNavController()?.navigate(PantallaSeleccioNomCientComandaDirections.
+            actionPantallaSeleccioNomClientComandaToPantallaSeleccioTipusProducte())
         }
 
 

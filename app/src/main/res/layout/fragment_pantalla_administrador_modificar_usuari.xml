@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.administrador.PantallaAdministradorModificarUsuari">
-
+<data>
+    <variable
+        name="modificarUsuariViewModel"
+        type="cat.copernic.prodis.lacantinadeprodis.viewmodel.PantallaAdministradorModificarUsuariVM" />
+</data>
 <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -234,7 +238,7 @@
                 android:textSize="18sp"
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
         </com.google.android.material.textfield.TextInputLayout>
-
+<!--android:onClick="@{() -> modificarUsuariViewModel.saveUser()}"-->
         <Button
             android:id="@+id/btnPAdministradorModificarUsuari_Guardar"
             android:layout_width="0dp"
@@ -249,7 +253,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinTipusUsuari"
             tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
-
+<!--android:onClick="@{() -> modificarUsuariViewModel.deleteUser()}"-->
         <Button
             android:id="@+id/btnPAdministradorModificarUsuari_ElimiarUsuari"
             android:layout_width="0dp"

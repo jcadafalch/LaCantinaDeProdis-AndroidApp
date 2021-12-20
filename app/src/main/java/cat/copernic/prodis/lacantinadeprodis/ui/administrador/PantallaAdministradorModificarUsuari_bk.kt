@@ -1,3 +1,5 @@
+package cat.copernic.prodis.lacantinadeprodis.ui.administrador
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,14 +13,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaAdministradorModificarUsuariBinding
-import cat.copernic.prodis.lacantinadeprodis.ui.administrador.PantallaAdministradorModificarUsuariArgs
-import cat.copernic.prodis.lacantinadeprodis.ui.administrador.PantallaAdministradorModificarUsuariDirections
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.ArrayList
 
-class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelectedListener {
+class PantallaAdministradorModificarUsuari_bk : Fragment(), AdapterView.OnItemSelectedListener {
 
     private val db = Firebase.firestore
     private var auth = FirebaseAuth.getInstance()
@@ -190,8 +190,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                                     "l'has de tornar a afegir desde l'apartat \"Afegir nou usuari\".\n" +
                                     "Vols anar a \"Afegir nou usuari\" per canviar el tipus d'usuari?")
                             builder.setPositiveButton("Si") { _, _ ->
-                                view?.findNavController()?.navigate(
-                                    PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorNouUsuari(arrUserType))
+                                view?.findNavController()?.navigate(PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorNouUsuari(arrUserType))
                             }
                             builder.setNegativeButton("No") { _, _ ->
                                 spinnerUserType.setSelection(3)
@@ -383,6 +382,70 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
             .addOnFailureListener {
                 showAlert("L\'usuari no està registrat")
             }
+
+    }
+
+    private fun deleteUserI(dni: String): Boolean {
+        var correct = false
+        db.collection("users").document(dni).delete()
+            .addOnSuccessListener {
+                Toast.makeText(
+                    this.context,
+                    "S\'ha fet el canvi de dni",
+                    Toast.LENGTH_SHORT
+                ).show()
+                correct = true
+            }
+            .addOnFailureListener {
+                showAlert("No s'ha pogut fer el canvi de dni")
+                correct = false
+
+            }
+
+        return correct
+    }
+
+    private fun makeregister(
+        nom: String,
+        cognom: String,
+        dni: String,
+        email: String,
+        password: String,
+        usertype: String
+    ) {
+        val passwd = password + "prodis"
+        println(passwd)
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passwd)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    db.collection("users").document(dni).set(
+                        hashMapOf(
+                            "username" to nom,
+                            "usersurname" to cognom,
+                            "dni" to dni,
+                            "email" to email,
+                            "password" to passwd,
+                            "usertype" to usertype
+                        )
+                    ).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            Toast.makeText(
+                                this.context,
+                                "T\'has registrat correctament",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            showAlert("Error a l\'hora de fer el guardat de dades")
+                        }
+                    }
+
+                } else {
+                    showAlert("Error a l\'hora de fer l\'autenticació")
+                }
+            }
+    }
+
+    private fun showafegirUsuari(){
 
     }
 }
