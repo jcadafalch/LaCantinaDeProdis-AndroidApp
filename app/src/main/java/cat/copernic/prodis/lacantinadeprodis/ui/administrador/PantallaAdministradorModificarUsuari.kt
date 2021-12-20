@@ -13,6 +13,7 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaAdministradorModificarUsuariBinding
 import cat.copernic.prodis.lacantinadeprodis.ui.administrador.PantallaAdministradorModificarUsuariArgs
 import cat.copernic.prodis.lacantinadeprodis.ui.administrador.PantallaAdministradorModificarUsuariDirections
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -180,18 +181,25 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
             } else {
                 db.collection("users").document(arrUserId[position]).get()
                     .addOnSuccessListener { document ->
-                        val nom = binding.dtTxtPAdministradorModificarUsuariPersonName.text.toString()
-                        val cognom = binding.dtTxtPAdministradorModificarUsuariPersonSurname.text.toString()
+                        val nom =
+                            binding.dtTxtPAdministradorModificarUsuariPersonName.text.toString()
+                        val cognom =
+                            binding.dtTxtPAdministradorModificarUsuariPersonSurname.text.toString()
                         if (document.get("usertype") == "client" && position != 3) {
                             val builder =
                                 androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
                             builder.setTitle("¡¡¡ATENCIÓ!!!")
-                            builder.setMessage("Si vols que l'usuari: $nom $cognom deixi de ser client, " +
-                                    "l'has de tornar a afegir desde l'apartat \"Afegir nou usuari\".\n" +
-                                    "Vols anar a \"Afegir nou usuari\" per canviar el tipus d'usuari?")
+                            builder.setMessage(
+                                "Si vols que l'usuari: $nom $cognom deixi de ser client, " +
+                                        "l'has de tornar a afegir desde l'apartat \"Afegir nou usuari\".\n" +
+                                        "Vols anar a \"Afegir nou usuari\" per canviar el tipus d'usuari?"
+                            )
                             builder.setPositiveButton("Si") { _, _ ->
                                 view?.findNavController()?.navigate(
-                                    PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorNouUsuari(arrUserType))
+                                    PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorNouUsuari(
+                                        arrUserType
+                                    )
+                                )
                             }
                             builder.setNegativeButton("No") { _, _ ->
                                 spinnerUserType.setSelection(3)
@@ -222,17 +230,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {
-        showAlert("Has de seleccionar un tipus d\'usuari")
-    }
-
-
-    private fun showAlert(message: String) {
-        val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
-        builder.setTitle("¡¡¡Error!!!")
-        builder.setMessage(message)
-        builder.setPositiveButton("Acceptar", null)
-        val dialog: androidx.appcompat.app.AlertDialog = builder.create()
-        dialog.show()
+        utils().showAlert("ERROR", "Has de seleccionar un tipus d\'usuari", this.context)
     }
 
     private fun deleteUser(dni: String) {
@@ -258,12 +256,20 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                                         )
                                 }
                                 .addOnFailureListener {
-                                    showAlert("L'usuari no s'ha pogut eliminar")
+                                    utils().showAlert(
+                                        "ERROR",
+                                        "L'usuari no s'ha pogut eliminar",
+                                        this.context
+                                    )
                                 }
                         }
 
                 } else {
-                    showAlert("Hi ha hagut un error en intentar eliminar a l'usuari")
+                    utils().showAlert(
+                        "ERROR",
+                        "Hi ha hagut un error en intentar eliminar a l'usuari",
+                        this.context
+                    )
                 }
 
 
@@ -376,12 +382,12 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                         pas as Map<String, Any>
                     )
                 } else {
-                    showAlert("Error en canviar la contrasenya")
+                    utils().showAlert("ERROR", "Error en canviar la contrasenya", this.context)
                 }
             }
         }
             .addOnFailureListener {
-                showAlert("L\'usuari no està registrat")
+                utils().showAlert("ERROR", "L\'usuari no està registrat", this.context)
             }
 
     }

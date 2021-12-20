@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaRegistreBinding
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -106,12 +107,12 @@ class PantallaRegistre : Fragment() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            showAlert("Error a l\'hora de fer el guardat de dades")
+                            utils().showAlert("ERROR", "Error a l\'hora de fer el guardat de dades", this.context)
                         }
                     }
 
                 } else {
-                    showAlert("Error a l\'hora de fer l\'autenticació")
+                    utils().showAlert("ERROR", "Error a l\'hora de fer l\'autenticació", this.context)
                 }
             }
     }
@@ -177,7 +178,7 @@ class PantallaRegistre : Fragment() {
         }
 
 
-        if (errorMessage != "") showAlert(errorMessage)
+        if (errorMessage != "") utils().showAlert("ERROR", errorMessage, this.context)
 
         return bool
 
@@ -204,14 +205,5 @@ class PantallaRegistre : Fragment() {
                     ")+"
         )
         return EMAIL_ADDRESS_PATTERN.matcher(email).matches()
-    }
-
-    private fun showAlert(message: String) {
-        val builder = AlertDialog.Builder(this.requireContext())
-        builder.setTitle("¡¡¡Error!!!")
-        builder.setMessage(message)
-        builder.setPositiveButton("Aceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
     }
 }
