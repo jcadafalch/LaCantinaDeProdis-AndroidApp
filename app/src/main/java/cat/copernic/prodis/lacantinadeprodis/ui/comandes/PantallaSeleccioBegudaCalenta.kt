@@ -30,6 +30,8 @@ class PantallaSeleccioBegudaCalenta : Fragment() {
     private lateinit var bcalentaAdapter: bcalenta_adapter
     private val db = FirebaseFirestore.getInstance()
 
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val binding: FragmentPantallaSeleccioBegudaCalentaBinding = DataBindingUtil.inflate(
@@ -44,6 +46,7 @@ class PantallaSeleccioBegudaCalenta : Fragment() {
         recyclerView.setHasFixedSize(true)
 
         productesArrayList = arrayListOf()
+
 
         bcalentaAdapter = bcalenta_adapter(productesArrayList)
 

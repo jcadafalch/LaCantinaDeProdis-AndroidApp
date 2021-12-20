@@ -28,10 +28,6 @@ class ComandesActivity: AppCompatActivity() {
 
         title = ""
 
-        //val navController = this.findNavController(R.id.myNavHostFragment)
-
-        //Fletxa enderrere i faltaria metode onSupportNavigateUp
-        //NavigationUI.setupActionBarWithNavController(this, navController)
 
     }
 
