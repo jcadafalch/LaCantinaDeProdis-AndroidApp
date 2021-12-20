@@ -19,10 +19,10 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = DataBindingUtil.inflate<FragmentPantallaAdministradorNouProducteBinding>(inflater,
-            R.layout.fragment_pantalla_administrador_nou_producte,container,false)
-
+    ): View {
+        val binding: FragmentPantallaAdministradorNouProducteBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_pantalla_administrador_nou_producte, container, false
+        )
 
         val spinner: Spinner = binding.spinTipusProducte
 
@@ -39,6 +39,9 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
         spinner.onItemSelectedListener = this
 
+        binding.imgFotoCamera.setOnClickListener(){
+
+        }
 
         return binding.root
     }
