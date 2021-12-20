@@ -20,10 +20,8 @@
     <string name="txtAdministrarProductes">Administrar Productes</string>
     <string name="image_view_eye">image View eye</string>
     <string name="logo_lacantinadeprodis">logo laCantinaDeProdis</string>
-    <string name="nom">Nom</string>
-    <string name="cognoms">Cognoms</string>
-    <string name="Juan">Juan </string>
-    <string name="rodriguez_gonzalez">Rodriguez Gonález</string>
+    <string name="nom_i_cognoms">Nom i cognoms</string>
+    <string name="juan_rodriguez_gonalez">Juan Rodriguez Gonález</string>
     <string name="correu_electronic">Correu electrònic</string>
     <string name="jrodirezgonzalez_prodiscat">jrodirezgonzalez@prodis.cat</string>
     <string name="repeteix_contrasenya">Torna a introduir la contrasenya</string>
@@ -36,7 +34,7 @@
     <string name="torna_enrere">Torna enrere</string>
     <string name="recuperar_contrasenya">Recuperar Contrasenya</string>
     <string name="text_recuperar_contrasenya">Introdueix el DNI que fas servir per iniciar \n sessió en: La Cantina de Prodis</string>
-    <string name="text_recuperar_contrasenya_dos">Ara et toca pensar en una nova contrasenya \nper iniciar sessió. Intenta que no se t\'oblidi</string>
+    <string name="text_recuperar_contrasenya_dos">Ara et toca pensar en una nova contrasenya per \n iniciar sessió. Intenta que no se t\'oblidi</string>
     <string name="introdueix_el_dni">Introdueix el DNI</string>
     <string name="nova_repeteix_contrasenya">Torna a introduir la nova contrasenya</string>
     <string name="nova_contrasenya">Introdueix la nova contrasenya</string>
@@ -73,6 +71,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="perfil_info">Aqui pots cambiar la informació del teu perfil!</string>
+    <string name="nom">Nom:</string>
     <string name="cognom">Cognom:</string>
     <string name="correu">Correu electronic:</string>
     <string name="oblidat_contrsenya"><u>Has oblidat la contrasenya?</u></string>
@@ -95,10 +94,18 @@
     <string name="introdueix_el_nom_del_producte_promoci">Introdueix el nom del producte / promoció</string>
     <string name="selecciona_el_preu">Selecciona el preu</string>
     <string name="afegeix_una_foto">Afegeix una foto</string>
-    <string name="item_image">item image</string>
-    <string name="tipus_d_usuari">Tipus d\'usuari</string>
-    <string name="introdueix_el_nom_del_client">Introdueix el nom del client</string>
-    <string name="extern">Extern</string>
-    <string name="juan_rodriguez_gonz_lez">Juan Rodriguez González</string>
+    <string name="_1">1€</string>
+    <string name="_2">2€</string>
+    <string name="altre_preu">Altre preu</string>
+    <string name="imatge_de_una_camera_de_fotos">Imatge de una camera de fotos</string>
+    <string name="introdueix_el_preu">Introdueix el preu</string>
+    <string name="fletxa_per_pujar_fotos">Imatge de una fletxa per indicar que es poden pujar fotos</string>
+    <string name="foto_del_producte">Foto del producte</string>
+    <string name="administrar_productes">Administrar productes</string>
+    <string name="selecciona_el_producte">Selecciona el producte</string>
+    <string name="producte_visible">Producte visible</string>
+    <string name="preu_del_producte">Preu del producte</string>
+    <string name="nom_del_producte">Nom del producte</string>
+    <string name="canviar_imatge">Canviar imatge</string>
 
 </resources>

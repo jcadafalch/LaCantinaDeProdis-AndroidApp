@@ -3,6 +3,8 @@ package cat.copernic.prodis.lacantinadeprodis.ui.activities
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -15,22 +17,28 @@ import java.util.regex.Pattern
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.NonNull
 import androidx.core.content.FileProvider
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
-import cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaRecuperarContrasenya2Directions
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
+import cat.copernic.prodis.lacantinadeprodis.viewmodel.PantallaEdicioPerfilViewModel
+import cat.copernic.prodis.lacantinadeprodis.viewmodel.viewmodel
+import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
+import java.io.ByteArrayOutputStream
 import java.io.File
 
-class PantallaEdicioPerfil : AppCompatActivity() {
+
+class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
     private lateinit var dni: String
 
     private val db = FirebaseFirestore.getInstance()
-
-    private val auth = FirebaseAuth.getInstance()
 
     lateinit var binding: FragmentPantallaEdicioPerfilBinding
     private var latestTmpUri: Uri? = null
@@ -43,6 +51,10 @@ class PantallaEdicioPerfil : AppCompatActivity() {
             }
         }
 
+    lateinit var storageRef: StorageReference
+
+    private lateinit var viewModel: PantallaEdicioPerfilViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -50,29 +62,32 @@ class PantallaEdicioPerfil : AppCompatActivity() {
             this,
             R.layout.fragment_pantalla_edicio_perfil
         )
+        viewModel = ViewModelProvider(this)[PantallaEdicioPerfilViewModel::class.java]
 
         var bundle = intent.extras
         dni = bundle?.getString("dni").toString()
+
+        agafarImatgeUsuari()
 
         binding.btnCambiarFoto.setOnClickListener() { view: View ->
             triaCamGaleria()
         }
 
-        db.collection("users").document(dni).get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    binding.editTxtNom.setText(document.get("username").toString())
-                    binding.editTextCorreu.setText(document.get("email").toString())
-                    binding.editTxtCognom.setText(document.get("usersurname").toString())
-                    binding.editTextContrassenya.setHint(document.get("password").toString())
-                }
-            }
+        viewModel.nom.observe(this, Observer {
+            binding.editTxtNom.setText(it.toString())
+
+        })
+
+        viewModel.cognom.observe(this, Observer {
+            binding.editTxtCognom.setText(it.toString())
+
+        })
 
         binding.btnGuardar.setOnClickListener() { view: View ->
+            pujarImatge(view)
             if (datavalids(
                     binding.editTxtNom.text.toString(),
-                    binding.editTxtCognom.text.toString(),
-                    binding.editTextCorreu.text.toString()
+                    binding.editTxtCognom.text.toString()
                 )
             ) {
                 db.collection("users").document(dni).update(
@@ -81,27 +96,24 @@ class PantallaEdicioPerfil : AppCompatActivity() {
                         "usersurname" to binding.editTxtCognom.text.toString(),
                     ) as Map<String, Any>
                 )
-                val currentUser =
-                    FirebaseAuth.getInstance().currentUser ?: return@setOnClickListener
-                if (binding.editTextCorreu.text.toString() != currentUser.email) {
-                    currentUser
-                        .updateEmail(binding.editTextCorreu.text.toString())
-                        .addOnSuccessListener {
-                            db.collection("users").document(dni).update(
-                                hashMapOf(
-                                    "email" to binding.editTextCorreu.text.toString()
-                                ) as Map<String, Any>
-                            )
-                        }
-                }
-                changePassword(dni, binding.editTextContrassenya.text.toString(), "client")
-                //changePass()
-                //Toast.makeText(this, "Els canvis s'han fet amb èxit", Toast.LENGTH_SHORT).show()
+                val currentUserPass =
+                    FirebaseAuth.getInstance().currentUser
+
+                currentUserPass?.updatePassword(binding.editTextContrassenya.text.toString())
+                    ?.addOnSuccessListener {
+                        println("Entra en succeslistener")
+                        db.collection("users").document(dni).update(
+                            hashMapOf(
+                                "passwd" to binding.editTextContrassenya.text.toString()
+                            ) as Map<String, Any>
+                        )
+                    }
+                Toast.makeText(this, "Els canvis s'han fet amb èxit", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun datavalids(nom: String, cognom: String, correu: String): Boolean {
+    private fun datavalids(nom: String, cognom: String): Boolean {
         var error = ""
         var bool = true
         if (nom.isEmpty()) {
@@ -110,13 +122,6 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         }
         if (cognom.isEmpty()) {
             error += "Has d'introduïr el cognom\r"
-            bool = false
-        }
-        if (correu.isEmpty()) {
-            error += "Has d'introduïr el correu\r"
-            bool = false
-        } else if (!checkEmailFormat(correu)) {
-            error = "El format del correu no es correcte"
             bool = false
         }
         if (error != "") {
@@ -207,74 +212,44 @@ class PantallaEdicioPerfil : AppCompatActivity() {
         btnNegative.layoutParams = layoutParams
     }
 
+    fun pujarImatge(view: View) {
+        // pujar imatge al Cloud Storage de Firebase
+        // https://firebase.google.com/docs/storage/android/upload-files?hl=es
 
-    private fun changePassword(dni: String, psswd: String, usertype: String) {
-        var bool = false
-        db.collection("users").get().addOnSuccessListener { result ->
-            for (document in result) {
-                if (document.id == dni) {
-                    bool = true
-                    println("FIND DOCUMENT")
-                    println("EMAIL ID = " + document.get("email").toString())
-                    println("ID PASSWORD  = " + document.get("password").toString())
-                    println("PSSWD = $psswd")
-                    auth.signInWithEmailAndPassword(
-                        document.get("email").toString(),
-                        document.get("password").toString(),
-                    ).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            println("SUCCESSFUL")
-                            val currentUser = auth.currentUser
-                            currentUser!!.updatePassword(psswd).addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    println("SUCCESSFUL")
-                                    db.collection("users").document(dni).update(
-                                        hashMapOf(
-                                            "password" to psswd + "prodis"
-                                        ) as Map<String, Any>
-                                    )
-                                }
-                                auth.signOut()
-                                Toast.makeText(
-                                    this,
-                                    "S'ha canbiat la contrasenya",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        } else {
-                            showAlert("Error en inici de sessió")
-                        }
-                    }
-                }
-            }
-            if (!bool) {
-                showAlert("L\'usuari no està registrat")
-            }
+        // Creem una referència amb el path i el nom de la imatge per pujar la imatge
+        val pathReference = storageRef.child("users/" + dni + ".jpg")
+        val bitmap =
+            (binding.userIcon.drawable as BitmapDrawable).bitmap // agafem la imatge del imageView
+        val baos = ByteArrayOutputStream() // declarem i inicialitzem un outputstream
+
+        bitmap.compress(
+            Bitmap.CompressFormat.JPEG,
+            100,
+            baos
+        ) // convertim el bitmap en outputstream
+        val data = baos.toByteArray() //convertim el outputstream en array de bytes.
+
+        val uploadTask = pathReference.putBytes(data)
+        uploadTask.addOnFailureListener {
+            Snackbar.make(view, "Error al pujar la foto", Snackbar.LENGTH_LONG).show()
+            it.printStackTrace()
+
+        }.addOnSuccessListener {
+            Snackbar.make(view, "Exit al pujar la foto", Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+    fun agafarImatgeUsuari() {
+        storageRef = FirebaseStorage.getInstance().getReference()
+
+        var imgRef = Firebase.storage.reference.child("users/" + dni + ".jpg")
+
+
+        imgRef.downloadUrl.addOnSuccessListener { Uri ->
+            val imgUrl = Uri.toString()
+
+            Glide.with(this).load(imgUrl).into(binding.userIcon)
         }
 
     }
-
-/*fun changePass(email: String, passw: String, dni: String) {
-        val currentUserPass =
-            FirebaseAuth.getInstance().currentUser
-
-        db.collection("users").get().addOnSuccessListener {
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, passw)
-                .addOnCompleteListener() {
-                    if (it.isSuccessful) {
-                    }
-                }
-        }
-        currentUserPass?.updatePassword(binding.editTextContrassenya.text.toString())
-            ?.addOnSuccessListener {
-                //if (task.isSuccessful) {
-                println("Entra en succeslistener")
-                db.collection("users").document(dni).update(
-                    hashMapOf(
-                        "password" to binding.editTextContrassenya.text.toString()
-                    ) as Map<String, Any>
-                )
-                // }
-            }
-    }*/
 }
