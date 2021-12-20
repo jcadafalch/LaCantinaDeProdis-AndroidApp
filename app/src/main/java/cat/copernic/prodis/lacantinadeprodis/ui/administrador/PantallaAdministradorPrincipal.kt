@@ -20,6 +20,8 @@ class PantallaAdministradorPrincipal : Fragment() {
     private var arrUser = ArrayList<String>()
     private var arrUserId = ArrayList<String>()
     private var arrUsertype = ArrayList<String>()
+    private var arrayTipusProducte = ArrayList<String>()
+    private var arrayProductes = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +34,9 @@ class PantallaAdministradorPrincipal : Fragment() {
         arrUsertype.clear()
         arrUser.clear()
         arrUserId.clear()
+        arrayProductes.clear()
+        arrayTipusProducte.clear()
+
         db.collection("users").document("usertypes").get().addOnSuccessListener { document ->
             val admin = document.get("admin").toString()
             val caixer = document.get("caixer").toString()
@@ -47,6 +52,27 @@ class PantallaAdministradorPrincipal : Fragment() {
             arrUsertype.add(clientR)
             arrUsertype.add(cuiner)
         }
+        db.collection("productes").document("categories").get().addOnSuccessListener { document ->
+            val bCalenta = document.get("bCalenta").toString()
+            val bFreda = document.get("bFreda").toString()
+            val bocata = document.get("bocata").toString()
+            if (arrayTipusProducte.isEmpty()) {
+                arrayTipusProducte.add(bCalenta)
+                arrayTipusProducte.add(bFreda)
+                arrayTipusProducte.add(bocata)
+            }
+        }
+        db.collection("productes").get().addOnSuccessListener { result ->
+            if (arrayProductes.isEmpty()) {
+                for (document in result) {
+                    if (document != null) {
+                        arrayProductes.add(document.get("nom").toString())
+                    }
+                }
+            }
+        }
+
+
         binding.btnPAdministradorPrincipalNouUsuari.setOnClickListener {
             view?.findNavController()
                 ?.navigate(
@@ -79,18 +105,24 @@ class PantallaAdministradorPrincipal : Fragment() {
 
         }
 
-        binding.btnPAdministradorPrincipalNouProducte.setOnClickListener {
-            view?.findNavController()
-                ?.navigate(PantallaAdministradorPrincipalDirections.
-                actionPantallaAdministradorPrincipalToPantallaAdministradorNouProducte())
+        binding.btnPAdministradorPrincipalNouProducte.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(
+                    PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorNouProducte(
+                        arrayTipusProducte
+                    )
+                )
         }
 
-        binding.btnPAdministradorPrincipalAdministrarProductes.setOnClickListener {
-            view?.findNavController()
-                ?.navigate(PantallaAdministradorPrincipalDirections.
-                actionPantallaAdministradorPrincipalToPantallaAdministradorAdministrarProducte())
+        binding.btnPAdministradorPrincipalAdministrarProductes.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(
+                    PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorAdministrarProducte(
+                        arrayTipusProducte,
+                        arrayProductes
+                    )
+                )
         }
-
         return binding.root
     }
 }

@@ -107,5 +107,11 @@
     <string name="preu_del_producte">Preu del producte</string>
     <string name="nom_del_producte">Nom del producte</string>
     <string name="canviar_imatge">Canviar imatge</string>
+    <string name="item_image">item image</string>
+    <string name="tipus_d_usuari">Tipus d\'usuari</string>
+    <string name="introdueix_el_nom_del_client">Introdueix el nom del client</string>
+    <string name="extern">Extern</string>
+    <string name="juan_rodriguez_gonz_lez">Juan Rodriguez González</string>
+    <string name="cognoms">Cognoms</string>
 
 </resources>

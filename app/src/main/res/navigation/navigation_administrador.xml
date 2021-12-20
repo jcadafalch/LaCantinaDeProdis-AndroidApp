@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_pantallaAdministradorNouProducte_to_pantallaAdministradorPrincipal"
             app:destination="@id/pantallaAdministradorPrincipal" />
+        <argument
+            android:name="arrayTipusProducte"
+            app:argType="java.util.ArrayList" />
     </fragment>
     <fragment
         android:id="@+id/pantallaAdministradorAdministrarProducte"
@@ -73,5 +76,11 @@
         <action
             android:id="@+id/action_pantallaAdministradorAdministrarProducte_to_pantallaAdministradorPrincipal"
             app:destination="@id/pantallaAdministradorPrincipal" />
+        <argument
+            android:name="arrayTipusProducte"
+            app:argType="java.util.ArrayList" />
+        <argument
+            android:name="arrayProductes"
+            app:argType="java.util.ArrayList" />
     </fragment>
 </navigation>
