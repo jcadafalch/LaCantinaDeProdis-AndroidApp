@@ -75,6 +75,10 @@
         <action
             android:id="@+id/action_pantalla_seleccio_atributs_beguda_to_pantalla_seleccio_tipus_producte"
             app:destination="@id/pantalla_seleccio_tipus_producte" />
+        <argument
+            android:name="idProductes"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_atributs_bocata"
@@ -84,6 +88,10 @@
         <action
             android:id="@+id/action_pantalla_seleccio_atributs_bocata_to_pantalla_seleccio_tipus_producte"
             app:destination="@id/pantalla_seleccio_tipus_producte" />
+        <argument
+            android:name="idProductes"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_nom_client_comanda"

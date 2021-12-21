@@ -136,7 +136,8 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
                                     "tipus" to tipusProducte,
                                     "visible" to true,
                                     "nomid" to formatCorrecte(),
-                                    "img" to "productes/" + binding.editTextNomProducte.text.toString() + ".jpg"
+                                    "img" to "productes/" + binding.editTextNomProducte.text.toString() + ".jpg",
+                                    "idProducte" to document.id
                                 ) as Map<String, Any>
                             )
                             break

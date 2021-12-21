@@ -341,4 +341,10 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
             Snackbar.make(view, "Exit al pujar la foto", Snackbar.LENGTH_LONG).show()
         }
     }
+
+    private fun getIdProducte(){
+        db.collection("productes").get().addOnSuccessListener {
+
+        }
+    }
 }

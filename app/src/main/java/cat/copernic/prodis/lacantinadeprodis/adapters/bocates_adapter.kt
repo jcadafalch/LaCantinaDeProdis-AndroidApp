@@ -23,6 +23,7 @@ class bocates_adapter(private val productesList: ArrayList<dtclss_productes>): R
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         val nomProducte: dtclss_productes = productesList[i]
+
         val storageRef = FirebaseStorage.getInstance().reference
         val imageRef = storageRef.child("productes/${nomProducte.nom}.png")
         viewHolder.itemNom.text = nomProducte.nom
@@ -34,11 +35,11 @@ class bocates_adapter(private val productesList: ArrayList<dtclss_productes>): R
         }
 
         viewHolder.itemNom.setOnClickListener { view ->
-            view.findNavController().navigate(PantallaSeleccioBocataDirections.actionPantallaSeleccioBocataToPantallaSeleccioAtributsBocata())
+            view.findNavController().navigate(PantallaSeleccioBocataDirections.actionPantallaSeleccioBocataToPantallaSeleccioAtributsBocata(nomProducte.idProducte))
         }
 
         viewHolder.imageView.setOnClickListener  { view ->
-            view.findNavController().navigate(PantallaSeleccioBocataDirections.actionPantallaSeleccioBocataToPantallaSeleccioAtributsBocata())
+            view.findNavController().navigate(PantallaSeleccioBocataDirections.actionPantallaSeleccioBocataToPantallaSeleccioAtributsBocata(nomProducte.idProducte))
         }
     }
 
