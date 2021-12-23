@@ -10,8 +10,6 @@ import androidx.databinding.DataBindingUtil
 import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityComandesBinding
-import cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaIniciSessioClientAdmin
-import cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaIniciSessioClientAdminArgs
 import com.google.firebase.auth.FirebaseAuth
 
 class ComandesActivity: AppCompatActivity() {

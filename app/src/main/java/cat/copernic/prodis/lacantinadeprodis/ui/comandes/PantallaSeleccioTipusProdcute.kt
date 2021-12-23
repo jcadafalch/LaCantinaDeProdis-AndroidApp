@@ -13,6 +13,7 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.adapters.PantallaSeleccioTipusProducte_Adapter
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioTipusProducteBinding
 import cat.copernic.prodis.lacantinadeprodis.model.dataclass
+import cat.copernic.prodis.lacantinadeprodis.ui.activities.ComandesActivity
 import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
 import kotlin.collections.ArrayList
@@ -33,8 +34,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
         val binding: FragmentPantallaSeleccioTipusProducteBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_tipus_producte, container, false
         )
-
-        recyclerView = binding.recyclerViewSeleccioProducte
+                recyclerView = binding.recyclerViewSeleccioProducte
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.setHasFixedSize(true)
 
@@ -58,7 +58,6 @@ class PantallaSeleccioTipusProdcute : Fragment() {
             )
             recyclerView.adapter = Padaper
         }
-
         binding.btnConfirmar.setOnClickListener {
             db.collection("users").get().addOnSuccessListener { result ->
                 for (document in result) {

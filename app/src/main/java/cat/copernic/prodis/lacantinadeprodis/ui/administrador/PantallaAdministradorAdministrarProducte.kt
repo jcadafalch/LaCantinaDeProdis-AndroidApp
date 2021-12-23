@@ -17,11 +17,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import cat.copernic.prodis.lacantinadeprodis.R
-import cat.copernic.prodis.lacantinadeprodis.adapters.adapter
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaAdministradorAdministrarProducteBinding
 import cat.copernic.prodis.lacantinadeprodis.viewmodel.PantallaAdministradorAdministrarProducteViewModel
 import com.google.android.material.snackbar.Snackbar

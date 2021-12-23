@@ -14,6 +14,7 @@ import cat.copernic.prodis.lacantinadeprodis.ui.activities.CaixerActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.ui.activities.ComandesActivity
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioClientAdminBinding
+import cat.copernic.prodis.lacantinadeprodis.ui.activities.CuinerActivity
 import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -30,7 +31,6 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         val binding: FragmentPantallaIniciSessioClientAdminBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_inici_sessio_client_admin, container, false
         )
@@ -125,7 +125,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
     }
 
     private fun showCuiner(dni: String) {
-        val intent = Intent(this.context, ComandesActivity::class.java).apply {
+        val intent = Intent(this.context, CuinerActivity::class.java).apply {
             putExtra("dni", dni)
         }
         startActivity(intent)
