@@ -127,27 +127,22 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
             db.collection("productes").get().addOnSuccessListener { result ->
                 for (document in result) {
-                    if (!document.get("nomid").toString().equals(formatCorrecte())) {
-                        if (!document.id.equals(num.toString())) {
-                            db.collection("productes").document(num.toString()).set(
-                                hashMapOf(
-                                    "nom" to binding.editTextNomProducte.text.toString(),
-                                    "preu" to preu,
-                                    "tipus" to tipusProducte,
-                                    "visible" to true,
-                                    "nomid" to formatCorrecte(),
-                                    "img" to "productes/" + binding.editTextNomProducte.text.toString() + ".jpg",
-                                    "idProducte" to document.id
-                                ) as Map<String, Any>
-                            )
-                            break
-
-                        } else {
-                            num++
-                        }
-                    }
+                    num++
                 }
+                db.collection("productes").document().set(
+                    hashMapOf(
+                        "nom" to binding.editTextNomProducte.text.toString(),
+                        "preu" to preu,
+                        "tipus" to tipusProducte,
+                        "visible" to true,
+                        "nomid" to formatCorrecte(),
+                        "img" to "productes/" + binding.editTextNomProducte.text.toString() + ".jpg",
+                        "idProducte" to num
+                    ) as Map<String, Any>
+                )
             }
+
+
             Toast.makeText(
                 this.requireContext(),
                 "S'ha afegit el producte amb éxit",

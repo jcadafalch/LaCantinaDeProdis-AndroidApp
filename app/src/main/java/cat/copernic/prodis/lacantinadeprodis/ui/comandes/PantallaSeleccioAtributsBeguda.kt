@@ -13,6 +13,7 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioAtributsBegudaBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.*
 
 class PantallaSeleccioAtributsBeguda : Fragment() {
 
@@ -35,14 +36,16 @@ class PantallaSeleccioAtributsBeguda : Fragment() {
         )
 
         var args = PantallaSeleccioAtributsBegudaArgs.fromBundle(requireArguments())
-        idProducte = args.idProductes.toString()
-
         val currentUser =
             FirebaseAuth.getInstance().currentUser
 
         var dni: String
 
+        var tasca1: Job? = setAtributs()
 
+        idProducte = args.idProductes.toString()
+
+        tasca1.let {}
 
         binding.btnConfirmar.setOnClickListener { view: View ->
             setAtributs()
@@ -53,15 +56,15 @@ class PantallaSeleccioAtributsBeguda : Fragment() {
                         dni = document.id
                         db.collection("comandes").get().addOnSuccessListener { result ->
                             for (document in result) {
-                                if (dni.equals(document.get("user"))){
-                                    db.collection("comandes").document(document.id).set(
+                                if (dni.equals(document.get("user"))) {
+                                    db.collection("comandes").document(document.id)
+                                        .collection("productes").document().set(
                                         hashMapOf(
                                             idProducte to mapOf(
-                                                "emportar" to perEmportar.toString(),
-                                                "quantitat" to +1,
-                                                "sucre" to  arrayListOf<String>(atributs)
+                                                "emportar" to perEmportar,
+                                                "sucre" to atributs
                                             )
-                                        )as Map<String, Any>
+                                        ) as Map<String, Any>
                                     )
                                 }
                             }
@@ -85,24 +88,26 @@ class PantallaSeleccioAtributsBeguda : Fragment() {
         return binding.root
     }
 
-    fun setAtributs() {
-        binding.rarioGroupAtributs
-            .setOnCheckedChangeListener { group, checkedId ->
-                when (checkedId) {
-                    R.id.radioSenseSucre -> {
-                        atributs = "SS"
-                    }
-                    R.id.radioSucreBlanc -> {
-                        atributs = "SB"
-                    }
-                    R.id.radioSucreMore -> {
-                        atributs = "SM"
-                    }
-                    R.id.radioSacarina -> {
-                        atributs = "SC"
+    fun setAtributs() = GlobalScope.launch(Dispatchers.Main) {
+        withContext(Dispatchers.IO) {
+            binding.rarioGroupAtributs
+                .setOnCheckedChangeListener { _, checkedId ->
+                    when (checkedId) {
+                        R.id.radioSenseSucre -> {
+                            atributs = "SS"
+                        }
+                        R.id.radioSucreBlanc -> {
+                            atributs = "SB"
+                        }
+                        R.id.radioSucreMore -> {
+                            atributs = "SM"
+                        }
+                        R.id.radioSacarina -> {
+                            atributs = "SC"
+                        }
                     }
                 }
-            }
-        perEmportar = binding.checkPerEmportar.isChecked
+            perEmportar = binding.checkPerEmportar.isChecked
+        }
     }
 }

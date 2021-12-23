@@ -35,11 +35,11 @@ class bocates_adapter(private val productesList: ArrayList<dtclss_productes>): R
         }
 
         viewHolder.itemNom.setOnClickListener { view ->
-            view.findNavController().navigate(PantallaSeleccioBocataDirections.actionPantallaSeleccioBocataToPantallaSeleccioAtributsBocata(nomProducte.idProducte))
+            view.findNavController().navigate(PantallaSeleccioBocataDirections.actionPantallaSeleccioBocataToPantallaSeleccioAtributsBocata(nomProducte.idProducte.toString()))
         }
 
         viewHolder.imageView.setOnClickListener  { view ->
-            view.findNavController().navigate(PantallaSeleccioBocataDirections.actionPantallaSeleccioBocataToPantallaSeleccioAtributsBocata(nomProducte.idProducte))
+            view.findNavController().navigate(PantallaSeleccioBocataDirections.actionPantallaSeleccioBocataToPantallaSeleccioAtributsBocata(nomProducte.idProducte.toString()))
         }
     }
 

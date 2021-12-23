@@ -58,29 +58,46 @@ class PantallaSeleccioTipusProdcute : Fragment() {
 
                     db.collection("comandes").get().addOnSuccessListener { result ->
                         for (document in result) {
-                            if (!document.id.equals(num.toString())) {
-                                db.collection("comandes").document(num.toString()).set(
-                                    hashMapOf(
-                                        "user" to dni,
-                                        "comandaPagada" to false,
-                                        "visible" to false,
-                                        "comandaId" to num.toString(),
-                                        "date" to Timestamp.from(Instant.now()),
-                                        "preuTotal" to 0,
-                                        "preparat" to false
-                                    ) as Map<String, Any>
-                                )
-                                break
-
-                            } else {
                                 num++
-                            }
                         }
+                        num++
+                        db.collection("comandes").document().set(
+                            hashMapOf(
+                                "user" to dni,
+                                "comandaPagada" to false,
+                                "visible" to false,
+                                "comandaId" to num.toString(),
+                                "date" to Timestamp.from(Instant.now()),
+                                "preuTotal" to 0,
+                                "preparat" to false
+                            ) as Map<String, Any>
+                        )
                     }
+
+
+                    /*else if (document.get("visible").toString()
+                                .equals("false") && document.get("comandaPagada").toString()
+                                .equals("false") && document.get("preparat").toString()
+                                .equals("false")
+                        ) {
+                            db.collection("comandes").document(num.toString()).set(
+                                hashMapOf(
+                                    "user" to dni,
+                                    "comandaPagada" to false,
+                                    "visible" to false,
+                                    "comandaId" to num.toString(),
+                                    "date" to Timestamp.from(Instant.now()),
+                                    "preuTotal" to 0,
+                                    "preparat" to false
+                                ) as Map<String, Any>
+                            )
+                            break
+                        }*/
+
+
                 }
             }
         }
-
 
 
         recyclerView = binding.recyclerViewSeleccioProducte
@@ -125,6 +142,51 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                         arrUser
                     )
                 )
+            }
+
+            val currentUser =
+                FirebaseAuth.getInstance().currentUser
+
+            var dni: String
+
+            db.collection("users").get().addOnSuccessListener { result ->
+                for (document in result) {
+                    if (currentUser?.email.toString() == document.get("email").toString()) {
+                        dni = document.id
+                        var userType = document.get("usertype").toString()
+
+                        var num: Int = 0
+                        if (userType.equals("clientR")) {
+                            db.collection("comandes").get().addOnSuccessListener { result ->
+                                for (document in result) {
+                                    if (!document.id.equals(num.toString())) {
+                                        if (document.get("visible").toString().equals("false")) {
+                                            db.collection("comandes").document(num.toString()).set(
+                                                hashMapOf(
+                                                    "visible" to true,
+                                                    "user" to db.collection("users")
+                                                        .document(dni).get().addOnSuccessListener {
+                                                            document.get("username")
+                                                        },
+                                                    "comandaComencada" to false
+                                                ) as Map<String, Any>
+                                            )
+                                            break
+                                        }
+                                    } else {
+                                        num++
+                                    }
+                                }
+                            }
+                        } else if (userType.equals("cambrer")) {
+                            view?.findNavController()?.navigate(
+                                PantallaSeleccioTipusProdcuteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioNomClientComanda(
+                                    arrUser
+                                )
+                            )
+                        }
+                    }
+                }
             }
 
         }

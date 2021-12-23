@@ -77,8 +77,7 @@
             app:destination="@id/pantalla_seleccio_tipus_producte" />
         <argument
             android:name="idProductes"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_atributs_bocata"
@@ -90,8 +89,7 @@
             app:destination="@id/pantalla_seleccio_tipus_producte" />
         <argument
             android:name="idProductes"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_nom_client_comanda"

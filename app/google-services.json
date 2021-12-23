@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "820741913163",
+    "project_id": "lacantinadeprodis-dae70",
+    "storage_bucket": "lacantinadeprodis-dae70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820741913163:android:a9aedd008d490e82eeebce",
+        "android_client_info": {
+          "package_name": "cat.copernic.prodis.lacantinadeprodis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820741913163-mgchfr4f57vtp78s12f2424qoqokid75.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgyCLcGvvSasrXlXbdu32S_m4IK8Yf0ns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820741913163-mgchfr4f57vtp78s12f2424qoqokid75.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

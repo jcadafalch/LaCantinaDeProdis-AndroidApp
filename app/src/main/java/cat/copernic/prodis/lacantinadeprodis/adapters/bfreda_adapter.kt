@@ -33,11 +33,11 @@ class bfreda_adapter(private val productesList: ArrayList<dtclss_productes>): Re
         }
 
         viewHolder.itemNom.setOnClickListener { view ->
-            view.findNavController().navigate(PantallaSeleccioBegudaFredaDirections.actionPantallaSeleccioBegudaFredaToPantallaSeleccioAtributsBeguda(nomProducte.idProducte))
+            view.findNavController().navigate(PantallaSeleccioBegudaFredaDirections.actionPantallaSeleccioBegudaFredaToPantallaSeleccioAtributsBeguda(nomProducte.idProducte.toString()))
         }
 
         viewHolder.imageView.setOnClickListener { view ->
-            view.findNavController().navigate(PantallaSeleccioBegudaFredaDirections.actionPantallaSeleccioBegudaFredaToPantallaSeleccioAtributsBeguda(nomProducte.idProducte))
+            view.findNavController().navigate(PantallaSeleccioBegudaFredaDirections.actionPantallaSeleccioBegudaFredaToPantallaSeleccioAtributsBeguda(nomProducte.idProducte.toString()))
         }
     }
 
