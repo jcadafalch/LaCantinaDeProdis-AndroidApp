@@ -69,6 +69,7 @@ class ComandesActivity: AppCompatActivity() {
         db.collection("comandes").get().addOnSuccessListener { result ->
             for (document in result){
                 if(document.get("comandaComencada").toString().equals("true")){
+                    db.collection("comandes").document(document.id).collection("productes").document().delete()
                     db.collection("comandes").document(document.id).delete()
                 }
             }
@@ -78,6 +79,11 @@ class ComandesActivity: AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        deleteComanda()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
         deleteComanda()
     }
 }

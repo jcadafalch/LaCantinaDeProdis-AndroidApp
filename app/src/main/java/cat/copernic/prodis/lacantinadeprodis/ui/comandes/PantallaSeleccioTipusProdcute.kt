@@ -49,29 +49,35 @@ class PantallaSeleccioTipusProdcute : Fragment() {
 
         var dni: String
 
+        var comandaComencada = false
+
         db.collection("users").get().addOnSuccessListener { result ->
             for (document in result) {
                 if (currentUser?.email.toString() == document.get("email").toString()) {
                     dni = document.id
-
                     var num: Int = 0
 
-                    db.collection("comandes").get().addOnSuccessListener { result ->
-                        for (document in result) {
-                                num++
+                    db.collection("comadnes").get().addOnSuccessListener { result ->
+                        for (document in result){
+                            if(dni.equals(document.get("user")) && document.get("comandaComencada") == true){
+                                comandaComencada = true
+                            }
+                            num++
                         }
-                        num++
-                        db.collection("comandes").document().set(
-                            hashMapOf(
-                                "user" to dni,
-                                "comandaPagada" to false,
-                                "visible" to false,
-                                "comandaId" to num.toString(),
-                                "date" to Timestamp.from(Instant.now()),
-                                "preuTotal" to 0,
-                                "preparat" to false
-                            ) as Map<String, Any>
-                        )
+                        if(!comandaComencada){
+                            db.collection("comandes").document().set(
+                                hashMapOf(
+                                    "user" to dni,
+                                    "comandaPagada" to false,
+                                    "visible" to false,
+                                    "comandaId" to num.toString(),
+                                    "date" to Timestamp.from(Instant.now()),
+                                    "preuTotal" to 0,
+                                    "preparat" to false,
+                                    "comandaComencada" to true
+                                ) as Map<String, Any>
+                            )
+                        }
                     }
 
 

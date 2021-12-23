@@ -43,7 +43,7 @@ class PantallaSeleccioAtributsBeguda : Fragment() {
 
         var tasca1: Job? = setAtributs()
 
-        idProducte = args.idProductes.toString()
+        idProducte = args.idProductes
 
         tasca1.let {}
 
@@ -60,10 +60,9 @@ class PantallaSeleccioAtributsBeguda : Fragment() {
                                     db.collection("comandes").document(document.id)
                                         .collection("productes").document().set(
                                         hashMapOf(
-                                            idProducte to mapOf(
-                                                "emportar" to perEmportar,
-                                                "sucre" to atributs
-                                            )
+                                            "idProducte" to idProducte,
+                                            "emportar" to perEmportar,
+                                            "scure" to atributs
                                         ) as Map<String, Any>
                                     )
                                 }
