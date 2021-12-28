@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.type.DateTime
+import kotlinx.coroutines.*
 import java.sql.Timestamp
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -32,7 +33,9 @@ class PantallaSeleccioTipusProdcute : Fragment() {
     private lateinit var producteList: ArrayList<dataclass>
     private lateinit var Padaper: PantallaSeleccioTipusProducte_Adapter
     private val db = FirebaseFirestore.getInstance()
+    private val currentUser = FirebaseAuth.getInstance().currentUser
     private var arrUser = java.util.ArrayList<String>()
+    private var exist = false
     private val strg = FirebaseStorage.getInstance().getReference()
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -43,61 +46,15 @@ class PantallaSeleccioTipusProdcute : Fragment() {
         val binding: FragmentPantallaSeleccioTipusProducteBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_tipus_producte, container, false
         )
-
-        val currentUser =
-            FirebaseAuth.getInstance().currentUser
-
-        var dni: String
-
-        db.collection("users").get().addOnSuccessListener { result ->
-            for (document in result) {
-                if (currentUser?.email.toString() == document.get("email").toString()) {
-                    dni = document.id
-
-                    var num: Int = 0
-
-                    db.collection("comandes").get().addOnSuccessListener { result ->
-                        for (document in result) {
-                                num++
-                        }
-                        num++
-                        db.collection("comandes").document().set(
-                            hashMapOf(
-                                "user" to dni,
-                                "comandaPagada" to false,
-                                "visible" to false,
-                                "comandaId" to num.toString(),
-                                "date" to Timestamp.from(Instant.now()),
-                                "preuTotal" to 0,
-                                "preparat" to false
-                            ) as Map<String, Any>
-                        )
-                    }
-
-
-                    /*else if (document.get("visible").toString()
-                                .equals("false") && document.get("comandaPagada").toString()
-                                .equals("false") && document.get("preparat").toString()
-                                .equals("false")
-                        ) {
-                            db.collection("comandes").document(num.toString()).set(
-                                hashMapOf(
-                                    "user" to dni,
-                                    "comandaPagada" to false,
-                                    "visible" to false,
-                                    "comandaId" to num.toString(),
-                                    "date" to Timestamp.from(Instant.now()),
-                                    "preuTotal" to 0,
-                                    "preparat" to false
-                                ) as Map<String, Any>
-                            )
-                            break
-                        }*/
-
-
-                }
-            }
+        var task1: Job? = existComanda()
+        task1.let {  }
+        if(exist){
+            println("EXISTS == TRUE")
+        }else{
+            createComanda()
+            println("EXISTS == FALSE")
         }
+
 
 
         recyclerView = binding.recyclerViewSeleccioProducte
@@ -191,6 +148,83 @@ class PantallaSeleccioTipusProdcute : Fragment() {
 
         }
         return binding.root
+    }
+
+    private fun existComanda() = GlobalScope.launch(Dispatchers.Main){
+        withContext(Dispatchers.IO){
+            var dni: String
+            db.collection("users").get().addOnSuccessListener { result ->
+                for (document in result) {
+                    if (currentUser?.email.toString() == document.get("email").toString()) {
+                        dni = document.id
+                        var num: Int = 0
+                        db.collection("comandes").get().addOnSuccessListener { result ->
+                            for (document in result) {
+                                if (document.get("comandaComencada") == true && document.get("user") == dni) {
+                                    exist = true
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createComanda() {
+
+        var dni: String
+
+        db.collection("users").get().addOnSuccessListener { result ->
+            for (document in result) {
+                if (currentUser?.email.toString() == document.get("email").toString()) {
+                    dni = document.id
+
+                    var num: Int = 0
+
+                    db.collection("comandes").get().addOnSuccessListener { result ->
+                        for (document in result) {
+                            num++
+                        }
+                        num++
+                        db.collection("comandes").document().set(
+                            hashMapOf(
+                                "comandaComencada" to true,
+                                "comandaId" to num.toString(),
+                                "comandaPagada" to false,
+                                "date" to Timestamp.from(Instant.now()),
+                                "preparat" to false,
+                                "preuTotal" to 0,
+                                "user" to dni,
+                                "visible" to false
+                            ) as Map<String, Any>
+                        )
+                    }
+
+                    /*else if (document.get("visible").toString()
+                                .equals("false") && document.get("comandaPagada").toString()
+                                .equals("false") && document.get("preparat").toString()
+                                .equals("false")
+                        ) {
+                            db.collection("comandes").document(num.toString()).set(
+                                hashMapOf(
+                                    "user" to dni,
+                                    "comandaPagada" to false,
+                                    "visible" to false,
+                                    "comandaId" to num.toString(),
+                                    "date" to Timestamp.from(Instant.now()),
+                                    "preuTotal" to 0,
+                                    "preparat" to false
+                                ) as Map<String, Any>
+                            )
+                            break
+                        }*/
+                }
+            }
+        }
+
     }
 
 
