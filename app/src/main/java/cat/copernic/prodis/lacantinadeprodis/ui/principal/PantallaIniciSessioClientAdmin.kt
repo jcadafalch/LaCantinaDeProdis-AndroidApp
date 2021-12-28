@@ -15,6 +15,7 @@ import cat.copernic.prodis.lacantinadeprodis.ui.activities.CaixerActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.ui.activities.ComandesActivity
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioClientAdminBinding
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -109,6 +110,7 @@ class PantallaIniciSessioClientAdmin: Fragment() {
             putExtra("usertype", username)
             putExtra("dni", dni)
         }
+        //utils().idComanda = "N"
         startActivity(intent)
     }
 

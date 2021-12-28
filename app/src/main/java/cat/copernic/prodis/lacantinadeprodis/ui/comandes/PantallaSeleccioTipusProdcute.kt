@@ -16,6 +16,7 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.adapters.PantallaSeleccioTipusProducte_Adapter
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioTipusProducteBinding
 import cat.copernic.prodis.lacantinadeprodis.model.dataclass
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
@@ -46,16 +47,30 @@ class PantallaSeleccioTipusProdcute : Fragment() {
         val binding: FragmentPantallaSeleccioTipusProducteBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_tipus_producte, container, false
         )
-        var task1: Job? = existComanda()
-        task1.let {  }
-        if(exist){
-            println("EXISTS == TRUE")
-        }else{
-            createComanda()
-            println("EXISTS == FALSE")
+        /*var task1: Job? = existComanda()
+        task1.let {  }*/
+        var dni: String
+        db.collection("users").get().addOnSuccessListener { result ->
+            for (document in result) {
+                if (currentUser?.email.toString() == document.get("email").toString()) {
+                    dni = document.id
+                    var num: Int = 0
+                    var exists = false
+                    db.collection("comandes").get().addOnSuccessListener { result ->
+                        for (document in result) {
+                            if (document.get("comandaComencada").toString() == "true" && document.get("user").toString() == dni) {
+                                exists = true
+                            }
+                        }
+                        println("EXISTS == $exists")
+                        if (!exists){
+                            createComanda()
+                        }
+                    }
+                }
+            }
+
         }
-
-
 
         recyclerView = binding.recyclerViewSeleccioProducte
         recyclerView.layoutManager = LinearLayoutManager(this.context)
