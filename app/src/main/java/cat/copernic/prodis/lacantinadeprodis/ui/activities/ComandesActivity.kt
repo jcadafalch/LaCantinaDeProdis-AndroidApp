@@ -68,8 +68,14 @@ class ComandesActivity: AppCompatActivity() {
     private fun deleteComanda(){
         db.collection("comandes").get().addOnSuccessListener { result ->
             for (document in result){
-                if(document.get("comandaComencada").toString().equals("true")){
-                    db.collection("comandes").document(document.id).collection("productes").document().delete()
+                if(document.get("comandaComencada").toString().equals("true") && document.get("user").toString() == dni){
+                    val idDocument = document.id
+                    db.collection("comandes").document(document.id).collection("productes").get().addOnSuccessListener { document ->
+                        for (dc in document){
+                            db.collection("comandes").document(idDocument).collection("productes").document(dc.id).delete()
+                        }
+
+                    }
                     db.collection("comandes").document(document.id).delete()
                 }
             }
