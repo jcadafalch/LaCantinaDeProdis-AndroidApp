@@ -89,7 +89,8 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
                     binding.editTxtNom.text.toString(),
                     binding.editTxtCognom.text.toString()
                 )
-            ) {
+            )
+            {
                 db.collection("users").document(dni).update(
                     hashMapOf(
                         "username" to binding.editTxtNom.text.toString(),
@@ -99,15 +100,14 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
                 val currentUserPass =
                     FirebaseAuth.getInstance().currentUser
 
-                currentUserPass?.updatePassword(binding.editTextContrassenya.text.toString())
-                    ?.addOnSuccessListener {
-                        println("Entra en succeslistener")
-                        db.collection("users").document(dni).update(
-                            hashMapOf(
-                                "passwd" to binding.editTextContrassenya.text.toString()
-                            ) as Map<String, Any>
-                        )
-                    }
+//                currentUserPass?.updatePassword(binding.editTextContrassenya.text.toString())
+//                    ?.addOnSuccessListener {
+//                        db.collection("users").document(dni).update(
+//                            hashMapOf(
+//                                "passwd" to binding.editTextContrassenya.text.toString()
+//                            ) as Map<String, Any>
+//                        )
+//                    }
                 Toast.makeText(this, "Els canvis s'han fet amb èxit", Toast.LENGTH_SHORT).show()
             }
         }

@@ -30,6 +30,7 @@ import kotlin.collections.ArrayList
 
 class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedListener {
 
+    //Definim les variables globals
     lateinit var tipusProducte: String
 
     lateinit var binding: FragmentPantallaAdministradorNouProducteBinding
@@ -49,14 +50,13 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
     private val db = Firebase.firestore
 
-    private var accepta: Boolean = false
-
     lateinit var storageRef: StorageReference
 
     private lateinit var adapter: ArrayAdapter<*>
 
     var arrayTipusProducte = ArrayList<String>()
 
+    //Comennça el onCreateView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,24 +64,28 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_administrador_nou_producte, container, false
         )
+        //Fem que l'edit text i l'imatge del producte s'amaguin.
         binding.editTextNumberDecimal2.isGone = true
         binding.imgProducte.isGone = true
 
-
+        //Inicialitzem l'storageRef.
         storageRef = FirebaseStorage.getInstance().getReference()
-
+        //Inicialitzem el tipus de producte.
         tipusProducte = ""
 
+        //Declarem i inicialitzem l'spinner
         val spinner: Spinner = binding.spinTipusProducte
 
         val context = this.requireContext()
-
+        //Declarem i inicialitzem la variable args per agafar les dades que pasam per parametres
         val args = PantallaAdministradorNouProducteArgs.fromBundle(requireArguments())
 
+        //Fem que si l'array de tipus de productes es buit, li pasarem els args en forma de ArrayList
         if (arrayTipusProducte.isEmpty()) {
             arrayTipusProducte = args.arrayTipusProducte as ArrayList<String>
         }
 
+        //Inicialitzem l'adapter amb l'array de tispus de productes
         adapter =
             ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, arrayTipusProducte)
 
@@ -263,32 +267,6 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
         return string
     }
-
-    /*private fun sobreescriure(): Boolean {
-
-        val alertDialog = AlertDialog.Builder(this.requireContext()).create()
-        alertDialog.setTitle("ATENCIÓ! PRODUCTE DUPLICAT!")
-        alertDialog.setMessage("Ja hi ha un producte amb aquest nom.\r Vols sobreescriure els canvis?")
-
-        alertDialog.setButton(
-            AlertDialog.BUTTON_POSITIVE, "Si"
-        ) { dialog, which -> accepta = true }
-
-        alertDialog.setButton(
-            AlertDialog.BUTTON_NEGATIVE, "No"
-        ) { dialog, which -> accepta = false }
-        alertDialog.show()
-
-        val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-        val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-
-        val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
-        layoutParams.weight = 10f
-        btnPositive.layoutParams = layoutParams
-        btnNegative.layoutParams = layoutParams
-
-        return accepta
-    }*/
 
     fun pujarImatge(view: View) {
         // pujar imatge al Cloud Storage de Firebase
