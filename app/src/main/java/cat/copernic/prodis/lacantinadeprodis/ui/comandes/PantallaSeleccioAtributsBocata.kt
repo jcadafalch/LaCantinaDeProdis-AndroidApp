@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioAtributsBocataBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -31,14 +32,20 @@ class PantallaSeleccioAtributsBocata : Fragment() {
             inflater, R.layout.fragment_pantalla_seleccio_atributs_bocata, container, false
         )
 
-        var args = PantallaSeleccioAtributsBegudaArgs.fromBundle(requireArguments())
+        val args = PantallaSeleccioAtributsBegudaArgs.fromBundle(requireArguments())
         idProducte = args.idProductes
+
+        binding.btnTornaEnrerre.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         binding.btnConfirmar.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(R.id.action_pantalla_seleccio_atributs_bocata_to_pantalla_seleccio_tipus_producte)
 
-            senseTomaquet = binding.checkBoxSenseTomaquet.isChecked
+
+
+            senseTomaquet = !binding.checkBoxSenseTomaquet.isChecked
 
             perEemportar = binding.checkBoxPerEmportar.isChecked
 
