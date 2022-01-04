@@ -9,22 +9,16 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.adapters.PantallaSeleccioTipusProducte_Adapter
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioTipusProducteBinding
 import cat.copernic.prodis.lacantinadeprodis.model.dataclass
-import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
-import com.google.type.DateTime
-import kotlinx.coroutines.*
 import java.sql.Timestamp
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.time.Instant
 import kotlin.collections.ArrayList
 
@@ -36,8 +30,8 @@ class PantallaSeleccioTipusProdcute : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private val currentUser = FirebaseAuth.getInstance().currentUser
     private var arrUser = java.util.ArrayList<String>()
-    private var exist = false
-    private val strg = FirebaseStorage.getInstance().getReference()
+    private lateinit var dni: String
+    private lateinit var docId: String
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -47,9 +41,6 @@ class PantallaSeleccioTipusProdcute : Fragment() {
         val binding: FragmentPantallaSeleccioTipusProducteBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_tipus_producte, container, false
         )
-        /*var task1: Job? = existComanda()
-        task1.let {  }*/
-        var dni: String
         db.collection("users").get().addOnSuccessListener { result ->
             for (document in result) {
                 if (currentUser?.email.toString() == document.get("email").toString()) {
@@ -60,6 +51,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                         for (document in result) {
                             if (document.get("comandaComencada").toString() == "true" && document.get("user").toString() == dni) {
                                 exists = true
+                                docId = document.id
                             }
                         }
                         println("EXISTS == $exists")
@@ -98,93 +90,46 @@ class PantallaSeleccioTipusProdcute : Fragment() {
             }
 
         binding.btnConfirmar.setOnClickListener {
-            db.collection("users").get().addOnSuccessListener { result ->
-                for (document in result) {
-                    if (document.id != "usertypes") {
-                        val user =
-                            document.get("username")
-                                .toString() + " " + document.get("usersurname")
-                                .toString()
-                        arrUser.add(user)
-                    }
-                }
-                arrUser.add(getString(R.string.extern))
-                view?.findNavController()?.navigate(
-                    PantallaSeleccioTipusProdcuteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioNomClientComanda(
-                        arrUser
-                    )
-                )
-            }
-
-            val currentUser =
-                FirebaseAuth.getInstance().currentUser
-
-            var dni: String
-
-            db.collection("users").get().addOnSuccessListener { result ->
-                for (document in result) {
-                    if (currentUser?.email.toString() == document.get("email").toString()) {
-                        dni = document.id
-                        var userType = document.get("usertype").toString()
-
-                        var num: Int = 0
-                        if (userType.equals("clientR")) {
-                            db.collection("comandes").get().addOnSuccessListener { result ->
-                                for (document in result) {
-                                    if (!document.id.equals(num.toString())) {
-                                        if (document.get("visible").toString().equals("false")) {
-                                            db.collection("comandes").document(num.toString()).set(
-                                                hashMapOf(
-                                                    "visible" to true,
-                                                    "user" to db.collection("users")
-                                                        .document(dni).get().addOnSuccessListener {
-                                                            document.get("username")
-                                                        },
-                                                    "comandaComencada" to false
-                                                ) as Map<String, Any>
-                                            )
-                                            break
-                                        }
-                                    } else {
-                                        num++
-                                    }
-                                }
+            db.collection("users").document(dni).get().addOnSuccessListener { document ->
+                if (document.get("usertype").toString() == "cambrer"){
+                    db.collection("users").get().addOnSuccessListener { result ->
+                        for (document in result) {
+                            if (document.id != "usertypes") {
+                                val user =
+                                    document.get("username")
+                                        .toString() + " " + document.get("usersurname")
+                                        .toString()
+                                arrUser.add(user)
                             }
-                        } else if (userType.equals("cambrer")) {
-                            view?.findNavController()?.navigate(
-                                PantallaSeleccioTipusProdcuteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioNomClientComanda(
-                                    arrUser
-                                )
+                        }
+                        arrUser.add(getString(R.string.extern))
+                        view?.findNavController()?.navigate(
+                            PantallaSeleccioTipusProdcuteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioNomClientComanda(
+                                arrUser, docId, dni
                             )
+                        )
+                    }
+                }else{
+                    db.collection("comandes").get().addOnSuccessListener { result ->
+                        for (dc in result) {
+                            if (dc.get("comandaComencada").toString() == "true" && dc.get("user").toString() == dni) {
+                                val dcId = document.id
+                                val username = document.get("username").toString() + " " + document.get("usersurname").toString()
+                                db.collection("comandes").document(docId).update(
+                                    hashMapOf(
+                                        "comandaComencada" to false,
+                                        "visible" to true,
+                                        "user" to username,
+                                    ) as Map<String, Any>
+                                )
+                                break
+                            }
                         }
                     }
                 }
             }
-
         }
         return binding.root
-    }
-
-    private fun existComanda() = GlobalScope.launch(Dispatchers.Main){
-        withContext(Dispatchers.IO){
-            var dni: String
-            db.collection("users").get().addOnSuccessListener { result ->
-                for (document in result) {
-                    if (currentUser?.email.toString() == document.get("email").toString()) {
-                        dni = document.id
-                        var num: Int = 0
-                        db.collection("comandes").get().addOnSuccessListener { result ->
-                            for (document in result) {
-                                if (document.get("comandaComencada") == true && document.get("user") == dni) {
-                                    exist = true
-                                }
-                            }
-                        }
-                    }
-                }
-
-            }
-        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -217,25 +162,6 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                             ) as Map<String, Any>
                         )
                     }
-
-                    /*else if (document.get("visible").toString()
-                                .equals("false") && document.get("comandaPagada").toString()
-                                .equals("false") && document.get("preparat").toString()
-                                .equals("false")
-                        ) {
-                            db.collection("comandes").document(num.toString()).set(
-                                hashMapOf(
-                                    "user" to dni,
-                                    "comandaPagada" to false,
-                                    "visible" to false,
-                                    "comandaId" to num.toString(),
-                                    "date" to Timestamp.from(Instant.now()),
-                                    "preuTotal" to 0,
-                                    "preparat" to false
-                                ) as Map<String, Any>
-                            )
-                            break
-                        }*/
                 }
             }
         }

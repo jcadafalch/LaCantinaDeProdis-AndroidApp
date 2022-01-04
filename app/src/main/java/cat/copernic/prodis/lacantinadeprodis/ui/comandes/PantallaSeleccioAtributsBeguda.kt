@@ -74,10 +74,7 @@ class PantallaSeleccioAtributsBeguda : Fragment() {
             }
             view.findNavController()
                 .navigate(
-                    PantallaSeleccioAtributsBegudaDirections.actionPantallaSeleccioAtributsBegudaToPantallaSeleccioTipusProducte(
-                        atributs,
-                        perEmportar
-                    )
+                    PantallaSeleccioAtributsBegudaDirections.actionPantallaSeleccioAtributsBegudaToPantallaSeleccioTipusProducte()
                 )
         }
 
