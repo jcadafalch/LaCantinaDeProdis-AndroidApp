@@ -73,51 +73,11 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         //Inicialitzem el tipus de producte.
         tipusProducte = ""
 
-        //Declarem i inicialitzem l'spinner
-        val spinner: Spinner = binding.spinTipusProducte
+        //Cridem a la funció per carregar l'spin de tipus de productes
+        carregarSpinTipusProducte()
 
-        val context = this.requireContext()
-        //Declarem i inicialitzem la variable args per agafar les dades que pasam per parametres
-        val args = PantallaAdministradorNouProducteArgs.fromBundle(requireArguments())
-
-        //Fem que si l'array de tipus de productes es buit, li pasarem els args en forma de ArrayList
-        if (arrayTipusProducte.isEmpty()) {
-            arrayTipusProducte = args.arrayTipusProducte as ArrayList<String>
-        }
-
-        //Inicialitzem l'adapter amb l'array de tispus de productes
-        adapter =
-            ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, arrayTipusProducte)
-
-        //Fem que l'adapter sigui un sigui un item deplegable
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        //Fem que l'adapter del spiner
-        spinner.adapter = adapter
-
-        //Fem que l'item que es seleccioni en l'spinner sigui en aquest context
-        spinner.onItemSelectedListener = this
-
-        //Fem que al clickar al botó de la camera:
-        //  - Cridem a la funció obrir camera
-        //  - Fem que l'imatge del producte sigui visible
-        //  - Fem que l'imatge del producte sigui "gone" false, si fem que sigui "gone" true l'imatge no ocupará espai.
-        binding.imgFotoCamera.setOnClickListener() {
-            obrirCamera()
-            binding.imgProducte.visibility = View.VISIBLE
-            binding.imgProducte.isGone = false
-
-        }
-
-        //Fem que al clickar al botó de la galeria:
-        //  - Cridem a la funció obrir camera
-        //  - Fem que l'imatge del producte sigui visible
-        //  - Fem que l'imatge del producte sigui "gone" false, si fem que sigui "gone" true l'imatge no ocupará espai.
-        binding.imgFotoGaleria.setOnClickListener() {
-            obrirGaleria()
-            binding.imgProducte.visibility = View.VISIBLE
-            binding.imgProducte.isGone = false
-        }
+        //Cridem la funció per obrir la camara o galeria
+        obrirCamGaleria()
 
         //Fem que l'imatge del producte sigui "enabled" false
         binding.imgProducte.isEnabled = false
@@ -125,56 +85,9 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         //Cridem a la funció setPreu
         setPreu()
 
-        //Definim i inicialitzem la funció num.
-        var num: Int
-        num = 0
+        //Cridem a la funció per guardar dades
+        guardadDades()
 
-        //Escoltem al botó per guardar.
-        binding.btnPAdministradorNouProducteGuardar.setOnClickListener {
-            //Cridem a la funció pujarImatge per pujar l'imatge de perfil del usuari.
-            pujarImatge(it)
-
-            //Fem que si el editText on irá l'opció de un altre pres no es buit, el preu será el que hi ha en el camp de text.
-            if (!binding.editTextNumberDecimal2.text.toString().isEmpty()) {
-                preu = binding.editTextNumberDecimal2.text.toString().toDouble()
-            }
-
-            //Fem que llegeixi la col·lecció de productes
-            db.collection("productes").get().addOnSuccessListener { result ->
-                //Per cada document sumará un a la variable num.
-                for (document in result) {
-                    num++
-                }
-                //Fem que a la col·lecció productes crei un document amb:
-                //  - Un nom que será el camp de text del nom del producte
-                //  - Un preu que será la variable preu
-                //  - Un tipus que será la variable tipusProducte
-                //  - Una atribut visible que s'inicicialitzará a true
-                //  - Un nomid que será el resultant de cridar a la funció formatCorrecte()
-                //  - Un img que será un string per saber on es guarda l'imatge del producte
-                //  - Un idProducte que será la variable num
-                db.collection("productes").document().set(
-                    hashMapOf(
-                        "nom" to binding.editTextNomProducte.text.toString(),
-                        "preu" to preu,
-                        "tipus" to tipusProducte,
-                        "visible" to true,
-                        "nomid" to formatCorrecte(),
-                        "img" to "productes/" + binding.editTextNomProducte.text.toString() + ".jpg",
-                        "idProducte" to num
-                    ) as Map<String, Any>
-                )
-            }
-
-            //Cuan s'acabi de crear el document sortirá un toast indicant que el producte s'ha afegit amb éxit
-            Toast.makeText(
-                this.requireContext(),
-                "S'ha afegit el producte amb éxit",
-                Toast.LENGTH_SHORT
-            ).show()
-            //Tormarem a inicialitzar la variable num a 0 per si es vol afegir un altre producte
-            num = 0
-        }
         return binding.root
     }
 
@@ -330,5 +243,109 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         }.addOnSuccessListener {
             Snackbar.make(view, "Exit al pujar la foto", Snackbar.LENGTH_LONG).show()
         }
+    }
+
+    private fun obrirCamGaleria(){
+        //Fem que al clickar al botó de la camera:
+        //  - Cridem a la funció obrir camera
+        //  - Fem que l'imatge del producte sigui visible
+        //  - Fem que l'imatge del producte sigui "gone" false, si fem que sigui "gone" true l'imatge no ocupará espai.
+        binding.imgFotoCamera.setOnClickListener() {
+            obrirCamera()
+            binding.imgProducte.visibility = View.VISIBLE
+            binding.imgProducte.isGone = false
+
+        }
+
+        //Fem que al clickar al botó de la galeria:
+        //  - Cridem a la funció obrir camera
+        //  - Fem que l'imatge del producte sigui visible
+        //  - Fem que l'imatge del producte sigui "gone" false, si fem que sigui "gone" true l'imatge no ocupará espai.
+        binding.imgFotoGaleria.setOnClickListener() {
+            obrirGaleria()
+            binding.imgProducte.visibility = View.VISIBLE
+            binding.imgProducte.isGone = false
+        }
+
+    }
+
+    private fun guardadDades(){
+        //Definim i inicialitzem la funció num.
+        var num: Int
+        num = 0
+
+        //Escoltem al botó per guardar.
+        binding.btnPAdministradorNouProducteGuardar.setOnClickListener {
+            //Cridem a la funció pujarImatge per pujar l'imatge de perfil del usuari.
+            pujarImatge(it)
+
+            //Fem que si el editText on irá l'opció de un altre pres no es buit, el preu será el que hi ha en el camp de text.
+            if (!binding.editTextNumberDecimal2.text.toString().isEmpty()) {
+                preu = binding.editTextNumberDecimal2.text.toString().toDouble()
+            }
+
+            //Fem que llegeixi la col·lecció de productes
+            db.collection("productes").get().addOnSuccessListener { result ->
+                //Per cada document sumará un a la variable num.
+                for (document in result) {
+                    num++
+                }
+                //Fem que a la col·lecció productes crei un document amb:
+                //  - Un nom que será el camp de text del nom del producte
+                //  - Un preu que será la variable preu
+                //  - Un tipus que será la variable tipusProducte
+                //  - Una atribut visible que s'inicicialitzará a true
+                //  - Un nomid que será el resultant de cridar a la funció formatCorrecte()
+                //  - Un img que será un string per saber on es guarda l'imatge del producte
+                //  - Un idProducte que será la variable num
+                db.collection("productes").document().set(
+                    hashMapOf(
+                        "nom" to binding.editTextNomProducte.text.toString(),
+                        "preu" to preu,
+                        "tipus" to tipusProducte,
+                        "visible" to true,
+                        "nomid" to formatCorrecte(),
+                        "img" to "productes/" + binding.editTextNomProducte.text.toString() + ".jpg",
+                        "idProducte" to num
+                    ) as Map<String, Any>
+                )
+            }
+
+            //Cuan s'acabi de crear el document sortirá un toast indicant que el producte s'ha afegit amb éxit
+            Toast.makeText(
+                this.requireContext(),
+                "S'ha afegit el producte amb éxit",
+                Toast.LENGTH_SHORT
+            ).show()
+            //Tormarem a inicialitzar la variable num a 0 per si es vol afegir un altre producte
+            num = 0
+        }
+    }
+
+    private fun carregarSpinTipusProducte(){
+        //Declarem i inicialitzem l'spinner
+        val spinner: Spinner = binding.spinTipusProducte
+
+        val context = this.requireContext()
+        //Declarem i inicialitzem la variable args per agafar les dades que pasam per parametres
+        val args = PantallaAdministradorNouProducteArgs.fromBundle(requireArguments())
+
+        //Fem que si l'array de tipus de productes es buit, li pasarem els args en forma de ArrayList
+        if (arrayTipusProducte.isEmpty()) {
+            arrayTipusProducte = args.arrayTipusProducte as ArrayList<String>
+        }
+
+        //Inicialitzem l'adapter amb l'array de tispus de productes
+        adapter =
+            ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, arrayTipusProducte)
+
+        //Fem que l'adapter sigui un sigui un item deplegable
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        //Fem que l'adapter del spiner
+        spinner.adapter = adapter
+
+        //Fem que l'item que es seleccioni en l'spinner sigui en aquest context
+        spinner.onItemSelectedListener = this
     }
 }
