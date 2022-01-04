@@ -89,12 +89,19 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         adapter =
             ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, arrayTipusProducte)
 
+        //Fem que l'adapter sigui un sigui un item deplegable
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
+        //Fem que l'adapter del spiner
         spinner.adapter = adapter
 
+        //Fem que l'item que es seleccioni en l'spinner sigui en aquest context
         spinner.onItemSelectedListener = this
 
+        //Fem que al clickar al botó de la camera:
+        //  - Cridem a la funció obrir camera
+        //  - Fem que l'imatge del producte sigui visible
+        //  - Fem que l'imatge del producte sigui "gone" false, si fem que sigui "gone" true l'imatge no ocupará espai.
         binding.imgFotoCamera.setOnClickListener() {
             obrirCamera()
             binding.imgProducte.visibility = View.VISIBLE
@@ -102,37 +109,50 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
         }
 
+        //Fem que al clickar al botó de la galeria:
+        //  - Cridem a la funció obrir camera
+        //  - Fem que l'imatge del producte sigui visible
+        //  - Fem que l'imatge del producte sigui "gone" false, si fem que sigui "gone" true l'imatge no ocupará espai.
         binding.imgFotoGaleria.setOnClickListener() {
             obrirGaleria()
             binding.imgProducte.visibility = View.VISIBLE
             binding.imgProducte.isGone = false
         }
 
+        //Fem que l'imatge del producte sigui "enabled" false
         binding.imgProducte.isEnabled = false
 
+        //Cridem a la funció setPreu
         setPreu()
 
-
+        //Definim i inicialitzem la funció num.
         var num: Int
         num = 0
 
+        //Escoltem al botó per guardar.
         binding.btnPAdministradorNouProducteGuardar.setOnClickListener {
+            //Cridem a la funció pujarImatge per pujar l'imatge de perfil del usuari.
             pujarImatge(it)
 
-            when (tipusProducte) {
-                "Bocata" -> tipusProducte = "bocata"
-                "Beguda calenta" -> tipusProducte = "bCalenta"
-                "Beguda freda" -> tipusProducte = "bFreda"
-            }
-
+            //Fem que si el editText on irá l'opció de un altre pres no es buit, el preu será el que hi ha en el camp de text.
             if (!binding.editTextNumberDecimal2.text.toString().isEmpty()) {
                 preu = binding.editTextNumberDecimal2.text.toString().toDouble()
             }
 
+            //Fem que llegeixi la col·lecció de productes
             db.collection("productes").get().addOnSuccessListener { result ->
+                //Per cada document sumará un a la variable num.
                 for (document in result) {
                     num++
                 }
+                //Fem que a la col·lecció productes crei un document amb:
+                //  - Un nom que será el camp de text del nom del producte
+                //  - Un preu que será la variable preu
+                //  - Un tipus que será la variable tipusProducte
+                //  - Una atribut visible que s'inicicialitzará a true
+                //  - Un nomid que será el resultant de cridar a la funció formatCorrecte()
+                //  - Un img que será un string per saber on es guarda l'imatge del producte
+                //  - Un idProducte que será la variable num
                 db.collection("productes").document().set(
                     hashMapOf(
                         "nom" to binding.editTextNomProducte.text.toString(),
@@ -146,25 +166,29 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
                 )
             }
 
-
+            //Cuan s'acabi de crear el document sortirá un toast indicant que el producte s'ha afegit amb éxit
             Toast.makeText(
                 this.requireContext(),
                 "S'ha afegit el producte amb éxit",
                 Toast.LENGTH_SHORT
             ).show()
+            //Tormarem a inicialitzar la variable num a 0 per si es vol afegir un altre producte
             num = 0
         }
         return binding.root
     }
 
+    //Fem que la variable tipusProducte sigui el item seleccionat.
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         tipusProducte = parent.getItemAtPosition(pos).toString()
     }
 
+    //Si no es selecciona res sorirá un alert dient que s'ha de seleccionar una opció
     override fun onNothingSelected(parent: AdapterView<*>) {
         showAlert("Has de seleccionar un tipus de prodcute")
     }
 
+    //Fem que surti un alert amb el text que li pasem per parametres
     private fun showAlert(message: String) {
         val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
         builder.setTitle("¡¡¡Error!!!")
@@ -184,12 +208,14 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         }
     }
 
+    //Funció que fa que sobri la galeria
     private fun obrirGaleria() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startForActivityGallery.launch(intent)
     }
 
+    //Finció que fa que s'obri la camera
     private fun obrirCamera() {
         lifecycleScope.launchWhenStarted {
             getTmpFileUri().let { uri ->
@@ -200,6 +226,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         }
     }
 
+    //Amb aquesta funció agafarem l'Uri de l'imatge
     private fun getTmpFileUri(): Uri {
         val tmpFile =
             File.createTempFile("tmp_image_file", ".png", requireContext().cacheDir).apply {
@@ -214,22 +241,27 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         )
     }
 
+    //Funció per setejar el preu
     fun setPreu() {
+        //Escoltarem el radioFroup on son els diferents radio buttons per seleccionar el preu.
         binding.radioGroup
             .setOnCheckedChangeListener { group, checkedId ->
                 when (checkedId) {
+                    //Fem que si el radio de 1 euro está checked; el preu será 1, el camp de text: será invisible, no hi haura text i desapareixerá
                     R.id.radio1Euro -> {
                         preu = 1.0
                         binding.editTextNumberDecimal2.visibility = View.INVISIBLE
                         binding.editTextNumberDecimal2.setText("")
                         binding.editTextNumberDecimal2.isGone = true
                     }
+                    //Fem que si el radio de 2 euros está checked; el preu será 1, el camp de text: será invisible, no hi haura text i desapareixerá
                     R.id.radio2Euro -> {
                         preu = 2.0
                         binding.editTextNumberDecimal2.visibility = View.INVISIBLE
                         binding.editTextNumberDecimal2.setText("")
                         binding.editTextNumberDecimal2.isGone = true
                     }
+                    //Fem que si el radio d'un altre preu está checked; el preu será el que s'introdueixi en el camp de text, será invisible i apareixerá
                     R.id.radioAltrePreu -> {
                         binding.editTextNumberDecimal2.visibility = View.VISIBLE
                         binding.editTextNumberDecimal2.isGone = false
@@ -238,11 +270,15 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             }
     }
 
+    //Aquesta funció fará que el format del nom del producte sigui correcte
     private fun formatCorrecte(): String {
+        //Agafem el text del nom del producte i ho guardem a la variable string
         var string = binding.editTextNomProducte.text.toString()
 
+        //Fem que string estigui en minuscules
         string = string.lowercase(Locale.getDefault())
 
+        //Remplaçem l'string per adaptarlo a com el volem guardar
         string = string.replace(
             " de ",
             ""
@@ -263,15 +299,15 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             ""
         )
 
+        //Fem un trm a l'string
         string = string.trim()
 
+        //Retornem l'string
         return string
     }
 
+    // Pujar imatge al Cloud Storage de Firebase
     fun pujarImatge(view: View) {
-        // pujar imatge al Cloud Storage de Firebase
-        // https://firebase.google.com/docs/storage/android/upload-files?hl=es
-
         // Creem una referència amb el path i el nom de la imatge per pujar la imatge
         val pathReference =
             storageRef.child("productes/" + binding.editTextNomProducte.text.toString() + ".png")
@@ -283,7 +319,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             Bitmap.CompressFormat.JPEG,
             100,
             baos
-        ) // convertim el bitmap en outputstream
+        ) // Convertim el bitmap en outputstream
         val data = baos.toByteArray() //convertim el outputstream en array de bytes.
 
         val uploadTask = pathReference.putBytes(data)

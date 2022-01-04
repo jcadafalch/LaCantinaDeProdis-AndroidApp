@@ -40,10 +40,9 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
     lateinit var tipusProducte: String
     lateinit var producte: String
     private var preu: Double = 0.0
-    lateinit var prevProducte : String
+    lateinit var prevProducte: String
 
     private lateinit var viewModel: PantallaAdministradorAdministrarProducteViewModel
-
 
     var arrayTipusProducte = ArrayList<String>()
     var arrayProductes = ArrayList<String>()
@@ -57,7 +56,7 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
     private val db = Firebase.firestore
     lateinit var storageRef: StorageReference
 
-    private lateinit var documentId: String
+    private var documentId: String? = null
 
     private var latestTmpUri: Uri? = null
 
@@ -80,17 +79,17 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
             container,
             false
         )
+        binding.imgProducte2.isGone = true
         binding.editTextNumberDecimal3.isGone = true
         storageRef = FirebaseStorage.getInstance().getReference()
-        viewModel = ViewModelProvider(this).get(PantallaAdministradorAdministrarProducteViewModel::class.java)
-
+        viewModel =
+            ViewModelProvider(this).get(PantallaAdministradorAdministrarProducteViewModel::class.java)
 
         carregarSpinTipusProductes()
         carregarSpinProductes()
-        producteEsVisible()
         setPreu()
-        actualitzaDades()
         actualitzaFoto()
+        producteEsVisible()
 
         return binding.root
     }
@@ -109,8 +108,13 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
                 if (document.get("nom").toString().equals(producte)) {
                     documentId = document.id
                 }
+                actualitzaDades()
+                setVisibleTick(documentId)
+
             }
+
         }
+
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {
@@ -170,9 +174,7 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
 
     private fun producteEsVisible() {
         binding.btnGuardar.setOnClickListener() {
-            if (binding.checkBoxProducteVisible.isChecked) {
-                producteVisible = true
-            }
+            producteVisible = binding.checkBoxProducteVisible.isChecked
         }
     }
 
@@ -211,12 +213,16 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
             if (!binding.editTextNumberDecimal3.text.toString().isEmpty()) {
                 preu = binding.editTextNumberDecimal3.text.toString().toDouble()
             }
-            prevProducte = binding.editTextTextProductName.text.toString()
+            prevProducte = binding.spinSeleccionaProducte.selectedItem.toString()
 
-            borrarImatge()
-            pujarImatge(it)
+            println(!binding.imgCamera.isShown)
 
-            db.collection("productes").document(documentId).update(
+            if (!binding.imgProducte2.isGone) {
+                borrarImatge()
+                pujarImatge(it)
+            }
+
+            db.collection("productes").document(documentId.toString()).update(
                 hashMapOf(
                     "tipus" to binding.spinTipusProducte.selectedItem.toString(),
                     "nom" to binding.editTextTextProductName.text.toString(),
@@ -225,6 +231,7 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
                     "img" to "productes/" + binding.editTextTextProductName.text.toString() + ".jpg"
                 ) as Map<String, Any>
             )
+
         }
     }
 
@@ -294,22 +301,22 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
         )
     }
 
-    private fun actualitzaFoto(){
-        binding.imgCamera.setOnClickListener(){
+    private fun actualitzaFoto() {
+        binding.imgCamera.setOnClickListener() {
+            binding.imgProducte2.isGone = false
+            binding.imgProducte2
             obrirCamera()
         }
 
-        binding.imgPujarImatge.setOnClickListener(){
+        binding.imgPujarImatge.setOnClickListener() {
+            binding.imgProducte2.isGone = false
             obrirGaleria()
         }
     }
 
-    private fun borrarImatge(){
-        println(prevProducte)
+    private fun borrarImatge() {
         val pathReference =
-            storageRef.child("productes/"+ prevProducte +".png")
-
-
+            storageRef.child("productes/" + prevProducte + ".png")
 
         pathReference.delete()
     }
@@ -342,9 +349,13 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
         }
     }
 
-    private fun getIdProducte(){
-        db.collection("productes").get().addOnSuccessListener {
+    private fun setVisibleTick(idDocument: String?) {
 
-        }
+            db.collection("productes").document(idDocument.toString()).get().addOnSuccessListener { document ->
+                if (document.get("visible") == true) {
+                    binding.checkBoxProducteVisible.isChecked = true
+                }
+            }
+
     }
 }

@@ -65,7 +65,7 @@ class PantallaAdministradorPrincipal : Fragment() {
         db.collection("productes").get().addOnSuccessListener { result ->
             if (arrayProductes.isEmpty()) {
                 for (document in result) {
-                    if (document != null) {
+                    if (document.id != "null") {
                         arrayProductes.add(document.get("nom").toString())
                     }
                 }
