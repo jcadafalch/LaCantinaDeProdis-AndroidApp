@@ -184,7 +184,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             }
     }
 
-    //Aquesta funció fará que el format del nom del producte sigui correcte
+    //Aquesta funció fa que el format del nom del producte sigui correcte
     private fun formatCorrecte(): String {
         //Agafem el text del nom del producte i ho guardem a la variable string
         var string = binding.editTextNomProducte.text.toString()
