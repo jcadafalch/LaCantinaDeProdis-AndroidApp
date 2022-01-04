@@ -111,6 +111,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         dialog.show()
     }
 
+    //Aquesta fá que l'imatge seleccionada en la galeria sigui la foto del producte
     private val startForActivityGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -128,7 +129,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         startForActivityGallery.launch(intent)
     }
 
-    //Finció que fa que s'obri la camera
+    //Funció que fa que s'obri la camera
     private fun obrirCamera() {
         lifecycleScope.launchWhenStarted {
             getTmpFileUri().let { uri ->
