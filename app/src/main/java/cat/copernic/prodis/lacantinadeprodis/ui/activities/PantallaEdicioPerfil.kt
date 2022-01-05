@@ -253,7 +253,7 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
     }
 
     //Funció per guardar les dades en la base de dades
-    private fun guardarDades(){
+    private fun guardarDades() {
         //Escoltem al botó de guardar
         binding.btnGuardar.setOnClickListener() { view: View ->
             //Cridem a la funció per pujar la foto del usuari
@@ -263,8 +263,7 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
                     binding.editTxtNom.text.toString(),
                     binding.editTxtCognom.text.toString()
                 )
-            )
-            {
+            ) {
                 //Anem a l acolecció d'usuaris i cambiem les dades del usuari on el dni es el que agafem per parametres
                 db.collection("users").document(dni).update(
                     hashMapOf(
@@ -275,16 +274,20 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
                 val currentUserPass =
                     FirebaseAuth.getInstance().currentUser
 
-//                currentUserPass?.updatePassword(binding.editTextContrassenya.text.toString())
-//                    ?.addOnSuccessListener {
-//                        db.collection("users").document(dni).update(
-//                            hashMapOf(
-//                                "passwd" to binding.editTextContrassenya.text.toString()
-//                            ) as Map<String, Any>
-//                        )
-//                    }
-                //Quan acaba d'actualizar les dades surt un toast indicant que els canvis s'han fet amb èxit
-                Toast.makeText(this, "Els canvis s'han fet amb èxit", Toast.LENGTH_SHORT).show()
+                if (!binding.editTextContrassenya.text.isEmpty()) {
+                    currentUserPass?.updatePassword(binding.editTextContrassenya.text.toString())
+                        ?.addOnCompleteListener() { task ->
+                            if (task.isSuccessful) {
+                                db.collection("users").document(dni).update(
+                                    hashMapOf(
+                                        "password" to binding.editTextContrassenya.text.toString() + "prodis"
+                                    ) as Map<String, Any>
+                                )
+                            }
+                        }
+                    //Quan acaba d'actualizar les dades surt un toast indicant que els canvis s'han fet amb èxit
+                    Toast.makeText(this, "Els canvis s'han fet amb èxit", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

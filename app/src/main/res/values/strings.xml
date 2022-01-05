@@ -113,5 +113,6 @@
     <string name="extern">Extern</string>
     <string name="juan_rodriguez_gonz_lez">Juan Rodriguez González</string>
     <string name="cognoms">Cognoms</string>
+    <string name="idioma_de_l_app">Idioma de l\'app</string>
 
 </resources>

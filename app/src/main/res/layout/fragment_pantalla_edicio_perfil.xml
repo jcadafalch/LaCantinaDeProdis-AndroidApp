@@ -160,7 +160,7 @@
                 android:layout_marginTop="2dp"
                 android:autofillHints=""
                 android:hint="@string/posa_aqui_la_contrasenya"
-                android:inputType="text"
+                android:inputType="numberPassword"
                 android:maxLength="4"
                 android:minHeight="48dp"
                 android:textColorHint="@android:color/darker_gray"
@@ -186,7 +186,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/tamany_lletra"
+                android:text="@string/idioma_de_l_app"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view5"
@@ -208,11 +208,12 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="4dp"
                     android:minHeight="48dp"
-                    android:text="@string/tamany_petit"
                     android:textSize="20sp"
+                    android:checked="true"
                     app:layout_constraintStart_toEndOf="@+id/radioPetit"
                     app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra"
-                    tools:ignore="DuplicateSpeakableTextCheck" />
+                    tools:ignore="DuplicateSpeakableTextCheck"
+                    android:drawableEnd="@mipmap/bandera_catalana"/>
 
                 <RadioButton
                     android:id="@+id/radioPetit"
@@ -220,11 +221,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
-                    android:checked="true"
                     android:minHeight="48dp"
-                    android:text="@string/tamany_petit"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra"
+                    android:drawableEnd="@mipmap/bander_espanyola"/>
             </RadioGroup>
 
             <Button
