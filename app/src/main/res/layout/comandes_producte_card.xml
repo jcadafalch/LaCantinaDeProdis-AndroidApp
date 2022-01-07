@@ -31,9 +31,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:gravity="center"
                 android:text="@string/bocata"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,6 +47,10 @@
                     android:id="@+id/chckBx_tomaquet"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:selectAllOnFocus="false"
                     android:text="@string/sense_tomaquet" />
             </LinearLayout>
 
@@ -58,6 +64,10 @@
                     android:id="@+id/chckBx_emportar_bocata"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:selectAllOnFocus="false"
                     android:text="@string/per_emportar"
                     tools:ignore="DuplicateSpeakableTextCheck" />
             </LinearLayout>
@@ -76,9 +86,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:gravity="center"
                 android:text="@string/begudes_calentes"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -90,9 +102,12 @@
                     android:id="@+id/rdBttn_sucre"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
                     android:checked="true"
                     android:shadowColor="@color/black"
-                    android:text="@string/sense_sucre" />
+                    android:text="@string/sense_sucre"
+                    android:textColorHighlight="@color/black"
+                    android:textColorLink="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -105,6 +120,10 @@
                     android:id="@+id/chckBx_emportar_beguda"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:selectAllOnFocus="false"
                     android:text="@string/per_emportar" />
             </LinearLayout>
 

@@ -1,6 +1,7 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.cuiner
 
 import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,10 +15,7 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.adapters.cuiner_adapter
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaCuinerBinding
 import cat.copernic.prodis.lacantinadeprodis.model.dtclss_cuiner
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 
 class PantallaCuiner : Fragment() {
 
@@ -26,6 +24,7 @@ class PantallaCuiner : Fragment() {
     private lateinit var comandesList: ArrayList<dtclss_cuiner>
     private val db = FirebaseFirestore.getInstance()
 
+    @SuppressLint("SwitchIntDef", "UseRequireInsteadOfGet")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,33 +34,60 @@ class PantallaCuiner : Fragment() {
         )
 
         recyclerView = binding.rcyclrVwCuiner
-        recyclerView.layoutManager = LinearLayoutManager(this.context)
+
+        when(resources.configuration.orientation){
+            Configuration.ORIENTATION_PORTRAIT -> {
+                recyclerView.layoutManager = LinearLayoutManager(this.context)
+            }
+            Configuration.ORIENTATION_LANDSCAPE -> {
+                recyclerView.layoutManager = LinearLayoutManager(
+                    this.context,
+                    RecyclerView.HORIZONTAL,
+                    false
+                )
+            }
+            Configuration.ORIENTATION_UNDEFINED -> {
+                recyclerView.layoutManager = LinearLayoutManager(
+                    this.context,
+                    RecyclerView.HORIZONTAL,
+                    false
+                )
+            }
+        }
+
         recyclerView.setHasFixedSize(true)
 
         comandesList = arrayListOf()
 
-        cuinerAdapter = cuiner_adapter(comandesList)
+        cuinerAdapter = this.context?.let { cuiner_adapter(comandesList, it) }!!
+
+        recyclerView.adapter = cuinerAdapter
 
         eventChangeListener()
 
         return binding.root
     }
 
-    private fun eventChangeListener(){
-        db.collection("comandes").addSnapshotListener(object  : EventListener<QuerySnapshot>{
+    private fun eventChangeListener() {
+        db.collection("comandes").addSnapshotListener(object : EventListener<QuerySnapshot> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                if (error != null){
-                    Log.e("Firestore Error",error.message.toString())
+                if (error != null) {
+                    Log.e("Firestore Error", error.message.toString())
                     return
                 }
-
+                //comandesList.clear()
                 db.collection("comandes").get().addOnSuccessListener { result ->
-                    for (document in result){
-                        comandesList.add(document.toObject(dtclss_cuiner::class.java))
+                   comandesList.clear()
+                    for (document in result) {
+                        if(document.get("visible").toString() == "true"){
+                            comandesList.add(document.toObject(dtclss_cuiner::class.java))
+                            cuinerAdapter.notifyDataSetChanged()
+                        }
                     }
-                    cuinerAdapter.notifyDataSetChanged()
+
                 }
+
             }
         })
     }

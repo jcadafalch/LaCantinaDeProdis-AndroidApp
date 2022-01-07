@@ -16,10 +16,7 @@ class CuinerActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityCuinerBinding>(this, R.layout.activity_cuiner)
 
-        //val navController = this.findNavController(R.id.myNavHostFragment)
-
-        //Fletxa enderrere i faltaria metode onSupportNavigateUp
-        //NavigationUI.setupActionBarWithNavController(this, navController)
+        title = ""
 
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
