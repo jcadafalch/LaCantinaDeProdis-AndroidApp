@@ -120,7 +120,7 @@
     <string name="resum_comanda">Resum comanda</string>
     <string name="marcar_com_pagat" />
     <string name="comanda_1">Comanda 1</string>
-    <string name="_2">2€</string>
     <string name="total">TOTAL:</string>
+    <string name="idioma_de_l_app">Idioma de l\'app</string>
 
 </resources>
