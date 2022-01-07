@@ -16,6 +16,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaAdministradorNouUsuariBinding
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -133,7 +134,7 @@ class PantallaAdministradorNouUsuari : Fragment(), AdapterView.OnItemSelectedLis
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            showAlert("Error a l'hora de afegir el nou usuari")
+                            utils().showAlert("ERROR", "Error a l'hora de afegir el nou usuari",this.context)
                         }
                     }
                 } else {
@@ -157,22 +158,20 @@ class PantallaAdministradorNouUsuari : Fragment(), AdapterView.OnItemSelectedLis
                                             Toast.LENGTH_SHORT
                                         ).show()
                                     } else {
-                                        showAlert("Error a l\'hora de fer el guardat de dades")
+                                        utils().showAlert("ERROR", "Error a l\'hora de fer el guardat de dades",this.context)
                                     }
                                 }
 
                             } else {
-                                showAlert("Error a l\'hora de afegir el nou usuari")
+                                utils().showAlert("ERROR", "Error a l\'hora de afegir el nou usuari",this.context)
                             }
                         }
 
                 }
 
             } else {
-                showAlert(
-                    "Aquest usuari ja existeix \n" +
-                            "Si vols modifiar-lo has d\'anar a la secció modificar usuari"
-                )
+                utils().showAlert("ERROR", "Aquest usuari ja existeix \n" +
+                        "Si vols modifiar-lo has d\'anar a la secció modificar usuari",this.context)
             }
         }
 
@@ -221,7 +220,7 @@ class PantallaAdministradorNouUsuari : Fragment(), AdapterView.OnItemSelectedLis
             }
         }
 
-        if (errorMessage != "") showAlert(errorMessage)
+        if (errorMessage != "") utils().showAlert("ERROR", errorMessage,this.context)
 
         return bool
 
@@ -278,24 +277,14 @@ class PantallaAdministradorNouUsuari : Fragment(), AdapterView.OnItemSelectedLis
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            showAlert("Error a l\'hora de fer el guardat de dades")
+                            utils().showAlert("ERROR", "Error a l\'hora de fer el guardat de dades",this.context)
                         }
                     }
 
                 } else {
-                    showAlert("Error a l\'hora de afegir el nou usuari")
+                    utils().showAlert("ERROR", "Error a l\'hora de afegir el nou usuari",this.context)
                 }
             }
-    }
-
-    private fun showAlert(msg: String) {
-        val builder = AlertDialog.Builder(this.context)
-        builder.setTitle("ERROR")
-        builder.setMessage(msg)
-        builder.setPositiveButton("Acceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

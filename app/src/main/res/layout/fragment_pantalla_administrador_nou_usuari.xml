@@ -39,7 +39,7 @@
             android:layout_marginEnd="80dp"
             android:text="@string/txt_nou_usuari"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/txtGran"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouUsuari" />

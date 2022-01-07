@@ -14,12 +14,9 @@ import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityCuinerBinding
 class CuinerActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityCuinerBinding>(this, R.layout.fragment_pantalla_cuiner)
+        val binding = DataBindingUtil.setContentView<ActivityCuinerBinding>(this, R.layout.activity_cuiner)
 
-        //val navController = this.findNavController(R.id.myNavHostFragment)
-
-        //Fletxa enderrere i faltaria metode onSupportNavigateUp
-        //NavigationUI.setupActionBarWithNavController(this, navController)
+        title = ""
 
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

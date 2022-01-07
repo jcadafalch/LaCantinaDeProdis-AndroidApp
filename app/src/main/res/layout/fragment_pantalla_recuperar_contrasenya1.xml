@@ -35,7 +35,7 @@
                android:layout_marginStart="22dp"
                android:layout_marginTop="225dp"
                android:text="@string/recuperar_contrasenya"
-               android:textSize="@dimen/btnPprincipalCliCambCuiCaix"
+               android:textSize="@dimen/txtSubTitol"
                android:textStyle="bold"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +47,7 @@
                android:layout_marginStart="22dp"
                android:layout_marginTop="16dp"
                android:text="@string/text_recuperar_contrasenya"
-               android:textSize="18sp"
+               android:textSize="@dimen/txtGran"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toBottomOf="@+id/txtPRecuperarContrasenya1"
                tools:ignore="TextContrastCheck,TextContrastCheck" />
@@ -60,7 +60,7 @@
                android:layout_marginTop="55dp"
                android:text="@string/introdueix_el_dni"
                android:textColor="#00796B"
-               android:textSize="@dimen/txtRegistreIniciSessio"
+               android:textSize="@dimen/txtMig"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toBottomOf="@+id/txtPRecuperarContrasenya1_info" />
 
@@ -74,20 +74,22 @@
                android:hint="@string/editDni"
                android:inputType="textPersonName"
                android:maxLength="9"
+               android:textSize="@dimen/txtMig"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toBottomOf="@+id/txtPRecuperarContrasenya1_DNI"
                tools:ignore="LabelFor,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
            <Button
                android:id="@+id/btnPRecuperarContrasenya1_continuar"
-               android:layout_width="227dp"
-               android:layout_height="42dp"
+               android:layout_width="230dp"
+               android:layout_height="45dp"
                android:layout_marginStart="69dp"
                android:layout_marginTop="100dp"
                android:layout_marginEnd="115dp"
                android:layout_marginBottom="108dp"
                android:backgroundTint="@color/colorPrimary"
                android:text="@string/continuar"
+               android:theme="@style/AppTheme.btnContinuar"
                app:layout_constraintBottom_toBottomOf="parent"
                app:layout_constraintEnd_toEndOf="parent"
                app:layout_constraintHorizontal_bias="0.0"

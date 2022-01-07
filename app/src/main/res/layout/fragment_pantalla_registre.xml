@@ -36,7 +36,7 @@
                 android:layout_marginTop="185dp"
                 android:paddingBottom="15dp"
                 android:text="@string/registrat"
-                android:textSize="24sp"
+                android:textSize="@dimen/txtTitol"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textPRegistre"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistrePersonName"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/nom"
                 android:textColor="#00796B"
-                android:textSize="@dimen/txtRegistreIniciSessio"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistrePersonName"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistrePersonName" />
 
@@ -62,6 +62,7 @@
                 android:hint="@string/juan"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreDni"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
@@ -77,6 +78,7 @@
                 android:hint="@string/rodriguez_gonz_lez"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreDni"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dtTxtPRegistrePersonName"
@@ -90,7 +92,7 @@
                 android:layout_marginTop="5dp"
                 android:text="@string/cognoms"
                 android:textColor="#00796B"
-                android:textSize="@dimen/txtRegistreIniciSessio"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistrePersonSurname"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dtTxtPRegistrePersonName"
@@ -102,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dni"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/txtRegistreIniciSessio"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistreDni"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreDni"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
@@ -116,6 +118,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:maxLength="9"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreEmail"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreEmail"
                 tools:ignore="LabelFor,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
@@ -127,7 +130,7 @@
                 android:layout_marginBottom="1dp"
                 android:text="@string/correu_electronic"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/txtRegistreIniciSessio"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistreEmail"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreEmail"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
@@ -144,6 +147,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
                 android:textColor="#616161"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreContrasenya"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -153,14 +157,15 @@
                 android:id="@+id/txtPRegistreContrasenya"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginEnd="297dp"
                 android:layout_marginBottom="1dp"
                 android:text="@string/contrasenya"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/txtRegistreIniciSessio"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistrePasswordT"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.192"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
 
@@ -181,6 +186,7 @@
                     android:background="@color/colorFons"
                     android:inputType="numberPassword"
                     android:maxLength="4"
+                    android:textSize="@dimen/txtGran"
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -191,7 +197,7 @@
                 android:layout_marginEnd="90dp"
                 android:text="@string/repeteix_contrasenya"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/txtRegistreIniciSessio"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistreRepeteixPasswordT"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dtTxtPRegistrePasswordT"
@@ -217,6 +223,7 @@
                     android:background="@color/colorFons"
                     android:inputType="numberPassword"
                     android:maxLength="4"
+                    android:textSize="@dimen/txtGran"
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -228,6 +235,7 @@
                 android:layout_marginEnd="125dp"
                 android:layout_marginBottom="30dp"
                 android:text="@string/condicions_servei_privacitat"
+                android:textSize="@dimen/txtPetit"
                 app:layout_constraintBottom_toTopOf="@+id/btnPregistre"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -255,6 +263,7 @@
                 android:layout_marginStart="68dp"
                 android:layout_marginBottom="40dp"
                 android:text="@string/tens_un_compte"
+                android:textSize="@dimen/txtPetit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_goneMarginRight="10dp"
@@ -268,6 +277,7 @@
                 android:layout_marginBottom="40dp"
                 android:text="@string/iniciarSessio"
                 android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/txtPetit"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
