@@ -45,13 +45,13 @@ class PantallaSeleccioTipusProdcute : Fragment() {
             for (document in result) {
                 if (currentUser?.email.toString() == document.get("email").toString()) {
                     dni = document.id
-                    var num: Int = 0
                     var exists = false
                     db.collection("comandes").get().addOnSuccessListener { result ->
                         for (document in result) {
                             if (document.get("comandaComencada").toString() == "true" && document.get("user").toString() == dni) {
                                 exists = true
                                 docId = document.id
+
                             }
                         }
                         println("EXISTS == $exists")
@@ -63,6 +63,8 @@ class PantallaSeleccioTipusProdcute : Fragment() {
             }
 
         }
+
+
 
         recyclerView = binding.recyclerViewSeleccioProducte
         recyclerView.layoutManager = LinearLayoutManager(this.context)
@@ -115,6 +117,14 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                             if (dc.get("comandaComencada").toString() == "true" && dc.get("user").toString() == dni) {
                                 val dcId = document.id
                                 val username = document.get("username").toString() + " " + document.get("usersurname").toString()
+
+                                db.collection("comandas").document(docId).collection("productes").get().addOnSuccessListener {
+                                    for (document in it){
+                                        var preu = document.get("preu")
+                                        println("Preu: "+preu)
+                                    }
+                                }
+
                                 db.collection("comandes").document(docId).update(
                                     hashMapOf(
                                         "comandaComencada" to false,
@@ -165,8 +175,5 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                 }
             }
         }
-
     }
-
-
 }
