@@ -13,10 +13,13 @@ import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityComandesBinding
 import cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaIniciSessioClientAdmin
 import cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaIniciSessioClientAdminArgs
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ComandesActivity: AppCompatActivity() {
     private lateinit var usertype: String
     private lateinit var dni: String
+    private val db = FirebaseFirestore.getInstance()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +31,6 @@ class ComandesActivity: AppCompatActivity() {
 
         title = ""
 
-        //val navController = this.findNavController(R.id.myNavHostFragment)
-
-        //Fletxa enderrere i faltaria metode onSupportNavigateUp
-        //NavigationUI.setupActionBarWithNavController(this, navController)
 
     }
 
@@ -59,9 +58,38 @@ class ComandesActivity: AppCompatActivity() {
             R.id.logOutBttn -> {
                 FirebaseAuth.getInstance().signOut()
                 finish()
+                deleteComanda()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun deleteComanda(){
+        db.collection("comandes").get().addOnSuccessListener { result ->
+            for (document in result){
+                if(document.get("comandaComencada").toString().equals("true") && document.get("user").toString() == dni){
+                    val idDocument = document.id
+                    db.collection("comandes").document(document.id).collection("productes").get().addOnSuccessListener { document ->
+                        for (dc in document){
+                            db.collection("comandes").document(idDocument).collection("productes").document(dc.id).delete()
+                        }
+
+                    }
+                    db.collection("comandes").document(document.id).delete()
+                }
+            }
+
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        deleteComanda()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        deleteComanda()
     }
 }

@@ -30,6 +30,7 @@ import kotlin.collections.ArrayList
 
 class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedListener {
 
+    //Definim les variables globals
     lateinit var tipusProducte: String
 
     lateinit var binding: FragmentPantallaAdministradorNouProducteBinding
@@ -49,14 +50,13 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
     private val db = Firebase.firestore
 
-    private var accepta: Boolean = false
-
     lateinit var storageRef: StorageReference
 
     private lateinit var adapter: ArrayAdapter<*>
 
     var arrayTipusProducte = ArrayList<String>()
 
+    //Comennça el onCreateView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,107 +64,44 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_administrador_nou_producte, container, false
         )
+        //Fem que l'edit text i l'imatge del producte s'amaguin.
         binding.editTextNumberDecimal2.isGone = true
         binding.imgProducte.isGone = true
 
-
+        //Inicialitzem l'storageRef.
         storageRef = FirebaseStorage.getInstance().getReference()
-
+        //Inicialitzem el tipus de producte.
         tipusProducte = ""
 
-        val spinner: Spinner = binding.spinTipusProducte
+        //Cridem a la funció per carregar l'spin de tipus de productes
+        carregarSpinTipusProducte()
 
-        val context = this.requireContext()
+        //Cridem la funció per obrir la camara o galeria
+        obrirCamGaleria()
 
-        val args = PantallaAdministradorNouProducteArgs.fromBundle(requireArguments())
-
-        if (arrayTipusProducte.isEmpty()) {
-            arrayTipusProducte = args.arrayTipusProducte as ArrayList<String>
-        }
-
-        adapter =
-            ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, arrayTipusProducte)
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        spinner.adapter = adapter
-
-        spinner.onItemSelectedListener = this
-
-        binding.imgFotoCamera.setOnClickListener() {
-            obrirCamera()
-            binding.imgProducte.visibility = View.VISIBLE
-            binding.imgProducte.isGone = false
-
-        }
-
-        binding.imgFotoGaleria.setOnClickListener() {
-            obrirGaleria()
-            binding.imgProducte.visibility = View.VISIBLE
-            binding.imgProducte.isGone = false
-        }
-
+        //Fem que l'imatge del producte sigui "enabled" false
         binding.imgProducte.isEnabled = false
 
+        //Cridem a la funció setPreu
         setPreu()
 
+        //Cridem a la funció per guardar dades
+        guardadDades()
 
-        var num: Int
-        num = 0
-
-        binding.btnPAdministradorNouProducteGuardar.setOnClickListener {
-            pujarImatge(it)
-
-            when (tipusProducte) {
-                "Bocata" -> tipusProducte = "bocata"
-                "Beguda calenta" -> tipusProducte = "bCalenta"
-                "Beguda freda" -> tipusProducte = "bFreda"
-            }
-
-            if (!binding.editTextNumberDecimal2.text.toString().isEmpty()) {
-                preu = binding.editTextNumberDecimal2.text.toString().toDouble()
-            }
-
-            db.collection("productes").get().addOnSuccessListener { result ->
-                for (document in result) {
-                    if (!document.get("nomid").toString().equals(formatCorrecte())) {
-                        if (!document.id.equals(num.toString())) {
-                            db.collection("productes").document(num.toString()).set(
-                                hashMapOf(
-                                    "nom" to binding.editTextNomProducte.text.toString(),
-                                    "preu" to preu,
-                                    "tipus" to tipusProducte,
-                                    "visible" to true,
-                                    "nomid" to formatCorrecte(),
-                                    "img" to "productes/" + binding.editTextNomProducte.text.toString() + ".jpg"
-                                ) as Map<String, Any>
-                            )
-                            break
-
-                        } else {
-                            num++
-                        }
-                    }
-                }
-            }
-            Toast.makeText(
-                this.requireContext(),
-                "S'ha afegit el producte amb éxit",
-                Toast.LENGTH_SHORT
-            ).show()
-            num = 0
-        }
         return binding.root
     }
 
+    //Fem que la variable tipusProducte sigui el item seleccionat.
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         tipusProducte = parent.getItemAtPosition(pos).toString()
     }
 
+    //Si no es selecciona res sorirá un alert dient que s'ha de seleccionar una opció
     override fun onNothingSelected(parent: AdapterView<*>) {
         showAlert("Has de seleccionar un tipus de prodcute")
     }
 
+    //Fem que surti un alert amb el text que li pasem per parametres
     private fun showAlert(message: String) {
         val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
         builder.setTitle("¡¡¡Error!!!")
@@ -174,6 +111,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         dialog.show()
     }
 
+    //Aquesta fá que l'imatge seleccionada en la galeria sigui la foto del producte
     private val startForActivityGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -184,12 +122,14 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         }
     }
 
+    //Funció que fa que sobri la galeria
     private fun obrirGaleria() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startForActivityGallery.launch(intent)
     }
 
+    //Funció que fa que s'obri la camera
     private fun obrirCamera() {
         lifecycleScope.launchWhenStarted {
             getTmpFileUri().let { uri ->
@@ -200,6 +140,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         }
     }
 
+    //Amb aquesta funció agafarem l'Uri de l'imatge
     private fun getTmpFileUri(): Uri {
         val tmpFile =
             File.createTempFile("tmp_image_file", ".png", requireContext().cacheDir).apply {
@@ -214,22 +155,27 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         )
     }
 
+    //Funció per setejar el preu
     fun setPreu() {
+        //Escoltarem el radioFroup on son els diferents radio buttons per seleccionar el preu.
         binding.radioGroup
             .setOnCheckedChangeListener { group, checkedId ->
                 when (checkedId) {
+                    //Fem que si el radio de 1 euro está checked; el preu será 1, el camp de text: será invisible, no hi haura text i desapareixerá
                     R.id.radio1Euro -> {
                         preu = 1.0
                         binding.editTextNumberDecimal2.visibility = View.INVISIBLE
                         binding.editTextNumberDecimal2.setText("")
                         binding.editTextNumberDecimal2.isGone = true
                     }
+                    //Fem que si el radio de 2 euros está checked; el preu será 1, el camp de text: será invisible, no hi haura text i desapareixerá
                     R.id.radio2Euro -> {
                         preu = 2.0
                         binding.editTextNumberDecimal2.visibility = View.INVISIBLE
                         binding.editTextNumberDecimal2.setText("")
                         binding.editTextNumberDecimal2.isGone = true
                     }
+                    //Fem que si el radio d'un altre preu está checked; el preu será el que s'introdueixi en el camp de text, será invisible i apareixerá
                     R.id.radioAltrePreu -> {
                         binding.editTextNumberDecimal2.visibility = View.VISIBLE
                         binding.editTextNumberDecimal2.isGone = false
@@ -238,11 +184,15 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             }
     }
 
+    //Aquesta funció fa que el format del nom del producte sigui correcte
     private fun formatCorrecte(): String {
+        //Agafem el text del nom del producte i ho guardem a la variable string
         var string = binding.editTextNomProducte.text.toString()
 
+        //Fem que string estigui en minuscules
         string = string.lowercase(Locale.getDefault())
 
+        //Remplaçem l'string per adaptarlo a com el volem guardar
         string = string.replace(
             " de ",
             ""
@@ -263,41 +213,15 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             ""
         )
 
+        //Fem un trm a l'string
         string = string.trim()
 
+        //Retornem l'string
         return string
     }
 
-    /*private fun sobreescriure(): Boolean {
-
-        val alertDialog = AlertDialog.Builder(this.requireContext()).create()
-        alertDialog.setTitle("ATENCIÓ! PRODUCTE DUPLICAT!")
-        alertDialog.setMessage("Ja hi ha un producte amb aquest nom.\r Vols sobreescriure els canvis?")
-
-        alertDialog.setButton(
-            AlertDialog.BUTTON_POSITIVE, "Si"
-        ) { dialog, which -> accepta = true }
-
-        alertDialog.setButton(
-            AlertDialog.BUTTON_NEGATIVE, "No"
-        ) { dialog, which -> accepta = false }
-        alertDialog.show()
-
-        val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-        val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-
-        val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
-        layoutParams.weight = 10f
-        btnPositive.layoutParams = layoutParams
-        btnNegative.layoutParams = layoutParams
-
-        return accepta
-    }*/
-
+    // Pujar imatge al Cloud Storage de Firebase
     fun pujarImatge(view: View) {
-        // pujar imatge al Cloud Storage de Firebase
-        // https://firebase.google.com/docs/storage/android/upload-files?hl=es
-
         // Creem una referència amb el path i el nom de la imatge per pujar la imatge
         val pathReference =
             storageRef.child("productes/" + binding.editTextNomProducte.text.toString() + ".png")
@@ -309,7 +233,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             Bitmap.CompressFormat.JPEG,
             100,
             baos
-        ) // convertim el bitmap en outputstream
+        ) // Convertim el bitmap en outputstream
         val data = baos.toByteArray() //convertim el outputstream en array de bytes.
 
         val uploadTask = pathReference.putBytes(data)
@@ -320,5 +244,109 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
         }.addOnSuccessListener {
             Snackbar.make(view, "Exit al pujar la foto", Snackbar.LENGTH_LONG).show()
         }
+    }
+
+    private fun obrirCamGaleria(){
+        //Fem que al clickar al botó de la camera:
+        //  - Cridem a la funció obrir camera
+        //  - Fem que l'imatge del producte sigui visible
+        //  - Fem que l'imatge del producte sigui "gone" false, si fem que sigui "gone" true l'imatge no ocupará espai.
+        binding.imgFotoCamera.setOnClickListener() {
+            obrirCamera()
+            binding.imgProducte.visibility = View.VISIBLE
+            binding.imgProducte.isGone = false
+
+        }
+
+        //Fem que al clickar al botó de la galeria:
+        //  - Cridem a la funció obrir camera
+        //  - Fem que l'imatge del producte sigui visible
+        //  - Fem que l'imatge del producte sigui "gone" false, si fem que sigui "gone" true l'imatge no ocupará espai.
+        binding.imgFotoGaleria.setOnClickListener() {
+            obrirGaleria()
+            binding.imgProducte.visibility = View.VISIBLE
+            binding.imgProducte.isGone = false
+        }
+
+    }
+
+    private fun guardadDades(){
+        //Definim i inicialitzem la funció num.
+        var num: Int
+        num = 0
+
+        //Escoltem al botó per guardar.
+        binding.btnPAdministradorNouProducteGuardar.setOnClickListener {
+            //Cridem a la funció pujarImatge per pujar l'imatge de perfil del usuari.
+            pujarImatge(it)
+
+            //Fem que si el editText on irá l'opció de un altre pres no es buit, el preu será el que hi ha en el camp de text.
+            if (!binding.editTextNumberDecimal2.text.toString().isEmpty()) {
+                preu = binding.editTextNumberDecimal2.text.toString().toDouble()
+            }
+
+            //Fem que llegeixi la col·lecció de productes
+            db.collection("productes").get().addOnSuccessListener { result ->
+                //Per cada document sumará un a la variable num.
+                for (document in result) {
+                    num++
+                }
+                //Fem que a la col·lecció productes crei un document amb:
+                //  - Un nom que será el camp de text del nom del producte
+                //  - Un preu que será la variable preu
+                //  - Un tipus que será la variable tipusProducte
+                //  - Una atribut visible que s'inicicialitzará a true
+                //  - Un nomid que será el resultant de cridar a la funció formatCorrecte()
+                //  - Un img que será un string per saber on es guarda l'imatge del producte
+                //  - Un idProducte que será la variable num
+                db.collection("productes").document().set(
+                    hashMapOf(
+                        "nom" to binding.editTextNomProducte.text.toString(),
+                        "preu" to preu,
+                        "tipus" to tipusProducte,
+                        "visible" to true,
+                        "nomid" to formatCorrecte(),
+                        "img" to "productes/" + binding.editTextNomProducte.text.toString() + ".jpg",
+                        "idProducte" to num
+                    ) as Map<String, Any>
+                )
+            }
+
+            //Cuan s'acabi de crear el document sortirá un toast indicant que el producte s'ha afegit amb éxit
+            Toast.makeText(
+                this.requireContext(),
+                "S'ha afegit el producte amb éxit",
+                Toast.LENGTH_SHORT
+            ).show()
+            //Tormarem a inicialitzar la variable num a 0 per si es vol afegir un altre producte
+            num = 0
+        }
+    }
+
+    private fun carregarSpinTipusProducte(){
+        //Declarem i inicialitzem l'spinner
+        val spinner: Spinner = binding.spinTipusProducte
+
+        val context = this.requireContext()
+        //Declarem i inicialitzem la variable args per agafar les dades que pasam per parametres
+        val args = PantallaAdministradorNouProducteArgs.fromBundle(requireArguments())
+
+        //Fem que si l'array de tipus de productes es buit, li pasarem els args en forma de ArrayList
+        if (arrayTipusProducte.isEmpty()) {
+            arrayTipusProducte = args.arrayTipusProducte as ArrayList<String>
+        }
+
+        //Inicialitzem l'adapter amb l'array de tispus de productes
+        adapter =
+            ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, arrayTipusProducte)
+
+        //Fem que l'adapter sigui un sigui un item deplegable
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        //Fem que l'adapter del spiner
+        spinner.adapter = adapter
+
+        //Fem que l'item que es seleccioni en l'spinner sigui en aquest context
+        spinner.onItemSelectedListener = this
     }
 }

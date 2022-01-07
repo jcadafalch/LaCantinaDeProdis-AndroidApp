@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityAdministradorBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class AdministradorActivity : AppCompatActivity() {
 
@@ -46,13 +47,13 @@ class AdministradorActivity : AppCompatActivity() {
             R.id.profileBttn -> {
                 val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
                     putExtra("dni", dni)
-
-
                 }
                 startActivity(intent)
                 true
             }
             R.id.logOutBttn -> {
+                FirebaseAuth.getInstance().signOut()
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
