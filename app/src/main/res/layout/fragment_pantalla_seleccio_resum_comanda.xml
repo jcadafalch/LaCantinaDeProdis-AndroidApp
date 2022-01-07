@@ -38,10 +38,11 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/txtPrincipal" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rycrVwSeleccioResumComanda"
+            <androidx.gridlayout.widget.GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="550dp" />
+                android:layout_height="550dp">
+
+            </androidx.gridlayout.widget.GridLayout>
 
             <ImageButton
                 android:id="@+id/imageButton"
