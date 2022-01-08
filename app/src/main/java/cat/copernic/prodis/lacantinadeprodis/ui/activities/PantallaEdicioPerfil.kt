@@ -101,11 +101,11 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         var error = ""
         var bool = true
         if (nom.isEmpty()) {
-            error += "Has d'introduïr el nom\r"
+            error += getString(R.string.has_d_introduir_el_nom)+"\r"
             bool = false
         }
         if (cognom.isEmpty()) {
-            error += "Has d'introduïr el cognom\r"
+            error += getString(R.string.has_d_introduir_el_cognom)+"\r"
             bool = false
         }
         if (error != "") {
@@ -128,9 +128,9 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
     //Aquesta funció crea un alert amb els errors de la funció dataValids
     private fun showAlert(message: String) {
         val builder = androidx.appcompat.app.AlertDialog.Builder(this)
-        builder.setTitle("¡¡¡Error!!!")
+        builder.setTitle(getString(R.string.error))
         builder.setMessage(message)
-        builder.setPositiveButton("Aceptar", null)
+        builder.setPositiveButton(getString(R.string.acceptar), null)
         val dialog: androidx.appcompat.app.AlertDialog = builder.create()
         dialog.show()
     }
@@ -182,17 +182,17 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
     fun triaCamGaleria() {
 
         val alertDialog = AlertDialog.Builder(this).create()
-        alertDialog.setTitle("D'on vols treure la foto?")
-        alertDialog.setMessage("Selecciona un:")
+        alertDialog.setTitle(getString(R.string.d_on_vols_treure_la_foto))
+        alertDialog.setMessage(getString(R.string.selecciona_un))
 
         //Indiquem al botó positiu que será el que obrirá la galeria
         alertDialog.setButton(
-            AlertDialog.BUTTON_POSITIVE, "GALERIA"
+            AlertDialog.BUTTON_POSITIVE, getString(R.string.galeria)
         ) { dialog, which -> obrirGaleria() }
 
         //Indiquem al botó negatiu que será el que obrirá la càmera
         alertDialog.setButton(
-            AlertDialog.BUTTON_NEGATIVE, "CÀMERA"
+            AlertDialog.BUTTON_NEGATIVE, getString(R.string.camera)
         ) { dialog, which -> obrirCamera() }
         alertDialog.show()
 
@@ -226,11 +226,11 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
         val uploadTask = pathReference.putBytes(data)
         uploadTask.addOnFailureListener {
-            Snackbar.make(view, "Error al pujar la foto", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.error_al_pujar), Snackbar.LENGTH_LONG).show()
             it.printStackTrace()
 
         }.addOnSuccessListener {
-            Snackbar.make(view, "Exit al pujar la foto", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.exit_al_pujar), Snackbar.LENGTH_LONG).show()
         }
     }
 
@@ -286,7 +286,7 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
                             }
                         }
                     //Quan acaba d'actualizar les dades surt un toast indicant que els canvis s'han fet amb èxit
-                    Toast.makeText(this, "Els canvis s'han fet amb èxit", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.cambis_amb_exit), Toast.LENGTH_SHORT).show()
                 }
             }
         }

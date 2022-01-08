@@ -122,5 +122,14 @@
     <string name="comanda_1">Comanda 1</string>
     <string name="total">TOTAL:</string>
     <string name="idioma_de_l_app">Idioma de l\'app</string>
-
+    <string name="error">¡¡¡Error!!!</string>
+    <string name="has_d_introduir_el_nom">Has d\'introduïr el nom</string>
+    <string name="has_d_introduir_el_cognom">Has d\'introduïr el cognom</string>
+    <string name="d_on_vols_treure_la_foto">D\'on vols treure la foto?</string>
+    <string name="selecciona_un">Selecciona un:</string>
+    <string name="camera">CÀMERA</string>
+    <string name="galeria">GALERIA</string>
+    <string name="error_al_pujar">Error al pujar la foto</string>
+    <string name="exit_al_pujar">Exit al pujar la foto</string>
+    <string name="cambis_amb_exit">Els canvis s\'han fet amb èxit</string>
 </resources>
