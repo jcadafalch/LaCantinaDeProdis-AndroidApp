@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.prodis.lacantinadeprodis.R
@@ -29,14 +30,15 @@ class PantallaSeleccioBegudaCalenta : Fragment() {
     private lateinit var bcalentaAdapter: bcalenta_adapter
     private val db = FirebaseFirestore.getInstance()
 
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val binding: FragmentPantallaSeleccioBegudaCalentaBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_beguda_calenta, container, false
         )
         binding.backButton.setOnClickListener{
-            view?.findNavController()?.navigate(PantallaSeleccioBegudaCalentaDirections.
-            actionPantallaSeleccioBegudaCalentaToPantallaSeleccioTipusProducte())
+            findNavController().popBackStack()
         }
 
         recyclerView = binding.rcyclrVwBcalenta
@@ -44,6 +46,7 @@ class PantallaSeleccioBegudaCalenta : Fragment() {
         recyclerView.setHasFixedSize(true)
 
         productesArrayList = arrayListOf()
+
 
         bcalentaAdapter = bcalenta_adapter(productesArrayList)
 

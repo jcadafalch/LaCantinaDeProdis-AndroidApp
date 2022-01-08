@@ -7,14 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioAtributsBocataBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class PantallaSeleccioAtributsBocata : Fragment() {
 
     var senseTomaquet : Boolean = false
 
-    var emportar : Boolean = false
+    var perEemportar : Boolean = false
+
+    private val db = FirebaseFirestore.getInstance()
+
+    lateinit var idProducte: String
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,24 +32,50 @@ class PantallaSeleccioAtributsBocata : Fragment() {
             inflater, R.layout.fragment_pantalla_seleccio_atributs_bocata, container, false
         )
 
+        val args = PantallaSeleccioAtributsBegudaArgs.fromBundle(requireArguments())
+        idProducte = args.idProductes
+
+        binding.btnTornaEnrerre.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         binding.btnConfirmar.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(R.id.action_pantalla_seleccio_atributs_bocata_to_pantalla_seleccio_tipus_producte)
 
-            /*setResultListener("requestKey") { key, bundle ->
-                // We use a String here, but any type that can be put in a Bundle is supported
-                val result = bundle.getString("bundleKey")
-                // Do something with the result...
-            }*/
 
-            if(binding.checkBoxSenseTomaquet.isChecked){
-                senseTomaquet = true
+
+            senseTomaquet = !binding.checkBoxSenseTomaquet.isChecked
+
+            perEemportar = binding.checkBoxPerEmportar.isChecked
+
+            val currentUser =
+                FirebaseAuth.getInstance().currentUser
+
+            var dni: String
+
+            db.collection("users").get().addOnSuccessListener { result ->
+                for (document in result) {
+                    if (currentUser?.email.toString() == document.get("email").toString()) {
+                        dni = document.id
+                        db.collection("comandes").get().addOnSuccessListener { result ->
+                            for (document in result) {
+                                if (dni.equals(document.get("user"))) {
+                                    db.collection("comandes").document(document.id)
+                                        .collection("productes").document().set(
+                                            hashMapOf(
+                                                "idProducte" to idProducte,
+                                                "emportar" to perEemportar,
+                                                "tomaquet" to senseTomaquet
+                                            ) as Map<String, Any>
+                                        )
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
-            if(binding.checkBoxSenseTomaquet.isChecked){
-                senseTomaquet = true
-            }
         }
         return binding.root
     }

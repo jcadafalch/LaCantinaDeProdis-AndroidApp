@@ -113,6 +113,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
             putExtra("usertype", username)
             putExtra("dni", dni)
         }
+        //utils().idComanda = "N"
         startActivity(intent)
     }
 

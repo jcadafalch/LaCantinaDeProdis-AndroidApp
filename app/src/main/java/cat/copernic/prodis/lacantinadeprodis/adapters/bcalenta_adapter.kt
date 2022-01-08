@@ -33,11 +33,11 @@ class bcalenta_adapter(private val productesList: ArrayList<dtclss_productes>): 
         }
 
         viewHolder.itemNom.setOnClickListener { view ->
-            view.findNavController().navigate(PantallaSeleccioBegudaCalentaDirections.actionPantallaSeleccioBegudaCalentaToPantallaSeleccioAtributsBeguda())
+            view.findNavController().navigate(PantallaSeleccioBegudaCalentaDirections.actionPantallaSeleccioBegudaCalentaToPantallaSeleccioAtributsBeguda(nomProducte.idProducte.toString()))
         }
 
         viewHolder.imageView.setOnClickListener { view ->
-            view.findNavController().navigate(PantallaSeleccioBegudaCalentaDirections.actionPantallaSeleccioBegudaCalentaToPantallaSeleccioAtributsBeguda())
+            view.findNavController().navigate(PantallaSeleccioBegudaCalentaDirections.actionPantallaSeleccioBegudaCalentaToPantallaSeleccioAtributsBeguda(nomProducte.idProducte.toString()))
         }
     }
 

@@ -7,10 +7,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.*
 
-lateinit var dni: String
 
 
 class PantallaEdicioPerfilViewModel() : ViewModel() {
+    lateinit var dni: String
 
     private val _nom = MutableLiveData<String>()
     val nom: LiveData<String>

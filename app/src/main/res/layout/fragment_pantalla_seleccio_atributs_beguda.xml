@@ -3,148 +3,151 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorFons" >
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imgPerEmportar"
-            android:layout_width="141dp"
-            android:layout_height="124dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton4"
-            tools:srcCompat="@mipmap/per_emportar_foreground" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorFons">
 
-        <ImageView
-            android:id="@+id/imgSenseSucre"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imgSucreMore"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton2"
-            tools:srcCompat="@tools:sample/avatars" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imgSacarina"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton3"
-            tools:srcCompat="@tools:sample/avatars" />
+                    <RadioGroup
+                        android:id="@+id/rarioGroupAtributs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
 
-        <ImageView
-            android:id="@+id/imgSucreBlanc"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton"
-            tools:srcCompat="@tools:sample/avatars" />
+                        <ImageView
+                            android:id="@+id/imgSenseSucre"
+                            android:layout_width="140dp"
+                            android:layout_height="140dp"
+                            android:visibility="visible"
+                            app:srcCompat="@mipmap/sucre_foreground" />
 
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="141dp"
-            android:layout_height="48dp"
-            android:text="@string/sense_sucre"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgSenseSucre" />
+                        <RadioButton
+                            android:id="@+id/radioSenseSucre"
+                            android:layout_width="141dp"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="-20dp"
+                            android:text="@string/sense_sucre" />
 
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="150dp"
-            android:layout_height="48dp"
-            android:text="@string/sucre_blanc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.508"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgSucreBlanc" />
+                        <ImageView
+                            android:id="@+id/imgSucreBlanc"
+                            android:layout_width="140dp"
+                            android:layout_height="140dp"
+                            app:srcCompat="@mipmap/sucre_foreground" />
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="143dp"
-            android:layout_height="48dp"
-            android:text="@string/sucre_more"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgSucreMore" />
+                        <RadioButton
+                            android:id="@+id/radioSucreBlanc"
+                            android:layout_width="150dp"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="-20dp"
+                            android:text="@string/sucre_blanc" />
 
-        <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="143dp"
-            android:layout_height="48dp"
-            android:text="@string/sacarina"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgSacarina" />
+                        <ImageView
+                            android:id="@+id/imgSacarina"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:srcCompat="@mipmap/sacarina_foreground" />
 
-        <RadioButton
-            android:id="@+id/radioButton5"
-            android:layout_width="143dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="-30dp"
-            android:text="@string/per_emportar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgPerEmportar" />
+                        <RadioButton
+                            android:id="@+id/radioSacarina"
+                            android:layout_width="143dp"
+                            android:layout_height="48dp"
+                            android:text="@string/sacarina" />
 
-        <ImageButton
-            android:id="@+id/btnTornaEnrerre"
-            android:layout_width="96dp"
-            android:layout_height="105dp"
-            android:layout_marginEnd="150dp"
-            android:layout_marginBottom="32dp"
-            android:background="@color/colorFons"
-            android:contentDescription="@string/descripcio_img_fletxa"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnConfirmar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_fletxa_enrerre"
-            tools:ignore="SpeakableTextPresentCheck" />
+                        <ImageView
+                            android:id="@+id/imgSucreMore"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:srcCompat="@mipmap/sucre_more_foreground" />
 
-        <ImageButton
-            android:id="@+id/btnConfirmar"
-            android:layout_width="122dp"
-            android:layout_height="122dp"
-            android:layout_marginStart="200dp"
-            android:layout_marginBottom="32dp"
-            android:background="@color/colorFons"
-            android:contentDescription="@string/descripcio_img_tick"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
-            tools:ignore="SpeakableTextPresentCheck" />
+                        <RadioButton
+                            android:id="@+id/radioSucreMore"
+                            android:layout_width="143dp"
+                            android:layout_height="48dp"
+                            android:text="@string/sucre_more" />
 
-        <TextView
-            android:id="@+id/editTxtCognom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/torna_enrere"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@+id/btnTornaEnrerre"
-            app:layout_constraintEnd_toEndOf="@+id/btnTornaEnrerre"
-            app:layout_constraintStart_toStartOf="@+id/btnTornaEnrerre"
-            app:layout_constraintTop_toTopOf="@+id/btnTornaEnrerre" />
+                        <ImageView
+                            android:id="@+id/imgPerEmportar"
+                            android:layout_width="141dp"
+                            android:layout_height="124dp"
+                            android:layout_marginTop="-25dp"
+                            app:srcCompat="@mipmap/per_emportar_foreground" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <CheckBox
+                            android:id="@+id/checkPerEmportar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/per_emportar" />
+                    </RadioGroup>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageButton
+                                android:id="@+id/btnConfirmar"
+                                android:layout_width="122dp"
+                                android:layout_height="122dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@color/colorFons"
+                                android:contentDescription="@string/descripcio_img_tick"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                                tools:ignore="SpeakableTextPresentCheck" />
+
+                            <ImageButton
+                                android:id="@+id/btnTornaEnrerre"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@color/colorFons"
+                                android:contentDescription="@string/descripcio_img_fletxa"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:srcCompat="@drawable/ic_fletxa_enrerre"
+                                tools:ignore="SpeakableTextPresentCheck" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="113dp"
+                android:layout_height="123dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_block_24" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

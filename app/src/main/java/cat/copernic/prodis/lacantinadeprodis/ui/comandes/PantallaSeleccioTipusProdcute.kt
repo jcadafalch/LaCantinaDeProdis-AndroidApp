@@ -1,10 +1,12 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.comandes
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,9 +15,11 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.adapters.PantallaSeleccioTipusProducte_Adapter
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioTipusProducteBinding
 import cat.copernic.prodis.lacantinadeprodis.model.dataclass
-import cat.copernic.prodis.lacantinadeprodis.ui.activities.ComandesActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
+import java.sql.Timestamp
+import java.time.Instant
 import kotlin.collections.ArrayList
 
 class PantallaSeleccioTipusProdcute : Fragment() {
@@ -24,9 +28,12 @@ class PantallaSeleccioTipusProdcute : Fragment() {
     private lateinit var producteList: ArrayList<dataclass>
     private lateinit var Padaper: PantallaSeleccioTipusProducte_Adapter
     private val db = FirebaseFirestore.getInstance()
+    private val currentUser = FirebaseAuth.getInstance().currentUser
     private var arrUser = java.util.ArrayList<String>()
-    private val strg = FirebaseStorage.getInstance().getReference()
+    private lateinit var dni: String
+    private lateinit var docId: String
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,7 +41,32 @@ class PantallaSeleccioTipusProdcute : Fragment() {
         val binding: FragmentPantallaSeleccioTipusProducteBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_tipus_producte, container, false
         )
-                recyclerView = binding.recyclerViewSeleccioProducte
+        db.collection("users").get().addOnSuccessListener { result ->
+            for (document in result) {
+                if (currentUser?.email.toString() == document.get("email").toString()) {
+                    dni = document.id
+                    var exists = false
+                    db.collection("comandes").get().addOnSuccessListener { result ->
+                        for (document in result) {
+                            if (document.get("comandaComencada").toString() == "true" && document.get("user").toString() == dni) {
+                                exists = true
+                                docId = document.id
+
+                            }
+                        }
+                        println("EXISTS == $exists")
+                        if (!exists){
+                            createComanda()
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+
+        recyclerView = binding.recyclerViewSeleccioProducte
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.setHasFixedSize(true)
 
@@ -42,41 +74,106 @@ class PantallaSeleccioTipusProdcute : Fragment() {
 
         db.collection("productes").document("categories")
             .get().addOnSuccessListener { document ->
-            val stBocata = document.get("bocata").toString()
-            val stCalenta = document.get("bCalenta").toString()
-            val stFreda = document.get("bFreda").toString()
-            val imBocata = "Bocata de pernil dolç amb formatge.png"
-            val imCalenta = "Café.png"
-            val imFreda = "7up.png"
+                val stBocata = document.get("bocata").toString()
+                val stCalenta = document.get("bCalenta").toString()
+                val stFreda = document.get("bFreda").toString()
+                val imBocata = "Bocata de pernil dolç amb formatge.png"
+                val imCalenta = "Café.png"
+                val imFreda = "7up.png"
 
-            producteList.add(dataclass(stBocata, imBocata))
-            producteList.add(dataclass(stFreda,imFreda))
-            producteList.add(dataclass(stCalenta, imCalenta))
+                producteList.add(dataclass(stBocata, imBocata))
+                producteList.add(dataclass(stFreda, imFreda))
+                producteList.add(dataclass(stCalenta, imCalenta))
 
-            Padaper = PantallaSeleccioTipusProducte_Adapter(
-                producteList
-            )
-            recyclerView.adapter = Padaper
-        }
+                Padaper = PantallaSeleccioTipusProducte_Adapter(
+                    producteList
+                )
+                recyclerView.adapter = Padaper
+            }
+
         binding.btnConfirmar.setOnClickListener {
-            db.collection("users").get().addOnSuccessListener { result ->
-                for (document in result) {
-                    if (document.id != "usertypes") {
-                        val user =
-                            document.get("username").toString() + " " + document.get("usersurname")
-                                .toString()
-                        arrUser.add(user)
+            db.collection("users").document(dni).get().addOnSuccessListener { document ->
+                if (document.get("usertype").toString() == "cambrer"){
+                    db.collection("users").get().addOnSuccessListener { result ->
+                        for (document in result) {
+                            if (document.id != "usertypes") {
+                                val user =
+                                    document.get("username")
+                                        .toString() + " " + document.get("usersurname")
+                                        .toString()
+                                arrUser.add(user)
+                            }
+                        }
+                        arrUser.add(getString(R.string.extern))
+                        view?.findNavController()?.navigate(
+                            PantallaSeleccioTipusProdcuteDirections.actionPantallaSeleccioTipusProducteToPantallaSeleccioNomClientComanda(
+                                arrUser, docId, dni
+                            )
+                        )
+                    }
+                }else{
+                    db.collection("comandes").get().addOnSuccessListener { result ->
+                        for (dc in result) {
+                            if (dc.get("comandaComencada").toString() == "true" && dc.get("user").toString() == dni) {
+                                val dcId = document.id
+                                val username = document.get("username").toString() + " " + document.get("usersurname").toString()
+
+                                db.collection("comandas").document(docId).collection("productes").get().addOnSuccessListener {
+                                    for (document in it){
+                                        var preu = document.get("preu")
+                                        println("Preu: "+preu)
+                                    }
+                                }
+
+                                db.collection("comandes").document(docId).update(
+                                    hashMapOf(
+                                        "comandaComencada" to false,
+                                        "visible" to true,
+                                        "user" to username,
+                                    ) as Map<String, Any>
+                                )
+                                break
+                            }
+                        }
                     }
                 }
-                arrUser.add(getString(R.string.extern))
-                view?.findNavController()?.navigate(
-                    PantallaSeleccioTipusProdcuteDirections .actionPantallaSeleccioTipusProducteToPantallaSeleccioNomClientComanda(
-                        arrUser
-                    )
-                )
             }
         }
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createComanda() {
+
+        var dni: String
+
+        db.collection("users").get().addOnSuccessListener { result ->
+            for (document in result) {
+                if (currentUser?.email.toString() == document.get("email").toString()) {
+                    dni = document.id
+
+                    var num: Int = 0
+
+                    db.collection("comandes").get().addOnSuccessListener { result ->
+                        for (document in result) {
+                            num++
+                        }
+                        num++
+                        db.collection("comandes").document().set(
+                            hashMapOf(
+                                "comandaComencada" to true,
+                                "comandaId" to num.toString(),
+                                "comandaPagada" to false,
+                                "date" to Timestamp.from(Instant.now()),
+                                "preparat" to false,
+                                "preuTotal" to 0,
+                                "user" to dni,
+                                "visible" to false
+                            ) as Map<String, Any>
+                        )
+                    }
+                }
+            }
+        }
+    }
 }
