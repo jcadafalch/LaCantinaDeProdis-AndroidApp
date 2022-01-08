@@ -79,7 +79,7 @@
             android:layout_marginTop="100dp"
             android:text="@string/nom_de_l_usuari"
             android:textColor="#00796B"
-            android:textSize="@dimen/txtGran"
+            android:textSize="@dimen/txtMig"
             app:layout_constraintStart_toStartOf="@+id/dtTxtPAdministradorModificarUsuari_PersonName"
             app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorModificarUsuari_modificaUsuari" />
 
