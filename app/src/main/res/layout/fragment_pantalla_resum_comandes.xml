@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:text="@string/nom_de_l_usuari"
                 android:textColor="@color/black"
-                android:textSize="@dimen/txtPetit" />
+                android:textSize="@dimen/txtTitol" />
 
             <TextView
                 android:id="@+id/txtComanda"
