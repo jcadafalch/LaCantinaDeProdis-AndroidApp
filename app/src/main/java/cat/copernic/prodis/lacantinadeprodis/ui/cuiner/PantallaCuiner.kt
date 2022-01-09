@@ -61,7 +61,7 @@ class PantallaCuiner : Fragment() {
 
         cuinerAdapter = this.context?.let { cuiner_adapter(comandesList, it) }!!
 
-        recyclerView.adapter = cuinerAdapter
+        //
 
         eventChangeListener()
 
@@ -82,10 +82,11 @@ class PantallaCuiner : Fragment() {
                     for (document in result) {
                         if(document.get("visible").toString() == "true"){
                             comandesList.add(document.toObject(dtclss_cuiner::class.java))
-                            cuinerAdapter.notifyDataSetChanged()
+
                         }
                     }
-
+                    recyclerView.adapter = cuinerAdapter
+                    cuinerAdapter.notifyDataSetChanged()
                 }
 
             }

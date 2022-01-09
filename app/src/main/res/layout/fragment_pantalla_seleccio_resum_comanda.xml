@@ -26,7 +26,7 @@
                 android:gravity="center"
                 android:text="@string/resum_comanda"
                 android:textColor="@color/black"
-                android:textSize="@dimen/txtPetit" />
+                android:textSize="@dimen/txtTitol" />
 
             <TextView
                 android:id="@+id/txtSeccionaComanda"
@@ -38,11 +38,10 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/txtSubTitol" />
 
-            <androidx.gridlayout.widget.GridLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcyclrVwSeleccioComandes"
                 android:layout_width="match_parent"
-                android:layout_height="550dp">
-
-            </androidx.gridlayout.widget.GridLayout>
+                android:layout_height="550dp" />
 
             <ImageButton
                 android:id="@+id/imageButton"

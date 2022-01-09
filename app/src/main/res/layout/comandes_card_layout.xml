@@ -37,7 +37,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/itemNom"
+                android:id="@+id/itemProducte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="75dp"
@@ -56,7 +56,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:contentDescription="@string/minimitzar"
-                card_view:srcCompat="@drawable/ic_baseline_minimize_24" />
+                card_view:srcCompat="@drawable/ic_baseline_minimize_24"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

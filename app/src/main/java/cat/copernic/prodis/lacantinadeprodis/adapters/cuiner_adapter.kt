@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.model.dtclss_cuiner
 import cat.copernic.prodis.lacantinadeprodis.model.dtclss_cuiner_producte
-import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
 
 
 class cuiner_adapter(private val comandesList: ArrayList<dtclss_cuiner>, val cntxt: Context) :
@@ -85,7 +82,7 @@ class cuiner_adapter(private val comandesList: ArrayList<dtclss_cuiner>, val cnt
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemRcyclVw: RecyclerView = itemView.findViewById(R.id.rcyclrVwCuinerComanda)
-        val itemNom: TextView = itemView.findViewById(R.id.itemNom)
+        val itemNom: TextView = itemView.findViewById(R.id.itemProducte)
         val itemLinLay: LinearLayout = itemView.findViewById(R.id.LinLayVer)
         val itemButtonIdComanda: Button = itemView.findViewById(R.id.bttnIdComanda)
         val itemButtonMinimitzar: ImageView = itemView.findViewById(R.id.imgVwMinimitzar)
