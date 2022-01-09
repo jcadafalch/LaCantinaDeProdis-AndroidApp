@@ -76,12 +76,10 @@
     <string name="oblidat_contrsenya"><u>Has oblidat la contrasenya?</u></string>
     <string name="tamany_lletra">Tamany de la lletra</string>
     <string name="cambiar_foto">Cambiar foto</string>
-    <string name="tamany_gran">Aa</string>
     <string name="posa_correu">Posa aqui el teu correu electrònic</string>
     <string name="imatge_del_usuari">Imatge del usuari</string>
     <string name="posa_aqui_el_teu_nom">Posa aqui el teu nom</string>
     <string name="posa_aqui_el_teu_cognom">Posa aqui el teu cognom</string>
-    <string name="tamany_petit">Aa</string>
     <string name="cambiar_contrasenya">Cambiar contrasenya</string>
     <string name="posa_aqui_la_contrasenya">Posa aqui la teva nova contrasenya (opcional)</string>
     <string-array name="tipus_producte">
@@ -130,10 +128,12 @@
     <string name="galeria">GALERIA</string>
     <string name="error_al_pujar">Error al pujar la foto</string>
     <string name="exit_al_pujar">Exit al pujar la foto</string>
-    <string name="cambis_amb_exit">Els canvis s\'han fet amb èxit</string>
-    <string name="app_channel">app_channel</string>
+    <string name="canvis_amb_exit">Els canvis s\'han fet amb èxit</string>
+    <string name="channel_id">cat.copernic.prodis.lacantinadeprodis.ui.activities</string>
     <string name="noti">Notificació</string>
     <string name="channel_name">app</string>
     <string name="selecciona_tipus_producte">Has de seleccionar un tipus de prodcute</string>
     <string name="afegit_producte_exit">S\'ha afegit el producte amb éxit</string>
+    <string name="enhorabona_canvis">Enhorabona, els canvis del usuari s\'han realitzat amb èxit</string>
+    <string name="descripcio_notificacio">Notificació per indicar que s\'han fet els canvis del perfil del usuari</string>
 </resources>

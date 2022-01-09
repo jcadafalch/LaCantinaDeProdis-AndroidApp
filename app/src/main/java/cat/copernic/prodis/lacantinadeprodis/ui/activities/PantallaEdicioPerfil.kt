@@ -36,7 +36,7 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
 import java.io.File
-
+import androidx.fragment.app.FragmentActivity
 
 class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
@@ -58,10 +58,8 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
     private val NOTIFICATION_ID = 0
 
-    private lateinit var notificationManager: NotificationManager
     private lateinit var notificationChannel: NotificationChannel
     private lateinit var build: Notification.Builder
-    private var description = getString(R.string.noti)
 
     lateinit var storageRef: StorageReference
 
@@ -105,9 +103,6 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         guardarDades()
 
 
-
-
-
     }
 
     //Aquesta funció fará que es comprovi si hi han dades en els camps indicats
@@ -115,11 +110,11 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         var error = ""
         var bool = true
         if (nom.isEmpty()) {
-            error += getString(R.string.has_d_introduir_el_nom)+"\r"
+            error += getString(R.string.has_d_introduir_el_nom) + "\r"
             bool = false
         }
         if (cognom.isEmpty()) {
-            error += getString(R.string.has_d_introduir_el_cognom)+"\r"
+            error += getString(R.string.has_d_introduir_el_cognom) + "\r"
             bool = false
         }
         if (error != "") {
@@ -300,61 +295,84 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
                             }
                         }
                     //Quan acaba d'actualizar les dades surt un toast indicant que els canvis s'han fet amb èxit
-                    Toast.makeText(this, getString(R.string.cambis_amb_exit), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.canvis_amb_exit), Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
 
-//             notificationManager = ContextCompat.getSystemService(
-//                this,
-//                NotificationManager::class.java
-//            ) as NotificationManager
+            //Cridem a la funció createChannel per crear un canal per poder enviar una notificació en el cas de que l'api sigui major a 26
+            createChannel(
+                //Agagem del fitxer de strings un id i un nom per el nostre canal
+                getString(R.string.channel_id),
+                getString(R.string.channel_name)
+            )
 
-//            notificationManager.sendNotification(
-//                this.getText(R.string.exit_al_pujar).toString(),
-//                this
-//            )
+            //Definim i inicialitzem una variable per pasarli el NotificationManager
+            val notificationManager = ContextCompat.getSystemService(
+                this,
+                NotificationManager::class.java
+            ) as NotificationManager
 
-//            createChannel(
-//                getString(R.string.app_channel),
-//                getString(R.string.channel_name)
-//            )
-
+            //Indiquem que notificationManager enviï una notificació amb un text que agafara del fitxer de strings i en aquest context
+            notificationManager.sendNotification(this.getString(R.string.enhorabona_canvis), this)
         }
     }
 
 
-    fun NotificationManager.sendNotification(messageBody: String, applicationContext: Context) {
+    //Funció per el Notifaction manager que tindrá per parametres el missatge de la notificació i el context de l'app
+    private fun NotificationManager.sendNotification(messageBody: String, applicationContext: Context) {
 
+        //Builder per crear la notificació més tard
         val builder = NotificationCompat.Builder(
             applicationContext,
-            applicationContext.getString(R.string.app_channel)
+            applicationContext.getString(R.string.channel_id)
         )
-            .setSmallIcon(R.drawable.bander_espanyola_background)
-            .setContentTitle(applicationContext
-                .getString(R.string.cambis_amb_exit))
+            //Indiquem quin será l'icona que sortirá en la notificació
+            .setSmallIcon(R.drawable.logo_foreground)
+            //Indiquem quin será el text principal de la notificació
+            .setContentTitle(
+                applicationContext
+                    .getString(R.string.canvis_amb_exit)
+            )
+            //Aquest será el text de la notificiacó
             .setContentText(messageBody)
 
+        //Creem la notificació amb un id i amb el builder que hem creat abans
         notify(NOTIFICATION_ID, builder.build())
 
 
     }
 
-//    private fun createChannel(channelId: String, channelName: String) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            /*notificationChannel = NotificationChannel(
-//                channelId,
-//                channelName,
-//                NotificationManager.IMPORTANCE_LOW
-//            )*/
-//
-//            notificationChannel.enableLights(true)
-//            notificationChannel.lightColor = Color.RED
-//            notificationChannel.enableVibration(true)
-//            notificationChannel.description = "Time for breakfast"
-//
-//
-//
-//           // notificationManager.createNotificationChannel(notificationChannel)
-//        }
-//    }
+    //Funció per crear el canal que tindrá in channelId i un channelName
+    private fun createChannel(channelId: String, channelName: String) {
+        //Fem un if per comprobar si ela versió del sdk es correcte
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //Indiquem que el canal de la notificació sera de tipus NotificationChannel agafant els valors de channelId, de channelName i agafant l'importancia de la
+                // notificació
+            notificationChannel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_LOW
+            )
+
+            //Indiquem que s'activi la llum del nostre dispositiu al rebre la notificació
+            notificationChannel.enableLights(true)
+            //Indiquem el color de la llum del nostre dispositiu, en aquest cas será blanc
+            notificationChannel.lightColor = Color.WHITE
+            //Indiquem que volem que el nostre dispositiu vibri al rebre la notificació
+            notificationChannel.enableVibration(true)
+            //Indiquem la descripció de la notificació
+            notificationChannel.description = getString(R.string.descripcio_notificacio)
+
+            //Definim i inicialitzem una variable notificationManager que será de tipus NotificationManager
+            val notificationManager = getSystemService(
+                NotificationManager::class.java
+            )
+
+            //Amb la variable que acabem de crear li indicarem que creï un canal amb els paràmetres que li hem indicat abans
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
+    }
+
+
 }
