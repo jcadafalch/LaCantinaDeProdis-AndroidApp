@@ -51,10 +51,10 @@ class PantallaRecuperarContrasenya2 : Fragment() {
                 } else {
                     println("PSW1  = " + binding.dtTxtPRegistrePasswordText.text.toString())
                     println("PSW2 = " + binding.dtTxtPRegistreRepeteixPasswordText.text.toString())
-                    utils().showAlert("ERROR", "Les contrasenyes no coincideixen.", this.context)
+                    utils().showAlert(getString(R.string.error), getString(R.string.les_contrasenyes_no_coincideixen), this.context)
                 }
             } else {
-                utils().showAlert("ERROR", "Els camps no están plensa", this.context)
+                utils().showAlert(getString(R.string.error), getString(R.string.els_camps_no_estan_plens), this.context)
             }
         }
 
@@ -73,7 +73,7 @@ class PantallaRecuperarContrasenya2 : Fragment() {
                         auth.signOut()
                         Toast.makeText(
                             this.context,
-                            "S'ha canbiat la contrasenya",
+                            getString(R.string.s_ha_canviat_la_contrasenya),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -87,12 +87,12 @@ class PantallaRecuperarContrasenya2 : Fragment() {
                         )
                     )
                 } else {
-                    utils().showAlert("ERROR", "Error en recuperar contrasenya", this.context)
+                    utils().showAlert(getString(R.string.error), getString(R.string.error_en_recuperar_contrasenya), this.context)
                 }
             }
         }
             .addOnFailureListener {
-                utils().showAlert("ERROR", "L\'usuari no està registrat", this.context)
+                utils().showAlert(getString(R.string.error), getString(R.string.l_usuari_no_esta_registrat), this.context)
             }
 
     }

@@ -41,7 +41,7 @@ class PantallaRecuperarContrasenya1 : Fragment() {
                     }
 
             } else {
-                Toast.makeText(this.context, "El camp DNI està buit", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, getString(R.string.el_camp_dni_esta_buit), Toast.LENGTH_SHORT).show()
             }
         }
         return binding.root

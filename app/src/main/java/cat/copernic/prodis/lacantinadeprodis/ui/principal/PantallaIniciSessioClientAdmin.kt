@@ -58,23 +58,23 @@ class PantallaIniciSessioClientAdmin : Fragment() {
                             if (it.isSuccessful) {
                                 startActivity(usertype)
                             } else {
-                                utils().showAlert("ERROR", "Error en inici de sessió", this.context)
+                                utils().showAlert(getString(R.string.error), getString(R.string.error_en_inici_de_sessio), this.context)
                             }
                         }
                             .addOnFailureListener {
-                                utils().showAlert("ERROR", "L\'usuari no està registrat", this.context)
+                                utils().showAlert(getString(R.string.error), getString(R.string.l_usuari_no_esta_registrat), this.context)
                             }
                     } else {
                         utils().showAlert(
-                            "ERROR",
-                            "Aquest usuari no es de tipus $usertype",
+                            getString(R.string.error),
+                            getString(R.string.aquest_usuari_no_es_de_tipus, usertype),
                             this.context
                         )
                     }
                 }
 
             } else {
-                Toast.makeText(this.context, "Falta omplir els camps", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, getString(R.string.falta_omplir_els_camps), Toast.LENGTH_SHORT).show()
             }
         }
 

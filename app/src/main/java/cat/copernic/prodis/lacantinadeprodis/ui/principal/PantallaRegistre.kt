@@ -103,16 +103,16 @@ class PantallaRegistre : Fragment() {
                         if (it.isSuccessful) {
                             Toast.makeText(
                                 this.context,
-                                "T\'has registrat correctament",
+                                getString(R.string.t_has_registrat_correctament),
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            utils().showAlert("ERROR", "Error a l\'hora de fer el guardat de dades", this.context)
+                            utils().showAlert(getString(R.string.error), getString(R.string.error_en_guardar_dades), this.context)
                         }
                     }
 
                 } else {
-                    utils().showAlert("ERROR", "Error a l\'hora de fer l\'autenticació", this.context)
+                    utils().showAlert(getString(R.string.error), "Error a l\'hora de fer l\'autenticació", this.context)
                 }
             }
     }
@@ -130,55 +130,55 @@ class PantallaRegistre : Fragment() {
         var bool = true
 
         if (nom.isEmpty()) {
-            errorMessage += "Falta introduir el nom\n"
+            errorMessage += getString(R.string.falta_introduir_el_nom)
             bool = false
         }
 
         if (cognom.isEmpty()) {
-            errorMessage += "Falta introduir els cognoms\n"
+            errorMessage += getString(R.string.falta_introduir_els_cognoms)
             bool = false
         }
 
         if (dni.isEmpty()) {
-            errorMessage += "Falta introduir el dni\n"
+            errorMessage += getString(R.string.falta_introduir_el_dni)
             bool = false
         } else if (!checkDni(dni)) {
-            errorMessage += "Format DNI incorrecte.\n"
+            errorMessage += getString(R.string.format_dni_incorrecte)
             bool = false
         }
 
         if (email.isEmpty()) {
-            errorMessage += "Falta introduir el correu electronic.\n"
+            errorMessage += getString(R.string.falta_introduir_email)
             bool = false
         } else if (!checkEmailFormat(email)) {
-            errorMessage += "Format correu electronic incorrecte.\n"
+            errorMessage += getString(R.string.format_email_incorrecte)
             bool = false
         }
 
         if (password.isEmpty()) {
-            errorMessage += "Falta introduir la contrasenya.\n"
+            errorMessage += getString(R.string.falta_introduir_la_passwd)
             bool = false
         }
         if (password2.isEmpty()) {
-            errorMessage += "Falta introduir la contrasenya repetida.\n"
+            errorMessage += getString(R.string.falta_introduir_la_contrasenya_repetida)
             bool = false
         }
 
 
         if (password.isNotEmpty() && password2.isNotEmpty()) {
             if (password != password2) {
-                errorMessage += "Les contrasenyes no coincideixen.\n"
+                errorMessage += getString(R.string.contrasenyes_no_coincideixen)
                 bool = false
             }
         }
 
         if (!checkbox) {
-            errorMessage += "Has d\'acpetar les condicions"
+            errorMessage += getString(R.string.acceptar_condicions)
             bool = false
         }
 
 
-        if (errorMessage != "") utils().showAlert("ERROR", errorMessage, this.context)
+        if (errorMessage != "") utils().showAlert(getString(R.string.error), errorMessage, this.context)
 
         return bool
 
