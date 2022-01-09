@@ -32,9 +32,11 @@ class PantallaCuiner : Fragment() {
         val binding: FragmentPantallaCuinerBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_cuiner, container, false
         )
+        //declaració de tots els elements del recyclerView (recyclerView, adapter i dataclass)
 
         recyclerView = binding.rcyclrVwCuiner
 
+        //En funció de la orientació del dispositiu canviem la orientació del recycerView
         when(resources.configuration.orientation){
             Configuration.ORIENTATION_PORTRAIT -> {
                 recyclerView.layoutManager = LinearLayoutManager(this.context)
@@ -68,6 +70,7 @@ class PantallaCuiner : Fragment() {
         return binding.root
     }
 
+    //funcio que agafa les dades de la BD i les introdueix al ArrayList per mostrar-les en el recyclerView
     private fun eventChangeListener() {
         db.collection("comandes").addSnapshotListener(object : EventListener<QuerySnapshot> {
             @SuppressLint("NotifyDataSetChanged")

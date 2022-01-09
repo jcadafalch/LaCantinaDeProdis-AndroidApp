@@ -170,4 +170,5 @@
     <string name="galeria">GALERIA</string>
     <string name="camara">CÀMERA</string>
     <string name="els_canvis_s_han_fet_amb_exit">Els canvis s\'han fet amb èxit</string>
+    <string name="comanda_enviada">Comanda de %1$s enviada"</string>
 </resources>

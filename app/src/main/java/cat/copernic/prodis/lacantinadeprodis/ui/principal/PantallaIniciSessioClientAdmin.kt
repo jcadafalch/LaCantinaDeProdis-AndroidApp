@@ -38,10 +38,12 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         val args = PantallaIniciSessioClientAdminArgs.fromBundle(requireArguments())
         val usertype = args.usertype
 
+        //Si l'usuari és administrador ocultem el botó de registre per evitar que qualsevol es pugui registrar com administrador
         if (usertype == "admin") {
             binding.txtPiniciarSessioClientRegistre.visibility = View.INVISIBLE
         }
 
+        //botó per inciciar sessió on es realitzen totes les comprovacions abans de poguer inciar sessió
         binding.btnPiniciarSessioClient.setOnClickListener {
             dni = binding.dtTxtPIniciarSessioClientDni.text.toString().uppercase()
             var passwd = binding.dtTxtPIniciarSessioClientPassword.text.toString()
@@ -78,7 +80,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
             }
         }
 
-
+        // botó que navega fins la pantalla de recuperar contrasenya
         binding.txtPiniciarSessioClientOblidatContrasenya.setOnClickListener {
             view?.findNavController()?.navigate(
                 PantallaIniciSessioClientAdminDirections.actionPantallaIniciSessioClientAdminToPantallaRecuperarContrasenya1(
@@ -86,7 +88,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
                 )
             )
         }
-
+         // botó que navega fins la pantalla de registre
         binding.txtPiniciarSessioClientRegistre.setOnClickListener {
             view?.findNavController()?.navigate(
                 PantallaIniciSessioClientAdminDirections.actionPantallaIniciSessioClientAdminToPantallaRegistre(
@@ -98,6 +100,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         return binding.root
     }
 
+    //En funció del tipus d'usuari que vulgui iniciar sessió, s'obrirà l'Activity corresponent cridant a la funciño que pertoqui
     private fun startActivity(usertype: String) {
         when (usertype) {
             "clientR" -> showCambrerClient(usertype, dni)
@@ -108,6 +111,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         }
     }
 
+    //funció per iniciar l'Activity de Client i Cambrer
     private fun showCambrerClient(username: String, dni: String) {
         val intent = Intent(this.context, ComandesActivity::class.java).apply {
             putExtra("usertype", username)
@@ -117,6 +121,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         startActivity(intent)
     }
 
+    //Funció per inciar l'Activity de caixer
     private fun showCaixer(dni: String) {
         val intent = Intent(this.context, CaixerActivity::class.java).apply {
             putExtra("dni", dni)
@@ -125,6 +130,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         startActivity(intent)
     }
 
+    //Funció per inciar l'Activity de cuiner
     private fun showCuiner(dni: String) {
         val intent = Intent(this.context, CuinerActivity::class.java).apply {
             putExtra("dni", dni)
@@ -132,6 +138,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         startActivity(intent)
     }
 
+    //Funció per inciar l'Activity de administrador
     private fun showAdmin(dni: String) {
         val intent = Intent(this.context, AdministradorActivity::class.java).apply {
             putExtra("dni", dni)

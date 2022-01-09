@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.adapters.bocates_adapter
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioBocataBinding
+import cat.copernic.prodis.lacantinadeprodis.model.dataclass
 import cat.copernic.prodis.lacantinadeprodis.model.dtclss_productes
 import com.google.firebase.firestore.*
 
@@ -33,7 +34,7 @@ class PantallaSeleccioBocata : Fragment() {
         binding.backButton.setOnClickListener{
             findNavController().popBackStack()
         }
-
+        //declaració de tots els elements del recyclerView (recyclerView, adapter i dataclass)
         recyclerView = binding.rcyclrVwBocata
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.setHasFixedSize(true)
@@ -49,6 +50,7 @@ class PantallaSeleccioBocata : Fragment() {
         return binding.root
     }
 
+    //funcio que agafa les dades de la BD i les introdueix al ArrayList per mostrar-les en el recyclerView
     private fun eventChangeListener() {
         db.collection("productes").addSnapshotListener(object : EventListener<QuerySnapshot>{
             @SuppressLint("NotifyDataSetChanged")

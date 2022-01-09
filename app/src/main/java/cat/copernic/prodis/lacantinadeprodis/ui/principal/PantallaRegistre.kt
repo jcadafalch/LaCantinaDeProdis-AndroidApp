@@ -37,6 +37,7 @@ class PantallaRegistre : Fragment() {
         bundle.putString("message", "Integración de Firebase completa")
         analytics?.logEvent("InitScreen", bundle)
 
+        //botó que crida a la funncio datavalids per comprovar el format de les dades i en cas de ser correcte crida a la funcioo make register per fer el registre
         bdng.btnPregistre.setOnClickListener { view: View ->
             println(bdng.dtTxtPRegistrePassword.text.toString())
             println(bdng.dtTxtPRegistreRepeteixPassword.text.toString())
@@ -66,7 +67,7 @@ class PantallaRegistre : Fragment() {
             }
 
         }
-
+        // botó per obrir el fragment d'iniciar sessió
         bdng.textPregistreIniciaSessio.setOnClickListener { view: View ->
             view.findNavController().navigate(
                 PantallaRegistreDirections.actionPantallaRegistreToPantallaIniciSessioClientAdmin(
@@ -77,6 +78,7 @@ class PantallaRegistre : Fragment() {
         return bdng.root
     }
 
+    //Funció que crida a la BD i realitza el registre complet de l'usuari
     private fun makeregister(
         nom: String,
         cognom: String,
@@ -87,9 +89,11 @@ class PantallaRegistre : Fragment() {
     ) {
         val passwd = password + "prodis"
         println(passwd)
+        //Registem l'usuari al Firebase Authentication
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passwd)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
+                    // si es realitza satisfactoriament es crea el document a la collection Users
                     db.collection("users").document(dni).set(
                         hashMapOf(
                             "username" to nom,
@@ -107,16 +111,25 @@ class PantallaRegistre : Fragment() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            utils().showAlert(getString(R.string.error), getString(R.string.error_en_guardar_dades), this.context)
+                            utils().showAlert(
+                                getString(R.string.error),
+                                getString(R.string.error_en_guardar_dades),
+                                this.context
+                            )
                         }
                     }
 
                 } else {
-                    utils().showAlert(getString(R.string.error), "Error a l\'hora de fer l\'autenticació", this.context)
+                    utils().showAlert(
+                        getString(R.string.error),
+                        "Error a l\'hora de fer l\'autenticació",
+                        this.context
+                    )
                 }
             }
     }
 
+    // Funció que comprova que els camps no estiguin buits i que les contrasenyes coincideixin
     private fun datavalids(
         nom: String,
         cognom: String,
@@ -178,12 +191,17 @@ class PantallaRegistre : Fragment() {
         }
 
 
-        if (errorMessage != "") utils().showAlert(getString(R.string.error), errorMessage, this.context)
+        if (errorMessage != "") utils().showAlert(
+            getString(R.string.error),
+            errorMessage,
+            this.context
+        )
 
         return bool
 
     }
 
+    //Funció que comprova que el format del dni sigui correcte (evita que l'usuari s'inventi el dni)
     private fun checkDni(dni: String): Boolean {
         val dniNum = dni.substring(0, dni.length - 1)
         if (dni.isDigitsOnly()) {
@@ -197,6 +215,7 @@ class PantallaRegistre : Fragment() {
         return dniLletra == lletraDni[dniNum.toInt() % 23].toString()
     }
 
+    //Funció que comprova el format del correu electronic
     private fun checkEmailFormat(email: String): Boolean {
         val EMAIL_ADDRESS_PATTERN = Pattern.compile(
             "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
