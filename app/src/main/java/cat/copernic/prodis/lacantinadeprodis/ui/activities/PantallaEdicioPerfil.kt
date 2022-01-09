@@ -1,11 +1,13 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.activities
 
-import android.app.Activity
-import android.app.AlertDialog
+import android.app.*
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -17,13 +19,14 @@ import java.util.regex.Pattern
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import cat.copernic.prodis.lacantinadeprodis.viewmodel.PantallaEdicioPerfilViewModel
-import cat.copernic.prodis.lacantinadeprodis.viewmodel.viewmodel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -52,6 +55,13 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
                 }
             }
         }
+
+    private val NOTIFICATION_ID = 0
+
+    private lateinit var notificationManager: NotificationManager
+    private lateinit var notificationChannel: NotificationChannel
+    private lateinit var build: Notification.Builder
+    private var description = getString(R.string.noti)
 
     lateinit var storageRef: StorageReference
 
@@ -93,6 +103,10 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
         //Cridem a la funció per guardar les dades
         guardarDades()
+
+
+
+
 
     }
 
@@ -289,6 +303,58 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
                     Toast.makeText(this, getString(R.string.cambis_amb_exit), Toast.LENGTH_SHORT).show()
                 }
             }
+
+//             notificationManager = ContextCompat.getSystemService(
+//                this,
+//                NotificationManager::class.java
+//            ) as NotificationManager
+
+//            notificationManager.sendNotification(
+//                this.getText(R.string.exit_al_pujar).toString(),
+//                this
+//            )
+
+//            createChannel(
+//                getString(R.string.app_channel),
+//                getString(R.string.channel_name)
+//            )
+
         }
     }
+
+
+    fun NotificationManager.sendNotification(messageBody: String, applicationContext: Context) {
+
+        val builder = NotificationCompat.Builder(
+            applicationContext,
+            applicationContext.getString(R.string.app_channel)
+        )
+            .setSmallIcon(R.drawable.bander_espanyola_background)
+            .setContentTitle(applicationContext
+                .getString(R.string.cambis_amb_exit))
+            .setContentText(messageBody)
+
+        notify(NOTIFICATION_ID, builder.build())
+
+
+    }
+
+//    private fun createChannel(channelId: String, channelName: String) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            /*notificationChannel = NotificationChannel(
+//                channelId,
+//                channelName,
+//                NotificationManager.IMPORTANCE_LOW
+//            )*/
+//
+//            notificationChannel.enableLights(true)
+//            notificationChannel.lightColor = Color.RED
+//            notificationChannel.enableVibration(true)
+//            notificationChannel.description = "Time for breakfast"
+//
+//
+//
+//           // notificationManager.createNotificationChannel(notificationChannel)
+//        }
+//    }
 }

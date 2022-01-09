@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:text="@string/nom_de_l_usuari"
                 android:textColor="@color/black"
-                android:textSize="@dimen/btnPprincipalCliCambCuiCaix" />
+                />
 
             <TextView
                 android:id="@+id/txtComanda"
@@ -37,20 +37,16 @@
                 android:gravity="center"
                 android:text="@string/comanda_1"
                 android:textColor="@color/black"
-                android:textSize="@dimen/txtPrincipal" />
+                 />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rycrVwResumComanda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,7 +61,6 @@
                     android:gravity="end"
                     android:text="@string/total"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/txtPrincipal"
                     android:textStyle="bold" />
 
                 <TextView
@@ -77,12 +72,10 @@
                     android:gravity="center"
                     android:text="@string/_2"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/txtPrincipal" />
+                     />
             </LinearLayout>
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"

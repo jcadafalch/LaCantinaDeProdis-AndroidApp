@@ -68,7 +68,6 @@
     <string name="sucre_blanc">SUCRE BLANC</string>
     <string name="sucre_more">SUCRE MORÉ</string>
     <string name="sacarina">SACARINA</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="perfil_info">Aqui pots cambiar la informació del teu perfil!</string>
     <string name="nom">Nom:</string>
@@ -132,4 +131,9 @@
     <string name="error_al_pujar">Error al pujar la foto</string>
     <string name="exit_al_pujar">Exit al pujar la foto</string>
     <string name="cambis_amb_exit">Els canvis s\'han fet amb èxit</string>
+    <string name="app_channel">app_channel</string>
+    <string name="noti">Notificació</string>
+    <string name="channel_name">app</string>
+    <string name="selecciona_tipus_producte">Has de seleccionar un tipus de prodcute</string>
+    <string name="afegit_producte_exit">S\'ha afegit el producte amb éxit</string>
 </resources>
