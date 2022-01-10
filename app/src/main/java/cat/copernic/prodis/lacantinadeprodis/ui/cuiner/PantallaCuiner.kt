@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.prodis.lacantinadeprodis.R
@@ -37,23 +38,18 @@ class PantallaCuiner : Fragment() {
         recyclerView = binding.rcyclrVwCuiner
 
         //En funció de la orientació del dispositiu canviem la orientació del recycerView
-        when(resources.configuration.orientation){
+        val gridLayout = GridLayoutManager(this.context, 2)
+        when (resources.configuration.orientation) {
             Configuration.ORIENTATION_PORTRAIT -> {
-                recyclerView.layoutManager = LinearLayoutManager(this.context)
+                recyclerView.layoutManager = gridLayout
             }
             Configuration.ORIENTATION_LANDSCAPE -> {
-                recyclerView.layoutManager = LinearLayoutManager(
-                    this.context,
-                    RecyclerView.HORIZONTAL,
-                    false
-                )
+                recyclerView.layoutManager =
+                    GridLayoutManager(this.context, 2, RecyclerView.HORIZONTAL, false)
             }
             Configuration.ORIENTATION_UNDEFINED -> {
-                recyclerView.layoutManager = LinearLayoutManager(
-                    this.context,
-                    RecyclerView.HORIZONTAL,
-                    false
-                )
+                recyclerView.layoutManager =
+                    GridLayoutManager(this.context, 2, RecyclerView.HORIZONTAL, false)
             }
         }
 
@@ -61,9 +57,8 @@ class PantallaCuiner : Fragment() {
 
         comandesList = arrayListOf()
 
-        cuinerAdapter = this.context?.let { cuiner_adapter(comandesList, it) }!!
+        cuinerAdapter = cuiner_adapter(comandesList)
 
-        //
 
         eventChangeListener()
 
@@ -71,28 +66,24 @@ class PantallaCuiner : Fragment() {
     }
 
     //funcio que agafa les dades de la BD i les introdueix al ArrayList per mostrar-les en el recyclerView
+    @SuppressLint("NotifyDataSetChanged")
     private fun eventChangeListener() {
-        db.collection("comandes").addSnapshotListener(object : EventListener<QuerySnapshot> {
-            @SuppressLint("NotifyDataSetChanged")
-            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                if (error != null) {
-                    Log.e("Firestore Error", error.message.toString())
-                    return
-                }
-                //comandesList.clear()
-                db.collection("comandes").get().addOnSuccessListener { result ->
-                   comandesList.clear()
-                    for (document in result) {
-                        if(document.get("visible").toString() == "true"){
-                            comandesList.add(document.toObject(dtclss_cuiner::class.java))
+        //comandesList.clear()
+        db.collection("comandes").get().addOnSuccessListener { result ->
+            comandesList.clear()
+            for (document in result) {
+                if(document.get("visible").toString() == "true"){
+                    val nom = document.get("user").toString()
+                    val comandaId = document.get("comandaId").toString()
+                    val documentId = document.id
+                    comandesList.add(dtclss_cuiner(nom, comandaId, documentId))
 
-                        }
-                    }
-                    recyclerView.adapter = cuinerAdapter
-                    cuinerAdapter.notifyDataSetChanged()
                 }
-
             }
-        })
+            recyclerView.adapter = cuinerAdapter
+            cuinerAdapter.notifyDataSetChanged()
+        }
+
+
     }
 }

@@ -128,7 +128,7 @@
     <string name="cancelar">Cancel·lar</string>
     <string name="error_en_el_tipus_de_usuari">ERROR EN EL TIPUS DE USUARI</string>
     <string name="atencio">¡¡¡ATENCIÓ!!!</string>
-    <string name="si_vols_Que_l_usuari_deixi_Se_ser_client">Si vols que l\'usuari: %1$s %2$s deixi de ser client, l\'has de tornar a afegir desde l\'apartat \"Afegir nou usuari\".\nVols anar a \"Afegir nou usuari\" per canviar el tipus d'usuari?</string>
+    <string name="si_vols_Que_l_usuari_deixi_Se_ser_client">Si vols que l\'usuari: %1$s %2$s deixi de ser client, l\'has de tornar a afegir desde l\'apartat \"Afegir nou usuari\".\nVols anar a \"Afegir nou usuari\" per canviar el tipus d\'usuari?</string>
     <string name="si">Si</string>
     <string name="no">No</string>
     <string name="has_de_seleccionar_un_tipus_d_usuari">Has de seleccionar un tipus d\'usuari</string>

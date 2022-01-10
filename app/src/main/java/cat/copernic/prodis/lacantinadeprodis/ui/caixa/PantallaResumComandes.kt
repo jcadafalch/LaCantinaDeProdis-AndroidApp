@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.adapters.resum_comanda_adapter
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaResumComandesBinding
+import cat.copernic.prodis.lacantinadeprodis.model.dtclss_cuiner_producte
 import cat.copernic.prodis.lacantinadeprodis.model.dtclss_resum_comanda
 import cat.copernic.prodis.lacantinadeprodis.ui.administrador.PantallaAdministradorNouUsuariArgs
 import com.google.firebase.firestore.FirebaseFirestore
@@ -47,14 +48,15 @@ class PantallaResumComandes : Fragment() {
 
         binding.txtUsername.text = username
         binding.txtComanda.text = comandaId
-
         binding.txtVwPreuTotal.text = preuTotal.toString()
 
         recyclerView = binding.rycrVwResumComanda
 
         recyclerView.layoutManager = LinearLayoutManager(this.context)
-        producteList = arrayListOf()
         recyclerView.setHasFixedSize(true)
+        producteList = arrayListOf()
+        resumComandaAdpt = resum_comanda_adapter(producteList)
+        eventChangeListener()
 
         binding.btnPagat.setOnClickListener {
             db.collection("comandes").document(documentId).get().addOnSuccessListener { dc ->
@@ -80,28 +82,26 @@ class PantallaResumComandes : Fragment() {
             view?.findNavController()?.navigate(PantallaResumComandesDirections.actionPantallaResumComandesToPantallaSeleccioResumComanda())
         }
 
-        eventChangeListener()
-
         return binding.root
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun eventChangeListener(){
+        producteList.clear()
         db.collection("comandes").document(documentId).collection("productes").get().addOnSuccessListener { result ->
             for (document in result){
                 db.collection("productes").get().addOnSuccessListener { rs ->
                     for (dc in rs){
-                        if (dc.get("idProducte").toString() == document.get("idProducte").toString()){
+                        if (document.get("idProducte").toString() == dc.get("idProducte").toString()){
                             val nom = dc.get("nom").toString()
                             val preu = dc.get("preu") as Double
                             producteList.add(dtclss_resum_comanda(nom, preu))
                         }
                     }
+                    recyclerView.adapter = resumComandaAdpt
                 }
+
             }
-            resumComandaAdpt = resum_comanda_adapter(producteList)
-            recyclerView.adapter = resumComandaAdpt
-            resumComandaAdpt.notifyDataSetChanged()
         }
     }
 }

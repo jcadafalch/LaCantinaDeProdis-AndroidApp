@@ -18,6 +18,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/cuiner"
+            android:textColor="@color/black"
             android:textSize="@dimen/txtSubTitol" />
 
         <androidx.recyclerview.widget.RecyclerView

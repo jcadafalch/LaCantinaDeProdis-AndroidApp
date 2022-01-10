@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.model.dtclss_resum_comanda
-import org.w3c.dom.Text
 
 class resum_comanda_adapter(private val producte: ArrayList<dtclss_resum_comanda>) :
     RecyclerView.Adapter<resum_comanda_adapter.ViewHolder>() {
