@@ -38,11 +38,11 @@
 
             <TextView
                 android:id="@+id/txtSeleccionaCategoria"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="81dp"
+                android:layout_marginStart="@dimen/centrat"
                 android:layout_marginTop="21dp"
-                android:layout_marginEnd="80dp"
+                android:layout_marginEnd="@dimen/centrat"
                 android:text="@string/selecciona_la_categoria"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,11 +65,11 @@
 
             <TextView
                 android:id="@+id/txtSeleccionaProducte"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="81dp"
+                android:layout_marginStart="@dimen/centrat"
                 android:layout_marginTop="21dp"
-                android:layout_marginEnd="80dp"
+                android:layout_marginEnd="@dimen/centrat"
                 android:text="@string/selecciona_el_producte"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +104,7 @@
 
             <CheckBox
                 android:id="@+id/checkBoxProducteVisible"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/txtProducteVisible"
@@ -152,9 +152,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="@dimen/centrat"
                 android:text="@string/preu_del_producte"
                 android:textColor="#00796B"
                 android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/editTextTextProductName"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextProductName" />
 
@@ -242,9 +244,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="70dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="4dp"
                 android:contentDescription="@string/imatge_de_una_camera_de_fotos"
                 android:src="@drawable/ic_baseline_camera_alt_24"
+                app:layout_constraintEnd_toEndOf="@+id/imgProducte2"
+                app:layout_constraintHorizontal_bias="0.80"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgProducte2" />
 
@@ -252,11 +256,13 @@
                 android:id="@+id/imgPujarImatge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="70dp"
                 android:contentDescription="@string/fletxa_per_pujar_fotos"
                 android:src="@drawable/ic_baseline_file_upload_24"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.20"
+                app:layout_constraintStart_toStartOf="@+id/imgProducte2"
                 app:layout_constraintTop_toBottomOf="@+id/imgProducte2" />
 
             <Button

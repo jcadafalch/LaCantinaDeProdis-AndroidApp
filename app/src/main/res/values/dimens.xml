@@ -6,13 +6,18 @@
     <dimen name="txtMig">16sp</dimen>
     <dimen name="txtPetit">14sp</dimen>
     <dimen name="centrat">60sp</dimen>
-    <dimen name="marginLeft">173sp</dimen>
-    <dimen name="marginRight">40sp</dimen>
-    <dimen name="marginLeft2">22sp</dimen>
-    <dimen name="tamanyFoto">140sp</dimen>
-    <dimen name="tamanyFotoPetit">100sp</dimen>
-    <dimen name="checkWidth">300sp</dimen>
-    <dimen name="checkHeight">60sp</dimen>
-    <dimen name="imgBossaWidth">240sp</dimen>
-    <dimen name="imgBossaHeight">200sp</dimen>
+    <dimen name="marginLeft">160dp</dimen>
+    <dimen name="marginRight">40dp</dimen>
+    <dimen name="marginLeft2">22dp</dimen>
+    <dimen name="tamanyFoto">140dp</dimen>
+    <dimen name="tamanyFotoPetit">100dp</dimen>
+    <dimen name="checkWidth">300dp</dimen>
+    <dimen name="checkHeight">60dp</dimen>
+    <dimen name="imgBossaWidth">240dp</dimen>
+    <dimen name="imgBossaHeight">200dp</dimen>
+    <dimen name="marginLeftAdminLandscape">180dp</dimen>
+    <dimen name="paddingLeftPantallaPrincipal">440dp</dimen>
+    <dimen name="paddingRightPantallaPrincipal">590dp</dimen>
+    <dimen name="contrassenyaWidth">204dp</dimen>
+    <dimen name="marginAtributsButtons">600dp</dimen>
 </resources>

@@ -54,9 +54,10 @@
 
             <EditText
                 android:id="@+id/dtTxtPRegistrePersonName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft2"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
+                android:layout_marginEnd="@dimen/marginLeftAdminLandscape"
                 android:layout_marginBottom="80dp"
                 android:ems="10"
                 android:hint="@string/juan"
@@ -64,15 +65,17 @@
                 android:inputType="textPersonName"
                 android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreDni"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
 
             <EditText
                 android:id="@+id/dtTxtPRegistrePersonSurname"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft2"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginTop="31dp"
+                android:layout_marginEnd="@dimen/marginLeftAdminLandscape"
                 android:layout_marginBottom="4dp"
                 android:ems="10"
                 android:hint="@string/rodriguez_gonz_lez"
@@ -80,6 +83,7 @@
                 android:inputType="textPersonName"
                 android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreDni"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dtTxtPRegistrePersonName"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
@@ -88,7 +92,7 @@
                 android:id="@+id/textPRegistreSurname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft2"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginTop="5dp"
                 android:text="@string/cognoms"
                 android:textColor="#00796B"
@@ -111,8 +115,9 @@
 
             <EditText
                 android:id="@+id/dtTxtPRegistreDni"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/marginLeftAdminLandscape"
                 android:ems="10"
                 android:hint="@string/editDni"
                 android:importantForAutofill="no"
@@ -120,6 +125,7 @@
                 android:maxLength="9"
                 android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/txtPRegistreEmail"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPRegistreEmail"
                 tools:ignore="LabelFor,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
@@ -140,7 +146,7 @@
                 android:id="@+id/dtTxtPRegistreEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft2"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginEnd="166dp"
                 android:ems="10"
                 android:hint="@string/jrodirezgonzalez_prodiscat"
@@ -155,9 +161,9 @@
 
             <TextView
                 android:id="@+id/txtPRegistreContrasenya"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft2"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginEnd="297dp"
                 android:layout_marginBottom="1dp"
                 android:text="@string/contrasenya"
@@ -171,12 +177,13 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dtTxtPRegistrePasswordT"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/contrassenyaWidth"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="169dp"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txtPRegistreRepeteixContrasenya"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPRegistreContrasenya">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -194,7 +201,7 @@
                 android:id="@+id/txtPRegistreRepeteixContrasenya"
                 android:layout_width="0dp"
                 android:layout_height="22dp"
-                android:layout_marginStart="@dimen/marginLeft2"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginEnd="90dp"
                 android:text="@string/repeteix_contrasenya"
                 android:textColor="@color/colorPrimary"
@@ -209,7 +216,7 @@
                 android:id="@+id/dtTxtPRegistreRepeteixPasswordT"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft2"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginEnd="169dp"
                 android:layout_marginBottom="30dp"
                 app:endIconMode="password_toggle"
@@ -233,7 +240,7 @@
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginEnd="125dp"
                 android:layout_marginBottom="30dp"
                 android:text="@string/condicions_servei_privacitat"
@@ -245,44 +252,49 @@
 
             <Button
                 android:id="@+id/btnPregistre"
-                android:layout_width="227dp"
+                android:layout_width="0dp"
                 android:layout_height="42dp"
-                android:layout_marginStart="22dp"
-                android:layout_marginEnd="115dp"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
+                android:layout_marginEnd="@dimen/marginLeftAdminLandscape"
                 android:layout_marginBottom="17dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/continuar"
                 app:layout_constraintBottom_toTopOf="@+id/textPregistre_tensUnCompte"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
 
             <TextView
                 android:id="@+id/textPregistre_tensUnCompte"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="68dp"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="40dp"
+                android:gravity="center"
                 android:text="@string/tens_un_compte"
                 android:textSize="@dimen/txtPetit"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textPregistre_iniciaSessio"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_goneMarginRight="10dp"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
 
             <TextView
                 android:id="@+id/textPregistre_iniciaSessio"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="137dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="@dimen/marginLeftAdminLandscape"
                 android:layout_marginBottom="40dp"
+                android:gravity="center"
                 android:text="@string/iniciarSessio"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/txtPetit"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textPregistre_tensUnCompte" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

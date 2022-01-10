@@ -5,7 +5,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorFons">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="fill_parent"
@@ -141,91 +142,69 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:id="@+id/txtContrasenya"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/cambiar_contrasenya"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view3" />
-
-            <EditText
-                android:id="@+id/editTextContrassenya"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="2dp"
-                android:autofillHints=""
-                android:hint="@string/posa_aqui_la_contrasenya"
-                android:inputType="numberPassword"
-                android:maxLength="4"
-                android:minHeight="48dp"
-                android:textColorHint="@android:color/darker_gray"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtContrasenya" />
-
-            <View
-                android:id="@+id/view5"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="70dp"
-                android:background="@android:color/darker_gray"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextContrassenya"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/txtTamanyLletra"
+                android:id="@+id/txtSeleccionaIdioma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/idioma_de_l_app"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view5"
-                android:textColor="@color/colorPrimary"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/view3" />
 
-            <RadioGroup
-                android:id="@id/radioGroup"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra"
-                >
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtSeleccionaIdioma">
 
-                <RadioButton
-                    android:id="@+id/radioGran"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="4dp"
-                    android:minHeight="48dp"
-                    android:textSize="20sp"
-                    android:checked="true"
-                    app:layout_constraintStart_toEndOf="@+id/radioPetit"
-                    app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra"
-                    tools:ignore="DuplicateSpeakableTextCheck"
-                    android:drawableEnd="@mipmap/bandera_catalana"/>
+                <RadioGroup
+                    android:id="@id/radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toEndOf="@+id/txtTamanyLletra"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra">
 
-                <RadioButton
-                    android:id="@+id/radioPetit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:minHeight="48dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra"
-                    android:drawableEnd="@mipmap/bander_espanyola"/>
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/radioEsp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="4dp"
+                        android:drawableEnd="@mipmap/bandera_catalana"
+                        android:minHeight="48dp"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@+id/radioPetit"
+                        app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
+
+                    <RadioButton
+                        android:id="@+id/radioCat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:drawableEnd="@mipmap/bander_espanyola_round"
+                        android:minHeight="48dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra" />
+
+                    <RadioButton
+                        android:id="@+id/radioEng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:drawableEnd="@mipmap/bandera_anglesa"
+                        android:minHeight="48dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra"
+                        android:paddingEnd="20dp"/>
+                </RadioGroup>
+            </HorizontalScrollView>
 
             <Button
                 android:id="@+id/btnGuardar"
@@ -239,8 +218,8 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@id/radioGroup"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+                app:layout_constraintStart_toStartOf="@id/horizontalScrollView"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

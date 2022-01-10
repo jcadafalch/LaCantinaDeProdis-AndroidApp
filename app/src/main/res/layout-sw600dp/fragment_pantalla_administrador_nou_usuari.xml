@@ -63,7 +63,7 @@
                 android:id="@+id/spnPAdministradorModificarUsusari_TipusUsuari"
                 android:layout_width="211dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="86dp"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginEnd="116dp"
                 android:animationCache="false"
                 android:backgroundTint="@color/black"
@@ -97,9 +97,9 @@
 
             <EditText
                 android:id="@+id/dtTxtPAdministradorNouUsuari_PersonName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="120dp"
+                android:layout_marginEnd="@dimen/marginLeft"
                 android:ems="10"
                 android:hint="@string/juan"
                 android:importantForAutofill="no"
@@ -127,17 +127,18 @@
 
             <EditText
                 android:id="@+id/dtTxtPAdministradorNouUsuari_PersonSurname"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="86dp"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginTop="1dp"
-                android:layout_marginEnd="116dp"
+                android:layout_marginEnd="@dimen/marginLeft"
                 android:ems="10"
                 android:hint="@string/rodriguez_gonz_lez"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouUsuari_cognomUsuari"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
@@ -157,10 +158,10 @@
 
             <EditText
                 android:id="@+id/dtTxtPAdministradorNouUsuari_dni"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="86dp"
-                android:layout_marginEnd="116dp"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
+                android:layout_marginEnd="@dimen/marginLeft"
                 android:ems="10"
                 android:hint="@string/dni"
                 android:importantForAutofill="no"
@@ -186,9 +187,9 @@
 
             <EditText
                 android:id="@+id/dtTxtPAdministradorNouUsuariEmail2"
-                android:layout_width="206dp"
+                android:layout_width="0dp"
                 android:layout_height="43dp"
-                android:layout_marginEnd="148dp"
+                android:layout_marginEnd="@dimen/marginLeft"
                 android:ems="10"
                 android:hint="@string/jrodirezgonzalez_prodiscat"
                 android:importantForAutofill="no"
@@ -234,9 +235,9 @@
 
             <Button
                 android:id="@+id/btnPNouUsuari_gurardar"
-                android:layout_width="227dp"
+                android:layout_width="0dp"
                 android:layout_height="42dp"
-                android:layout_marginStart="92dp"
+                android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="92dp"
                 android:layout_marginBottom="56dp"
