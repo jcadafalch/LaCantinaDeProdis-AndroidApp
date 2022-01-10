@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LaCantinaDeProdis</string>
+    <string name="app_name" translatable="false">LaCantinaDeProdis</string>
     <string name="txtPprincipal"><u>Selecciona el tipus d\'usuari que seràs</u></string>
     <string name="client">CLIENT/A</string>
     <string name="cambrer">CAMBRER/A</string>

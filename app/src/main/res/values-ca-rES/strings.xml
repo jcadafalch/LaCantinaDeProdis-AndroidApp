@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txtPprincipal"><u>Selecciona el tipus d\'usuari que seràs</u></string>
+    <string name="client">CLIENT/A</string>
+    <string name="cambrer">CAMBRER/A</string>
+    <string name="caixer">CAIXER/A</string>
+    <string name="cuiner">CUINER/A</string>
+</resources>

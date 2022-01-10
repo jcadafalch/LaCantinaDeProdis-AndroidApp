@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LaCantinaDeProdis</string>
+    <string name="txtPprincipal"><u>Selecciona el tipo de usuario que serás</u></string>
+    <string name="client">CLIENTE/A</string>
+    <string name="cambrer">CAMARERO/A</string>
+    <string name="caixer">CAJERO/A</string>
+</resources>
