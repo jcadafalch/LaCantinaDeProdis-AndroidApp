@@ -65,7 +65,7 @@ class PantallaAdministradorPrincipal : Fragment() {
         db.collection("productes").get().addOnSuccessListener { result ->
             if (arrayProductes.isEmpty()) {
                 for (document in result) {
-                    if (document != null) {
+                    if (document.id != "categories") {
                         arrayProductes.add(document.get("nom").toString())
                     }
                 }
@@ -76,8 +76,7 @@ class PantallaAdministradorPrincipal : Fragment() {
         binding.btnPAdministradorPrincipalNouUsuari.setOnClickListener {
             view?.findNavController()
                 ?.navigate(
-                    PantallaAdministradorPrincipalDirections.
-                    actionPantallaAdministradorPrincipalToPantallaAdministradorNouUsuari(
+                    PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorNouUsuari(
                         arrUsertype
                     )
                 )
@@ -95,8 +94,7 @@ class PantallaAdministradorPrincipal : Fragment() {
                     }
                 }
                 view?.findNavController()?.navigate(
-                    PantallaAdministradorPrincipalDirections.
-                    actionPantallaAdministradorPrincipalToPantallaAdministradorModificarUsuari(
+                    PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorModificarUsuari(
                         arrUser, arrUserId, arrUsertype
                     )
                 )

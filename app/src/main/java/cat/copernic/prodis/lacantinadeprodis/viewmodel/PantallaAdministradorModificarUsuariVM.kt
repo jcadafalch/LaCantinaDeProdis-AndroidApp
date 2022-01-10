@@ -1,85 +1,129 @@
 package cat.copernic.prodis.lacantinadeprodis.viewmodel
 
-import android.util.Log
-import android.view.View
-import android.widget.Toast
+
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.findNavController
-import cat.copernic.prodis.lacantinadeprodis.ui.administrador.PantallaAdministradorModificarUsuariDirections
-import cat.copernic.prodis.lacantinadeprodis.ui.administrador.PantallaAdministradorPrincipalDirections
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
+import java.util.ArrayList
 
-class PantallaAdministradorModificarUsuariVM : ViewModel() {
+class PantallaAdministradorModificarUsuariVM() : ViewModel() {
+
     private val db = Firebase.firestore
-    private var auth = FirebaseAuth.getInstance()
-    var spinnerSelectedBoolean = false
-    //var failureListener = true
-    //var successListener = false
-    //var onCompleteListener = false
-    //var onCompleteListener1 = false
-    //var isSuccessful = false
 
-    var arrUser = java.util.ArrayList<String>()
-    var arrUserId = java.util.ArrayList<String>()
-    var arrUsertype = java.util.ArrayList<String>()
-    lateinit var usertype: MutableLiveData<String>
-    lateinit var username: MutableLiveData<String>
-    lateinit var usersurname: MutableLiveData<String>
-    lateinit var dni: MutableLiveData<String>
-    lateinit var email: MutableLiveData<String>
-    lateinit var pswd: MutableLiveData<String>
+    private var arrUser = MutableLiveData<ArrayList<String>>() //java.util.ArrayList<String>()
+    val getArrUser: LiveData<java.util.ArrayList<String>>
+        get() = arrUser
+
+    private var arrUserId = MutableLiveData<java.util.ArrayList<String>>()
+    val getArrUserId: LiveData<java.util.ArrayList<String>>
+        get() = arrUserId
+
+    private var arrUsertype = MutableLiveData<java.util.ArrayList<String>>()
+    val getArrUserType: LiveData<java.util.ArrayList<String>>
+        get() = arrUsertype
+
+
+    private val usertype = MutableLiveData<ArrayList<String>>()
+    val getUsertype: LiveData<java.util.ArrayList<String>>
+        get() = usertype
+
+    private val username = MutableLiveData<ArrayList<String>>()
+    val getUsername: LiveData<java.util.ArrayList<String>>
+        get() = username
+
+    val usersurname = MutableLiveData<ArrayList<String>>()
+    val getUserSurname: LiveData<java.util.ArrayList<String>>
+        get() = usersurname
+
+    val dni = MutableLiveData<ArrayList<String>>()
+    val getDni: LiveData<java.util.ArrayList<String>>
+        get() = dni
+
+    val email = MutableLiveData<ArrayList<String>>()
+    val getEmail: LiveData<java.util.ArrayList<String>>
+        get() = email
+
+    val pswd = MutableLiveData<ArrayList<String>>()
+    val getPassword: LiveData<java.util.ArrayList<String>>
+        get() = pswd
+
 
     init {
-        Log.i("ModificarUsuari-VM", "PantallaAdministradorModificarUsuariVM created!")
+        // Log.i("ModificarUsuari-VM", "PantallaAdministradorModificarUsuariVM created!")
 
-        usertype.value = ""
-        username.value = ""
-        usersurname.value = ""
-        dni.value = ""
-        email.value = ""
-        pswd.value = ""
+        /*loadArrUser()
+        loadArrUsertype()*/
+
+        val task1: Job = crearCorrutina()
+        task1.let { }
 
 
-        arrUser.clear()
-        arrUserId.clear()
-        arrUsertype.clear()
 
-        loadArrUser()
-        loadArrUsertype()
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        Log.i("ModificarUsuari-VM", "PantallaAdministradorModificarUsuariVM destroyed!")
-    }
+    private fun crearCorrutina() = GlobalScope.launch(Dispatchers.Main) {
+        withContext(Dispatchers.IO) {
 
-    fun spinnerSelected(position: Int) {
-        db.collection("users").document(arrUserId[position]).get()
-            .addOnSuccessListener { document ->
-                val pasword = document.get("password").toString()
-                pswd.value = pasword.replace("prodis", "")
-                spinnerSelectedBoolean = true
-                username.value = document.get("username").toString()
-                usersurname.value = document.get("usersurname").toString()
-                dni.value = document.get("dni").toString()
-                email.value = document.get("email").toString()
-                usertype.value = document.get("usertype").toString()
+            usertype.value?.clear()
+            username.value?.clear()
+            usersurname.value?.clear()
+            dni.value?.clear()
+            email.value?.clear()
+            pswd.value?.clear()
+
+            arrUser.value?.clear()
+            arrUserId.value?.clear()
+            arrUsertype.value?.clear()
+
+            db.collection("users").get().addOnSuccessListener { result ->
+                for (document in result) {
+                    if (document.id != "usertypes") {
+                        val user =
+                            document.get("username").toString() + " " + document.get("usersurname")
+                                .toString()
+                        arrUser.value?.add(user)
+                        arrUserId.value?.add(document.id)
+
+                        dni.value?.add(document.get("dni").toString())
+                        email.value?.add(document.get("email").toString())
+                        pswd.value?.add(document.get("password").toString())
+                        username.value?.add(document.get("username").toString())
+                        usersurname.value?.add(document.get("usersurname").toString())
+                        usertype.value?.add(document.get("usertype").toString())
+
+                    } else if (document.id == "usertypes") {
+                        val admin = document.get("admin").toString()
+                        val caixer = document.get("caixer").toString()
+                        val cambrer = document.get("cambrer").toString()
+                        val client = document.get("client").toString()
+                        val clientR = document.get("clientR").toString()
+                        val cuiner = document.get("cuiner").toString()
+
+                        arrUsertype.value?.add(admin)
+                        arrUsertype.value?.add(caixer)
+                        arrUsertype.value?.add(cambrer)
+                        arrUsertype.value?.add(client)
+                        arrUsertype.value?.add(clientR)
+                        arrUsertype.value?.add(cuiner)
+                    }
+                }
             }
+
+        }
     }
 
-    private fun loadArrUser(){
+    /*private fun loadArrUser(){
         db.collection("users").get().addOnSuccessListener { result ->
             for (document in result) {
                 if (document.id != "usertypes") {
                     val user =
                         document.get("username").toString() + " " + document.get("usersurname")
                             .toString()
-                    arrUser.add(user)
-                    arrUserId.add(document.id)
+                    arrUser.value?.add(user)
+                    arrUserId.value?.add(document.id)
                 }
             }
         }
@@ -94,89 +138,13 @@ class PantallaAdministradorModificarUsuariVM : ViewModel() {
             val clientR = document.get("clientR").toString()
             val cuiner = document.get("cuiner").toString()
 
-            arrUsertype.add(admin)
-            arrUsertype.add(caixer)
-            arrUsertype.add(cambrer)
-            arrUsertype.add(client)
-            arrUsertype.add(clientR)
-            arrUsertype.add(cuiner)
+            arrUsertype.value?.add(admin)
+            arrUsertype.value?.add(caixer)
+            arrUsertype.value?.add(cambrer)
+            arrUsertype.value?.add(client)
+            arrUsertype.value?.add(clientR)
+            arrUsertype.value?.add(cuiner)
         }
-    }
-
-    /* fun deleteUser(dni: String) {
-         failureListener = true
-        successListener = false
-         onCompleteListener = false
-         onCompleteListener1 = false
-         isSuccessful = false
-         isSuccessful = false
-         db.collection("users").document(dni).get().addOnSuccessListener { result ->
-             auth.signInWithEmailAndPassword(
-                 result.get("email").toString(),
-                 result.get("password").toString()
-             ).addOnCompleteListener {
-                 onCompleteListener = true
-                 if (it.isSuccessful) {
-                     isSuccessful = true
-                     val currentUser = auth.currentUser
-                     currentUser?.delete()
-                         ?.addOnCompleteListener {
-                             onCompleteListener1 = true
-                             db.collection("users").document(dni).delete()
-                                 .addOnSuccessListener {
-                                     onCompleteListener = true
-                                 }
-                                 .addOnFailureListener {
-                                     failureListener = false
-                                 }
-                         }
-                 } else {
-                     isSuccessful = false
-                 }
-             }
-         }
-     }*/
-
-    /*fun spinnerUserTypeSelected(arrUserId: ArrayList<String>, position: Int){
-            db.collection("users").document(arrUserId[position]).get()
-                .addOnSuccessListener { document ->
-                    val nom = binding.dtTxtPAdministradorModificarUsuariPersonName.text.toString()
-                    val cognom = binding.dtTxtPAdministradorModificarUsuariPersonSurname.text.toString()
-                    if (document.get("usertype") == "client" && position != 3) {
-                        val builder =
-                            androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
-                        builder.setTitle("¡¡¡ATENCIÓ!!!")
-                        builder.setMessage("Si vols que l'usuari: $nom $cognom deixi de ser client, " +
-                                "l'has de tornar a afegir desde l'apartat \"Afegir nou usuari\".\n" +
-                                "Vols anar a \"Afegir nou usuari\" per canviar el tipus d'usuari?")
-                        builder.setPositiveButton("Si") { _, _ ->
-                            view?.findNavController()?.navigate(PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorNouUsuari(arrUserType))
-                        }
-                        builder.setNegativeButton("No") { _, _ ->
-                            spinnerUserType.setSelection(3)
-                        }
-                        val dialog: androidx.appcompat.app.AlertDialog = builder.create()
-                        dialog.show()
-                    } else if (document.get("usertype") == "client") {
-                        binding.txtPAdministradorModificarUsuariEmail.visibility =
-                            View.INVISIBLE
-                        binding.dtTxtPAdministradorModificarUsuariEmail.visibility =
-                            View.INVISIBLE
-                        binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
-                            View.INVISIBLE
-                        /*binding.dtTxtPAdministradorModificarUsuariEmail.text = ""
-                        binding.dtTxtPAdministradorModificarUsuariPassword.setText("")
-                        binding.dtTxtPAdministradorModificarUsuariEmail.isEnabled = true
-                        binding.dtTxtPAdministradorModificarUsuariEmail.inputType*/
-                    } else {
-                        binding.txtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
-                        binding.dtTxtPAdministradorModificarUsuariEmail.visibility =
-                            View.VISIBLE
-                        binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
-                            View.VISIBLE
-                    }
-                }
-
     }*/
 
 }

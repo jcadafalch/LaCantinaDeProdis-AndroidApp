@@ -7,8 +7,7 @@
     <fragment
         android:id="@+id/pantalla_seleccio_tipus_producte"
         android:name="cat.copernic.prodis.lacantinadeprodis.ui.comandes.PantallaSeleccioTipusProdcute"
-        android:label="pantalla_seleccio_tipus_producte"
-        tools:layout="@layout/fragment_pantalla_seleccio_tipus_producte">
+        android:label="pantalla_seleccio_tipus_producte">
         <action
             android:id="@+id/action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_bocata"
             app:destination="@id/pantalla_seleccio_bocata" />
@@ -21,12 +20,6 @@
         <action
             android:id="@+id/action_pantalla_seleccio_tipus_producte_to_pantalla_seleccio_nom_client_comanda"
             app:destination="@id/pantalla_seleccio_nom_client_comanda" />
-        <argument
-            android:name="atributs"
-            app:argType="string" />
-        <argument
-            android:name="perEmportar"
-            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_bocata"
@@ -77,8 +70,7 @@
             app:destination="@id/pantalla_seleccio_tipus_producte" />
         <argument
             android:name="idProductes"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_atributs_bocata"
@@ -90,8 +82,7 @@
             app:destination="@id/pantalla_seleccio_tipus_producte" />
         <argument
             android:name="idProductes"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/pantalla_seleccio_nom_client_comanda"
@@ -106,5 +97,11 @@
         <argument
             android:name="arrUser"
             app:argType="java.util.ArrayList" />
+        <argument
+            android:name="docId"
+            app:argType="string" />
+        <argument
+            android:name="dni"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="txtPrincipal">20sp</dimen>
-    <dimen name="btnPprincipalCliCambCuiCaix">30sp</dimen>
-    <dimen name="txtRegistreIniciSessio">14sp</dimen>
+    <dimen name="txtTitol">30sp</dimen>
+    <dimen name="txtSubTitol">20sp</dimen>
+    <dimen name="txtGran">18sp</dimen>
+    <dimen name="txtMig">16sp</dimen>
+    <dimen name="txtPetit">14sp</dimen>
+    <dimen name="centrat">60sp</dimen>
+    <dimen name="marginLeft">173sp</dimen>
+    <dimen name="marginRight">40sp</dimen>
+    <dimen name="marginLeft2">22sp</dimen>
+    <dimen name="tamanyFoto">140sp</dimen>
+    <dimen name="tamanyFotoPetit">100sp</dimen>
+    <dimen name="checkWidth">300sp</dimen>
+    <dimen name="checkHeight">60sp</dimen>
+    <dimen name="imgBossaWidth">240sp</dimen>
+    <dimen name="imgBossaHeight">200sp</dimen>
 </resources>

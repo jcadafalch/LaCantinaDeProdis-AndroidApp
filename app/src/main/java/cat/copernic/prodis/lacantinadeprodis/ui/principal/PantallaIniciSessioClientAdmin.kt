@@ -1,6 +1,5 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.principal
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,11 +14,13 @@ import cat.copernic.prodis.lacantinadeprodis.ui.activities.CaixerActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.ui.activities.ComandesActivity
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaIniciSessioClientAdminBinding
+import cat.copernic.prodis.lacantinadeprodis.ui.activities.CuinerActivity
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class PantallaIniciSessioClientAdmin: Fragment() {
+class PantallaIniciSessioClientAdmin : Fragment() {
 
     private val db = Firebase.firestore
     private var auth = FirebaseAuth.getInstance()
@@ -30,7 +31,6 @@ class PantallaIniciSessioClientAdmin: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         val binding: FragmentPantallaIniciSessioClientAdminBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_inici_sessio_client_admin, container, false
         )
@@ -58,14 +58,18 @@ class PantallaIniciSessioClientAdmin: Fragment() {
                             if (it.isSuccessful) {
                                 startActivity(usertype)
                             } else {
-                                showAlert("Error en inici de sessió")
+                                utils().showAlert("ERROR", "Error en inici de sessió", this.context)
                             }
                         }
                             .addOnFailureListener {
-                                showAlert("L\'usuari no està registrat")
+                                utils().showAlert("ERROR", "L\'usuari no està registrat", this.context)
                             }
                     } else {
-                        showAlert("Aquest usuari no és de tipus $usertype")
+                        utils().showAlert(
+                            "ERROR",
+                            "Aquest usuari no es de tipus $usertype",
+                            this.context
+                        )
                     }
                 }
 
@@ -109,6 +113,7 @@ class PantallaIniciSessioClientAdmin: Fragment() {
             putExtra("usertype", username)
             putExtra("dni", dni)
         }
+        //utils().idComanda = "N"
         startActivity(intent)
     }
 
@@ -121,7 +126,7 @@ class PantallaIniciSessioClientAdmin: Fragment() {
     }
 
     private fun showCuiner(dni: String) {
-        val intent = Intent(this.context, ComandesActivity::class.java).apply {
+        val intent = Intent(this.context, CuinerActivity::class.java).apply {
             putExtra("dni", dni)
         }
         startActivity(intent)
@@ -132,15 +137,6 @@ class PantallaIniciSessioClientAdmin: Fragment() {
             putExtra("dni", dni)
         }
         startActivity(intent)
-    }
-
-    private fun showAlert(mesage: String) {
-        val builder = AlertDialog.Builder(this.context)
-        builder.setTitle("ERROR")
-        builder.setMessage(mesage)
-        builder.setPositiveButton("Acceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
     }
 
 }

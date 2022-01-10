@@ -1,6 +1,5 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.principal
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaRecuperarContrasenya2Binding
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -51,10 +51,10 @@ class PantallaRecuperarContrasenya2 : Fragment() {
                 } else {
                     println("PSW1  = " + binding.dtTxtPRegistrePasswordText.text.toString())
                     println("PSW2 = " + binding.dtTxtPRegistreRepeteixPasswordText.text.toString())
-                    showAlert("Les contrasenyes no coincideixen.")
+                    utils().showAlert("ERROR", "Les contrasenyes no coincideixen.", this.context)
                 }
             } else {
-                showAlert("Els camps no están plens")
+                utils().showAlert("ERROR", "Els camps no están plensa", this.context)
             }
         }
 
@@ -87,22 +87,14 @@ class PantallaRecuperarContrasenya2 : Fragment() {
                         )
                     )
                 } else {
-                    showAlert("Error en recuperar contrasenya")
+                    utils().showAlert("ERROR", "Error en recuperar contrasenya", this.context)
                 }
             }
         }
             .addOnFailureListener {
-                showAlert("L\'usuari no està registrat")
+                utils().showAlert("ERROR", "L\'usuari no està registrat", this.context)
             }
 
     }
 
-    private fun showAlert(msg: String) {
-        val builder = AlertDialog.Builder(this.context)
-        builder.setTitle("ERROR")
-        builder.setMessage(msg)
-        builder.setPositiveButton("Acceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-    }
 }

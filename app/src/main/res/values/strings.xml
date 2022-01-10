@@ -68,7 +68,6 @@
     <string name="sucre_blanc">SUCRE BLANC</string>
     <string name="sucre_more">SUCRE MORÉ</string>
     <string name="sacarina">SACARINA</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="perfil_info">Aqui pots cambiar la informació del teu perfil!</string>
     <string name="nom">Nom:</string>
@@ -77,12 +76,10 @@
     <string name="oblidat_contrsenya"><u>Has oblidat la contrasenya?</u></string>
     <string name="tamany_lletra">Tamany de la lletra</string>
     <string name="cambiar_foto">Cambiar foto</string>
-    <string name="tamany_gran">Aa</string>
     <string name="posa_correu">Posa aqui el teu correu electrònic</string>
     <string name="imatge_del_usuari">Imatge del usuari</string>
     <string name="posa_aqui_el_teu_nom">Posa aqui el teu nom</string>
     <string name="posa_aqui_el_teu_cognom">Posa aqui el teu cognom</string>
-    <string name="tamany_petit">Aa</string>
     <string name="cambiar_contrasenya">Cambiar contrasenya</string>
     <string name="posa_aqui_la_contrasenya">Posa aqui la teva nova contrasenya (opcional)</string>
     <string-array name="tipus_producte">
@@ -113,5 +110,30 @@
     <string name="extern">Extern</string>
     <string name="juan_rodriguez_gonz_lez">Juan Rodriguez González</string>
     <string name="cognoms">Cognoms</string>
-
+    <string name="acceptar">Acceptar</string>
+    <string name="minimitzar">minimitzar</string>
+    <string name="comanda_feta">comanda feta</string>
+    <string name="selecciona_una_comanda_per_veure_el_resum">Selecciona una comanda per veure el resum</string>
+    <string name="resum_comanda">Resum comanda</string>
+    <string name="marcar_com_pagat" />
+    <string name="comanda_1">Comanda 1</string>
+    <string name="total">TOTAL:</string>
+    <string name="idioma_de_l_app">Idioma de l\'app</string>
+    <string name="error">¡¡¡Error!!!</string>
+    <string name="has_d_introduir_el_nom">Has d\'introduïr el nom</string>
+    <string name="has_d_introduir_el_cognom">Has d\'introduïr el cognom</string>
+    <string name="d_on_vols_treure_la_foto">D\'on vols treure la foto?</string>
+    <string name="selecciona_un">Selecciona un:</string>
+    <string name="camera">CÀMERA</string>
+    <string name="galeria">GALERIA</string>
+    <string name="error_al_pujar">Error al pujar la foto</string>
+    <string name="exit_al_pujar">Exit al pujar la foto</string>
+    <string name="canvis_amb_exit">Els canvis s\'han fet amb èxit</string>
+    <string name="channel_id">cat.copernic.prodis.lacantinadeprodis.ui.activities</string>
+    <string name="noti">Notificació</string>
+    <string name="channel_name">app</string>
+    <string name="selecciona_tipus_producte">Has de seleccionar un tipus de prodcute</string>
+    <string name="afegit_producte_exit">S\'ha afegit el producte amb éxit</string>
+    <string name="enhorabona_canvis">Enhorabona, els canvis del usuari s\'han realitzat amb èxit</string>
+    <string name="descripcio_notificacio">Notificació per indicar que s\'han fet els canvis del perfil del usuari</string>
 </resources>

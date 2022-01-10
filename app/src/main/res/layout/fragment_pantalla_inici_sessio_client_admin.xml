@@ -32,11 +32,11 @@
                 android:id="@+id/txtPIniciarSessioClient"
                 android:layout_width="146dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="@dimen/marginRight"
                 android:layout_marginTop="200dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/iniciarSessio"
-                android:textSize="24sp"
+                android:textSize="@dimen/txtSubTitol"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientBenvinguda"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,11 +46,11 @@
                 android:id="@+id/txtPIniciarSessioClientBenvinguda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="@dimen/marginRight"
                 android:layout_marginBottom="32dp"
                 android:text="@string/txtPIniciarSessio_benvinguda"
                 android:textColor="#616161"
-                android:textSize="15sp"
+                android:textSize="@dimen/txtMig"
                 app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientDni"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -61,7 +61,7 @@
                 android:layout_marginBottom="5dp"
                 android:text="@string/dni"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/txtRegistreIniciSessio"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientDni"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
@@ -70,13 +70,14 @@
                 android:id="@+id/dtTxtPIniciarSessioClientDni"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="@dimen/marginRight"
                 android:layout_marginBottom="47dp"
                 android:autofillHints="nif"
                 android:ems="10"
                 android:hint="@string/editDni"
                 android:inputType="textPersonName"
                 android:maxLength="9"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientContrasenya"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="LabelFor,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
@@ -86,11 +87,11 @@
                 android:id="@+id/txtPIniciarSessioClientContrasenya"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="@dimen/marginRight"
                 android:layout_marginBottom="5dp"
                 android:text="@string/contrasenya"
                 android:textColor="#00796B"
-                android:textSize="@dimen/txtRegistreIniciSessio"
+                android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientPasswordL"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -112,7 +113,8 @@
                     android:layout_height="match_parent"
                     android:inputType="numberPassword"
                     android:maxLength="4"
-                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+                    android:textSize="@dimen/txtMig"
+                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -139,6 +141,7 @@
                 android:focusable="true"
                 android:text="@string/oblidatContrasenya"
                 android:textAlignment="center"
+                android:textSize="@dimen/txtPetit"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txtPiniciarSessioClientRegistre"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -157,6 +160,7 @@
                 android:text="@string/registrat"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/txtPetit"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

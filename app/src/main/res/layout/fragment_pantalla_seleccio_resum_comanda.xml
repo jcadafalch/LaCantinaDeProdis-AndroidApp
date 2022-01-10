@@ -5,27 +5,52 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorFons">
 
 
-        <TextView
-            android:id="@+id/txtCognom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pantalla seleccio resum comanda"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            app:layout_constraintEnd_toEndOf="parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtCognom" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtResumComanda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="@string/resum_comanda"
+                android:textColor="@color/black"
+                 />
+
+            <TextView
+                android:id="@+id/txtSeccionaComanda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/selecciona_una_comanda_per_veure_el_resum"
+                android:textColor="@color/black"
+                 />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rycrVwSeleccioResumComanda"
+                android:layout_width="match_parent"
+                android:layout_height="550dp" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/torna_enrere"
+                app:srcCompat="@drawable/arrow_back_foreground"
+                tools:ignore="ImageContrastCheck" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
