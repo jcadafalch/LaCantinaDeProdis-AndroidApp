@@ -8,7 +8,7 @@
     <dimen name="centrat">60sp</dimen>
     <dimen name="marginLeft">160dp</dimen>
     <dimen name="marginRight">40dp</dimen>
-    <dimen name="marginLeft2">22dp</dimen>
+    <dimen name="marginLeft2">40dp</dimen>
     <dimen name="tamanyFoto">140dp</dimen>
     <dimen name="tamanyFotoPetit">100dp</dimen>
     <dimen name="checkWidth">300dp</dimen>
@@ -20,6 +20,6 @@
     <dimen name="paddingRightPantallaPrincipal">590dp</dimen>
     <dimen name="contrassenyaWidth">204dp</dimen>
     <dimen name="marginAtributsButtons">600dp</dimen>
-    <dimen name="marginLandscape">150dp</dimen>
+    <dimen name="marginLandscape">160dp</dimen>
     <dimen name="adminButtonsWidth">370dp</dimen>
 </resources>

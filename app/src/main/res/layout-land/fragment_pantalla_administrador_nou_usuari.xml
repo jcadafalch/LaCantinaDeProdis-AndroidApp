@@ -34,14 +34,13 @@
                 android:id="@+id/txtPAdministradorNouUsuari_nouUsuari"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/centrat"
-                android:layout_marginTop="28dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="80dp"
                 android:text="@string/txt_nou_usuari"
                 android:textColor="@color/black"
                 android:textSize="@dimen/txtGran"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouUsuari" />
 
@@ -128,7 +127,7 @@
 
             <EditText
                 android:id="@+id/dtTxtPAdministradorNouUsuari_PersonSurname"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/centrat"
                 android:layout_marginTop="1dp"
@@ -235,17 +234,18 @@
 
             <Button
                 android:id="@+id/btnPNouUsuari_gurardar"
-                android:layout_width="227dp"
+                android:layout_width="0dp"
                 android:layout_height="42dp"
-                android:layout_marginStart="92dp"
+                android:layout_marginStart="@dimen/marginLandscape"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="92dp"
+                android:layout_marginEnd="@dimen/marginLandscape"
                 android:layout_marginBottom="56dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/guardar"
+                android:theme="@style/AppTheme.btnGuardar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dtTxtPAdministradorNouUsuariPasswordT"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />

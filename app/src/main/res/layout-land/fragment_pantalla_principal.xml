@@ -48,10 +48,12 @@
 
             <Button
                 android:id="@+id/btnPprincipalClient"
-                android:layout_width="392dp"
+                android:layout_width="0dp"
                 android:layout_height="95dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/centrat"
+                android:layout_marginEnd="@dimen/centrat"
                 android:layout_marginBottom="2dp"
                 android:drawableLeft="@mipmap/client_foreground"
                 android:text="@string/client"
@@ -63,10 +65,12 @@
 
             <Button
                 android:id="@+id/btnPprincipalCambrer"
-                android:layout_width="392dp"
+                android:layout_width="0dp"
                 android:layout_height="95dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/centrat"
+                android:layout_marginEnd="@dimen/centrat"
                 android:layout_marginBottom="2dp"
                 android:drawableLeft="@mipmap/cambrer_foreground"
                 android:text="@string/cambrer"
@@ -78,10 +82,12 @@
 
             <Button
                 android:id="@+id/btnPprincipalCaixer"
-                android:layout_width="392dp"
+                android:layout_width="0dp"
                 android:layout_height="95dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/centrat"
+                android:layout_marginEnd="@dimen/centrat"
                 android:layout_marginBottom="2dp"
                 android:drawableLeft="@mipmap/caixer_foreground"
                 android:text="@string/caixer"
@@ -94,10 +100,12 @@
 
             <Button
                 android:id="@+id/btnPprincipalCuiner"
-                android:layout_width="392dp"
+                android:layout_width="0dp"
                 android:layout_height="95dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/centrat"
+                android:layout_marginEnd="@dimen/centrat"
                 android:layout_marginBottom="14dp"
                 android:drawableLeft="@mipmap/cuiner_foreground"
                 android:fontFamily="sans-serif-medium"
@@ -110,11 +118,11 @@
 
             <Button
                 android:id="@+id/btnPprincipalAdministrador"
-                android:layout_width="374dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/marginLandscape"
                 android:layout_marginTop="12dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/marginLandscape"
                 android:backgroundTint="#008570"
                 android:text="@string/administrador"
                 android:textAlignment="center"

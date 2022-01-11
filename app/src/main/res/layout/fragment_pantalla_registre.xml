@@ -165,7 +165,7 @@
                 android:textSize="@dimen/txtGran"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPRegistrePasswordT"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.192"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
 
@@ -231,10 +231,10 @@
 
             <CheckBox
                 android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="125dp"
+                android:layout_marginStart="@dimen/centrat"
+                android:layout_marginEnd="@dimen/centrat"
                 android:layout_marginBottom="30dp"
                 android:text="@string/condicions_servei_privacitat"
                 android:textSize="@dimen/txtPetit"
@@ -245,10 +245,10 @@
 
             <Button
                 android:id="@+id/btnPregistre"
-                android:layout_width="227dp"
+                android:layout_width="0dp"
                 android:layout_height="42dp"
-                android:layout_marginStart="22dp"
-                android:layout_marginEnd="115dp"
+                android:layout_marginStart="@dimen/centrat"
+                android:layout_marginEnd="@dimen/centrat"
                 android:layout_marginBottom="17dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/continuar"
@@ -262,7 +262,7 @@
                 android:id="@+id/textPregistre_tensUnCompte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="68dp"
+                android:layout_marginStart="@dimen/centrat"
                 android:layout_marginBottom="40dp"
                 android:text="@string/tens_un_compte"
                 android:textSize="@dimen/txtPetit"
@@ -275,7 +275,7 @@
                 android:id="@+id/textPregistre_iniciaSessio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="137dp"
+                android:layout_marginEnd="@dimen/centrat"
                 android:layout_marginBottom="40dp"
                 android:text="@string/iniciarSessio"
                 android:textColor="@color/colorPrimary"
