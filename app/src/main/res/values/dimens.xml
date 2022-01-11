@@ -20,4 +20,6 @@
     <dimen name="paddingRightPantallaPrincipal">590dp</dimen>
     <dimen name="contrassenyaWidth">204dp</dimen>
     <dimen name="marginAtributsButtons">600dp</dimen>
+    <dimen name="marginLandscape">150dp</dimen>
+    <dimen name="adminButtonsWidth">370dp</dimen>
 </resources>
