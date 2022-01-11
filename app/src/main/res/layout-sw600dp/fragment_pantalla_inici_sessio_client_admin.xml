@@ -31,13 +31,13 @@
 
             <TextView
                 android:id="@+id/txtPIniciarSessioClient"
-                android:layout_width="146dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginTop="200dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/iniciarSessio"
-                android:textSize="@dimen/txtSubTitol"
+                android:textSize="@dimen/txtSubTitolTablet"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientBenvinguda"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,7 @@
                 android:layout_marginBottom="32dp"
                 android:text="@string/txtPIniciarSessio_benvinguda"
                 android:textColor="#616161"
-                android:textSize="@dimen/txtMig"
+                android:textSize="@dimen/txtMigTablet"
                 app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientDni"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -62,7 +62,7 @@
                 android:layout_marginBottom="5dp"
                 android:text="@string/dni"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/txtGran"
+                android:textSize="@dimen/txtGranTablet"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientDni"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
@@ -78,7 +78,7 @@
                 android:hint="@string/editDni"
                 android:inputType="textPersonName"
                 android:maxLength="9"
-                android:textSize="@dimen/txtGran"
+                android:textSize="@dimen/txtGranTablet"
                 app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientContrasenya"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="LabelFor,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
@@ -92,7 +92,7 @@
                 android:layout_marginBottom="5dp"
                 android:text="@string/contrasenya"
                 android:textColor="#00796B"
-                android:textSize="@dimen/txtGran"
+                android:textSize="@dimen/txtGranTablet"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientPasswordL"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -112,20 +112,21 @@
                     android:layout_height="match_parent"
                     android:inputType="numberPassword"
                     android:maxLength="4"
-                    android:textSize="@dimen/txtMig"
+                    android:textSize="@dimen/txtMigTablet"
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnPiniciarSessioClient"
                 android:layout_width="0dp"
-                android:layout_height="42dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginEnd="@dimen/marginLeftAdminLandscape"
                 android:layout_marginBottom="26dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/iniciarSessio"
                 android:textColor="#FFFFFF"
+                android:textSize="@dimen/txtSubTitolTablet"
                 app:layout_constraintBottom_toTopOf="@+id/txtPiniciarSessioClientOblidatContrasenya"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -142,7 +143,7 @@
                 android:focusable="true"
                 android:text="@string/oblidatContrasenya"
                 android:textAlignment="center"
-                android:textSize="@dimen/txtPetit"
+                android:textSize="@dimen/txtPetitTablet"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txtPiniciarSessioClientRegistre"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +162,7 @@
                 android:text="@string/registrat"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/txtPetit"
+                android:textSize="@dimen/txtPetitTablet"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

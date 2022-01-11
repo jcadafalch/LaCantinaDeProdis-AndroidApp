@@ -6,7 +6,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorFons">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,7 +25,7 @@
                 android:layout_marginBottom="37dp"
                 android:text="@string/txtAfegirNouUsuari"
                 android:textColor="@color/black"
-                android:textSize="40sp"
+                android:textSize="@dimen/txtTitolTablet"
                 app:layout_constraintBottom_toTopOf="@+id/txtPAdministradorNouUsuari_nouUsuari"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +40,7 @@
                 android:layout_marginEnd="80dp"
                 android:text="@string/txt_nou_usuari"
                 android:textColor="@color/black"
-                android:textSize="@dimen/txtGran"
+                android:textSize="@dimen/txtGranTablet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPAdministradorNouUsuari" />
@@ -53,6 +54,7 @@
                 android:text="@string/tipus_d_usuari"
                 android:textColor="@color/colorPrimary"
 
+                android:textSize="@dimen/txtPetitTablet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPAdministradorNouUsuari_dni"
@@ -89,6 +91,7 @@
                 android:layout_marginBottom="1dp"
                 android:text="@string/introdueix_el_nom_de_l_usuari"
                 android:textColor="#00796B"
+                android:textSize="@dimen/txtPetitTablet"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPAdministradorNouUsuari_PersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -105,6 +108,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
+                android:textSize="@dimen/txtMigTablet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/txtPAdministradorNouUsuari_cognomUsuari"
@@ -119,6 +123,7 @@
                 android:layout_marginEnd="118dp"
                 android:text="@string/introdueix_els_cognoms_de_l_usuari"
                 android:textColor="#00796B"
+                android:textSize="@dimen/txtPetitTablet"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPAdministradorNouUsuari_PersonSurname"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -137,6 +142,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
+                android:textSize="@dimen/txtMigTablet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -151,6 +157,7 @@
                 android:layout_marginEnd="118dp"
                 android:text="@string/introdueix_el_dni"
                 android:textColor="#00796B"
+                android:textSize="@dimen/txtPetitTablet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPAdministradorNouUsuari_PersonSurname"
@@ -168,6 +175,7 @@
                 android:inputType="textPersonName"
                 android:maxLength="9"
                 android:textColor="@color/black"
+                android:textSize="@dimen/txtMigTablet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -181,6 +189,7 @@
                 android:layout_marginTop="25dp"
                 android:text="@string/correu_electronic"
                 android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/txtPetitTablet"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPAdministradorNouUsuari_dni"
                 app:layout_constraintTop_toBottomOf="@+id/dtTxtPAdministradorNouUsuari_dni"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
@@ -195,6 +204,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
                 android:textColor="#616161"
+                android:textSize="@dimen/txtMigTablet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/txtPAdministradorNouUsuariEmail2"
@@ -209,6 +219,7 @@
                 android:layout_marginEnd="297dp"
                 android:text="@string/contrasenya"
                 android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/txtPetitTablet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPAdministradorNouUsuariEmail2"
@@ -230,19 +241,21 @@
                     android:background="@color/colorFons"
                     android:inputType="numberPassword"
                     android:maxLength="4"
+                    android:textSize="@dimen/txtMigTablet"
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnPNouUsuari_gurardar"
                 android:layout_width="0dp"
-                android:layout_height="42dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/marginLeftAdminLandscape"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="92dp"
                 android:layout_marginBottom="56dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/guardar"
+                android:textSize="@dimen/txtSubTitolTablet"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

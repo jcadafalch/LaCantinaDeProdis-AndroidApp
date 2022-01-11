@@ -5,12 +5,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/colorFons">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorFons">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -25,6 +25,10 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp" />
 
                     <RadioGroup
                         android:id="@+id/rarioGroupAtributs"
@@ -41,12 +45,12 @@
 
                         <RadioButton
                             android:id="@+id/radioSenseSucre"
-                            android:layout_width="141dp"
-                            android:layout_height="48dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="-20dp"
                             android:checked="true"
                             android:text="@string/sense_sucre"
-                            android:textSize="@dimen/txtPetit" />
+                            android:textSize="@dimen/txtPetitTablet" />
 
                         <ImageView
                             android:id="@+id/imgSucreBlanc"
@@ -56,11 +60,11 @@
 
                         <RadioButton
                             android:id="@+id/radioSucreBlanc"
-                            android:layout_width="150dp"
-                            android:layout_height="48dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="-20dp"
                             android:text="@string/sucre_blanc"
-                            android:textSize="@dimen/txtPetit" />
+                            android:textSize="@dimen/txtPetitTablet" />
 
                         <ImageView
                             android:id="@+id/imgSacarina"
@@ -70,10 +74,10 @@
 
                         <RadioButton
                             android:id="@+id/radioSacarina"
-                            android:layout_width="143dp"
-                            android:layout_height="48dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="@string/sacarina"
-                            android:textSize="@dimen/txtPetit" />
+                            android:textSize="@dimen/txtPetitTablet" />
 
                         <ImageView
                             android:id="@+id/imgSucreMore"
@@ -83,10 +87,10 @@
 
                         <RadioButton
                             android:id="@+id/radioSucreMore"
-                            android:layout_width="143dp"
-                            android:layout_height="48dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="@string/sucre_more"
-                            android:textSize="@dimen/txtPetit" />
+                            android:textSize="@dimen/txtPetitTablet" />
 
                         <ImageView
                             android:id="@+id/imgPerEmportar"
@@ -100,7 +104,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/per_emportar"
-                            android:textSize="@dimen/txtPetit" />
+                            android:textSize="@dimen/txtPetitTablet" />
                     </RadioGroup>
 
                     <LinearLayout
@@ -149,6 +153,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="113dp"
                 android:layout_height="123dp"
+                android:layout_marginTop="360dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

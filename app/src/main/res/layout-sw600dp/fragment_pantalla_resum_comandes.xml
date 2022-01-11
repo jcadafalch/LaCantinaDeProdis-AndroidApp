@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:text="@string/nom_de_l_usuari"
                 android:textColor="@color/black"
-                />
+                android:textSize="@dimen/txtPetitTablet" />
 
             <TextView
                 android:id="@+id/txtComanda"
@@ -37,7 +37,7 @@
                 android:gravity="center"
                 android:text="@string/comanda_1"
                 android:textColor="@color/black"
-                 />
+                android:textSize="@dimen/txtPetitTablet" />
 
 
 
@@ -61,6 +61,7 @@
                     android:gravity="end"
                     android:text="@string/total"
                     android:textColor="@color/black"
+                    android:textSize="@dimen/txtPetitTablet"
                     android:textStyle="bold" />
 
                 <TextView
@@ -72,7 +73,7 @@
                     android:gravity="center"
                     android:text="@string/_2"
                     android:textColor="@color/black"
-                     />
+                    android:textSize="@dimen/txtPetitTablet" />
             </LinearLayout>
 
 

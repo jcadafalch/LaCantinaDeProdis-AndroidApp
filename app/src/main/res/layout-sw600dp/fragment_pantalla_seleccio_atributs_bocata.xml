@@ -24,6 +24,10 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="450dp" />
+
                     <ImageView
                         android:id="@+id/imgTomaquet"
                         android:layout_width="216dp"
@@ -60,7 +64,7 @@
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="40dp" />
+                        android:layout_height="50dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -100,21 +104,18 @@
 
                     </LinearLayout>
 
+                    <ImageView
+                        android:id="@+id/imgProhibit"
+                        android:layout_width="153dp"
+                        android:layout_height="155dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="80dp"
+                        android:contentDescription="@string/descripcio_img_prohibit"
+                        app:srcCompat="@drawable/ic_baseline_block_24" />
+
                 </LinearLayout>
 
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/imgProhibit"
-                android:layout_width="153dp"
-                android:layout_height="155dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="80dp"
-                android:contentDescription="@string/descripcio_img_prohibit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout2"
-                app:srcCompat="@drawable/ic_baseline_block_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
