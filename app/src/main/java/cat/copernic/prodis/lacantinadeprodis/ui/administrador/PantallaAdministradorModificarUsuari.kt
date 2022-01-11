@@ -46,6 +46,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
         arrUserId = args.userArrId as ArrayList<String>
         arrUserType = args.usertypeArr as ArrayList<String>
 
+
         spinner = binding.spinUsuariModificar
 
         val context = this.requireContext()
@@ -102,11 +103,12 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        val spinnerPosition = spinner.selectedItemPosition
         println("ITEM position = $position")
-
         //println("USER ID = " + arrUserId[position])
         println("PARENT = $parent")
         if (parent == spinner) {
+            //spinnerPosition = position
             db.collection("users").document(arrUserId[position]).get()
                 .addOnSuccessListener { document ->
                     val pasword = document.get("password").toString()
@@ -136,7 +138,6 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                         binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
 
                     }
-
 
                     if (pswd == "null") {
                         binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
@@ -174,22 +175,37 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                     }
                 }
         } else if (parent == spinnerUserType) {
+            println("----------------------")
+            println(arrUserType[position])
+            println("-----------------------------")
             if (position == 3) {
                 binding.txtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
                 binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
                 binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility = View.INVISIBLE
             } else {
-                db.collection("users").document(arrUserId[position]).get()
+                db.collection("users").document(arrUserId[spinnerPosition]).get()
                     .addOnSuccessListener { document ->
-                        val nom = binding.dtTxtPAdministradorModificarUsuariPersonName.text.toString()
-                        val cognom = binding.dtTxtPAdministradorModificarUsuariPersonSurname.text.toString()
+                        val nom =
+                            binding.dtTxtPAdministradorModificarUsuariPersonName.text.toString()
+                        val cognom =
+                            binding.dtTxtPAdministradorModificarUsuariPersonSurname.text.toString()
                         if (document.get("usertype") == "client" && position != 3) {
                             val builder =
                                 androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
                             builder.setTitle(getString(R.string.atencio))
-                            builder.setMessage(getString(R.string.si_vols_Que_l_usuari_deixi_Se_ser_client, nom, cognom))
+                            builder.setMessage(
+                                getString(
+                                    R.string.si_vols_Que_l_usuari_deixi_Se_ser_client,
+                                    nom,
+                                    cognom
+                                )
+                            )
                             builder.setPositiveButton(getString(R.string.si)) { _, _ ->
-                                view?.findNavController()?.navigate(PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorNouUsuari(arrUserType))
+                                view?.findNavController()?.navigate(
+                                    PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorNouUsuari(
+                                        arrUserType
+                                    )
+                                )
                             }
                             builder.setNegativeButton(getString(R.string.no)) { _, _ ->
                                 spinnerUserType.setSelection(3)
@@ -220,7 +236,11 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {
-        utils().showAlert(getString(R.string.error),getString(R.string.has_de_seleccionar_un_tipus_d_usuari), this.context)
+        utils().showAlert(
+            getString(R.string.error),
+            getString(R.string.has_de_seleccionar_un_tipus_d_usuari),
+            this.context
+        )
     }
 
 
@@ -292,7 +312,13 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                 } else if (usertype == "admin") {
                     val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
                     builder.setTitle("¡¡¡AVIS!!!")
-                    builder.setMessage(getString(R.string.estas_a_punt_assignar_usuari_com_administrador, username, usersurname))
+                    builder.setMessage(
+                        getString(
+                            R.string.estas_a_punt_assignar_usuari_com_administrador,
+                            username,
+                            usersurname
+                        )
+                    )
                     builder.setPositiveButton(getString(R.string.si)) { _, _ ->
                         //El nou tipus d'usuari ha canbiat, ara és de tipus Administrador
                         val password = document.get("password")
@@ -441,7 +467,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
             }
     }
 
-    private fun showafegirUsuari(){
+    private fun showafegirUsuari() {
 
     }
 }
