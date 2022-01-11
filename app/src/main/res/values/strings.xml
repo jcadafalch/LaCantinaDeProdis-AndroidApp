@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">LaCantinaDeProdis</string>
+    <string name="app_name">LaCantinaDeProdis</string>
     <string name="txtPprincipal"><u>Selecciona el tipus d\'usuari que seràs</u></string>
     <string name="client">CLIENT/A</string>
     <string name="cambrer">CAMBRER/A</string>
@@ -8,8 +8,8 @@
     <string name="administrador">Administrador/a</string>
     <string name="iniciarSessio">Iniciar Sessió</string>
     <string name="txtPIniciarSessio_benvinguda">Hola! M\'alegro de veure\'t de nou.</string>
-    <string name="editDni">11111111L</string>
-    <string name="dni">DNi</string>
+    <string name="editDni" translatable="false">11111111L</string>
+    <string name="dni" translatable="false">DNI</string>
     <string name="contrasenya">Contrasenya</string>
     <string name="oblidatContrasenya">Has oblidat la contrasenya?</string>
     <string name="registrat">Registra\'t</string>
@@ -18,19 +18,19 @@
     <string name="txtModificarEliminarUsuari">Modificar/Eliminar usuari</string>
     <string name="txtAfegirNouProducte">Afegir nou producte</string>
     <string name="txtAdministrarProductes">Administrar Productes</string>
-    <string name="image_view_eye">image View eye</string>
-    <string name="logo_lacantinadeprodis">logo laCantinaDeProdis</string>
+    <string name="image_view_eye" translatable="false">image View eye</string>
+    <string name="logo_lacantinadeprodis" translatable="false">logo laCantinaDeProdis</string>
     <string name="nom_i_cognoms">Nom i cognoms</string>
-    <string name="juan_rodriguez_gonalez">Juan Rodriguez Gonález</string>
+    <string name="juan_rodriguez_gonalez" translatable="false">Juan Rodriguez Gonález</string>
     <string name="correu_electronic">Correu electrònic</string>
-    <string name="jrodirezgonzalez_prodiscat">jrodirezgonzalez@prodis.cat</string>
+    <string name="jrodirezgonzalez_prodiscat" translatable="false">jrodirezgonzalez@prodis.cat</string>
     <string name="repeteix_contrasenya">Torna a introduir la contrasenya</string>
     <string name="contrasenyaRepetida">Contrasenya repetida</string>
     <string name="continuar">Continuar</string>
     <string name="tens_un_compte">Tens un compte?</string>
-    <string name="home">Home</string>
-    <string name="profile">profile</string>
-    <string name="logout">LogOut</string>
+    <string name="home" translatable="false">Home</string>
+    <string name="profile" translatable="false">profile</string>
+    <string name="logout" translatable="false">LogOut</string>
     <string name="torna_enrere">Torna enrere</string>
     <string name="recuperar_contrasenya">Recuperar Contrasenya</string>
     <string name="text_recuperar_contrasenya">Introdueix el DNI que fas servir per iniciar \n sessió en: La Cantina de Prodis</string>
@@ -38,31 +38,31 @@
     <string name="introdueix_el_dni">Introdueix el DNI</string>
     <string name="nova_repeteix_contrasenya">Torna a introduir la nova contrasenya</string>
     <string name="nova_contrasenya">Introdueix la nova contrasenya</string>
-    <string name="txt_nou_usuari">Omple els següents camps per\nafegir a un nou usuarfi</string>
+    <string name="txt_nou_usuari">Omple els següents camps per\nafegir a un nou usuari</string>
     <string name="guardar">Guardar</string>
     <string name="introdueix_el_nom_de_l_usuari">Introdueix el nom de l\'usuari</string>
-    <string name="juan">Juan</string>
+    <string name="juan" translatable="false">Juan</string>
     <string name="introdueix_els_cognoms_de_l_usuari">Introdueix els cognoms de l\'usuari</string>
-    <string name="rodriguez_gonz_lez">Rodriguez González</string>
+    <string name="rodriguez_gonz_lez" translatable="false">Rodriguez González</string>
     <string name="selecciona_l_usuari_que_vols_modificar">Selecciona l\'usuari que vols modificar</string>
     <string name="eliminar_usuari">Eliminar usuari</string>
     <string name="cognoms_de_l_usuari">Cognoms de l\'usuari</string>
     <string name="nom_de_l_usuari">Nom de l\'usuari</string>
-    <string name="afegir_nou_producte_promocio">Afegir nou producte / promocio</string>
+    <string name="afegir_nou_producte_promocio">Afegir nou producte / promoció</string>
     <string name="selecciona_la_categoria">Selecciona la categoria</string>
-    <string name="condicions_servei_privacitat">Accepto les Condicions del Servei \n i Politica de privacitat</string>
+    <string name="condicions_servei_privacitat">Accepto les Condicions del Servei \n i Política de privacitat</string>
     <string name="bocata">BOCATA</string>
     <string name="begudes_fredes">BEGUDES FREDES</string>
     <string name="begudes_calentes">BEGUDES CALENTES</string>
     <string name="finalitza_comanda">FINALITZA COMANDA</string>
-    <string name="sense_tomaquet">SENSE TOMAQUET</string>
+    <string name="sense_tomaquet">SENSE TOMÀQUET</string>
     <string name="per_emportar">PER EMPORTAR</string>
     <string name="img_bossa_description">Una imatge d\'una bossa que indica que vol la comanda per emportar</string>
     <string name="descripcio_img_tick">Un botó en forma de tick.</string>
-    <string name="descripcio_img_fletxa">Un botó amb forma de fletxa que indica tornar enrerre.</string>
-    <string name="descripció_img_tomaquet">Una imatge d\'un tomaquet.</string>
-    <string name="descripcio_img_prohibit">Una imatge d\'una forma de prhibit.</string>
-    <string name="descripcio_img_tomaquet">Una imatge d\'un tomaquet.</string>
+    <string name="descripcio_img_fletxa">Un botó amb forma de fletxa que indica tornar enrere.</string>
+    <string name="descripció_img_tomaquet">Una imatge d\'un tomàquet.</string>
+    <string name="descripcio_img_prohibit">Una imatge d\'una forma de prohibit.</string>
+    <string name="descripcio_img_tomaquet">Una imatge d\'un tomàquet.</string>
     <string name="descripcio_img_bossa">Una imatge d\'una bossa.</string>
     <string name="sense_sucre">SENSE SUCRE</string>
     <string name="sucre_blanc">SUCRE BLANC</string>
