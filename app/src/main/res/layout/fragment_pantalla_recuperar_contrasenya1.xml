@@ -32,11 +32,12 @@
                android:id="@+id/txtPRecuperarContrasenya1"
                android:layout_width="0dp"
                android:layout_height="wrap_content"
-               android:layout_marginStart="@dimen/marginRight"
                android:layout_marginTop="225dp"
                android:text="@string/recuperar_contrasenya"
+               android:textAlignment="center"
                android:textSize="@dimen/txtSubTitol"
                android:textStyle="bold"
+               app:layout_constraintEnd_toEndOf="parent"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,10 +45,11 @@
                android:id="@+id/txtPRecuperarContrasenya1_info"
                android:layout_width="0dp"
                android:layout_height="wrap_content"
-               android:layout_marginStart="@dimen/marginRight"
                android:layout_marginTop="16dp"
                android:text="@string/text_recuperar_contrasenya"
+               android:textAlignment="center"
                android:textSize="@dimen/txtGran"
+               app:layout_constraintEnd_toEndOf="parent"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toBottomOf="@+id/txtPRecuperarContrasenya1"
                tools:ignore="TextContrastCheck,TextContrastCheck" />
