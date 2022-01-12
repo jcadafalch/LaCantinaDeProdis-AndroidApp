@@ -145,4 +145,5 @@
     <string name="camara">CÁMARA</string>
     <string name="els_canvis_s_han_fet_amb_exit">" Los cambios se han hecho con éxito"</string>
     <string name="comanda_enviada">Pedido de %1$s enviada</string>
+    <string name="atencio">" ¡¡¡ATENCIÓN!!!"</string>
 </resources>
