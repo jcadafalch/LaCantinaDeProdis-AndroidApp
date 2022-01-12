@@ -17,20 +17,24 @@ class MenuActivity : AppCompatActivity() {
         return true
     }
 
+    //Sobreescribim la funció onOptionItemSelected
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            //Fem que al polsar el botó de home, ens porti a la pantalla principal
             R.id.homeBtn -> {
                 val intent = Intent(this, MainActivity::class.java).apply {
                 }
                 startActivity(intent)
                 true
             }
+            //Fem que al polsar el botó del perfil, ens porti a la pantalla d'edició de perfil
             R.id.profileBttn -> {
                 val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
                 }
                 startActivity(intent)
                 true
             }
+            //Fem que al polsar el botó de log out, ens tanqui la sessió
             R.id.logOutBttn -> {
                 true
             }

@@ -63,6 +63,7 @@ class PantallaSeleccioAtributsBeguda : Fragment() {
 
             //Anem a la colecció de users i agafem les dades
             db.collection("users").get().addOnSuccessListener { result ->
+                //Mirem document a document
                 for (document in result) {
                     //Fem que si l'email del usuari actual es igual al email de del document,
                     //el dni será l'id del document actual que estem mirant
@@ -70,6 +71,7 @@ class PantallaSeleccioAtributsBeguda : Fragment() {
                         dni = document.id
                         //Anem a la colecció comandes i agafem les dades
                         db.collection("comandes").get().addOnSuccessListener { result ->
+                            //Mirem document a document
                             for (document in result) {
                                 //Fem que si el valor "user" del document que estem mirant es igual al valor
                                 // del dni que hem agafat abans, actualitzarem les dades de comanda
