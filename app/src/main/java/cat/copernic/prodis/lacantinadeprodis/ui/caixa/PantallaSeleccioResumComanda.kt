@@ -77,7 +77,8 @@ class PantallaSeleccioResumComanda : Fragment() {
                     val nom = document.get("user").toString()
                     val comandaId = document.get("comandaId").toString()
                     val documentId = document.id
-                    comandaList.add(dtclss_seleccio_resum_comanda(nom, comandaId, documentId))
+                    val preuTotal: Double = document.get("preuTotal").toString().toDouble()
+                    comandaList.add(dtclss_seleccio_resum_comanda(nom, comandaId, documentId, preuTotal))
                 }
             }
             seleccioResumComandaAdpt.notifyDataSetChanged()

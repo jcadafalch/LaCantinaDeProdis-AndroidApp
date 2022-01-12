@@ -15,6 +15,7 @@ import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.adapters.PantallaSeleccioTipusProducte_Adapter
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioTipusProducteBinding
 import cat.copernic.prodis.lacantinadeprodis.model.dataclass
+import cat.copernic.prodis.lacantinadeprodis.ui.activities.ComandesActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
@@ -57,7 +58,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                                 exists = true
                                 docId = document.id
 
-                                sumaPreu(docId)
+
                             }
                         }
                         println("EXISTS == $exists")
@@ -139,6 +140,10 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                                         "user" to username,
                                     ) as Map<String, Any>
                                 )
+                                sumaPreu(docId)
+                                deleteComanda()
+                                FirebaseAuth.getInstance().signOut()
+                                activity?.finish()
                                 break
                             }
                         }
@@ -186,28 +191,45 @@ class PantallaSeleccioTipusProdcute : Fragment() {
     }
 
     private fun sumaPreu(a: String) {
-        binding.btnConfirmar.setOnClickListener() {
-            db.collection("comandes").document(a).collection("productes").get()
-                .addOnSuccessListener { result ->
-                    for (document in result) {
-                        var idProducte = document.get("idProducte")
-                        db.collection("productes").get().addOnSuccessListener {
-                            for (document in it) {
-                                if (document.get("idProducte").toString() == idProducte) {
-                                    preu += document.get("preu") as Double
-                                }
-
-                                db.collection("comandes").document(a).update(
-                                    hashMapOf(
-                                        "preuTotal" to preu
-                                    ) as Map<String, Any>
-                                )
+        db.collection("comandes").document(a).collection("productes").get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    var idProducte = document.get("idProducte")
+                    db.collection("productes").get().addOnSuccessListener {
+                        for (document in it) {
+                            if (document.get("idProducte").toString() == idProducte) {
+                                preu += document.get("preu") as Double
                             }
+
+                            db.collection("comandes").document(a).update(
+                                hashMapOf(
+                                    "preuTotal" to preu
+                                ) as Map<String, Any>
+                            )
                         }
                     }
-
-
                 }
+
+
+            }
+
+    }
+
+    private fun deleteComanda(){
+        db.collection("comandes").get().addOnSuccessListener { result ->
+            for (document in result){
+                if(document.get("comandaComencada").toString().equals("true") && document.get("user").toString() == dni){
+                    val idDocument = document.id
+                    db.collection("comandes").document(document.id).collection("productes").get().addOnSuccessListener { document ->
+                        for (dc in document){
+                            db.collection("comandes").document(idDocument).collection("productes").document(dc.id).delete()
+                        }
+
+                    }
+                    db.collection("comandes").document(document.id).delete()
+                }
+            }
+
         }
     }
 }

@@ -32,6 +32,7 @@ class PantallaResumComandes : Fragment() {
 
     private val db = FirebaseFirestore.getInstance()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +49,7 @@ class PantallaResumComandes : Fragment() {
 
         binding.txtUsername.text = username
         binding.txtComanda.text = comandaId
-        binding.txtVwPreuTotal.text = preuTotal.toString()
+        binding.txtVwPreuTotal.text = preuTotal.toString() + "€"
 
         recyclerView = binding.rycrVwResumComanda
 

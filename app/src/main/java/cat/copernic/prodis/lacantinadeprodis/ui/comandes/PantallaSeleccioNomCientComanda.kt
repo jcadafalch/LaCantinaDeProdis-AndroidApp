@@ -51,6 +51,7 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
         }
 
         binding.btnConfirmar.setOnClickListener {
+            var preu: Double = 0.0
             //Si la opció seleccionada és extern asignarem com a nom de client el nom  que l'usuari hagi introduit en el camp de text
             if(spinner.selectedItemPosition == userArr.size-1){
                 db.collection("comandes").get().addOnSuccessListener { result ->
@@ -59,6 +60,27 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
                         if (dc.get("comandaComencada").toString() == "true" && dc.get("user")
                                 .toString() == dni
                         ) {
+                            db.collection("comandes").document(dc.id).collection("productes").get()
+                                .addOnSuccessListener { result ->
+                                    for (document in result) {
+                                        var idProducte = document.get("idProducte")
+                                        db.collection("productes").get().addOnSuccessListener {
+                                            for (document in it) {
+                                                if (document.get("idProducte").toString() == idProducte) {
+                                                    preu += document.get("preu") as Double
+                                                }
+
+                                                db.collection("comandes").document(dc.id).update(
+                                                    hashMapOf(
+                                                        "preuTotal" to preu
+                                                    ) as Map<String, Any>
+                                                )
+                                            }
+                                        }
+                                    }
+
+
+                                }
                             db.collection("comandes").document(docId).update(
                                 hashMapOf(
                                     "comandaComencada" to false,
@@ -79,6 +101,27 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
                         if (dc.get("comandaComencada").toString() == "true" && dc.get("user")
                                 .toString() == dni
                         ) {
+                            db.collection("comandes").document(dc.id).collection("productes").get()
+                                .addOnSuccessListener { result ->
+                                    for (document in result) {
+                                        var idProducte = document.get("idProducte")
+                                        db.collection("productes").get().addOnSuccessListener {
+                                            for (document in it) {
+                                                if (document.get("idProducte").toString() == idProducte) {
+                                                    preu += document.get("preu") as Double
+                                                }
+
+                                                db.collection("comandes").document(dc.id).update(
+                                                    hashMapOf(
+                                                        "preuTotal" to preu
+                                                    ) as Map<String, Any>
+                                                )
+                                            }
+                                        }
+                                    }
+
+
+                                }
                             db.collection("comandes").document(docId).update(
                                 hashMapOf(
                                     "comandaComencada" to false,
@@ -114,4 +157,5 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
     override fun onNothingSelected(parent: AdapterView<*>?) {
 
     }
+
 }
