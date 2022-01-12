@@ -16,6 +16,8 @@ import java.util.ArrayList
 
 class PantallaAdministradorPrincipal : Fragment() {
 
+    //Declarem les variables globals
+
     private val db = Firebase.firestore
     private var arrUser = ArrayList<String>()
     private var arrUserId = ArrayList<String>()
@@ -23,6 +25,7 @@ class PantallaAdministradorPrincipal : Fragment() {
     private var arrayTipusProducte = ArrayList<String>()
     private var arrayProductes = ArrayList<String>()
 
+    //Iniciem l'onCreateView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,13 +34,16 @@ class PantallaAdministradorPrincipal : Fragment() {
             inflater,
             R.layout.fragment_pantalla_administrador_principal, container, false
         )
+        //Natejem tots els arrays per poder ficar noves dades
         arrUsertype.clear()
         arrUser.clear()
         arrUserId.clear()
         arrayProductes.clear()
         arrayTipusProducte.clear()
 
+        //Entrem a la colecció de user al document de usertypes i agafem les dades del document
         db.collection("users").document("usertypes").get().addOnSuccessListener { document ->
+            //Declarem i inicialitzem una variable per a cada tipus de usuari i guardem les dades de cada tipus
             val admin = document.get("admin").toString()
             val caixer = document.get("caixer").toString()
             val cambrer = document.get("cambrer").toString()
@@ -45,6 +51,7 @@ class PantallaAdministradorPrincipal : Fragment() {
             val clientR = document.get("clientR").toString()
             val cuiner = document.get("cuiner").toString()
 
+            //Afegim al array d'usuaris els valor anteriorment agafats
             arrUsertype.add(admin)
             arrUsertype.add(caixer)
             arrUsertype.add(cambrer)
@@ -52,10 +59,14 @@ class PantallaAdministradorPrincipal : Fragment() {
             arrUsertype.add(clientR)
             arrUsertype.add(cuiner)
         }
+        //Entrem en la colecció de productes al document de categories i agafem les dades del document
         db.collection("productes").document("categories").get().addOnSuccessListener { document ->
+            //Declarem i inicialitzem una variable per a cada tipus de categoria i guardem les dades
             val bCalenta = document.get("bCalenta").toString()
             val bFreda = document.get("bFreda").toString()
             val bocata = document.get("bocata").toString()
+            //Fem que si l'array de tipus de productes es buit, s'afegiran les dades que acabem d'agafar a l'array
+            //de productes
             if (arrayTipusProducte.isEmpty()) {
                 arrayTipusProducte.add(bCalenta)
                 arrayTipusProducte.add(bFreda)
