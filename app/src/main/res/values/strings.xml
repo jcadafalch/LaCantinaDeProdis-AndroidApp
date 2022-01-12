@@ -175,7 +175,7 @@
     <string name="selecciona_tipus_producte">Has de seleccionar un tipus de prodcute</string>
     <string name="afegit_producte_exit">S\'ha afegit el producte amb èxit</string>
     <string name="enhorabona_canvis">Enhorabona, els canvis del usuari s\'han realitzat amb èxit</string>
-    <string name="descripcio_notificacio">Notificació per indicar que s\'han fet els canvis del perfil del usuari</string>
+    <string name="descripcio_notificacio">Notificació per indicar que s\'han fet els canvis del perfil de l\'usuari</string>
     <string name="_1234" translatable="false">1234</string>
 
 </resources>
