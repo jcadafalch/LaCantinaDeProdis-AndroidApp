@@ -32,35 +32,33 @@ class PantallaRecuperarContrasenya2 : Fragment() {
         val dni = args.dni
 
         binding.btnPRecuperarContrasenya2Continuar.setOnClickListener {
+            // si els dos camps de contrasenyes no están buits es faran les següents comprovacions
             if (!binding.dtTxtPRegistrePasswordText.text.isNullOrEmpty() &&
                 !binding.dtTxtPRegistreRepeteixPasswordText.text.isNullOrEmpty()
             ) {
-                println("NOT NULL")
+                // Es comprova si les contrasenyes coincideixen
                 if (binding.dtTxtPRegistrePasswordText.text.toString() ==
                     binding.dtTxtPRegistreRepeteixPasswordText.text.toString()
                 ) {
-                    println("CONTRASENYES IGUALS")
-                    println("PSW1  = " + binding.dtTxtPRegistrePasswordText.text.toString())
-                    println("PSW2 = " + binding.dtTxtPRegistreRepeteixPasswordText.text.toString())
-
+                    // si totes les comprovacions son correctes es crida a la funció encarregada de fer el canvi de contrasenya
                     val psswd =
                         binding.dtTxtPRegistreRepeteixPasswordText.text.toString() + "prodis"
-                    println("PSSWD = $psswd DNI = $dni USERTYPE = $usertype")
                     changePassword(dni, psswd, usertype)
 
                 } else {
-                    println("PSW1  = " + binding.dtTxtPRegistrePasswordText.text.toString())
-                    println("PSW2 = " + binding.dtTxtPRegistreRepeteixPasswordText.text.toString())
-                    utils().showAlert("ERROR", "Les contrasenyes no coincideixen.", this.context)
+                    // En cas que les contrasenyes no coincideixin s'informa a l'usuari
+                    utils().showAlert(getString(R.string.error), getString(R.string.les_contrasenyes_no_coincideixen), this.context)
                 }
             } else {
-                utils().showAlert("ERROR", "Els camps no están plensa", this.context)
+                // En cas que algun dels camps estigui buit, s'informa a l'usuari
+                utils().showAlert(getString(R.string.error), getString(R.string.els_camps_no_estan_plens), this.context)
             }
         }
 
         return binding.root
     }
 
+    //Funció que relitza el canvi de contrasenya
     private fun changePassword(dni: String, psswd: String, usertype: String) {
         db.collection("users").document(dni).get().addOnSuccessListener { result ->
             auth.signInWithEmailAndPassword(
@@ -73,7 +71,7 @@ class PantallaRecuperarContrasenya2 : Fragment() {
                         auth.signOut()
                         Toast.makeText(
                             this.context,
-                            "S'ha canbiat la contrasenya",
+                            getString(R.string.s_ha_canviat_la_contrasenya),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -87,12 +85,12 @@ class PantallaRecuperarContrasenya2 : Fragment() {
                         )
                     )
                 } else {
-                    utils().showAlert("ERROR", "Error en recuperar contrasenya", this.context)
+                    utils().showAlert(getString(R.string.error), getString(R.string.error_en_recuperar_contrasenya), this.context)
                 }
             }
         }
             .addOnFailureListener {
-                utils().showAlert("ERROR", "L\'usuari no està registrat", this.context)
+                utils().showAlert(getString(R.string.error), getString(R.string.l_usuari_no_esta_registrat), this.context)
             }
 
     }

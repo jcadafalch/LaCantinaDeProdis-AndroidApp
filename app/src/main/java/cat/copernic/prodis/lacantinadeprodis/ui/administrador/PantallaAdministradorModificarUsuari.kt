@@ -10,13 +10,10 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaAdministradorModificarUsuariBinding
 import cat.copernic.prodis.lacantinadeprodis.utils.utils
-import cat.copernic.prodis.lacantinadeprodis.viewmodel.PantallaAdministradorModificarUsuariVM
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -26,13 +23,9 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
 
     private val db = Firebase.firestore
     private var auth = FirebaseAuth.getInstance()
-
-    /* private var arrUser = ArrayList<String>()
+    private var arrUser = ArrayList<String>()
     private var arrUserId = ArrayList<String>()
-    private var arrUserType = ArrayList<String>()*/
-
-    private lateinit var vwMdl: PantallaAdministradorModificarUsuariVM
-
+    private var arrUserType = ArrayList<String>()
     private lateinit var spinner: Spinner
     private lateinit var spinnerUserType: Spinner
     private lateinit var adapter: ArrayAdapter<*>
@@ -49,47 +42,30 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
         )
 
         val args = PantallaAdministradorModificarUsuariArgs.fromBundle(requireArguments())
-        /* arrUser = args.userArr as ArrayList<String>
+        arrUser = args.userArr as ArrayList<String>
         arrUserId = args.userArrId as ArrayList<String>
-        arrUserType = args.usertypeArr as ArrayList<String>*/
+        arrUserType = args.usertypeArr as ArrayList<String>
 
-        vwMdl = ViewModelProvider(this)[PantallaAdministradorModificarUsuariVM::class.java]
 
         spinner = binding.spinUsuariModificar
 
         val context = this.requireContext()
 
-        /* adapter = ArrayAdapter(
+        adapter = ArrayAdapter(
             context,
             android.R.layout.simple_spinner_item, arrUser
-        )*/
-        vwMdl.getArrUser.observe(viewLifecycleOwner, Observer { arrUser ->
-            adapter = ArrayAdapter(
-                context,
-                android.R.layout.simple_spinner_item, arrUser as ArrayList<String>
-            )
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
-            spinner.onItemSelectedListener = this
-        })
-
-
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+        spinner.onItemSelectedListener = this
 
         spinnerUserType = binding.spinTipusUsuari
-
-        /*adapterUType = ArrayAdapter(
+        adapterUType = ArrayAdapter(
             context, android.R.layout.simple_spinner_item, arrUserType
-        )*/
-        vwMdl.getArrUserType.observe(viewLifecycleOwner, Observer {
-            adapterUType = ArrayAdapter(
-                context, android.R.layout.simple_spinner_item, it as ArrayList<String>
-            )
-            adapterUType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinnerUserType.adapter = adapterUType
-            spinnerUserType.onItemSelectedListener = this
-        })
-
-
+        )
+        adapterUType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerUserType.adapter = adapterUType
+        spinnerUserType.onItemSelectedListener = this
 
 
         binding.btnPAdministradorModificarUsuariGuardar.setOnClickListener {
@@ -112,12 +88,12 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                     binding.dtTxtPAdministradorModificarUsuariPersonSurname.text.toString()
             val dni = binding.dtTxtPAdministradorModificarUsuariDtDni.text.toString()
             val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
-            builder.setTitle("¡¡¡AVIS!!!")
-            builder.setMessage("Estas segur que vols eliminar a l'usuari: $user")
-            builder.setPositiveButton("Acceptar") { _, _ ->
+            builder.setTitle(getString(R.string.avis))
+            builder.setMessage(getString(R.string.estas_segur_que_vols_eliminar_a_usuari, user))
+            builder.setPositiveButton(getString(R.string.acceptar)) { _, _ ->
                 deleteUser(dni)
             }
-            builder.setNegativeButton("Cancelar", null)
+            builder.setNegativeButton(getString(R.string.cancelar), null)
             val dialog: androidx.appcompat.app.AlertDialog = builder.create()
             dialog.show()
         }
@@ -127,95 +103,18 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        val spinnerPosition = spinner.selectedItemPosition
         println("ITEM position = $position")
-
         //println("USER ID = " + arrUserId[position])
         println("PARENT = $parent")
         if (parent == spinner) {
-
-            vwMdl.getUsername.observe(viewLifecycleOwner, Observer {
-                binding.dtTxtPAdministradorModificarUsuariPersonName.setText(
-                    it[position]
-                )
-            })
-
-            vwMdl.getUserSurname.observe(viewLifecycleOwner, Observer {
-                binding.dtTxtPAdministradorModificarUsuariPersonSurname.setText(
-                    it[position]
-                )
-            })
-
-            vwMdl.getDni.observe(viewLifecycleOwner, Observer {
-                binding.dtTxtPAdministradorModificarUsuariDtDni.setText(
-                    it[position]
-                )
-            })
-
-            vwMdl.getEmail.observe(viewLifecycleOwner, Observer {
-                if (it[position] != "null") {
-                    binding.txtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
-                    binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
-                    binding.dtTxtPAdministradorModificarUsuariEmail.setText(
-                        it[position]
-                    )
-                } else {
-                    binding.txtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
-                    binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
-
-                }
-            })
-
-            vwMdl.getPassword.observe(viewLifecycleOwner, Observer {
-                if (it[position] == "null") {
-                    binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
-                        View.INVISIBLE
-
-                } else {
-                    binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
-                        View.VISIBLE
-                    binding.dtTxtPAdministradorModificarUsuariPassword.setText(it[position])
-                }
-            })
-
-            vwMdl.getUsertype.observe(viewLifecycleOwner, Observer {
-
-                if (it[position] == "null") {
-                    spinnerUserType.visibility = View.INVISIBLE
-                    binding.txtPAdministradorModificarUsuariUsertype.visibility = View.INVISIBLE
-                } else {
-                    spinnerUserType.visibility = View.VISIBLE
-                    binding.txtPAdministradorModificarUsuariUsertype.visibility = View.VISIBLE
-                }
-
-                when (it[position]) {
-                    "admin" -> spinnerUserType.setSelection(0)
-                    "caixer" -> spinnerUserType.setSelection(1)
-                    "cambrer" -> spinnerUserType.setSelection(2)
-                    "client" -> spinnerUserType.setSelection(3)
-                    "clientR" -> spinnerUserType.setSelection(4)
-                    "cuiner" -> spinnerUserType.setSelection(5)
-                    "null" -> null
-                    else -> {
-                        Toast.makeText(
-                            this.context,
-                            "ERROR EN EL TIPUS DE USUARI",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-
-            })
-
-
-
-
-        /*db.collection("users").document(arrUserId[position]).get()
+            //spinnerPosition = position
+            db.collection("users").document(arrUserId[position]).get()
                 .addOnSuccessListener { document ->
                     val pasword = document.get("password").toString()
                     println("PASSWORD  = $pasword")
                     val pswd = pasword.replace("prodis", "")
                     println("PSWD = $pswd")
-
                     binding.dtTxtPAdministradorModificarUsuariPersonName.setText(
                         document.get("username").toString()
                     )
@@ -239,7 +138,6 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                         binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
 
                     }
-
 
                     if (pswd == "null") {
                         binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
@@ -270,90 +168,50 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                         else -> {
                             Toast.makeText(
                                 this.context,
-                                "ERROR EN EL TIPUS DE USUARI",
+                                getString(R.string.error_en_el_tipus_de_usuari),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     }
-                }*/
-    } else if (parent == spinnerUserType) {
-        if (position == 3) {
-            binding.txtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
-            binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
-            binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility = View.INVISIBLE
-        } else {
-            vwMdl.getArrUserId.observe(viewLifecycleOwner, Observer {
-                val nom =
-                    binding.dtTxtPAdministradorModificarUsuariPersonName.text.toString()
-                val cognom =
-                    binding.dtTxtPAdministradorModificarUsuariPersonSurname.text.toString()
-                if (it[position] == "client" && position != 3){
-                    vwMdl.getArrUserType.observe(viewLifecycleOwner, Observer {
-                        val builder =
-                            androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
-                        builder.setTitle("¡¡¡ATENCIÓ!!!")
-                        builder.setMessage(
-                            "Si vols que l'usuari: $nom $cognom deixi de ser client, " +
-                                    "l'has de tornar a afegir desde l'apartat \"Afegir nou usuari\".\n" +
-                                    "Vols anar a \"Afegir nou usuari\" per canviar el tipus d'usuari?"
-                        )
-                        builder.setPositiveButton("Si") { _, _ ->
-                            view?.findNavController()?.navigate(
-                                PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorNouUsuari(
-                                    it as ArrayList<String>
-                                )
-                            )
-                        }
-                        builder.setNegativeButton("No") { _, _ ->
-                            spinnerUserType.setSelection(3)
-                        }
-                        val dialog: androidx.appcompat.app.AlertDialog = builder.create()
-                        dialog.show()
-                    })
-                }else if (it[position] == "client"){
-                    binding.txtPAdministradorModificarUsuariEmail.visibility =
-                        View.INVISIBLE
-                    binding.dtTxtPAdministradorModificarUsuariEmail.visibility =
-                        View.INVISIBLE
-                    binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
-                        View.INVISIBLE
-                }else{
-                    binding.txtPAdministradorModificarUsuariEmail.visibility = View.VISIBLE
-                    binding.dtTxtPAdministradorModificarUsuariEmail.visibility =
-                        View.VISIBLE
-                    binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
-                        View.VISIBLE
                 }
-            })
-           /* db.collection("users").document(arrUserId[position]).get()
+        } else if (parent == spinnerUserType) {
+            println("----------------------")
+            println(arrUserType[position])
+            println("-----------------------------")
+            if (position == 3) {
+                binding.txtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
+                binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
+                binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility = View.INVISIBLE
+            } else {
+                db.collection("users").document(arrUserId[spinnerPosition]).get()
                     .addOnSuccessListener { document ->
                         val nom =
                             binding.dtTxtPAdministradorModificarUsuariPersonName.text.toString()
                         val cognom =
                             binding.dtTxtPAdministradorModificarUsuariPersonSurname.text.toString()
                         if (document.get("usertype") == "client" && position != 3) {
-                            vwMdl.getArrUserType.observe(viewLifecycleOwner, Observer {
-                                val builder =
-                                    androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
-                                builder.setTitle("¡¡¡ATENCIÓ!!!")
-                                builder.setMessage(
-                                    "Si vols que l'usuari: $nom $cognom deixi de ser client, " +
-                                            "l'has de tornar a afegir desde l'apartat \"Afegir nou usuari\".\n" +
-                                            "Vols anar a \"Afegir nou usuari\" per canviar el tipus d'usuari?"
+                            val builder =
+                                androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
+                            builder.setTitle(getString(R.string.atencio))
+                            builder.setMessage(
+                                getString(
+                                    R.string.si_vols_Que_l_usuari_deixi_Se_ser_client,
+                                    nom,
+                                    cognom
                                 )
-                                builder.setPositiveButton("Si") { _, _ ->
-                                    view?.findNavController()?.navigate(
-                                        PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorNouUsuari(
-                                            it as ArrayList<String>
-                                        )
+                            )
+                            builder.setPositiveButton(getString(R.string.si)) { _, _ ->
+                                view?.findNavController()?.navigate(
+                                    PantallaAdministradorModificarUsuariDirections.actionPantallaAdministradorModificarUsuariToPantallaAdministradorNouUsuari(
+                                        arrUserType
                                     )
-                                }
-                                builder.setNegativeButton("No") { _, _ ->
-                                    spinnerUserType.setSelection(3)
-                                }
-                                val dialog: androidx.appcompat.app.AlertDialog = builder.create()
-                                dialog.show()
-                            })
+                                )
+                            }
+                            builder.setNegativeButton(getString(R.string.no)) { _, _ ->
+                                spinnerUserType.setSelection(3)
+                            }
+                            val dialog: androidx.appcompat.app.AlertDialog = builder.create()
+                            dialog.show()
                         } else if (document.get("usertype") == "client") {
                             binding.txtPAdministradorModificarUsuariEmail.visibility =
                                 View.INVISIBLE
@@ -372,14 +230,27 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                             binding.dtTxtPAdministradorModificarUsuariPasswordL.visibility =
                                 View.VISIBLE
                         }
-                    }*/
+                    }
             }
         }
     }
 
-
     override fun onNothingSelected(parent: AdapterView<*>) {
-        utils().showAlert("ERROR", "Has de seleccionar un tipus d\'usuari", this.context)
+        utils().showAlert(
+            getString(R.string.error),
+            getString(R.string.has_de_seleccionar_un_tipus_d_usuari),
+            this.context
+        )
+    }
+
+
+    private fun showAlert(message: String) {
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
+        builder.setTitle(getString(R.string.error))
+        builder.setMessage(message)
+        builder.setPositiveButton(getString(R.string.acceptar), null)
+        val dialog: androidx.appcompat.app.AlertDialog = builder.create()
+        dialog.show()
     }
 
     private fun deleteUser(dni: String) {
@@ -396,7 +267,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                                 .addOnSuccessListener {
                                     Toast.makeText(
                                         this.context,
-                                        "Usuari eliminat correctament",
+                                        getString(R.string.usuari_eliminat_correctament),
                                         Toast.LENGTH_SHORT
                                     ).show()
                                     view?.findNavController()
@@ -405,20 +276,12 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                                         )
                                 }
                                 .addOnFailureListener {
-                                    utils().showAlert(
-                                        "ERROR",
-                                        "L'usuari no s'ha pogut eliminar",
-                                        this.context
-                                    )
+                                    showAlert(getString(R.string.usuari_no_s_ha_pogut_eliminar))
                                 }
                         }
 
                 } else {
-                    utils().showAlert(
-                        "ERROR",
-                        "Hi ha hagut un error en intentar eliminar a l'usuari",
-                        this.context
-                    )
+                    showAlert(getString(R.string.error_en_intentar_eliminar_usuari))
                 }
 
 
@@ -450,10 +313,13 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                     val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
                     builder.setTitle("¡¡¡AVIS!!!")
                     builder.setMessage(
-                        "Estas a punt d\'asignar l'usuari $username $usersurname com a administrador\n"
-                                + "Estàs segur d'aquesta acció?"
+                        getString(
+                            R.string.estas_a_punt_assignar_usuari_com_administrador,
+                            username,
+                            usersurname
+                        )
                     )
-                    builder.setPositiveButton("Si") { _, _ ->
+                    builder.setPositiveButton(getString(R.string.si)) { _, _ ->
                         //El nou tipus d'usuari ha canbiat, ara és de tipus Administrador
                         val password = document.get("password")
                         if (password != passwd) {
@@ -478,7 +344,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                             )
                         }
                     }
-                    builder.setNegativeButton("No", null)
+                    builder.setNegativeButton(getString(R.string.no), null)
                 } else {
                     //El nou tipus d'usuari ha canbiat, NO és client
                     val password = document.get("password")
@@ -510,7 +376,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
     }
 
     private fun changePassword(dni: String, psswd: String) {
-        println("PASSSWORD  =  $psswd")
+        println("PASSSWORD  =  " + psswd)
         db.collection("users").document(dni).get().addOnSuccessListener { result ->
             auth.signInWithEmailAndPassword(
                 result.get("email").toString(),
@@ -522,7 +388,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                         auth.signOut()
                         Toast.makeText(
                             this.context,
-                            "S'ha canbiat la contrasenya",
+                            getString(R.string.s_ha_canviat_la_contrasenya),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -531,13 +397,77 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                         pas as Map<String, Any>
                     )
                 } else {
-                    utils().showAlert("ERROR", "Error en canviar la contrasenya", this.context)
+                    showAlert(getString(R.string.error_en_canviar_la_contrasenya))
                 }
             }
         }
             .addOnFailureListener {
-                utils().showAlert("ERROR", "L\'usuari no està registrat", this.context)
+                showAlert(getString(R.string.l_usuari_no_esta_registrat))
             }
+
+    }
+
+    private fun deleteUserI(dni: String): Boolean {
+        var correct = false
+        db.collection("users").document(dni).delete()
+            .addOnSuccessListener {
+                Toast.makeText(
+                    this.context,
+                    "S\'ha fet el canvi de dni",
+                    Toast.LENGTH_SHORT
+                ).show()
+                correct = true
+            }
+            .addOnFailureListener {
+                showAlert("No s'ha pogut fer el canvi de dni")
+                correct = false
+
+            }
+
+        return correct
+    }
+
+    private fun makeregister(
+        nom: String,
+        cognom: String,
+        dni: String,
+        email: String,
+        password: String,
+        usertype: String
+    ) {
+        val passwd = password + "prodis"
+        println(passwd)
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passwd)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    db.collection("users").document(dni).set(
+                        hashMapOf(
+                            "username" to nom,
+                            "usersurname" to cognom,
+                            "dni" to dni,
+                            "email" to email,
+                            "password" to passwd,
+                            "usertype" to usertype
+                        )
+                    ).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            Toast.makeText(
+                                this.context,
+                                "T\'has registrat correctament",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            showAlert("Error a l\'hora de fer el guardat de dades")
+                        }
+                    }
+
+                } else {
+                    showAlert("Error a l\'hora de fer l\'autenticació")
+                }
+            }
+    }
+
+    private fun showafegirUsuari() {
 
     }
 }

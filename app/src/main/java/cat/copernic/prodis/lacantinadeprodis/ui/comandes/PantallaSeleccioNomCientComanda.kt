@@ -40,6 +40,7 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
 
         val context = this.requireContext()
 
+        //declaració de tots els elements del spinner
         adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, userArr)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
@@ -50,9 +51,11 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
         }
 
         binding.btnConfirmar.setOnClickListener {
+            //Si la opció seleccionada és extern asignarem com a nom de client el nom  que l'usuari hagi introduit en el camp de text
             if(spinner.selectedItemPosition == userArr.size-1){
                 db.collection("comandes").get().addOnSuccessListener { result ->
                     for (dc in result) {
+                        // si el dni de l'usuari es el mateix que el de la BD assignem comandaComençada a false i visible a true
                         if (dc.get("comandaComencada").toString() == "true" && dc.get("user")
                                 .toString() == dni
                         ) {
@@ -63,13 +66,14 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
                                     "user" to binding.dtTxtNomUsuariExtern.text.toString(),
                                 ) as Map<String, Any>
                             )
-                            Toast.makeText(this.context, "Comanda de ${binding.dtTxtNomUsuariExtern.text} enviada", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this.context, getString(R.string.comanda_enviada,binding.dtTxtNomUsuariExtern.text), Toast.LENGTH_SHORT).show()
                             findNavController().navigate(PantallaSeleccioNomCientComandaDirections.actionPantallaSeleccioNomClientComandaToPantallaSeleccioTipusProducte())
                             break
                         }
                     }
                 }
             }else{
+                //Si la opció seleccionada NO és extern asignarem com a nom de client el nom de la posició del spinner
                 db.collection("comandes").get().addOnSuccessListener { result ->
                     for (dc in result) {
                         if (dc.get("comandaComencada").toString() == "true" && dc.get("user")
@@ -82,7 +86,7 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
                                     "user" to spinner.selectedItem.toString(),
                                 ) as Map<String, Any>
                             )
-                            Toast.makeText(this.context, "Comanda de ${spinner.selectedItem} enviada", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this.context, getString(R.string.comanda_enviada, spinner.selectedItem), Toast.LENGTH_SHORT).show()
                             findNavController().navigate(PantallaSeleccioNomCientComandaDirections.actionPantallaSeleccioNomClientComandaToPantallaSeleccioTipusProducte())
                             break
                         }
@@ -98,9 +102,11 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        // Si la opció seleccionada és Extern, mostrem el camp de text
         if (position == userArr.size - 1) {
             binding.dtTxtNomUsuariExtern.visibility = View.VISIBLE
         } else {
+            // Si la opció selecciona no és Extern, ocultem el camp de text
             binding.dtTxtNomUsuariExtern.visibility = View.INVISIBLE
         }
     }

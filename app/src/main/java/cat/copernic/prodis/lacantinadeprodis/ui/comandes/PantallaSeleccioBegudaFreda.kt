@@ -38,6 +38,7 @@ class PantallaSeleccioBegudaFreda : Fragment() {
             findNavController().popBackStack()
         }
 
+        //declaració de tots els elements del recyclerView (recyclerView, adapter i dataclass)
         recyclerView = binding.rcyclrVwBfreda
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.setHasFixedSize(true)
@@ -53,6 +54,7 @@ class PantallaSeleccioBegudaFreda : Fragment() {
         return binding.root
     }
 
+    //funcio que agafa les dades de la BD i les introdueix al ArrayList per mostrar-les en el recyclerView
     private fun eventChangeListener() {
         db.collection("productes").addSnapshotListener(object : EventListener<QuerySnapshot> {
             @SuppressLint("NotifyDataSetChanged")

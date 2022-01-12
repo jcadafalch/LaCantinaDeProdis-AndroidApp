@@ -62,7 +62,7 @@
                 android:layout_marginBottom="5dp"
                 android:text="@string/dni"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/txtGran"
+                android:textSize="@dimen/txtMig"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientDni"
                 app:layout_constraintStart_toStartOf="@+id/dtTxtPIniciarSessioClientDni"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
@@ -78,7 +78,7 @@
                 android:hint="@string/editDni"
                 android:inputType="textPersonName"
                 android:maxLength="9"
-                android:textSize="@dimen/txtGran"
+                android:textSize="@dimen/txtMig"
                 app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientContrasenya"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="LabelFor,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
@@ -92,7 +92,7 @@
                 android:layout_marginBottom="5dp"
                 android:text="@string/contrasenya"
                 android:textColor="#00796B"
-                android:textSize="@dimen/txtGran"
+                android:textSize="@dimen/txtMig"
                 app:layout_constraintBottom_toTopOf="@+id/dtTxtPIniciarSessioClientPasswordL"
                 app:layout_constraintStart_toStartOf="parent" />
 

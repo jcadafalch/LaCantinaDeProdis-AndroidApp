@@ -22,33 +22,26 @@ class cuiner_producte_adapter(private val producteList: ArrayList<dtclss_cuiner_
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         val producte: dtclss_cuiner_producte = producteList[i]
-        db.collection("productes").get().addOnSuccessListener { result ->
-            for (rs in result){
-                if (rs.get("idProducte").toString() == producte.idProducte.toString()){
-                    val type = rs.get("tipus").toString()
-                    when(type){
-                        // Si es de tipus bocata ....
-                        "Bocates" -> {
-                            viewHolder.linLayBeguda.visibility = View.GONE
-                            viewHolder.linLayBocata.visibility = View.VISIBLE
-                            viewHolder.nomBocata.text = rs.get("nom").toString()
-                            viewHolder.chckBxTomaquet.isChecked = producte.tomaquet == true
-                            viewHolder.chckBxEmportarBocata.isChecked = producte.emportar == true
-                        }
-                        // Si no es de tipus bocata (per tant serà beguda)
-                        else -> {
-                            viewHolder.linLayBeguda.visibility = View.VISIBLE
-                            viewHolder.linLayBocata.visibility = View.GONE
-                            viewHolder.nomBeguda.text = rs.get("nom").toString()
-                            viewHolder.chckBxEmportarBeguda.isChecked = producte.emportar == true
-                            when(producte.scure){
-                                "SS" -> viewHolder.rdBttn.text = viewHolder.rdBttn.context.getText(R.string.sense_sucre)
-                                "SB" -> viewHolder.rdBttn.text = viewHolder.rdBttn.context.getText(R.string.sucre_blanc)
-                                "SM" -> viewHolder.rdBttn.text = viewHolder.rdBttn.context.getText(R.string.sucre_more)
-                                "SC" -> viewHolder.rdBttn.text = viewHolder.rdBttn.context.getText(R.string.sacarina)
-                            }
-                        }
-                    }
+        when(producte.type){
+            // Si es de tipus bocata ....
+            "Bocates" -> {
+                viewHolder.linLayBeguda.visibility = View.GONE
+                viewHolder.linLayBocata.visibility = View.VISIBLE
+                viewHolder.nomBocata.text = producte.idProducte
+                viewHolder.chckBxTomaquet.isChecked = producte.tomaquet == true
+                viewHolder.chckBxEmportarBocata.isChecked = producte.emportar == true
+            }
+            // Si no es de tipus bocata (per tant serà beguda)
+            else -> {
+                viewHolder.linLayBeguda.visibility = View.VISIBLE
+                viewHolder.linLayBocata.visibility = View.GONE
+                viewHolder.nomBeguda.text = producte.idProducte
+                viewHolder.chckBxEmportarBeguda.isChecked = producte.emportar == true
+                when(producte.scure){
+                    "SS" -> viewHolder.rdBttn.text = viewHolder.rdBttn.context.getText(R.string.sense_sucre)
+                    "SB" -> viewHolder.rdBttn.text = viewHolder.rdBttn.context.getText(R.string.sucre_blanc)
+                    "SM" -> viewHolder.rdBttn.text = viewHolder.rdBttn.context.getText(R.string.sucre_more)
+                    "SC" -> viewHolder.rdBttn.text = viewHolder.rdBttn.context.getText(R.string.sacarina)
                 }
             }
         }

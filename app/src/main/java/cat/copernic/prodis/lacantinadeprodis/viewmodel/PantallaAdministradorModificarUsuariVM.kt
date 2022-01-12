@@ -7,21 +7,21 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
-import java.util.ArrayList
+import kotlin.collections.ArrayList
 
 class PantallaAdministradorModificarUsuariVM() : ViewModel() {
 
     private val db = Firebase.firestore
 
     private var arrUser = MutableLiveData<ArrayList<String>>() //java.util.ArrayList<String>()
-    val getArrUser: LiveData<java.util.ArrayList<String>>
+    val getArrUser: LiveData<ArrayList<String>>
         get() = arrUser
 
-    private var arrUserId = MutableLiveData<java.util.ArrayList<String>>()
+    private var arrUserId = MutableLiveData<ArrayList<String>>()
     val getArrUserId: LiveData<java.util.ArrayList<String>>
         get() = arrUserId
 
-    private var arrUsertype = MutableLiveData<java.util.ArrayList<String>>()
+    private var arrUsertype = MutableLiveData<ArrayList<String>>()
     val getArrUserType: LiveData<java.util.ArrayList<String>>
         get() = arrUsertype
 
@@ -66,7 +66,6 @@ class PantallaAdministradorModificarUsuariVM() : ViewModel() {
 
     private fun crearCorrutina() = GlobalScope.launch(Dispatchers.Main) {
         withContext(Dispatchers.IO) {
-
             usertype.value?.clear()
             username.value?.clear()
             usersurname.value?.clear()
@@ -85,7 +84,9 @@ class PantallaAdministradorModificarUsuariVM() : ViewModel() {
                             document.get("username").toString() + " " + document.get("usersurname")
                                 .toString()
                         arrUser.value?.add(user)
+                        println("ARR USER = $user")
                         arrUserId.value?.add(document.id)
+                        println("ARR USER ID = ")
 
                         dni.value?.add(document.get("dni").toString())
                         email.value?.add(document.get("email").toString())

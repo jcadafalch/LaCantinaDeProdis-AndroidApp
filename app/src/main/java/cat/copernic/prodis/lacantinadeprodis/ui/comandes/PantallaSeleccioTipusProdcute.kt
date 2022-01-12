@@ -43,6 +43,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_tipus_producte, container, false
         )
+        //Comprovacions per no crear una comanda dues vegades i identificar si ja estem treballant sobre una comanda
         db.collection("users").get().addOnSuccessListener { result ->
             for (document in result) {
                 if (currentUser?.email.toString() == document.get("email").toString()) {
@@ -70,13 +71,14 @@ class PantallaSeleccioTipusProdcute : Fragment() {
         }
 
 
-
+        //declaració de part dels elements del RecyclerView
         recyclerView = binding.recyclerViewSeleccioProducte
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.setHasFixedSize(true)
 
         producteList = arrayListOf()
 
+        //Obtenim part de les dades de la BD
         db.collection("productes").document("categories")
             .get().addOnSuccessListener { document ->
                 val stBocata = document.get("bocata").toString()
@@ -86,6 +88,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                 val imCalenta = "Café.png"
                 val imFreda = "7up.png"
 
+                // acabem de declarar els elements del RecyclerView que faltaven
                 producteList.add(dataclass(stBocata, imBocata))
                 producteList.add(dataclass(stFreda, imFreda))
                 producteList.add(dataclass(stCalenta, imCalenta))
@@ -96,6 +99,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                 recyclerView.adapter = Padaper
             }
 
+        //Modificació de la base de dades per indicar que la comanda ja està llesta, perque es mostri a cuina i caixa
         binding.btnConfirmar.setOnClickListener {
 
 
@@ -145,6 +149,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
         return binding.root
     }
 
+    //funció que crea la comanda
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createComanda() {
 
