@@ -85,9 +85,7 @@ class PantallaAdministradorModificarUsuariVM() : ViewModel() {
                             document.get("username").toString() + " " + document.get("usersurname")
                                 .toString()
                         arrUser.value?.add(user)
-                        println("ARR USER = $user")
                         arrUserId.value?.add(document.id)
-                        println("ARR USER ID = ")
 
                         dni.value?.add(document.get("dni").toString())
                         email.value?.add(document.get("email").toString())

@@ -61,7 +61,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
 
                             }
                         }
-                        println("EXISTS == $exists")
+
                         if (!exists) {
                             createComanda()
                         }

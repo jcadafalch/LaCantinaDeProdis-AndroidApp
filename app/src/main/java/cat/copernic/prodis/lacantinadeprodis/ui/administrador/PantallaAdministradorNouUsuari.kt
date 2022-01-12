@@ -229,7 +229,6 @@ class PantallaAdministradorNouUsuari : Fragment(), AdapterView.OnItemSelectedLis
     private fun checkDni(dni: String): Boolean {
         val dniNum = dni.substring(0, dni.length - 1)
         if (dni.isDigitsOnly()) {
-            println("DIGIT ONLY")
             return false
         }
 

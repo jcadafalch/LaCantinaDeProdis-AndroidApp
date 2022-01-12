@@ -39,8 +39,7 @@ class PantallaRegistre : Fragment() {
 
         //botó que crida a la funncio datavalids per comprovar el format de les dades i en cas de ser correcte crida a la funcioo make register per fer el registre
         bdng.btnPregistre.setOnClickListener { view: View ->
-            println(bdng.dtTxtPRegistrePassword.text.toString())
-            println(bdng.dtTxtPRegistreRepeteixPassword.text.toString())
+
             if (datavalids(
                     bdng.dtTxtPRegistrePersonName.text.toString(),
                     bdng.dtTxtPRegistrePersonSurname.text.toString(),
@@ -88,7 +87,7 @@ class PantallaRegistre : Fragment() {
         usertype: String
     ) {
         val passwd = password + "prodis"
-        println(passwd)
+
         //Registem l'usuari al Firebase Authentication
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passwd)
             .addOnCompleteListener {
@@ -205,7 +204,7 @@ class PantallaRegistre : Fragment() {
     private fun checkDni(dni: String): Boolean {
         val dniNum = dni.substring(0, dni.length - 1)
         if (dni.isDigitsOnly()) {
-            println("DIGIT ONLY")
+
             return false
         }
 

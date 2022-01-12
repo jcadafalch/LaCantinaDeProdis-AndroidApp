@@ -30,7 +30,7 @@ class PantallaRecuperarContrasenya1 : Fragment() {
 
         //Botó que iniciarà el següent fragment si la recuperació de dades es satisfactoria
         binding.btnPRecuperarContrasenya1Continuar.setOnClickListener {
-            println(binding.dtTxtPRecuperarContrasenya1DNI.text.toString())
+
             if (binding.dtTxtPRecuperarContrasenya1DNI.text.toString().isNotEmpty()) {
                 db.collection("users")
                     .document(binding.dtTxtPRecuperarContrasenya1DNI.text.toString()).get()
