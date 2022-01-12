@@ -62,6 +62,7 @@ class PantallaAdministradorModificarUsuariVM() : ViewModel() {
 
     }
 
+    @DelicateCoroutinesApi
     private fun crearCorrutina() = GlobalScope.launch(Dispatchers.Main) {
         withContext(Dispatchers.IO) {
             usertype.value?.clear()

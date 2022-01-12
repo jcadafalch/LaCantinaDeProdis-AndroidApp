@@ -89,7 +89,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
             val dni = binding.dtTxtPAdministradorModificarUsuariDtDni.text.toString()
             val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
             builder.setTitle(getString(R.string.avis))
-            builder.setMessage(getString(R.string.estas_segur_que_vols_eliminar_a_usuari, user))
+            builder.setMessage(getString(R.string.estas_segur_que_vols_eliminar_a_usuari) + user)
             builder.setPositiveButton(getString(R.string.acceptar)) { _, _ ->
                 deleteUser(dni)
             }
@@ -195,10 +195,9 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                             builder.setTitle(getString(R.string.atencio))
                             builder.setMessage(
                                 getString(
-                                    R.string.si_vols_Que_l_usuari_deixi_Se_ser_client,
-                                    nom,
-                                    cognom
-                                )
+                                    R.string.si_vols_Que_l_usuari_deixi_Se_ser_client1) + nom +
+                                    cognom + getString(R.string.si_vols_Que_l_usuari_deixi_Se_ser_client2)
+
                             )
                             builder.setPositiveButton(getString(R.string.si)) { _, _ ->
                                 view?.findNavController()?.navigate(
@@ -314,10 +313,9 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                     builder.setTitle("¡¡¡AVIS!!!")
                     builder.setMessage(
                         getString(
-                            R.string.estas_a_punt_assignar_usuari_com_administrador,
-                            username,
-                            usersurname
-                        )
+                            R.string.estas_a_punt_assignar_usuari_com_administrador1)+ username + " " +
+                            usersurname + getString(R.string.estas_a_punt_assignar_usuari_com_administrador2)
+
                     )
                     builder.setPositiveButton(getString(R.string.si)) { _, _ ->
                         //El nou tipus d'usuari ha canbiat, ara és de tipus Administrador
