@@ -84,6 +84,12 @@
     <string name="posa_aqui_el_teu_cognom">Posa aquí el teu cognom</string>
     <string name="tamany_petit" translatable="false">Aa</string>
     <string name="cambiar_contrasenya">Canviar contrasenya</string>
+    <string name="posa_aqui_la_contrasenya">Posa aquí la teva nova contrasenya (opcional)</string>
+    <string-array name="tipus_producte">
+        <item>Bocata</item>
+        <item>Beguda calenta</item>
+        <item>Beguda freda</item>
+    </string-array>
     <string name="producte">Producte</string>
     <string name="introdueix_el_nom_del_producte_promoci">Introdueix el nom del producte / promoció</string>
     <string name="selecciona_el_preu">Selecciona el preu</string>
@@ -117,12 +123,11 @@
     <string name="total">TOTAL:</string>
     <string name="idioma_de_l_app">Idioma de l\'app</string>
     <string name="bocata_de_pernil_salat">Bocata de pernil salat</string>
-    <string name="estas_segur_que_vols_eliminar_a_usuari">Estas segur que vols eliminar a l\'usuari: %1$s</string>
+    <string name="estas_segur_que_vols_eliminar_a_usuari">Estas segur que vols eliminar a l\'usuari: </string>
     <string name="avis">¡¡¡AVIS!!!</string>
     <string name="cancelar">Cancel·lar</string>
     <string name="error_en_el_tipus_de_usuari">ERROR EN EL TIPUS DE USUARI</string>
     <string name="atencio">¡¡¡ATENCIÓ!!!</string>
-    <string name="si_vols_Que_l_usuari_deixi_Se_ser_client">Si vols que l\'usuari: %1$s %2$s deixi de ser client, l\'has de tornar a afegir des de l\'apartat \"Afegir nou usuari\".\n Vols anar a \"Afegir nou usuari\" per canviar el tipus d'usuari?</string>
     <string name="si">Si</string>
     <string name="no">No</string>
     <string name="has_de_seleccionar_un_tipus_d_usuari">Has de seleccionar un tipus d\'usuari</string>
@@ -130,7 +135,6 @@
     <string name="usuari_eliminat_correctament">Usuari eliminat correctament</string>
     <string name="usuari_no_s_ha_pogut_eliminar">L\'usuari no s\'ha pogut eliminar</string>
     <string name="error_en_intentar_eliminar_usuari">Hi ha hagut un error en intentar eliminar a l\'usuari</string>
-    <string name="estas_a_punt_assignar_usuari_com_administrador">Estàs a punt d\'assignar l\'usuari %1$s %2$s com a administrador\nEstàs segur d'aquesta acció?</string>
     <string name="s_ha_canviat_la_contrasenya">S\'ha canviat la contrasenya</string>
     <string name="error_en_canviar_la_contrasenya">Error en canviar la contrasenya</string>
     <string name="l_usuari_no_esta_registrat">L\'usuari no està registrat</string>
@@ -157,25 +161,22 @@
     <string name="error_al_pujar_la_foto">Error en pujar la foto</string>
     <string name="exit_al_pujar_la_foto">Èxit en pujar la foto</string>
     <string name="s_ha_afegit_el_producte_amb_exit">S\'ha afegit el producte amb èxit</string>
+    <string name="has_d_introduir_el_nom">"Has d\'introduïr el nom\r"</string>
+    <string name="has_d_introduir_el_cognom">"Has d\'introduïr el cognom\r"</string>
+    <string name="d_on_vols_treure_la_foto">D\'on vols treure la foto?</string>
+    <string name="selecciona_un">Selecciona un:</string>
+    <string name="galeria">GALERIA</string>
     <string name="camara">CÀMERA</string>
     <string name="els_canvis_s_han_fet_amb_exit">Els canvis s\'han fet amb èxit</string>
     <string name="comanda_enviada">Comanda de %1$s enviada"</string>
-    <string name="has_d_introduir_el_nom">Has d\'introduïr el nom</string>
-    <string name="has_d_introduir_el_cognom">Has d\'introduïr el cognom</string>
-    <string name="d_on_vols_treure_la_foto">D\'on vols treure la foto?</string>
-    <string name="selecciona_un">Selecciona un:</string>
-    <string name="camera">CÀMERA</string>
-    <string name="galeria">GALERIA</string>
-    <string name="error_al_pujar">Error al pujar la foto</string>
-    <string name="exit_al_pujar">Èxit al pujar la foto</string>
+    <string name="estas_a_punt_assignar_usuari_com_administrador1">Estas a punt d\'assignar l\'usuari</string>
+    <string name="estas_a_punt_assignar_usuari_com_administrador2">com a administrador Estas segur d\'aquesta acció?</string>
+    <string name="si_vols_Que_l_usuari_deixi_Se_ser_client1">Si vols que l\'usuari:</string>
+    <string name="si_vols_Que_l_usuari_deixi_Se_ser_client2">deixi de ser client, l\'has de tornar a afegir des de l\\\'apartat \"Afegir nou usuari\" per canviar el tipus d\'usuari?.</string>
+    <string name="_1234" translatable="false">1234</string>
     <string name="canvis_amb_exit">Els canvis s\'han fet amb èxit</string>
     <string name="channel_id" translatable="false">cat.copernic.prodis.lacantinadeprodis.ui.activities</string>
-    <string name="noti">Notificació</string>
     <string name="channel_name" translatable="false">app</string>
-    <string name="selecciona_tipus_producte">Has de seleccionar un tipus de prodcute</string>
-    <string name="afegit_producte_exit">S\'ha afegit el producte amb èxit</string>
-    <string name="enhorabona_canvis">Enhorabona, els canvis del usuari s\'han realitzat amb èxit</string>
+    <string name="enhorabona_canvis">Enhorabona, els canvis de l\'usuari s\'han realitzat amb exit</string>
     <string name="descripcio_notificacio">Notificació per indicar que s\'han fet els canvis del perfil de l\'usuari</string>
-    <string name="_1234" translatable="false">1234</string>
-
 </resources>
