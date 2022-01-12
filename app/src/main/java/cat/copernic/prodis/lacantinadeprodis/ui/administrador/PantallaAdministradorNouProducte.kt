@@ -238,11 +238,11 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
         val uploadTask = pathReference.putBytes(data)
         uploadTask.addOnFailureListener {
-            Snackbar.make(view, getString(R.string.error_al_pujar), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.error_al_pujar_la_foto), Snackbar.LENGTH_LONG).show()
             it.printStackTrace()
 
         }.addOnSuccessListener {
-            Snackbar.make(view, getString(R.string.exit_al_pujar), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.exit_al_pujar_la_foto), Snackbar.LENGTH_LONG).show()
         }
     }
 
@@ -315,7 +315,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             //Cuan s'acabi de crear el document sortirá un toast indicant que el producte s'ha afegit amb éxit
             Toast.makeText(
                 this.requireContext(),
-                getString(R.string.afegit_producte_exit),
+                getString(R.string.s_ha_afegit_el_producte_amb_exit),
                 Toast.LENGTH_SHORT
             ).show()
             //Tormarem a inicialitzar la variable num a 0 per si es vol afegir un altre producte
