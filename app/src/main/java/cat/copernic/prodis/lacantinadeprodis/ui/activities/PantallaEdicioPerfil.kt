@@ -107,6 +107,7 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         //Cridem a la funció per guardar les dades
         guardarDades()
 
+        //Funció per saber quin idioma ha sigut seleccionat
         seleccionaIdioma()
 
         Toast.makeText(this, Locale.getDefault().language.toString(), Toast.LENGTH_SHORT).show()
@@ -243,11 +244,13 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
         val uploadTask = pathReference.putBytes(data)
         uploadTask.addOnFailureListener {
-            Snackbar.make(view, getString(R.string.error_al_pujar_la_foto), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.error_al_pujar_la_foto), Snackbar.LENGTH_LONG)
+                .show()
             it.printStackTrace()
 
         }.addOnSuccessListener {
-            Snackbar.make(view, getString(R.string.exit_al_pujar_la_foto), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.exit_al_pujar_la_foto), Snackbar.LENGTH_LONG)
+                .show()
         }
     }
 
@@ -311,6 +314,7 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
             //Indiquem que notificationManager enviï una notificació amb un text que agafara del fitxer de strings i en aquest context
             notificationManager.sendNotification(this.getString(R.string.enhorabona_canvis), this)
 
+            //Cridem a la funció posaIdioma
             posaIdioma()
         }
     }
@@ -374,7 +378,8 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         }
     }
 
-    private fun idioma(lenguage: String, country: String){
+    //Funció per canviar l'idioma
+    private fun idioma(lenguage: String, country: String) {
         val localitzacio = Locale(lenguage, country)
 
         Locale.setDefault(localitzacio)
@@ -385,16 +390,21 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
     }
 
-    private fun seleccionaIdioma(){
+    //Funció per saber quin idioma s'ha seleccionat
+    private fun seleccionaIdioma() {
+        //Escoltem el radioGroup de l'idioma
         binding.radioGroup
             .setOnCheckedChangeListener { group, checkedId ->
                 when (checkedId) {
+                    //Fem que si el radioCat está marcat el valor d'idiomaR será "cat"
                     R.id.radioCat -> {
                         idiomaR = "cat"
                     }
+                    //Fem que si el radioEsp está marcat el valor d'idiomaR será "esp"
                     R.id.radioEsp -> {
                         idiomaR = "esp"
                     }
+                    //Fem que si el radioEng está marcat el valor d'idiomaR será "eng"
                     R.id.radioEng -> {
                         idiomaR = "eng"
                     }
@@ -402,22 +412,26 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
             }
     }
 
-    private fun posaIdioma(){
-        if(idiomaR.equals("cat")){
+    //Funció per posar l'idioma al que es canviará
+    private fun posaIdioma() {
+        //Si el valor de idiomaR es "cat" el valors que es pasaran per canviar d'idomoa serán "ca" i "ES"
+        if (idiomaR.equals("cat")) {
             idioma("ca", "ES")
-            val intent  = Intent(this, PantallaEdicioPerfil::class.java).apply {
+            val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
             }
             finish()
             startActivity(intent)
-        } else if(idiomaR.equals("esp")){
+        //Si el valor de idiomaR es "es" el valors que es pasaran per canviar d'idomoa serán "es" i "ES"
+        } else if (idiomaR.equals("esp")) {
             idioma("es", "ES")
-            val intent  = Intent(this, PantallaEdicioPerfil::class.java).apply {
+            val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
             }
             finish()
             startActivity(intent)
-        } else if(idiomaR.equals("eng")){
+        //Si el valor de idiomaR es "eng" el valors que es pasaran per canviar d'idomoa serán "eng" i ""
+        } else if (idiomaR.equals("eng")) {
             idioma("en", "")
-            val intent  = Intent(this, PantallaEdicioPerfil::class.java).apply {
+            val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
             }
             finish()
             startActivity(intent)
