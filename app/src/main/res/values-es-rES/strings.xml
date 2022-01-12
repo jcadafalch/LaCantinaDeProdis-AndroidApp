@@ -4,7 +4,7 @@
     <string name="client">CLIENTE/A</string>
     <string name="cambrer">CAMARERO/A</string>
     <string name="caixer">CAJERO/A</string>
-    <string name="administrador">" Administrador/"</string>
+    <string name="administrador">" Administrador/a"</string>
     <string name="iniciarSessio">" Iniciar Sesión"</string>
     <string name="txtPIniciarSessio_benvinguda">" Hola! Me alegro de verte de nuevo."</string>
     <string name="contrasenya">Contrasenña</string>
