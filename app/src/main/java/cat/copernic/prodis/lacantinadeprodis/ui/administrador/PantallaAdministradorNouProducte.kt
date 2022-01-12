@@ -98,15 +98,15 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
     //Si no es selecciona res sorirá un alert dient que s'ha de seleccionar una opció
     override fun onNothingSelected(parent: AdapterView<*>) {
-        showAlert("Has de seleccionar un tipus de prodcute")
+        showAlert(getString(R.string.selecciona_el_producte))
     }
 
     //Fem que surti un alert amb el text que li pasem per parametres
     private fun showAlert(message: String) {
         val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
-        builder.setTitle("¡¡¡Error!!!")
+        builder.setTitle(getString(R.string.error))
         builder.setMessage(message)
-        builder.setPositiveButton("Aceptar", null)
+        builder.setPositiveButton(getString(R.string.acceptar), null)
         val dialog: androidx.appcompat.app.AlertDialog = builder.create()
         dialog.show()
     }
@@ -238,11 +238,11 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
 
         val uploadTask = pathReference.putBytes(data)
         uploadTask.addOnFailureListener {
-            Snackbar.make(view, "Error al pujar la foto", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.error_al_pujar), Snackbar.LENGTH_LONG).show()
             it.printStackTrace()
 
         }.addOnSuccessListener {
-            Snackbar.make(view, "Exit al pujar la foto", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.exit_al_pujar), Snackbar.LENGTH_LONG).show()
         }
     }
 
@@ -315,7 +315,7 @@ class PantallaAdministradorNouProducte : Fragment(), AdapterView.OnItemSelectedL
             //Cuan s'acabi de crear el document sortirá un toast indicant que el producte s'ha afegit amb éxit
             Toast.makeText(
                 this.requireContext(),
-                "S'ha afegit el producte amb éxit",
+                getString(R.string.afegit_producte_exit),
                 Toast.LENGTH_SHORT
             ).show()
             //Tormarem a inicialitzar la variable num a 0 per si es vol afegir un altre producte

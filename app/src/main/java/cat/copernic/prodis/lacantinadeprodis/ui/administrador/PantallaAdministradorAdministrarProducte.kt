@@ -138,15 +138,15 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
 
     //Si en l'spinner no hi ha res sortirá un alert dient que has de seleccionar un tipus de producte
     override fun onNothingSelected(parent: AdapterView<*>) {
-        showAlert("Has de seleccionar un tipus de prodcute")
+        showAlert(getString(R.string.selecciona_tipus_producte))
     }
 
     //Aquesta funció crea un alert amb el missatge que es pasa per parametres
     private fun showAlert(message: String) {
         val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
-        builder.setTitle("¡¡¡Error!!!")
+        builder.setTitle(getString(R.string.error))
         builder.setMessage(message)
-        builder.setPositiveButton("Aceptar", null)
+        builder.setPositiveButton(getString(R.string.acceptar), null)
         val dialog: androidx.appcompat.app.AlertDialog = builder.create()
         dialog.show()
     }
@@ -410,11 +410,11 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
 
         val uploadTask = pathReference.putBytes(data)
         uploadTask.addOnFailureListener {
-            Snackbar.make(view, "Error al pujar la foto", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.error_al_pujar), Snackbar.LENGTH_LONG).show()
             it.printStackTrace()
 
         }.addOnSuccessListener {
-            Snackbar.make(view, "Exit al pujar la foto", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.exit_al_pujar), Snackbar.LENGTH_LONG).show()
         }
     }
 

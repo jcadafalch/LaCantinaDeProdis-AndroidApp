@@ -32,13 +32,15 @@ class PantallaSeleccioTipusProdcute : Fragment() {
     private var arrUser = java.util.ArrayList<String>()
     private lateinit var dni: String
     private lateinit var docId: String
+    private lateinit var binding: FragmentPantallaSeleccioTipusProducteBinding
+    private var preu = 0.0
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: FragmentPantallaSeleccioTipusProducteBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_seleccio_tipus_producte, container, false
         )
         db.collection("users").get().addOnSuccessListener { result ->
@@ -48,14 +50,17 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                     var exists = false
                     db.collection("comandes").get().addOnSuccessListener { result ->
                         for (document in result) {
-                            if (document.get("comandaComencada").toString() == "true" && document.get("user").toString() == dni) {
+                            if (document.get("comandaComencada")
+                                    .toString() == "true" && document.get("user").toString() == dni
+                            ) {
                                 exists = true
                                 docId = document.id
 
+                                sumaPreu(docId)
                             }
                         }
                         println("EXISTS == $exists")
-                        if (!exists){
+                        if (!exists) {
                             createComanda()
                         }
                     }
@@ -92,8 +97,10 @@ class PantallaSeleccioTipusProdcute : Fragment() {
             }
 
         binding.btnConfirmar.setOnClickListener {
+
+
             db.collection("users").document(dni).get().addOnSuccessListener { document ->
-                if (document.get("usertype").toString() == "cambrer"){
+                if (document.get("usertype").toString() == "cambrer") {
                     db.collection("users").get().addOnSuccessListener { result ->
                         for (document in result) {
                             if (document.id != "usertypes") {
@@ -111,19 +118,15 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                             )
                         )
                     }
-                }else{
+                } else {
                     db.collection("comandes").get().addOnSuccessListener { result ->
                         for (dc in result) {
-                            if (dc.get("comandaComencada").toString() == "true" && dc.get("user").toString() == dni) {
+                            if (dc.get("comandaComencada").toString() == "true" && dc.get("user")
+                                    .toString() == dni
+                            ) {
                                 val dcId = document.id
-                                val username = document.get("username").toString() + " " + document.get("usersurname").toString()
-
-                                db.collection("comandas").document(docId).collection("productes").get().addOnSuccessListener {
-                                    for (document in it){
-                                        var preu = document.get("preu")
-                                        println("Preu: "+preu)
-                                    }
-                                }
+                                val username = document.get("username")
+                                    .toString() + " " + document.get("usersurname").toString()
 
                                 db.collection("comandes").document(docId).update(
                                     hashMapOf(
@@ -174,6 +177,32 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun sumaPreu(a: String) {
+        binding.btnConfirmar.setOnClickListener() {
+            db.collection("comandes").document(a).collection("productes").get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        var idProducte = document.get("idProducte")
+                        db.collection("productes").get().addOnSuccessListener {
+                            for (document in it) {
+                                if (document.get("idProducte").toString() == idProducte) {
+                                    preu += document.get("preu") as Double
+                                }
+
+                                db.collection("comandes").document(a).update(
+                                    hashMapOf(
+                                        "preuTotal" to preu
+                                    ) as Map<String, Any>
+                                )
+                            }
+                        }
+                    }
+
+
+                }
         }
     }
 }
