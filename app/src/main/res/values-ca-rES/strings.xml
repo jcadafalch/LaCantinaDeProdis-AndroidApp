@@ -146,4 +146,13 @@
     <string name="els_canvis_s_han_fet_amb_exit">Els canvis s\'han fet amb èxit</string>
     <string name="comanda_enviada">Comanda de %1$s enviada</string>
     <string name="atencio">¡¡¡ATENCIÓ!!!</string>
+    <string name="camera">CÀMERA</string>
+    <string name="error_al_pujar">Error al pujar la foto</string>
+    <string name="exit_al_pujar">Èxit al pujar la foto</string>
+    <string name="canvis_amb_exit">Els canvis s\'han fet amb éxit</string>
+    <string name="noti">Notificació</string>
+    <string name="selecciona_tipus_producte">Has de seleccionar un tipus de producte</string>
+    <string name="afegit_producte_exit">S\'ha afegit el producte amb éxit</string>
+    <string name="enhorabona_canvis">Enhorabona, els canvis del usuaris s\'han fet amb èxit</string>
+    <string name="descripcio_notificacio">Notificació per indicar que s\'han fet els canvis del perfil del usuari</string>
 </resources>

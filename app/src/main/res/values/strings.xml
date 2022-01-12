@@ -164,5 +164,18 @@
     <string name="has_d_introduir_el_cognom">Has d\'introduïr el cognom</string>
     <string name="d_on_vols_treure_la_foto">D\'on vols treure la foto?</string>
     <string name="selecciona_un">Selecciona un:</string>
+    <string name="camera">CÀMERA</string>
     <string name="galeria">GALERIA</string>
+    <string name="error_al_pujar">Error al pujar la foto</string>
+    <string name="exit_al_pujar">Èxit al pujar la foto</string>
+    <string name="canvis_amb_exit">Els canvis s\'han fet amb èxit</string>
+    <string name="channel_id" translatable="false">cat.copernic.prodis.lacantinadeprodis.ui.activities</string>
+    <string name="noti">Notificació</string>
+    <string name="channel_name" translatable="false">app</string>
+    <string name="selecciona_tipus_producte">Has de seleccionar un tipus de prodcute</string>
+    <string name="afegit_producte_exit">S\'ha afegit el producte amb èxit</string>
+    <string name="enhorabona_canvis">Enhorabona, els canvis del usuari s\'han realitzat amb èxit</string>
+    <string name="descripcio_notificacio">Notificació per indicar que s\'han fet els canvis del perfil del usuari</string>
+    <string name="_1234" translatable="false">1234</string>
+
 </resources>
