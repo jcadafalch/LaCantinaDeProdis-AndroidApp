@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityCaixaBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class CaixerActivity : AppCompatActivity() {
 
@@ -45,6 +46,8 @@ class CaixerActivity : AppCompatActivity() {
                 true
             }
             R.id.logOutBttn -> {
+                FirebaseAuth.getInstance().signOut()
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
