@@ -84,12 +84,6 @@
     <string name="posa_aqui_el_teu_cognom">Posa aquí el teu cognom</string>
     <string name="tamany_petit" translatable="false">Aa</string>
     <string name="cambiar_contrasenya">Canviar contrasenya</string>
-    <string name="posa_aqui_la_contrasenya">Posa aquí la teva nova contrasenya (opcional)</string>
-    <string-array name="tipus_producte">
-        <item>Bocata</item>
-        <item>Beguda calenta</item>
-        <item>Beguda freda</item>
-    </string-array>
     <string name="producte">Producte</string>
     <string name="introdueix_el_nom_del_producte_promoci">Introdueix el nom del producte / promoció</string>
     <string name="selecciona_el_preu">Selecciona el preu</string>
@@ -163,12 +157,12 @@
     <string name="error_al_pujar_la_foto">Error en pujar la foto</string>
     <string name="exit_al_pujar_la_foto">Èxit en pujar la foto</string>
     <string name="s_ha_afegit_el_producte_amb_exit">S\'ha afegit el producte amb èxit</string>
-    <string name="has_d_introduir_el_nom">"Has d\'introduïr el nom\r"</string>
-    <string name="has_d_introduir_el_cognom">"Has d\'introduïr el cognom\r"</string>
-    <string name="d_on_vols_treure_la_foto">D\'on vols treure la foto?</string>
-    <string name="selecciona_un">Selecciona un:</string>
-    <string name="galeria">GALERIA</string>
     <string name="camara">CÀMERA</string>
     <string name="els_canvis_s_han_fet_amb_exit">Els canvis s\'han fet amb èxit</string>
     <string name="comanda_enviada">Comanda de %1$s enviada"</string>
+    <string name="has_d_introduir_el_nom">Has d\'introduïr el nom</string>
+    <string name="has_d_introduir_el_cognom">Has d\'introduïr el cognom</string>
+    <string name="d_on_vols_treure_la_foto">D\'on vols treure la foto?</string>
+    <string name="selecciona_un">Selecciona un:</string>
+    <string name="galeria">GALERIA</string>
 </resources>
