@@ -127,10 +127,7 @@ class PantallaAdministradorModificarUsuari_bk : Fragment(), AdapterView.OnItemSe
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        println("ITEM position = $position")
 
-        //println("USER ID = " + arrUserId[position])
-        println("PARENT = $parent")
         if (parent == spinner) {
 
             vwMdl.getUsername.observe(viewLifecycleOwner, Observer {
@@ -428,7 +425,7 @@ class PantallaAdministradorModificarUsuari_bk : Fragment(), AdapterView.OnItemSe
     }
 
     private fun saveUser(usertype: String) {
-        println(spinnerUserType.selectedItem.toString())
+
         val dni = binding.dtTxtPAdministradorModificarUsuariDtDni.text.toString()
         val username = binding.dtTxtPAdministradorModificarUsuariPersonName.text.toString()
         val usersurname = binding.dtTxtPAdministradorModificarUsuariPersonSurname.text.toString()
@@ -510,7 +507,7 @@ class PantallaAdministradorModificarUsuari_bk : Fragment(), AdapterView.OnItemSe
     }
 
     private fun changePassword(dni: String, psswd: String) {
-        println("PASSSWORD  =  $psswd")
+
         db.collection("users").document(dni).get().addOnSuccessListener { result ->
             auth.signInWithEmailAndPassword(
                 result.get("email").toString(),

@@ -104,17 +104,15 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val spinnerPosition = spinner.selectedItemPosition
-        println("ITEM position = $position")
-        //println("USER ID = " + arrUserId[position])
-        println("PARENT = $parent")
+
         if (parent == spinner) {
             //spinnerPosition = position
             db.collection("users").document(arrUserId[position]).get()
                 .addOnSuccessListener { document ->
                     val pasword = document.get("password").toString()
-                    println("PASSWORD  = $pasword")
+
                     val pswd = pasword.replace("prodis", "")
-                    println("PSWD = $pswd")
+
                     binding.dtTxtPAdministradorModificarUsuariPersonName.setText(
                         document.get("username").toString()
                     )
@@ -175,9 +173,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
                     }
                 }
         } else if (parent == spinnerUserType) {
-            println("----------------------")
-            println(arrUserType[position])
-            println("-----------------------------")
+
             if (position == 3) {
                 binding.txtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
                 binding.dtTxtPAdministradorModificarUsuariEmail.visibility = View.INVISIBLE
@@ -290,7 +286,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
     }
 
     private fun saveUser(usertype: String) {
-        println(spinnerUserType.selectedItem.toString())
+
         val dni = binding.dtTxtPAdministradorModificarUsuariDtDni.text.toString()
         val username = binding.dtTxtPAdministradorModificarUsuariPersonName.text.toString()
         val usersurname = binding.dtTxtPAdministradorModificarUsuariPersonSurname.text.toString()
@@ -374,7 +370,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
     }
 
     private fun changePassword(dni: String, psswd: String) {
-        println("PASSSWORD  =  " + psswd)
+
         db.collection("users").document(dni).get().addOnSuccessListener { result ->
             auth.signInWithEmailAndPassword(
                 result.get("email").toString(),
@@ -434,7 +430,7 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
         usertype: String
     ) {
         val passwd = password + "prodis"
-        println(passwd)
+
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passwd)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -465,7 +461,4 @@ class PantallaAdministradorModificarUsuari : Fragment(), AdapterView.OnItemSelec
             }
     }
 
-    private fun showafegirUsuari() {
-
-    }
 }
