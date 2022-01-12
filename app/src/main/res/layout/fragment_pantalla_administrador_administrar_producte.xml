@@ -12,7 +12,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorFons">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,10 +55,10 @@
                 android:id="@+id/spinTipusProducte"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
-                android:minHeight="48dp"
+                android:layout_marginLeft="@dimen/centrat"
+                android:layout_marginRight="@dimen/centrat"
                 android:autofillHints="Categoria..."
+                android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtSeleccionaCategoria"
@@ -81,10 +82,10 @@
                 android:id="@+id/spinSeleccionaProducte"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="@dimen/centrat"
                 android:layout_marginRight="60dp"
-                android:minHeight="48dp"
                 android:autofillHints="Producte..."
+                android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtSeleccionaProducte"
@@ -269,7 +270,7 @@
                 android:layout_marginEnd="20dp"
                 android:text="@string/guardar"
                 android:textColor="#FFFFFF"
-                android:theme="@style/AppTheme.btnGuardar"
+                android:theme="@style/AppTheme.ButtonAdmin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

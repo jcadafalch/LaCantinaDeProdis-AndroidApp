@@ -1,11 +1,14 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.activities
 
-import android.app.Activity
-import android.app.AlertDialog
+import android.app.*
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -17,13 +20,15 @@ import java.util.regex.Pattern
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.view.isGone
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import cat.copernic.prodis.lacantinadeprodis.viewmodel.PantallaEdicioPerfilViewModel
-import cat.copernic.prodis.lacantinadeprodis.viewmodel.viewmodel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -33,7 +38,8 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
 import java.io.File
-
+import androidx.fragment.app.FragmentActivity
+import java.util.*
 
 class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
@@ -53,9 +59,16 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
             }
         }
 
+    private val NOTIFICATION_ID = 0
+
+    private lateinit var notificationChannel: NotificationChannel
+    private lateinit var build: Notification.Builder
+
     lateinit var storageRef: StorageReference
 
     private lateinit var viewModel: PantallaEdicioPerfilViewModel
+
+    private lateinit var idiomaR: String
 
     //Comennça el onCreate
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,6 +107,10 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         //Cridem a la funció per guardar les dades
         guardarDades()
 
+        seleccionaIdioma()
+
+        Toast.makeText(this, Locale.getDefault().language.toString(), Toast.LENGTH_SHORT).show()
+
     }
 
     //Aquesta funció fará que es comprovi si hi han dades en els camps indicats
@@ -101,11 +118,11 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         var error = ""
         var bool = true
         if (nom.isEmpty()) {
-            error += getString(R.string.has_d_introduir_el_nom)
+            error += getString(R.string.has_d_introduir_el_nom) + "\r"
             bool = false
         }
         if (cognom.isEmpty()) {
-            error += getString(R.string.has_d_introduir_el_cognom)
+            error += getString(R.string.has_d_introduir_el_cognom) + "\r"
             bool = false
         }
         if (error != "") {
@@ -192,7 +209,7 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
         //Indiquem al botó negatiu que será el que obrirá la càmera
         alertDialog.setButton(
-            AlertDialog.BUTTON_NEGATIVE, getString(R.string.camara)
+            AlertDialog.BUTTON_NEGATIVE, getString(R.string.camera)
         ) { dialog, which -> obrirCamera() }
         alertDialog.show()
 
@@ -226,11 +243,11 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
         val uploadTask = pathReference.putBytes(data)
         uploadTask.addOnFailureListener {
-            Snackbar.make(view, getString(R.string.error_al_pujar_la_foto), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.error_al_pujar), Snackbar.LENGTH_LONG).show()
             it.printStackTrace()
 
         }.addOnSuccessListener {
-            Snackbar.make(view, getString(R.string.exit_al_pujar_la_foto), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.exit_al_pujar), Snackbar.LENGTH_LONG).show()
         }
     }
 
@@ -271,28 +288,140 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
                         "usersurname" to binding.editTxtCognom.text.toString(),
                     ) as Map<String, Any>
                 )
-                val currentUserPass =
-                    FirebaseAuth.getInstance().currentUser
 
-                if (!binding.editTextContrassenya.text.isEmpty()) {
-                    currentUserPass?.updatePassword(binding.editTextContrassenya.text.toString())
-                        ?.addOnCompleteListener() { task ->
-                            if (task.isSuccessful) {
-                                db.collection("users").document(dni).update(
-                                    hashMapOf(
-                                        "password" to binding.editTextContrassenya.text.toString() + "prodis"
-                                    ) as Map<String, Any>
-                                )
-                            }
-                        }
-                    //Quan acaba d'actualizar les dades surt un toast indicant que els canvis s'han fet amb èxit
-                    Toast.makeText(
-                        this,
-                        getString(R.string.els_canvis_s_han_fet_amb_exit),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+                //Quan acaba d'actualizar les dades surt un toast indicant que els canvis s'han fet amb èxit
+                Toast.makeText(this, getString(R.string.canvis_amb_exit), Toast.LENGTH_SHORT)
+                    .show()
+
             }
+
+            //Cridem a la funció createChannel per crear un canal per poder enviar una notificació en el cas de que l'api sigui major a 26
+            createChannel(
+                //Agagem del fitxer de strings un id i un nom per el nostre canal
+                getString(R.string.channel_id),
+                getString(R.string.channel_name)
+            )
+
+            //Definim i inicialitzem una variable per pasarli el NotificationManager
+            val notificationManager = ContextCompat.getSystemService(
+                this,
+                NotificationManager::class.java
+            ) as NotificationManager
+
+            //Indiquem que notificationManager enviï una notificació amb un text que agafara del fitxer de strings i en aquest context
+            notificationManager.sendNotification(this.getString(R.string.enhorabona_canvis), this)
+
+            posaIdioma()
         }
     }
+
+
+    //Funció per el Notifaction manager que tindrá per parametres el missatge de la notificació i el context de l'app
+    private fun NotificationManager.sendNotification(
+        messageBody: String,
+        applicationContext: Context
+    ) {
+
+        //Builder per crear la notificació més tard
+        val builder = NotificationCompat.Builder(
+            applicationContext,
+            applicationContext.getString(R.string.channel_id)
+        )
+            //Indiquem quin será l'icona que sortirá en la notificació
+            .setSmallIcon(R.drawable.logo_foreground)
+            //Indiquem quin será el text principal de la notificació
+            .setContentTitle(
+                applicationContext
+                    .getString(R.string.canvis_amb_exit)
+            )
+            //Aquest será el text de la notificiacó
+            .setContentText(messageBody)
+
+        //Creem la notificació amb un id i amb el builder que hem creat abans
+        notify(NOTIFICATION_ID, builder.build())
+
+
+    }
+
+    //Funció per crear el canal que tindrá in channelId i un channelName
+    private fun createChannel(channelId: String, channelName: String) {
+        //Fem un if per comprobar si ela versió del sdk es correcte
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //Indiquem que el canal de la notificació sera de tipus NotificationChannel agafant els valors de channelId, de channelName i agafant l'importancia de la
+            // notificació
+            notificationChannel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_LOW
+            )
+
+            //Indiquem que s'activi la llum del nostre dispositiu al rebre la notificació
+            notificationChannel.enableLights(true)
+            //Indiquem el color de la llum del nostre dispositiu, en aquest cas será blanc
+            notificationChannel.lightColor = Color.WHITE
+            //Indiquem que volem que el nostre dispositiu vibri al rebre la notificació
+            notificationChannel.enableVibration(true)
+            //Indiquem la descripció de la notificació
+            notificationChannel.description = getString(R.string.descripcio_notificacio)
+
+            //Definim i inicialitzem una variable notificationManager que será de tipus NotificationManager
+            val notificationManager = getSystemService(
+                NotificationManager::class.java
+            )
+
+            //Amb la variable que acabem de crear li indicarem que creï un canal amb els paràmetres que li hem indicat abans
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
+    }
+
+    private fun idioma(lenguage: String, country: String){
+        val localitzacio = Locale(lenguage, country)
+
+        Locale.setDefault(localitzacio)
+
+        var config = Configuration()
+
+        config.locale = localitzacio
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+    }
+
+    private fun seleccionaIdioma(){
+        binding.radioGroup
+            .setOnCheckedChangeListener { group, checkedId ->
+                when (checkedId) {
+                    R.id.radioCat -> {
+                        idiomaR = "cat"
+                    }
+                    R.id.radioEsp -> {
+                        idiomaR = "esp"
+                    }
+                    R.id.radioEng -> {
+                        idiomaR = "eng"
+                    }
+                }
+            }
+    }
+
+    private fun posaIdioma(){
+        if(idiomaR.equals("cat")){
+            idioma("ca", "ES")
+            val intent  = Intent(this, PantallaEdicioPerfil::class.java).apply {
+            }
+            finish()
+            startActivity(intent)
+        } else if(idiomaR.equals("esp")){
+            idioma("es", "ES")
+            val intent  = Intent(this, PantallaEdicioPerfil::class.java).apply {
+            }
+            finish()
+            startActivity(intent)
+        } else if(idiomaR.equals("eng")){
+            idioma("en", "")
+            val intent  = Intent(this, PantallaEdicioPerfil::class.java).apply {
+            }
+            finish()
+            startActivity(intent)
+        }
+    }
+
 }
