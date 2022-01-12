@@ -22,6 +22,7 @@ class CaixerActivity : AppCompatActivity() {
 
         //Fletxa enderrere i faltaria metode onSupportNavigateUp
         //NavigationUI.setupActionBarWithNavController(this, navController)
+        title = ""
 
     }
 
