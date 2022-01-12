@@ -209,7 +209,7 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
         //Indiquem al botó negatiu que será el que obrirá la càmera
         alertDialog.setButton(
-            AlertDialog.BUTTON_NEGATIVE, getString(R.string.camera)
+            AlertDialog.BUTTON_NEGATIVE, getString(R.string.camara)
         ) { dialog, which -> obrirCamera() }
         alertDialog.show()
 
@@ -243,11 +243,11 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
         val uploadTask = pathReference.putBytes(data)
         uploadTask.addOnFailureListener {
-            Snackbar.make(view, getString(R.string.error_al_pujar), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.error_al_pujar_la_foto), Snackbar.LENGTH_LONG).show()
             it.printStackTrace()
 
         }.addOnSuccessListener {
-            Snackbar.make(view, getString(R.string.exit_al_pujar), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.exit_al_pujar_la_foto), Snackbar.LENGTH_LONG).show()
         }
     }
 
@@ -332,7 +332,7 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
             //Indiquem quin será el text principal de la notificació
             .setContentTitle(
                 applicationContext
-                    .getString(R.string.canvis_amb_exit)
+                    .getString(R.string.els_canvis_s_han_fet_amb_exit)
             )
             //Aquest será el text de la notificiacó
             .setContentText(messageBody)

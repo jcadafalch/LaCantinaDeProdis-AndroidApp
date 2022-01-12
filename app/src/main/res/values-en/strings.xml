@@ -148,4 +148,7 @@
     <string name="atencio">" ATTENTION!!!"</string>
     <string name="estas_a_punt_assignar_usuari_com_administrador1">Are you about to assign user</string>
     <string name="estas_a_punt_assignar_usuari_com_administrador2">as administrator\\nAre you sure of this action?</string>
+    <string name="enhorabona_canvis">Congratulations user changes have been successful</string>
+    <string name="canvis_amb_exit">" Changes successfully done"</string>
+    <string name="descripcio_notificacio">Notification to indicate user profile changes made</string>
 </resources>

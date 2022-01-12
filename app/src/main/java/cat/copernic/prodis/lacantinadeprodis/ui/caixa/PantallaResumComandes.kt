@@ -58,7 +58,7 @@ class PantallaResumComandes : Fragment() {
         resumComandaAdpt = resum_comanda_adapter(producteList)
         eventChangeListener()
 
-        binding.btnPagat.setOnClickListener {
+        binding.btnPagat?.setOnClickListener {
             db.collection("comandes").document(documentId).get().addOnSuccessListener { dc ->
                 if (dc.get("preparat").toString() == "true"){
                     db.collection("comandes").document(documentId).update(
@@ -78,7 +78,7 @@ class PantallaResumComandes : Fragment() {
             view?.findNavController()?.navigate(PantallaResumComandesDirections.actionPantallaResumComandesToPantallaSeleccioResumComanda())
         }
 
-        binding.btnTornaEnrerre.setOnClickListener {
+        binding.btnTornaEnrerre?.setOnClickListener {
             view?.findNavController()?.navigate(PantallaResumComandesDirections.actionPantallaResumComandesToPantallaSeleccioResumComanda())
         }
 

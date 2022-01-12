@@ -173,4 +173,10 @@
     <string name="estas_a_punt_assignar_usuari_com_administrador2">com a administrador Estas segur d\'aquesta acció?</string>
     <string name="si_vols_Que_l_usuari_deixi_Se_ser_client1">Si vols que l\'usuari:</string>
     <string name="si_vols_Que_l_usuari_deixi_Se_ser_client2">deixi de ser client, l\'has de tornar a afegir des de l\\\'apartat \"Afegir nou usuari\" per canviar el tipus d\'usuari?.</string>
+    <string name="_1234" translatable="false">1234</string>
+    <string name="canvis_amb_exit">Els canvis s\'han fet amb èxit</string>
+    <string name="channel_id" translatable="false">cat.copernic.prodis.lacantinadeprodis.ui.activities</string>
+    <string name="channel_name" translatable="false">app</string>
+    <string name="enhorabona_canvis">Enhorabona, els canvis de l\'usuari s\'han realitzat amb exit</string>
+    <string name="descripcio_notificacio">Notificació per indicar que s\'han fet els canvis del perfil de l\'usuari</string>
 </resources>

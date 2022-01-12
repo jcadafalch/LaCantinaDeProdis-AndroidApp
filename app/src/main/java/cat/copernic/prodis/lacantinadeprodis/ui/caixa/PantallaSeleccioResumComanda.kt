@@ -35,7 +35,7 @@ class PantallaSeleccioResumComanda : Fragment() {
             inflater, R.layout.fragment_pantalla_seleccio_resum_comanda, container, false
         )
 
-        recycerView = binding.rcyclrVwSeleccioComandes
+        recycerView = binding.rcyclrVwSeleccioComandes!!
         val gridLayout = GridLayoutManager(this.context, 2)
         //recycerView.layoutManager = gridLayout
 
