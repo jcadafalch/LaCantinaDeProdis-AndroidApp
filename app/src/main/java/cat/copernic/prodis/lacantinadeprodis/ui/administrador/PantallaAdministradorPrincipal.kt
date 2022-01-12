@@ -73,7 +73,11 @@ class PantallaAdministradorPrincipal : Fragment() {
                 arrayTipusProducte.add(bocata)
             }
         }
+        //Entrem en la colecció de productes i agafem les dades
         db.collection("productes").get().addOnSuccessListener { result ->
+            //Si l'array de productes es buit mirarem cada document i agafarem el seu nom si el
+            //nom del document no es "categories". Si tot aixó es compleix es guardará el nom
+            //del document dins de l'array de productes.
             if (arrayProductes.isEmpty()) {
                 for (document in result) {
                     if (document.id != "categories") {
@@ -83,7 +87,8 @@ class PantallaAdministradorPrincipal : Fragment() {
             }
         }
 
-
+        //Fem que al clickar el botó per anar a la pantalla administrador nou usuari, ens porti
+        //a a questa pantalla i li pasem per parametres l'array de tipus d'usuaris.
         binding.btnPAdministradorPrincipalNouUsuari.setOnClickListener {
             view?.findNavController()
                 ?.navigate(
@@ -93,17 +98,28 @@ class PantallaAdministradorPrincipal : Fragment() {
                 )
         }
 
+        //Fem que al fer clic el botó per anar a la pantalla eliminar/modificar usuari...
         binding.btnPAdministradorPrincipalElimiarModificarUsuari.setOnClickListener {
+            //Entrem a la colecció users i agafem l'id de cada document
             db.collection("users").get().addOnSuccessListener { result ->
                 for (document in result) {
+                    //Si la id del document no es usertype agafarem el valor de username més
+                        // el valor del usersurname
                     if (document.id != "usertypes") {
                         val user =
                             document.get("username").toString() + " " + document.get("usersurname")
                                 .toString()
+                        //Agafem aquestos últims valors i els afegirm a l'array d'usuaris
                         arrUser.add(user)
+                        //També agafem el document id del document que estem mirant i ho guardem
+                        //al array de id d'usuaris
                         arrUserId.add(document.id)
                     }
                 }
+                //Per últim anem a la pantalla modificar usuari pasant els arrays:
+                //  - Array d'usuaris
+                //  - Array d'ids d'usuari
+                //  - Array de tipus d'usuaris
                 view?.findNavController()?.navigate(
                     PantallaAdministradorPrincipalDirections.actionPantallaAdministradorPrincipalToPantallaAdministradorModificarUsuari(
                         arrUser, arrUserId, arrUsertype
@@ -114,6 +130,8 @@ class PantallaAdministradorPrincipal : Fragment() {
 
         }
 
+        //Fem que al fer clic al botó per anar a la pantalla nou producte, anem a aquesta pantalla
+        //pasant l'array de tipus de producte
         binding.btnPAdministradorPrincipalNouProducte.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(
@@ -123,6 +141,8 @@ class PantallaAdministradorPrincipal : Fragment() {
                 )
         }
 
+        //Fem que al fer clic al botó per anar a la pantalla d'administrar productes, anem a aquesta pantalla
+        //pasant els arrays de tipus de producte i l'array de productes
         binding.btnPAdministradorPrincipalAdministrarProductes.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(

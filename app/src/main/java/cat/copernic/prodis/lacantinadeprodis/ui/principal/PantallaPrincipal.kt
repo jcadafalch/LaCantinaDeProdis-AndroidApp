@@ -17,26 +17,32 @@ class PantallaPrincipal : Fragment() {
         val binding: FragmentPantallaPrincipalBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_principal, container, false
         )
+        //Escoltem el botó per anar a la pantalla del client
         binding.btnPprincipalClient.setOnClickListener { view : View ->
+            //Anem a la pantalla d'inici de sessió pasant el valor "clientR"
             view.findNavController().navigate(PantallaPrincipalDirections.
             actionPantallaPrincipalToPantallaIniciSessioClientAdmin("clientR"))
         }
 
+        //Anem a la pantalla d'inici de sessió pasant el valor "cambrer"
         binding.btnPprincipalCambrer.setOnClickListener{ view : View ->
             view.findNavController().navigate(PantallaPrincipalDirections.
             actionPantallaPrincipalToPantallaIniciSessioClientAdmin("cambrer"))
         }
 
+        //Anem a la pantalla d'inici de sessió pasant el valor "caixer"
         binding.btnPprincipalCaixer.setOnClickListener{ view : View ->
             view.findNavController().navigate(PantallaPrincipalDirections.
             actionPantallaPrincipalToPantallaIniciSessioClientAdmin("caixer"))
         }
 
+        //Anem a la pantalla d'inici de sessió pasant el valor "cuiner"
         binding.btnPprincipalCuiner.setOnClickListener{ view : View ->
             view.findNavController().navigate(PantallaPrincipalDirections.
             actionPantallaPrincipalToPantallaIniciSessioClientAdmin("cuiner"))
         }
 
+        //Anem a la pantalla d'inici de sessió pasant el valor "admin"
         binding.btnPprincipalAdministrador.setOnClickListener{ view : View ->
             view.findNavController().navigate(PantallaPrincipalDirections.
             actionPantallaPrincipalToPantallaIniciSessioClientAdmin("admin"))
