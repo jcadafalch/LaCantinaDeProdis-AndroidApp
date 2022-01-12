@@ -25,6 +25,8 @@ class AdministradorActivity : AppCompatActivity() {
         //Fletxa enderrere i faltaria metode onSupportNavigateUp
         //NavigationUI.setupActionBarWithNavController(this, navController)
 
+        title = ""
+
         var bundle = intent.extras
         dni = bundle?.getString("dni").toString()
 
