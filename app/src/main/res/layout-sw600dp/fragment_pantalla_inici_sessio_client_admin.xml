@@ -37,6 +37,7 @@
                 android:layout_marginTop="200dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/iniciarSessio"
+                android:textColor="@color/black"
                 android:textSize="@dimen/txtSubTitolTablet"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txtPIniciarSessioClientBenvinguda"

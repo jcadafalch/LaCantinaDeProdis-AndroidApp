@@ -32,7 +32,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
     private val currentUser = FirebaseAuth.getInstance().currentUser
     private var arrUser = java.util.ArrayList<String>()
     private lateinit var dni: String
-    private lateinit var docId: String
+    private var docId = ""
     private lateinit var binding: FragmentPantallaSeleccioTipusProducteBinding
     private var preu = 0.0
 
@@ -55,9 +55,9 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                             if (document.get("comandaComencada")
                                     .toString() == "true" && document.get("user").toString() == dni
                             ) {
+
                                 exists = true
                                 docId = document.id
-
 
                             }
                         }
@@ -129,22 +129,24 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                             if (dc.get("comandaComencada").toString() == "true" && dc.get("user")
                                     .toString() == dni
                             ) {
-                                val dcId = document.id
                                 val username = document.get("username")
                                     .toString() + " " + document.get("usersurname").toString()
-
-                                db.collection("comandes").document(docId).update(
-                                    hashMapOf(
-                                        "comandaComencada" to false,
-                                        "visible" to true,
-                                        "user" to username,
-                                    ) as Map<String, Any>
-                                )
-                                sumaPreu(docId)
-                                deleteComanda()
-                                FirebaseAuth.getInstance().signOut()
-                                activity?.finish()
-                                break
+                                if (docId != "") {
+                                    db.collection("comandes").document(docId).update(
+                                        hashMapOf(
+                                            "comandaComencada" to false,
+                                            "visible" to true,
+                                            "user" to username,
+                                        ) as Map<String, Any>
+                                    )
+                                    sumaPreu(docId)
+                                    deleteComanda()
+                                    FirebaseAuth.getInstance().signOut()
+                                    activity?.finish()
+                                    break
+                                } else {
+                                    showAlert(getString(R.string.comanda_buida))
+                                }
                             }
                         }
                     }
@@ -215,21 +217,36 @@ class PantallaSeleccioTipusProdcute : Fragment() {
 
     }
 
-    private fun deleteComanda(){
+    private fun deleteComanda() {
         db.collection("comandes").get().addOnSuccessListener { result ->
-            for (document in result){
-                if(document.get("comandaComencada").toString().equals("true") && document.get("user").toString() == dni){
+            for (document in result) {
+                if (document.get("comandaComencada").toString()
+                        .equals("true") && document.get("user").toString() == dni
+                ) {
                     val idDocument = document.id
-                    db.collection("comandes").document(document.id).collection("productes").get().addOnSuccessListener { document ->
-                        for (dc in document){
-                            db.collection("comandes").document(idDocument).collection("productes").document(dc.id).delete()
-                        }
+                    db.collection("comandes").document(document.id).collection("productes").get()
+                        .addOnSuccessListener { document ->
+                            for (dc in document) {
+                                db.collection("comandes").document(idDocument)
+                                    .collection("productes").document(dc.id).delete()
+                            }
 
-                    }
+                        }
                     db.collection("comandes").document(document.id).delete()
                 }
             }
 
         }
     }
+
+    //Aquesta funció crea un alert amb el missatge que es pasa per parametres
+    private fun showAlert(message: String) {
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
+        builder.setTitle(getString(R.string.error))
+        builder.setMessage(message)
+        builder.setPositiveButton(getString(R.string.acceptar), null)
+        val dialog: androidx.appcompat.app.AlertDialog = builder.create()
+        dialog.show()
+    }
+
 }

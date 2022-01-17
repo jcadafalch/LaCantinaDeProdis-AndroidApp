@@ -55,9 +55,9 @@ class cuiner_adapter(private val comandesList: ArrayList<dtclss_cuiner>) :
         holder.comandaId.setOnClickListener { view ->
             view.findNavController().navigate(
                 PantallaCuinerDirections.actionPantallaCuinerToPantallaCuinerComanda(
+                    username,
                     comandaID,
-                    documentId,
-                    username
+                    documentId
                 )
             )
         }

@@ -7,7 +7,7 @@
     <string name="administrador">" Administrador/a"</string>
     <string name="iniciarSessio">" Iniciar Sesión"</string>
     <string name="txtPIniciarSessio_benvinguda">" Hola! Me alegro de verte de nuevo."</string>
-    <string name="contrasenya">Contrasenña</string>
+    <string name="contrasenya">Contraseña</string>
     <string name="oblidatContrasenya">"Has olvidado la contraseña? "</string>
     <string name="registrat">Regístrate</string>
     <string name="txtBenvolgutAdministrador">Bienvenido Administrador</string>
@@ -151,4 +151,6 @@
     <string name="enhorabona_canvis">Enhorabuena, los cambios del usuario se han realizado con éxito</string>
     <string name="canvis_amb_exit">Los cambios se han hecho con éxito</string>
     <string name="descripcio_notificacio">Notificación para indicar que se han hecho los cambios del perfil del usuario</string>
+    <string name="una_imatge_del_producte_a_afegir">Una imagen del producto a añadir</string>
+    <string name="comanda_buida">El pedido no puede estar vacío</string>
 </resources>

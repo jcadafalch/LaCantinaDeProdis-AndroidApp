@@ -174,7 +174,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="4dp"
-                        android:drawableEnd="@mipmap/bandera_catalana"
+                        android:drawableEnd="@mipmap/bander_espanyola_round"
                         android:minHeight="48dp"
                         android:textSize="20sp"
                         app:layout_constraintStart_toEndOf="@+id/radioPetit"
@@ -187,7 +187,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="5dp"
-                        android:drawableEnd="@mipmap/bander_espanyola_round"
+                        android:drawableEnd="@mipmap/bandera_catalana"
                         android:minHeight="48dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra" />

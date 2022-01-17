@@ -32,6 +32,7 @@
                 android:fontFamily="sans-serif"
                 android:text="@string/administrar_productes"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 android:textSize="@dimen/txtTitol"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +46,7 @@
                 android:layout_marginTop="21dp"
                 android:layout_marginEnd="80dp"
                 android:text="@string/selecciona_la_categoria"
+                android:textColor="@color/black"
                 android:textSize="@dimen/txtGran"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.52"
@@ -72,6 +74,7 @@
                 android:layout_marginTop="21dp"
                 android:layout_marginEnd="80dp"
                 android:text="@string/selecciona_el_producte"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.52"
@@ -82,8 +85,8 @@
                 android:id="@+id/spinSeleccionaProducte"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/centrat"
-                android:layout_marginRight="60dp"
+                android:layout_marginStart="@dimen/centrat"
+                android:layout_marginEnd="@dimen/centrat"
                 android:autofillHints="Producte..."
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -193,16 +196,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck"
+                android:importantForAutofill="no" />
 
             <ImageView
                 android:id="@+id/imgProducte2"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="5dp"
+                android:contentDescription="@string/una_imatge_del_producte_a_afegir"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtProducteVisible4"
+                tools:ignore="ImageContrastCheck"
                 tools:src="@tools:sample/avatars" />
 
             <RadioGroup
@@ -220,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="@string/_1"
-                    android:textColor="#616161" />
+                    android:textColor="#00796B" />
 
                 <RadioButton
                     android:id="@+id/radio2Euro2"

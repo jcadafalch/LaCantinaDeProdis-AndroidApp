@@ -10,6 +10,9 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -39,7 +42,14 @@ import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
 import java.io.File
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import java.util.*
+
+
+
 
 class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
@@ -109,8 +119,6 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
         //Funció per saber quin idioma ha sigut seleccionat
         seleccionaIdioma()
-
-        Toast.makeText(this, Locale.getDefault().language.toString(), Toast.LENGTH_SHORT).show()
 
     }
 
@@ -415,21 +423,21 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
     //Funció per posar l'idioma al que es canviará
     private fun posaIdioma() {
         //Si el valor de idiomaR es "cat" el valors que es pasaran per canviar d'idomoa serán "ca" i "ES"
-        if (idiomaR.equals("cat")) {
+        if (idiomaR == "cat") {
             idioma("ca", "ES")
             val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
             }
             finish()
             startActivity(intent)
         //Si el valor de idiomaR es "es" el valors que es pasaran per canviar d'idomoa serán "es" i "ES"
-        } else if (idiomaR.equals("esp")) {
+        } else if (idiomaR == "esp") {
             idioma("es", "ES")
             val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
             }
             finish()
             startActivity(intent)
         //Si el valor de idiomaR es "eng" el valors que es pasaran per canviar d'idomoa serán "eng" i ""
-        } else if (idiomaR.equals("eng")) {
+        } else if (idiomaR == "eng") {
             idioma("en", "")
             val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
             }
@@ -438,4 +446,42 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         }
     }
 
+    //Funció per inflar el menú
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    //Funció per indicar que fará cada botó del menú
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.arrowBackBtn -> {
+                //Anirá a la pantalla anterior
+                this.onBackPressed()
+                true
+            }
+            R.id.homeBtn -> {
+                //Anirá a la pantalla principal
+                val intent = Intent(this, MainActivity::class.java).apply {
+                }
+                startActivity(intent)
+                true
+            }
+            R.id.profileBttn -> {
+                //Anirá a la pantalla d'edició de perfil
+                val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
+                }
+                startActivity(intent)
+                true
+            }
+                //Tancará sessió
+            R.id.logOutBttn -> {
+                FirebaseAuth.getInstance().signOut()
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 }

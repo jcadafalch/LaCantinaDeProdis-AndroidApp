@@ -151,4 +151,6 @@
     <string name="enhorabona_canvis">Congratulations user changes have been successful</string>
     <string name="canvis_amb_exit">" Changes successfully done"</string>
     <string name="descripcio_notificacio">Notification to indicate user profile changes made</string>
+    <string name="una_imatge_del_producte_a_afegir">Added product image</string>
+    <string name="comanda_buida">Order can\'t be empty</string>
 </resources>

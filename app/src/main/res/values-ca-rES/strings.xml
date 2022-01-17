@@ -151,4 +151,6 @@
     <string name="enhorabona_canvis">Enhorabona, els canvis de l\'usuari s\'han realitzat amb exit</string>
     <string name="canvis_amb_exit">Els canvis s\'han fet amb èxit</string>
     <string name="descripcio_notificacio">Notificació per indicar que s\'han fet els canvis del perfil de l\'usuari</string>
+    <string name="una_imatge_del_producte_a_afegir">Una imatge del producte a afegir</string>
+    <string name="comanda_buida">La comanda no pot estar buida</string>
 </resources>
