@@ -216,6 +216,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
 
     }
 
+    //Funció per borrar la una comanda
     private fun deleteComanda() {
         db.collection("comandes").get().addOnSuccessListener { result ->
             for (document in result) {
@@ -236,5 +237,10 @@ class PantallaSeleccioTipusProdcute : Fragment() {
             }
 
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        deleteComanda()
     }
 }

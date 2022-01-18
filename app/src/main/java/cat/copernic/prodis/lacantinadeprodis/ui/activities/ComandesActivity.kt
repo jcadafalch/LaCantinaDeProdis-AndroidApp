@@ -71,6 +71,7 @@ class ComandesActivity: AppCompatActivity() {
         }
     }
 
+    //Funció per borrar una comanda
     private fun deleteComanda(){
         db.collection("comandes").get().addOnSuccessListener { result ->
             for (document in result){
@@ -89,17 +90,8 @@ class ComandesActivity: AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        deleteComanda()
-    }
-
     override fun onBackPressed() {
         super.onBackPressed()
         deleteComanda()
-    }
-
-    fun finishFun(){
-        finish()
     }
 }

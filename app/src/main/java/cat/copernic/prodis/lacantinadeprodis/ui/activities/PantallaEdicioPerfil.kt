@@ -120,6 +120,8 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         //Funció per saber quin idioma ha sigut seleccionat
         seleccionaIdioma()
 
+
+        supportActionBar?.title = ""
     }
 
     //Aquesta funció fará que es comprovi si hi han dades en els camps indicats
@@ -443,45 +445,6 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
             }
             finish()
             startActivity(intent)
-        }
-    }
-
-    //Funció per inflar el menú
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
-        return true
-    }
-
-    //Funció per indicar que fará cada botó del menú
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.arrowBackBtn -> {
-                //Anirá a la pantalla anterior
-                this.onBackPressed()
-                true
-            }
-            R.id.homeBtn -> {
-                //Anirá a la pantalla principal
-                val intent = Intent(this, MainActivity::class.java).apply {
-                }
-                startActivity(intent)
-                true
-            }
-            R.id.profileBttn -> {
-                //Anirá a la pantalla d'edició de perfil
-                val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
-                }
-                startActivity(intent)
-                true
-            }
-                //Tancará sessió
-            R.id.logOutBttn -> {
-                FirebaseAuth.getInstance().signOut()
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
         }
     }
 }
