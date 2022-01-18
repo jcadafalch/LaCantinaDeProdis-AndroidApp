@@ -17,6 +17,7 @@ import cat.copernic.prodis.lacantinadeprodis.adapters.PantallaSeleccioTipusProdu
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioTipusProducteBinding
 import cat.copernic.prodis.lacantinadeprodis.model.dataclass
 import cat.copernic.prodis.lacantinadeprodis.ui.activities.ComandesActivity
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
@@ -128,7 +129,6 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                             ) {
                                 val username = document.get("username")
                                     .toString() + " " + document.get("usersurname").toString()
-                                println("docId: " + docId.toString())
                                 if (docId != "") {
                                     db.collection("comandes").document(docId).update(
                                         hashMapOf(
@@ -144,7 +144,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                                     Toast.makeText(context, R.string.comanda_feta, Toast.LENGTH_SHORT).show()
                                     break
                                 } else {
-                                    showAlert(getString(R.string.comanda_buida))
+                                    utils().showAlert(getString(R.string.error), getString(R.string.comanda_buida), context)
                                 }
                             }
                         }
@@ -237,15 +237,4 @@ class PantallaSeleccioTipusProdcute : Fragment() {
 
         }
     }
-
-    //Aquesta funció crea un alert amb el missatge que es pasa per parametres
-    private fun showAlert(message: String) {
-        val builder = androidx.appcompat.app.AlertDialog.Builder(this.requireContext())
-        builder.setTitle(getString(R.string.error))
-        builder.setMessage(message)
-        builder.setPositiveButton(getString(R.string.acceptar), null)
-        val dialog: androidx.appcompat.app.AlertDialog = builder.create()
-        dialog.show()
-    }
-
 }

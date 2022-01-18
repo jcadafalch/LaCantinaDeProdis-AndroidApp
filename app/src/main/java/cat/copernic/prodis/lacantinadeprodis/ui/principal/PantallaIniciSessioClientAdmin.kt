@@ -60,23 +60,56 @@ class PantallaIniciSessioClientAdmin : Fragment() {
                             if (it.isSuccessful) {
                                 startActivity(usertype)
                             } else {
-                                utils().showAlert(getString(R.string.error), getString(R.string.error_en_inici_de_sessio), this.context)
+                                utils().showAlert(
+                                    getString(R.string.error),
+                                    getString(R.string.error_en_inici_de_sessio),
+                                    this.context
+                                )
                             }
                         }
                             .addOnFailureListener {
-                                utils().showAlert(getString(R.string.error), getString(R.string.l_usuari_no_esta_registrat), this.context)
+                                utils().showAlert(
+                                    getString(R.string.error),
+                                    getString(R.string.l_usuari_no_esta_registrat),
+                                    this.context
+                                )
                             }
                     } else {
-                        utils().showAlert(
-                            getString(R.string.error),
-                            getString(R.string.aquest_usuari_no_es_de_tipus, usertype),
-                            this.context
-                        )
+                        if (usertype.equals("clientR")) {
+                            utils().showAlert(
+                                getString(R.string.error),
+                                getString(R.string.aquest_usuari_no_es_de_tipus) + getString(R.string.clientLowerCase),
+                                this.context
+                            )
+                        } else if (usertype.equals("cambrer")) {
+                            utils().showAlert(
+                                getString(R.string.error),
+                                getString(R.string.aquest_usuari_no_es_de_tipus) + getString(R.string.cambrerLowerCase),
+                                this.context
+                            )
+                        } else if (usertype.equals("cuiner")) {
+                            utils().showAlert(
+                                getString(R.string.error),
+                                getString(R.string.aquest_usuari_no_es_de_tipus) + getString(R.string.cuinerLowerCase),
+                                this.context
+                            )
+                        } else if (usertype.equals("caixer")) {
+                            utils().showAlert(
+                                getString(R.string.error),
+                                getString(R.string.aquest_usuari_no_es_de_tipus) + getString(R.string.caixerLowerCase),
+                                this.context
+                            )
+                        }
+
                     }
                 }
 
             } else {
-                Toast.makeText(this.context, getString(R.string.falta_omplir_els_camps), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this.context,
+                    getString(R.string.falta_omplir_els_camps),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -88,7 +121,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
                 )
             )
         }
-         // botó que navega fins la pantalla de registre
+        // botó que navega fins la pantalla de registre
         binding.txtPiniciarSessioClientRegistre.setOnClickListener {
             view?.findNavController()?.navigate(
                 PantallaIniciSessioClientAdminDirections.actionPantallaIniciSessioClientAdminToPantallaRegistre(

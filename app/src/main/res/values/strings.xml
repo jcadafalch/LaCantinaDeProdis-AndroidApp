@@ -139,7 +139,7 @@
     <string name="error_en_canviar_la_contrasenya">Error en canviar la contrasenya</string>
     <string name="l_usuari_no_esta_registrat">L\'usuari no està registrat</string>
     <string name="error_en_inici_de_sessio">Error en inici de sessió</string>
-    <string name="aquest_usuari_no_es_de_tipus">Aquest usuari no es de tipus %1$s</string>
+    <string name="aquest_usuari_no_es_de_tipus">"Aquest usuari no es deno es  tipus "</string>
     <string name="falta_omplir_els_camps">Falta omplir els camps</string>
     <string name="el_camp_dni_esta_buit">El camp DNI està buit</string>
     <string name="les_contrasenyes_no_coincideixen">Les contrasenyes no coincideixen.</string>
@@ -181,4 +181,8 @@
     <string name="descripcio_notificacio">Notificació per indicar que s\'han fet els canvis del perfil de l\'usuari</string>
     <string name="una_imatge_del_producte_a_afegir">Una imatge del producte a afegir</string>
     <string name="comanda_buida">La comanda no pot estar buida.</string>
+    <string name="clientLowerCase">caixer.</string>
+    <string name="cambrerLowerCase">cambrer.</string>
+    <string name="caixerLowerCase">caixer.</string>
+    <string name="cuinerLowerCase">cuiner.</string>
 </resources>

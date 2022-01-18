@@ -115,7 +115,7 @@
     <string name="error_en_canviar_la_contrasenya">" Error changing password"</string>
     <string name="l_usuari_no_esta_registrat">User is not registered</string>
     <string name="error_en_inici_de_sessio">Login Error</string>
-    <string name="aquest_usuari_no_es_de_tipus">This user is not of type 1%$s</string>
+    <string name="aquest_usuari_no_es_de_tipus">"This user is not of type "</string>
     <string name="falta_omplir_els_camps">Falta omplir els camps</string>
     <string name="el_camp_dni_esta_buit">DNI field is empty</string>
     <string name="les_contrasenyes_no_coincideixen">" Passwords do not match."</string>
@@ -153,4 +153,8 @@
     <string name="descripcio_notificacio">Notification to indicate user profile changes made</string>
     <string name="una_imatge_del_producte_a_afegir">Added product image</string>
     <string name="comanda_buida">Order can\'t be empty</string>
+    <string name="clientLowerCase">client.</string>
+    <string name="cambrerLowerCase">waiter.</string>
+    <string name="caixerLowerCase">cashier.</string>
+    <string name="cuinerLowerCase">chef.</string>
 </resources>

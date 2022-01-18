@@ -115,7 +115,7 @@
     <string name="error_en_canviar_la_contrasenya">Error al cambiar la contraseña</string>
     <string name="l_usuari_no_esta_registrat">El usuario no está registrado</string>
     <string name="error_en_inici_de_sessio">Error en inicio de sesión</string>
-    <string name="aquest_usuari_no_es_de_tipus">" Este usuario no se de tipo %1$s"</string>
+    <string name="aquest_usuari_no_es_de_tipus">" Este usuario no se de tipo "</string>
     <string name="falta_omplir_els_camps">Falta llenar los campos</string>
     <string name="el_camp_dni_esta_buit">El campo DNI está vacío</string>
     <string name="les_contrasenyes_no_coincideixen">" Las contraseñas no coinciden."</string>
@@ -153,4 +153,8 @@
     <string name="descripcio_notificacio">Notificación para indicar que se han hecho los cambios del perfil del usuario</string>
     <string name="una_imatge_del_producte_a_afegir">Una imagen del producto a añadir</string>
     <string name="comanda_buida">El pedido no puede estar vacío</string>
+    <string name="clientLowerCase">cliente.</string>
+    <string name="cambrerLowerCase">camarero.</string>
+    <string name="caixerLowerCase">cajero.</string>
+    <string name="cuinerLowerCase">cocinero.</string>
 </resources>
