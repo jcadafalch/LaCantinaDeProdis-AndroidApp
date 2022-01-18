@@ -91,7 +91,7 @@
     <string name="cognoms">Surnames</string>
     <string name="acceptar">Accept</string>
     <string name="minimitzar">minimize</string>
-    <string name="comanda_feta">" order made"</string>
+    <string name="comanda_feta">" Order made"</string>
     <string name="selecciona_una_comanda_per_veure_el_resum">Select an order to view the summary</string>
     <string name="resum_comanda">Summary order</string>
     <string name="marcar_com_pagat">Mark as paid</string>

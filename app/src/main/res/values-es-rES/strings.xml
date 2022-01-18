@@ -91,7 +91,7 @@
     <string name="cognoms">Apellidos</string>
     <string name="acceptar">Aceptar</string>
     <string name="minimitzar">minimizar</string>
-    <string name="comanda_feta">" pedido hecho"</string>
+    <string name="comanda_feta">" Pedido hecho"</string>
     <string name="selecciona_una_comanda_per_veure_el_resum">Selecciona un pedido para ver el resumen</string>
     <string name="resum_comanda">Resumen comanda</string>
     <string name="marcar_com_pagat">Marcar como pagado</string>

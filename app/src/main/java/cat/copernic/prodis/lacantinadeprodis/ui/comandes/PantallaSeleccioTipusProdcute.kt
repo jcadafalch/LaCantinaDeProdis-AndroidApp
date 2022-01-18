@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
@@ -55,10 +56,8 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                             if (document.get("comandaComencada")
                                     .toString() == "true" && document.get("user").toString() == dni
                             ) {
-
                                 exists = true
                                 docId = document.id
-
                             }
                         }
 
@@ -102,8 +101,6 @@ class PantallaSeleccioTipusProdcute : Fragment() {
 
         //Modificació de la base de dades per indicar que la comanda ja està llesta, perque es mostri a cuina i caixa
         binding.btnConfirmar.setOnClickListener {
-
-
             db.collection("users").document(dni).get().addOnSuccessListener { document ->
                 if (document.get("usertype").toString() == "cambrer") {
                     db.collection("users").get().addOnSuccessListener { result ->
@@ -131,6 +128,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                             ) {
                                 val username = document.get("username")
                                     .toString() + " " + document.get("usersurname").toString()
+                                println("docId: " + docId.toString())
                                 if (docId != "") {
                                     db.collection("comandes").document(docId).update(
                                         hashMapOf(
@@ -143,6 +141,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                                     deleteComanda()
                                     FirebaseAuth.getInstance().signOut()
                                     activity?.finish()
+                                    Toast.makeText(context, R.string.comanda_feta, Toast.LENGTH_SHORT).show()
                                     break
                                 } else {
                                     showAlert(getString(R.string.comanda_buida))
