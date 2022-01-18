@@ -8,7 +8,7 @@
     <string name="iniciarSessio">" Iniciar Sesión"</string>
     <string name="txtPIniciarSessio_benvinguda">" Hola! Me alegro de verte de nuevo."</string>
     <string name="contrasenya">Contrasenña</string>
-    <string name="oblidatContrasenya">"Has olvidado la contraseña? "</string>
+    <string name="oblidatContrasenya">Has olvidado la contraseña?</string>
     <string name="registrat">Regístrate</string>
     <string name="txtBenvolgutAdministrador">Bienvenido Administrador</string>
     <string name="txtAfegirNouUsuari">" Añadir nuevo usuario"</string>
