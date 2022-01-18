@@ -23,10 +23,8 @@
 
         <ImageButton
             android:id="@+id/btnConfirmar"
-            android:layout_width="136dp"
+            android:layout_width="0dp"
             android:layout_height="107dp"
-            android:layout_marginStart="137dp"
-            android:layout_marginEnd="138dp"
             android:background="@color/colorFons"
             android:contentDescription="@string/descripcio_img_tick"
             app:layout_constraintBottom_toBottomOf="parent"
