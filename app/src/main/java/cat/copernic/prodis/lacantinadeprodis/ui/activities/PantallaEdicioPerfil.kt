@@ -458,9 +458,6 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
             idioma("en", "")
             val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
             }
-            Thread.sleep(1_000)
-
-
             finish()
             startActivity(intent)
         }
