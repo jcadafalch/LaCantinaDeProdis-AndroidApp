@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaRegistreBinding
 import cat.copernic.prodis.lacantinadeprodis.utils.utils
+import cat.copernic.prodis.lacantinadeprodis.viewmodel.PantallaRegistreVM
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,6 +22,7 @@ import java.util.regex.Pattern
 
 class PantallaRegistre : Fragment() {
     private val db = FirebaseFirestore.getInstance()
+    lateinit var vm: PantallaRegistreVM
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,10 +39,60 @@ class PantallaRegistre : Fragment() {
         bundle.putString("message", "Integración de Firebase completa")
         analytics?.logEvent("InitScreen", bundle)
 
+
+        vm = ViewModelProvider(this).get(PantallaRegistreVM::class.java)
+        vm.txtPRegistre.observe(viewLifecycleOwner,{
+            bdng.txtPRegistre.text = it.toString()
+        })
+        vm.textPRegistre.observe(viewLifecycleOwner,{
+            bdng.textPRegistre.text = it.toString()
+        })
+        vm.dtTxtPRegistrePersonSurname.observe(viewLifecycleOwner,{
+            bdng.dtTxtPRegistrePersonSurname.hint = it.toString()
+        })
+        vm.dtTxtPRegistrePersonName.observe(viewLifecycleOwner,{
+            bdng.dtTxtPRegistrePersonName.hint = it.toString()
+        })
+        vm.textPRegistreSurname.observe(viewLifecycleOwner,{
+            bdng.textPRegistreSurname.text = it.toString()
+        })
+        vm.txtPRegistreDni.observe(viewLifecycleOwner,{
+            bdng.txtPRegistreDni.text = it.toString()
+        })
+        vm.dtTxtPRegistreDni.observe(viewLifecycleOwner,{
+            bdng.dtTxtPRegistreDni.hint = it.toString()
+        })
+        vm.txtPRegistreEmail.observe(viewLifecycleOwner,{
+            bdng.txtPRegistreEmail.text = it.toString()
+        })
+        vm.dtTxtPRegistreEmail.observe(viewLifecycleOwner,{
+            bdng.dtTxtPRegistreEmail.hint = it.toString()
+        })
+        vm.txtPRegistreContrasenya.observe(viewLifecycleOwner,{
+            bdng.txtPRegistreContrasenya.text = it.toString()
+        })
+        vm.dtTxtPRegistrePassword.observe(viewLifecycleOwner,{
+            bdng.dtTxtPRegistrePassword.hint = it.toString()
+        })
+        vm.dtTxtPRegistreRepeteixPassword.observe(viewLifecycleOwner,{
+            bdng.dtTxtPRegistreRepeteixPassword.hint = it.toString()
+        })
+        vm.checkBox.observe(viewLifecycleOwner,{
+            bdng.checkBox.text = it.toString()
+        })
+        vm.btnPregistre.observe(viewLifecycleOwner,{
+            bdng.btnPregistre.text = it.toString()
+        })
+        vm.textPregistre_tensUnCompte.observe(viewLifecycleOwner,{
+            bdng.textPregistreTensUnCompte.text = it.toString()
+        })
+        vm.textPregistre_iniciaSessio.observe(viewLifecycleOwner,{
+            bdng.textPRegistreSurname.text = it.toString()
+        })
+
         //botó que crida a la funncio datavalids per comprovar el format de les dades i en cas de ser correcte crida a la funcioo make register per fer el registre
         bdng.btnPregistre.setOnClickListener { view: View ->
-            println(bdng.dtTxtPRegistrePassword.text.toString())
-            println(bdng.dtTxtPRegistreRepeteixPassword.text.toString())
+
             if (datavalids(
                     bdng.dtTxtPRegistrePersonName.text.toString(),
                     bdng.dtTxtPRegistrePersonSurname.text.toString(),
@@ -88,7 +140,7 @@ class PantallaRegistre : Fragment() {
         usertype: String
     ) {
         val passwd = password + "prodis"
-        println(passwd)
+
         //Registem l'usuari al Firebase Authentication
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passwd)
             .addOnCompleteListener {
@@ -205,7 +257,7 @@ class PantallaRegistre : Fragment() {
     private fun checkDni(dni: String): Boolean {
         val dniNum = dni.substring(0, dni.length - 1)
         if (dni.isDigitsOnly()) {
-            println("DIGIT ONLY")
+
             return false
         }
 
