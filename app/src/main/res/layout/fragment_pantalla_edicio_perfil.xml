@@ -179,7 +179,8 @@
                         android:textSize="20sp"
                         app:layout_constraintStart_toEndOf="@+id/radioPetit"
                         app:layout_constraintTop_toBottomOf="@+id/txtTamanyLletra"
-                        tools:ignore="DuplicateSpeakableTextCheck" />
+                        tools:ignore="DuplicateSpeakableTextCheck"
+                        android:checked="true"/>
 
                     <RadioButton
                         android:id="@+id/radioCat"

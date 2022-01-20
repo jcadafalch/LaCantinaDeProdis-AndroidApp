@@ -10,7 +10,9 @@ import kotlinx.coroutines.*
 
 
 class PantallaEdicioPerfilViewModel() : ViewModel() {
-    lateinit var dni: String
+    private val _dni = MutableLiveData<String>()
+    val dni: LiveData<String>
+        get() = _dni
 
     private val _nom = MutableLiveData<String>()
     val nom: LiveData<String>
@@ -36,8 +38,8 @@ class PantallaEdicioPerfilViewModel() : ViewModel() {
             db.collection("users").get().addOnSuccessListener { result ->
                 for (document in result) {
                     if (currentUser?.email.toString() == document.get("email").toString()) {
-                        dni = document.id
-                        db.collection("users").document(dni).get()
+                        _dni.value = document.id
+                        db.collection("users").document(dni.value.toString()).get()
                             .addOnSuccessListener { document ->
                                 if (document != null) {
                                     _nom.value = document.get("username").toString()
