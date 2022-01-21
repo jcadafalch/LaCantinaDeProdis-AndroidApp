@@ -57,6 +57,7 @@ class ComandesActivity: AppCompatActivity() {
             R.id.profileBttn -> {
                 //Anirá a la pantalla d'edició de perfil
                 val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
+                    putExtra("dni", dni)
                 }
                 startActivity(intent)
                 true

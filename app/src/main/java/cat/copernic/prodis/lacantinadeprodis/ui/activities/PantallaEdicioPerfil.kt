@@ -7,6 +7,7 @@ import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.VectorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -26,6 +27,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.view.drawToBitmap
 import androidx.core.view.isGone
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -48,13 +51,10 @@ import androidx.navigation.fragment.findNavController
 import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import java.util.*
 
-
-
-
 class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
     //Definim les variables globals
-    private lateinit var dni: String
+    private var dni = ""
 
     private val db = FirebaseFirestore.getInstance()
 
@@ -78,7 +78,7 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
     private lateinit var viewModel: PantallaEdicioPerfilViewModel
 
-    private lateinit var idiomaR: String
+    private var idiomaR = ""
 
     //Comennça el onCreate
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,11 +92,15 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         viewModel = ViewModelProvider(this)[PantallaEdicioPerfilViewModel::class.java]
 
         //Declarem els intents per agafar les dades pasades per parametres
-        var bundle = intent.extras
-        dni = bundle?.getString("dni").toString()
+
+        viewModel.dni.observe(this, Observer {
+            dni = it
+            agafarImatgeUsuari(dni)
+
+        })
+
 
         //Cridem a la funció per agafar l'imatge del usuari
-        agafarImatgeUsuari()
 
         //Fem que al prémer el botó de per cambiar la foto cridi a la funció per triar si volem agafar la foto desde la càmera o desde la galeria
         binding.btnCambiarFoto.setOnClickListener() { view: View ->
@@ -119,9 +123,6 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
         //Funció per saber quin idioma ha sigut seleccionat
         seleccionaIdioma()
-
-
-        supportActionBar?.title = ""
     }
 
     //Aquesta funció fará que es comprovi si hi han dades en els camps indicats
@@ -241,6 +242,8 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
         // Creem una referència amb el path i el nom de la imatge per pujar la imatge
         val pathReference = storageRef.child("users/" + dni + ".jpg")
+
+
         val bitmap =
             (binding.userIcon.drawable as BitmapDrawable).bitmap // agafem la imatge del imageView
         val baos = ByteArrayOutputStream() // declarem i inicialitzem un outputstream
@@ -254,7 +257,11 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
         val uploadTask = pathReference.putBytes(data)
         uploadTask.addOnFailureListener {
-            Snackbar.make(view, getString(R.string.error_al_pujar_la_foto), Snackbar.LENGTH_LONG)
+            Snackbar.make(
+                view,
+                getString(R.string.error_al_pujar_la_foto),
+                Snackbar.LENGTH_LONG
+            )
                 .show()
             it.printStackTrace()
 
@@ -265,13 +272,12 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
     }
 
     //Aquesta funció agafará l'imatge del usuari desde la base de dades
-    private fun agafarImatgeUsuari() {
+    private fun agafarImatgeUsuari(dni: String) {
         //Declarem la referencia del fire strorage
         storageRef = FirebaseStorage.getInstance().getReference()
 
         //Creem una referencia a l'imatge del usuari
         var imgRef = Firebase.storage.reference.child("users/" + dni + ".jpg")
-
 
         //Agafem l'imatge i la posem en l'imatge del usuari
         imgRef.downloadUrl.addOnSuccessListener { Uri ->
@@ -287,7 +293,13 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         //Escoltem al botó de guardar
         binding.btnGuardar.setOnClickListener() { view: View ->
             //Cridem a la funció per pujar la foto del usuari
-            pujarImatge(view)
+            if (binding.userIcon.drawable.constantState != ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_baseline_account_circle_24
+                )?.constantState
+            ) {
+                pujarImatge(view)
+            }
             //Comprovem si les dades del nom i del cognom son correctes
             if (datavalids(
                     binding.editTxtNom.text.toString(),
@@ -322,7 +334,10 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
             ) as NotificationManager
 
             //Indiquem que notificationManager enviï una notificació amb un text que agafara del fitxer de strings i en aquest context
-            notificationManager.sendNotification(this.getString(R.string.enhorabona_canvis), this)
+            notificationManager.sendNotification(
+                this.getString(R.string.enhorabona_canvis),
+                this
+            )
 
             //Cridem a la funció posaIdioma
             posaIdioma()
@@ -431,14 +446,14 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
             }
             finish()
             startActivity(intent)
-        //Si el valor de idiomaR es "es" el valors que es pasaran per canviar d'idomoa serán "es" i "ES"
+            //Si el valor de idiomaR es "es" el valors que es pasaran per canviar d'idomoa serán "es" i "ES"
         } else if (idiomaR == "esp") {
             idioma("es", "ES")
             val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
             }
             finish()
             startActivity(intent)
-        //Si el valor de idiomaR es "eng" el valors que es pasaran per canviar d'idomoa serán "eng" i ""
+            //Si el valor de idiomaR es "eng" el valors que es pasaran per canviar d'idomoa serán "eng" i ""
         } else if (idiomaR == "eng") {
             idioma("en", "")
             val intent = Intent(this, PantallaEdicioPerfil::class.java).apply {
