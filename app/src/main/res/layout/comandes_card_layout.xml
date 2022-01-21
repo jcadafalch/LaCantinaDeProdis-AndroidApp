@@ -77,6 +77,7 @@
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:contentDescription="@string/comanda_feta"
+                android:background="@color/colorFons"
                 card_view:srcCompat="@drawable/check_foreground"
                 tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
         </LinearLayout>
