@@ -23,7 +23,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_account_circle_24" />
+                app:srcCompat="@drawable/ic_baseline_account_circle_24"
+                style="@style/AppTheme.ImgUsuari"/>
 
             <Button
                 android:id="@+id/btnCambiarFoto"
@@ -42,15 +43,14 @@
 
             <TextView
                 android:id="@+id/txtDescripcio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/perfil_info"
                 android:textAllCaps="false"
                 android:textColor="#616161"
                 android:textSize="@dimen/txtGranTablet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnCambiarFoto" />
+                app:layout_constraintTop_toBottomOf="@+id/btnCambiarFoto"
+                style="@style/AppTheme.TextView"/>
 
             <View
                 android:id="@+id/view"
@@ -66,15 +66,14 @@
 
             <TextView
                 android:id="@+id/txtNom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/nom"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/txtMigTablet"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view" />
+                app:layout_constraintTop_toBottomOf="@+id/view"
+                style="@style/AppTheme.TextView"/>
 
             <EditText
                 android:id="@+id/editTxtNom"
@@ -105,15 +104,14 @@
 
             <TextView
                 android:id="@+id/txtCognom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:text="@string/cognom"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/txtMigTablet"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view2" />
+                app:layout_constraintTop_toBottomOf="@+id/view2"
+                style="@style/AppTheme.TextView"/>
 
             <EditText
                 android:id="@+id/editTxtCognom"
@@ -144,15 +142,14 @@
 
             <TextView
                 android:id="@+id/txtSeleccionaIdioma"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/idioma_de_l_app"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/txtMigTablet"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view3" />
+                app:layout_constraintTop_toBottomOf="@+id/view3"
+                style="@style/AppTheme.TextView"/>
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"

@@ -88,24 +88,22 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
             this,
             R.layout.fragment_pantalla_edicio_perfil
         )
-        //Declrem el view model
-        viewModel = ViewModelProvider(this)[PantallaEdicioPerfilViewModel::class.java]
-
-        //Declarem els intents per agafar les dades pasades per parametres
-
-        viewModel.dni.observe(this, Observer {
-            dni = it
-            agafarImatgeUsuari(dni)
-
-        })
-
-
-        //Cridem a la funció per agafar l'imatge del usuari
 
         //Fem que al prémer el botó de per cambiar la foto cridi a la funció per triar si volem agafar la foto desde la càmera o desde la galeria
         binding.btnCambiarFoto.setOnClickListener() { view: View ->
             triaCamGaleria()
         }
+
+        //Declrem el view model
+        viewModel = ViewModelProvider(this)[PantallaEdicioPerfilViewModel::class.java]
+
+        viewModel.dni.observe(this, Observer {
+            dni = it
+            //Cridem a la funció per agafar l'imatge del usuari
+            agafarImatgeUsuari(dni)
+
+        })
+
 
         //Fem que desde el view model s'obvervi els canvis del camp de text del nom i del cognom
         viewModel.nom.observe(this, Observer {
