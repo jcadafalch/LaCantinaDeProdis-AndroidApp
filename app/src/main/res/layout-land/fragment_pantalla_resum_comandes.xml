@@ -88,6 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_weight="1"
+                    android:background="@color/colorFons"
                     android:contentDescription="@string/torna_enrere"
                     app:srcCompat="@drawable/arrow_back_foreground"
                     tools:ignore="ImageContrastCheck" />
@@ -98,6 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_weight="1"
+                    android:background="@color/colorFons"
                     android:contentDescription="@string/marcar_com_pagat"
                     app:srcCompat="@drawable/euro_foreground"
                     tools:ignore="SpeakableTextPresentCheck" />
