@@ -25,7 +25,7 @@ class PantallaCuiner : Fragment() {
     private lateinit var comandesList: ArrayList<dtclss_cuiner>
     private val db = FirebaseFirestore.getInstance()
 
-    @SuppressLint("SwitchIntDef", "UseRequireInsteadOfGet")
+    @SuppressLint("SwitchIntDef", "UseRequireInsteadOfGet", "NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +39,10 @@ class PantallaCuiner : Fragment() {
 
         //En funció de la orientació del dispositiu canviem la orientació del recycerView
         val gridLayout = GridLayoutManager(this.context, 2)
+        comandesList = arrayListOf()
+        cuinerAdapter = cuiner_adapter(comandesList)
+        cuinerAdapter.notifyDataSetChanged()
+        eventChangeListener()
         when (resources.configuration.orientation) {
             Configuration.ORIENTATION_PORTRAIT -> {
                 recyclerView.layoutManager = gridLayout
@@ -55,12 +59,12 @@ class PantallaCuiner : Fragment() {
 
         recyclerView.setHasFixedSize(true)
 
-        comandesList = arrayListOf()
-
-        cuinerAdapter = cuiner_adapter(comandesList)
 
 
-        eventChangeListener()
+
+
+
+
 
         return binding.root
     }
@@ -72,7 +76,8 @@ class PantallaCuiner : Fragment() {
         db.collection("comandes").get().addOnSuccessListener { result ->
             comandesList.clear()
             for (document in result) {
-                if(document.get("visible").toString() == "true"){
+                if(document.get("visible").toString() == "true" && document.get("preparat")
+                        .toString() == "false"){
                     val nom = document.get("user").toString()
                     val comandaId = document.get("comandaId").toString()
                     val documentId = document.id

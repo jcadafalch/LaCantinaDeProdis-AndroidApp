@@ -93,6 +93,7 @@ class PantallaCuinerComandes: Fragment() {
                 }
             }
             view?.findNavController()?.navigate(PantallaCuinerComandesDirections.actionPantallaCuinerComandaToPantallaCuiner())
+
         }
 
         binding.btnTornaEnrerre.setOnClickListener {
@@ -108,25 +109,46 @@ class PantallaCuinerComandes: Fragment() {
     private fun eventChangeListener(){
         producteList.clear()
         db.collection("comandes").document(documentId).collection("productes").get().addOnSuccessListener { result ->
-            for (document in result){
-                db.collection("productes").get().addOnSuccessListener { rs ->
-                    for (dc in rs){
-                        if (document.get("idProducte").toString() == dc.get("idProducte").toString()){
-                            if (dc.get("tipus").toString() == "Bocates"){
-                                val idProducte = dc.get("nom").toString()
-                                val emportar = document.get("emportar") as Boolean
-                                val tomaquet = document.get("tomaquet") as Boolean
-                                producteList.add(dtclss_cuiner_producte(idProducte, emportar, null, tomaquet, "Bocates"))
-                            }else{
-                                val idProducte = dc.get("nom").toString()
-                                val emportar = document.get("emportar") as Boolean
-                                val scure = document.get("scure").toString()
-                                producteList.add(dtclss_cuiner_producte(idProducte, emportar, scure, null, "Beguda"))
+            for (document in result) {
+
+                    db.collection("productes").get().addOnSuccessListener { rs ->
+                        for (dc in rs) {
+                            if (document.get("idProducte").toString() == dc.get("idProducte")
+                                    .toString()
+                            ) {
+                                if (dc.get("tipus").toString() == "Bocates") {
+                                    val idProducte = dc.get("nom").toString()
+                                    val emportar = document.get("emportar") as Boolean
+                                    val tomaquet = document.get("tomaquet") as Boolean
+                                    producteList.add(
+                                        dtclss_cuiner_producte(
+                                            idProducte,
+                                            emportar,
+                                            null,
+                                            tomaquet,
+                                            "Bocates"
+                                        )
+                                    )
+                                } else {
+                                    val idProducte = dc.get("nom").toString()
+                                    val emportar = document.get("emportar") as Boolean
+                                    val scure = document.get("scure").toString()
+                                    producteList.add(
+                                        dtclss_cuiner_producte(
+                                            idProducte,
+                                            emportar,
+                                            scure,
+                                            null,
+                                            "Beguda"
+                                        )
+                                    )
+                                }
                             }
+
                         }
+                        recyclerView.adapter = cuinerProducteAdapter
                     }
-                    recyclerView.adapter = cuinerProducteAdapter
-                }
+
 
             }
         }
