@@ -38,6 +38,7 @@ class PantallaSeleccioResumComanda : Fragment() {
         recycerView = binding.rcyclrVwSeleccioComandes!!
 
         val gridLayout = GridLayoutManager(this.context, 2)
+        comandaList = arrayListOf()
         seleccioResumComandaAdpt = seleccio_resum_comanda_adapter(comandaList)
         seleccioResumComandaAdpt.notifyDataSetChanged()
         eventChangeListener()
@@ -56,7 +57,7 @@ class PantallaSeleccioResumComanda : Fragment() {
             }
         }
 
-        comandaList = arrayListOf()
+
         recycerView.setHasFixedSize(true)
 
 

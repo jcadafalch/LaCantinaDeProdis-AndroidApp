@@ -39,6 +39,7 @@ class PantallaCuiner : Fragment() {
 
         //En funció de la orientació del dispositiu canviem la orientació del recycerView
         val gridLayout = GridLayoutManager(this.context, 2)
+        comandesList = arrayListOf()
         cuinerAdapter = cuiner_adapter(comandesList)
         cuinerAdapter.notifyDataSetChanged()
         eventChangeListener()
@@ -58,7 +59,7 @@ class PantallaCuiner : Fragment() {
 
         recyclerView.setHasFixedSize(true)
 
-        comandesList = arrayListOf()
+
 
 
 
