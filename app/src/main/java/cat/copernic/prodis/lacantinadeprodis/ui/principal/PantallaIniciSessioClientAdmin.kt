@@ -39,7 +39,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         val usertype = args.usertype
 
         //Si l'usuari és administrador ocultem el botó de registre per evitar que qualsevol es pugui registrar com administrador
-        if (usertype == "admin") {
+        if (usertype != "clientR") {
             binding.txtPiniciarSessioClientRegistre.visibility = View.INVISIBLE
         }
 
