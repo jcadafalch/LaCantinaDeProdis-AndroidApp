@@ -26,7 +26,7 @@ class PantallaSeleccioResumComanda : Fragment() {
     private lateinit var seleccioResumComandaAdpt: seleccio_resum_comanda_adapter
     private val db = FirebaseFirestore.getInstance()
 
-    @SuppressLint("SwitchIntDef")
+    @SuppressLint("SwitchIntDef", "NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,8 +36,11 @@ class PantallaSeleccioResumComanda : Fragment() {
         )
 
         recycerView = binding.rcyclrVwSeleccioComandes!!
+
         val gridLayout = GridLayoutManager(this.context, 2)
-        //recycerView.layoutManager = gridLayout
+        seleccioResumComandaAdpt = seleccio_resum_comanda_adapter(comandaList)
+        seleccioResumComandaAdpt.notifyDataSetChanged()
+        eventChangeListener()
 
         when (resources.configuration.orientation) {
             Configuration.ORIENTATION_PORTRAIT -> {
@@ -56,11 +59,11 @@ class PantallaSeleccioResumComanda : Fragment() {
         comandaList = arrayListOf()
         recycerView.setHasFixedSize(true)
 
-        seleccioResumComandaAdpt = seleccio_resum_comanda_adapter(comandaList)
+
 
         recycerView.adapter = seleccioResumComandaAdpt
 
-        eventChangeListener()
+
 
 
         return binding.root
