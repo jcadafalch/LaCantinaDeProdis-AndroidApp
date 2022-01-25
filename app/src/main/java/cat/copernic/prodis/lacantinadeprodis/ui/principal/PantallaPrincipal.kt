@@ -9,14 +9,22 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaPrincipalBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class PantallaPrincipal : Fragment() {
+
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val binding: FragmentPantallaPrincipalBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pantalla_principal, container, false
         )
+
+        if (auth.currentUser != null){
+            auth.signOut()
+        }
+
         //Escoltem el botó per anar a la pantalla del client
         binding.btnPprincipalClient.setOnClickListener { view : View ->
             //Anem a la pantalla d'inici de sessió pasant el valor "clientR"
