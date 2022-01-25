@@ -38,7 +38,7 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
     //Declarem les variables golbals
     lateinit var tipusProducte: String
     lateinit var producte: String
-    private var preu: Double = 0.0
+    private var preu: Double = 1.0
     lateinit var prevProducte: String
 
     private lateinit var viewModel: PantallaAdministradorAdministrarProducteViewModel
@@ -276,7 +276,8 @@ class PantallaAdministradorAdministrarProducte : Fragment(), AdapterView.OnItemS
                     "nom" to binding.editTextTextProductName.text.toString(),
                     "nomid" to formatCorrecte(),
                     "preu" to preu,
-                    "img" to "productes/" + binding.editTextTextProductName.text.toString() + ".jpg"
+                    "img" to "productes/" + binding.editTextTextProductName.text.toString() + ".jpg",
+                    "visible" to binding.checkBoxProducteVisible.isChecked
                 ) as Map<String, Any>
             )
 

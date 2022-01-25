@@ -224,7 +224,7 @@
                     android:id="@+id/radio1Euro2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="@string/_1"
                     android:textColor="#00796B" />
 
