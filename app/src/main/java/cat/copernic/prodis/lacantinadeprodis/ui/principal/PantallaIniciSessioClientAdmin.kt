@@ -38,7 +38,7 @@ class PantallaIniciSessioClientAdmin : Fragment() {
         val args = PantallaIniciSessioClientAdminArgs.fromBundle(requireArguments())
         val usertype = args.usertype
 
-        //Si l'usuari és administrador ocultem el botó de registre per evitar que qualsevol es pugui registrar com administrador
+        //Si l'usuari no es de tipus client, ocultem el botó de registre
         if (usertype != "clientR") {
             binding.txtPiniciarSessioClientRegistre.visibility = View.INVISIBLE
         }
