@@ -141,7 +141,8 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                                     deleteComanda()
                                     FirebaseAuth.getInstance().signOut()
                                     activity?.finish()
-                                    Toast.makeText(context, R.string.comanda_feta, Toast.LENGTH_SHORT).show()
+                                    val string = "${getString(R.string.comanda_feta)} - ${getString(R.string.preu_total)} $preu €"
+                                    Toast.makeText(context, string, Toast.LENGTH_SHORT).show()
                                     break
                                 } else {
                                     utils().showAlert(getString(R.string.error), getString(R.string.comanda_buida), context)

@@ -185,4 +185,5 @@
     <string name="cambrerLowerCase">cambrer.</string>
     <string name="caixerLowerCase">caixer.</string>
     <string name="cuinerLowerCase">cuiner.</string>
+    <string name="preu_total">preu total = </string>
 </resources>

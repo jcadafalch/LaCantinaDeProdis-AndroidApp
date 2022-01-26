@@ -88,7 +88,8 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
                                     "user" to binding.dtTxtNomUsuariExtern.text.toString(),
                                 ) as Map<String, Any>
                             )
-                            Toast.makeText(this.context, getString(R.string.comanda_enviada,binding.dtTxtNomUsuariExtern.text), Toast.LENGTH_SHORT).show()
+                            val string = "${getString(R.string.comanda_enviada,binding.dtTxtNomUsuariExtern.text)} ${getString(R.string.preu_total)} $preu €"
+                            Toast.makeText(this.context, string, Toast.LENGTH_SHORT).show()
                             findNavController().navigate(PantallaSeleccioNomCientComandaDirections.actionPantallaSeleccioNomClientComandaToPantallaSeleccioTipusProducte())
                             break
                         }

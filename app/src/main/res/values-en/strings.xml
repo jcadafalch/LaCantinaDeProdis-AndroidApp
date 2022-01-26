@@ -157,4 +157,5 @@
     <string name="cambrerLowerCase">waiter.</string>
     <string name="caixerLowerCase">cashier.</string>
     <string name="cuinerLowerCase">chef.</string>
+    <string name="preu_total">total price =</string>
 </resources>
