@@ -124,6 +124,7 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                     }
                 } else {
                     db.collection("comandes").get().addOnSuccessListener { result ->
+                        //sumaPreu(docId)
                         for (dc in result) {
                             if (dc.get("comandaComencada").toString() == "true" && dc.get("user")
                                     .toString() == dni
@@ -137,19 +138,49 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                                             "visible" to true,
                                             "user" to username,
                                         ) as Map<String, Any>
-                                    )
-                                    sumaPreu(docId)
-                                    val builder = AlertDialog.Builder(context)
-                                    val msg ="${getString(R.string.comanda_feta)} - ${getString(R.string.preu_total)} $preu €"
-                                    builder.setMessage(msg)
-                                    builder.setPositiveButton(R.string.acceptar) {_,_ ->
-                                        deleteComanda()
-                                        FirebaseAuth.getInstance().signOut()
-                                        activity?.finish()
+
+                                    ).addOnSuccessListener {
+                                        db.collection("comandes").document(docId).collection("productes").get()
+                                            .addOnSuccessListener { result ->
+                                                for (document in result) {
+                                                    var idProducte = document.get("idProducte")
+                                                    db.collection("productes").get().addOnSuccessListener {
+                                                        for (document in it) {
+                                                            if (document.get("idProducte").toString() == idProducte) {
+                                                                preu += document.get("preu") as Double
+                                                            }
+
+                                                            db.collection("comandes").document(docId).update(
+                                                                hashMapOf(
+                                                                    "preuTotal" to preu
+                                                                ) as Map<String, Any>
+                                                            )
+                                                        }
+                                                        db.collection("comandes").document(docId).get().addOnSuccessListener { doc ->
+                                                            val builder = AlertDialog.Builder(context)
+                                                            val msg ="${getString(R.string.comanda_feta)} - ${getString(R.string.preu_total)} ${doc.get("preuTotal").toString().toDouble()} €"
+                                                            builder.setMessage(msg)
+                                                            builder.setPositiveButton(R.string.acceptar) {_,_ ->
+                                                                deleteComanda()
+                                                                FirebaseAuth.getInstance().signOut()
+                                                                activity?.finish()
+                                                            }
+                                                            val dialog: AlertDialog = builder.create()
+                                                            dialog.show()
+
+                                                        }
+
+                                                    }
+                                                }
+
+
+                                            }
+
                                     }
-                                    val dialog: AlertDialog = builder.create()
-                                    dialog.show()
+
+
                                     break
+
                                 } else {
                                     utils().showAlert(getString(R.string.error), getString(R.string.comanda_buida), context)
                                 }
@@ -196,31 +227,6 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                 }
             }
         }
-    }
-
-    private fun sumaPreu(a: String) {
-        db.collection("comandes").document(a).collection("productes").get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    var idProducte = document.get("idProducte")
-                    db.collection("productes").get().addOnSuccessListener {
-                        for (document in it) {
-                            if (document.get("idProducte").toString() == idProducte) {
-                                preu += document.get("preu") as Double
-                            }
-
-                            db.collection("comandes").document(a).update(
-                                hashMapOf(
-                                    "preuTotal" to preu
-                                ) as Map<String, Any>
-                            )
-                        }
-                    }
-                }
-
-
-            }
-
     }
 
     //Funció per borrar la una comanda
