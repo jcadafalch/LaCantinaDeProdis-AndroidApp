@@ -1,5 +1,6 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.comandes
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioNomClientComandaBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedListener {
@@ -130,8 +132,14 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
                                     "user" to spinner.selectedItem.toString(),
                                 ) as Map<String, Any>
                             )
-                            Toast.makeText(this.context, getString(R.string.comanda_enviada, spinner.selectedItem), Toast.LENGTH_SHORT).show()
-                            findNavController().navigate(PantallaSeleccioNomCientComandaDirections.actionPantallaSeleccioNomClientComandaToPantallaSeleccioTipusProducte())
+                            val builder = AlertDialog.Builder(context)
+                            val msg ="${getString(R.string.comanda_enviada, spinner.selectedItem)} ${getString(R.string.preu_total)} $preu €"
+                            builder.setMessage(msg)
+                            builder.setPositiveButton(R.string.acceptar) {_,_ ->
+                                findNavController().navigate(PantallaSeleccioNomCientComandaDirections.actionPantallaSeleccioNomClientComandaToPantallaSeleccioTipusProducte())
+                            }
+                            val dialog: AlertDialog = builder.create()
+                            dialog.show()
                             break
                         }
                     }

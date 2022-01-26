@@ -1,5 +1,6 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.comandes
 
+import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -138,11 +139,16 @@ class PantallaSeleccioTipusProdcute : Fragment() {
                                         ) as Map<String, Any>
                                     )
                                     sumaPreu(docId)
-                                    deleteComanda()
-                                    FirebaseAuth.getInstance().signOut()
-                                    activity?.finish()
-                                    val string = "${getString(R.string.comanda_feta)} - ${getString(R.string.preu_total)} $preu €"
-                                    Toast.makeText(context, string, Toast.LENGTH_SHORT).show()
+                                    val builder = AlertDialog.Builder(context)
+                                    val msg ="${getString(R.string.comanda_feta)} - ${getString(R.string.preu_total)} $preu €"
+                                    builder.setMessage(msg)
+                                    builder.setPositiveButton(R.string.acceptar) {_,_ ->
+                                        deleteComanda()
+                                        FirebaseAuth.getInstance().signOut()
+                                        activity?.finish()
+                                    }
+                                    val dialog: AlertDialog = builder.create()
+                                    dialog.show()
                                     break
                                 } else {
                                     utils().showAlert(getString(R.string.error), getString(R.string.comanda_buida), context)
