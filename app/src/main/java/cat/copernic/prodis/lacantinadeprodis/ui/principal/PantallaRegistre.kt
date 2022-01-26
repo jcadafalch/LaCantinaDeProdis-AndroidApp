@@ -87,7 +87,7 @@ class PantallaRegistre : Fragment() {
             bdng.textPregistreTensUnCompte.text = it.toString()
         })
         vm.textPregistre_iniciaSessio.observe(viewLifecycleOwner,{
-            bdng.textPRegistreSurname.text = it.toString()
+            bdng.textPregistreIniciaSessio.text = it.toString()
         })
 
         //botó que crida a la funncio datavalids per comprovar el format de les dades i en cas de ser correcte crida a la funcioo make register per fer el registre
