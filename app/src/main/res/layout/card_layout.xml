@@ -47,7 +47,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="21dp"
                 android:gravity="center"
-                android:text="Bocata de pernil dolç amb formatge"
+                android:text="@string/bocata_de_pernil_salat"
                 android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
