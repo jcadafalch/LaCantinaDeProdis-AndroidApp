@@ -80,20 +80,27 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
                                             }
                                         }
                                     }
+                                    db.collection("comandes").document(docId).update(
+                                        hashMapOf(
+                                            "comandaComencada" to false,
+                                            "visible" to true,
+                                            "user" to binding.dtTxtNomUsuariExtern.text.toString(),
+                                        ) as Map<String, Any>
+                                    )
 
+                                    db.collection("comandes").document(docId).get().addOnSuccessListener { doc ->
+                                        val builder = AlertDialog.Builder(context)
+                                        val msg ="${getString(R.string.comanda_enviada,binding.dtTxtNomUsuariExtern.text)} ${getString(R.string.preu_total)} ${doc.get("preuTotal").toString().toDouble()} €"
+                                        builder.setMessage(msg)
+                                        builder.setPositiveButton(R.string.acceptar) {_,_ ->
+                                            findNavController().navigate(PantallaSeleccioNomCientComandaDirections.actionPantallaSeleccioNomClientComandaToPantallaSeleccioTipusProducte())
+                                        }
+                                        val dialog: AlertDialog = builder.create()
+                                        dialog.show()
+
+                                    }
 
                                 }
-                            db.collection("comandes").document(docId).update(
-                                hashMapOf(
-                                    "comandaComencada" to false,
-                                    "visible" to true,
-                                    "user" to binding.dtTxtNomUsuariExtern.text.toString(),
-                                ) as Map<String, Any>
-                            )
-                            val string = "${getString(R.string.comanda_enviada,binding.dtTxtNomUsuariExtern.text)} ${getString(R.string.preu_total)} $preu €"
-                            Toast.makeText(this.context, string, Toast.LENGTH_SHORT).show()
-                            findNavController().navigate(PantallaSeleccioNomCientComandaDirections.actionPantallaSeleccioNomClientComandaToPantallaSeleccioTipusProducte())
-                            break
                         }
                     }
                 }
@@ -122,24 +129,29 @@ class PantallaSeleccioNomCientComanda : Fragment(), AdapterView.OnItemSelectedLi
                                             }
                                         }
                                     }
+                                    db.collection("comandes").document(docId).update(
+                                        hashMapOf(
+                                            "comandaComencada" to false,
+                                            "visible" to true,
+                                            "user" to spinner.selectedItem.toString(),
+                                        ) as Map<String, Any>
+                                    )
 
+                                    db.collection("comandes").document(docId).get().addOnSuccessListener { doc ->
+                                        val builder = AlertDialog.Builder(context)
+                                        val msg ="${getString(R.string.comanda_enviada, spinner.selectedItem)} ${getString(R.string.preu_total)} ${doc.get("preuTotal").toString().toDouble()} €"
+                                        builder.setMessage(msg)
+                                        builder.setPositiveButton(R.string.acceptar) {_,_ ->
+                                            findNavController().navigate(PantallaSeleccioNomCientComandaDirections.actionPantallaSeleccioNomClientComandaToPantallaSeleccioTipusProducte())
+                                        }
+                                        val dialog: AlertDialog = builder.create()
+                                        dialog.show()
+
+                                    }
 
                                 }
-                            db.collection("comandes").document(docId).update(
-                                hashMapOf(
-                                    "comandaComencada" to false,
-                                    "visible" to true,
-                                    "user" to spinner.selectedItem.toString(),
-                                ) as Map<String, Any>
-                            )
-                            val builder = AlertDialog.Builder(context)
-                            val msg ="${getString(R.string.comanda_enviada, spinner.selectedItem)} ${getString(R.string.preu_total)} $preu €"
-                            builder.setMessage(msg)
-                            builder.setPositiveButton(R.string.acceptar) {_,_ ->
-                                findNavController().navigate(PantallaSeleccioNomCientComandaDirections.actionPantallaSeleccioNomClientComandaToPantallaSeleccioTipusProducte())
-                            }
-                            val dialog: AlertDialog = builder.create()
-                            dialog.show()
+
+
                             break
                         }
                     }
