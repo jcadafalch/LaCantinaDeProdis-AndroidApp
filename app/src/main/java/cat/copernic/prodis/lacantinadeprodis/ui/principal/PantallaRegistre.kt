@@ -1,5 +1,6 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.principal
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaRegistreBinding
+import cat.copernic.prodis.lacantinadeprodis.ui.activities.ComandesActivity
 import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import cat.copernic.prodis.lacantinadeprodis.viewmodel.PantallaRegistreVM
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -32,12 +34,6 @@ class PantallaRegistre : Fragment() {
         )
         val args = PantallaRegistreArgs.fromBundle(requireArguments())
         val usertype = args.usertype
-
-        //Analytics Event
-        val analytics = this.context?.let { FirebaseAnalytics.getInstance(it) }
-        val bundle = Bundle()
-        bundle.putString("message", "Integración de Firebase completa")
-        analytics?.logEvent("InitScreen", bundle)
 
 
         vm = ViewModelProvider(this).get(PantallaRegistreVM::class.java)
@@ -111,11 +107,11 @@ class PantallaRegistre : Fragment() {
                     bdng.dtTxtPRegistrePassword.text.toString(),
                     usertype
                 )
-                view.findNavController().navigate(
-                    PantallaRegistreDirections.actionPantallaRegistreToPantallaIniciSessioClientAdmin(
-                        usertype
-                    )
-                )
+                val intent = Intent(this.context, ComandesActivity::class.java).apply {
+                    putExtra("usertype", usertype)
+                    putExtra("dni", bdng.dtTxtPRegistreDni.text.toString())
+                }
+                startActivity(intent)
             }
 
         }

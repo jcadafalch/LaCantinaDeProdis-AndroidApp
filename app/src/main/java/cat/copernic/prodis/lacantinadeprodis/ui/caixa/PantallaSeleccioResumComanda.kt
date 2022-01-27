@@ -1,6 +1,8 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.caixa
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,11 +14,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.adapters.seleccio_resum_comanda_adapter
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaResumComandesBinding
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaSeleccioResumComandaBinding
 import cat.copernic.prodis.lacantinadeprodis.model.dtclss_seleccio_resum_comanda
+import cat.copernic.prodis.lacantinadeprodis.ui.activities.CaixerActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
 class PantallaSeleccioResumComanda : Fragment() {
@@ -64,7 +68,11 @@ class PantallaSeleccioResumComanda : Fragment() {
 
         recycerView.adapter = seleccioResumComandaAdpt
 
-
+        binding.imageButton.setOnClickListener {
+            val intent = Intent(this.context, MainActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
 
 
         return binding.root

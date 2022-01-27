@@ -7,7 +7,7 @@
     <string name="cuiner">CUINER/A</string>
     <string name="administrador">Administrador/a</string>
     <string name="iniciarSessio">Iniciar Sessió</string>
-    <string name="txtPIniciarSessio_benvinguda">Hola! M\'alegro de veure\'t de nou.</string>
+    <string name="txtPIniciarSessio_benvinguda">Hola! M\'alegro de veure\'t.</string>
     <string name="editDni" translatable="false">11111111L</string>
     <string name="dni" translatable="false">DNI</string>
     <string name="contrasenya">Contrasenya</string>

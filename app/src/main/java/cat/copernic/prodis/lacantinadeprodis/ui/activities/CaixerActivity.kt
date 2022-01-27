@@ -46,6 +46,7 @@ class CaixerActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java).apply {
                 }
                 startActivity(intent)
+                finish()
                 true
             }
             R.id.profileBttn -> {

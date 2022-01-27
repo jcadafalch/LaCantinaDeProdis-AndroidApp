@@ -7,7 +7,7 @@
     <string name="cuiner">CHEF</string>
     <string name="administrador">Administrator</string>
     <string name="iniciarSessio">Log in</string>
-    <string name="txtPIniciarSessio_benvinguda">Hello! Glad to see you again.</string>
+    <string name="txtPIniciarSessio_benvinguda">Hello! Glad to see you.</string>
     <string name="contrasenya">Password</string>
     <string name="oblidatContrasenya">Forgot password?</string>
     <string name="registrat">Register</string>
