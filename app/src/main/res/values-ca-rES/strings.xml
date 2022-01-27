@@ -7,7 +7,7 @@
     <string name="cuiner">CUINER/A</string>
     <string name="administrador">Administrador/a</string>
     <string name="iniciarSessio">Iniciar Sessió</string>
-    <string name="txtPIniciarSessio_benvinguda">Hola! M\'alegro de veure\'t de nou.</string>
+    <string name="txtPIniciarSessio_benvinguda">Hola! M\'alegro de veure\'t.</string>
     <string name="contrasenya">Contrasenya</string>
     <string name="oblidatContrasenya">Has oblidat la contrasenya?</string>
     <string name="registrat">Registra\'t</string>
@@ -157,4 +157,5 @@
     <string name="cambrerLowerCase">cambrer.</string>
     <string name="caixerLowerCase">caixer.</string>
     <string name="cuinerLowerCase">cuiner.</string>
+    <string name="preu_total">preu total = </string>
 </resources>

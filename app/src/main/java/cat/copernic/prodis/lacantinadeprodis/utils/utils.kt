@@ -2,6 +2,7 @@ package cat.copernic.prodis.lacantinadeprodis.utils
 
 import android.app.AlertDialog
 import android.content.Context
+import android.view.View
 import cat.copernic.prodis.lacantinadeprodis.R
 
 class utils (){

@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityComandesBinding
+import cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaIniciSessioClientAdmin
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -52,6 +53,7 @@ class ComandesActivity: AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java).apply {
                 }
                 startActivity(intent)
+                finish()
                 true
             }
             R.id.profileBttn -> {
@@ -65,6 +67,9 @@ class ComandesActivity: AppCompatActivity() {
             //Tancará sessió
             R.id.logOutBttn -> {
                 FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, MainActivity::class.java).apply {
+                }
+                startActivity(intent)
                 finish()
                 true
             }

@@ -89,6 +89,8 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
             R.layout.fragment_pantalla_edicio_perfil
         )
 
+        title = "Edició Perfil"
+
         //Fem que al prémer el botó de per cambiar la foto cridi a la funció per triar si volem agafar la foto desde la càmera o desde la galeria
         binding.btnCambiarFoto.setOnClickListener() { view: View ->
             triaCamGaleria()

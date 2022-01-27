@@ -6,7 +6,7 @@
     <string name="caixer">CAJERO/A</string>
     <string name="administrador">" Administrador/a"</string>
     <string name="iniciarSessio">" Iniciar Sesión"</string>
-    <string name="txtPIniciarSessio_benvinguda">" Hola! Me alegro de verte de nuevo."</string>
+    <string name="txtPIniciarSessio_benvinguda">" Hola! Me alegro de verte."</string>
     <string name="contrasenya">Contraseña</string>
     <string name="oblidatContrasenya">"Has olvidado la contraseña? "</string>
     <string name="registrat">Regístrate</string>
@@ -157,4 +157,5 @@
     <string name="cambrerLowerCase">camarero.</string>
     <string name="caixerLowerCase">cajero.</string>
     <string name="cuinerLowerCase">cocinero.</string>
+    <string name="preu_total">precio total = </string>
 </resources>

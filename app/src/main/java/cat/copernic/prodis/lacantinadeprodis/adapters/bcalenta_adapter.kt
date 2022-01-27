@@ -25,6 +25,9 @@ class bcalenta_adapter(private val productesList: ArrayList<dtclss_productes>): 
         val storageRef = FirebaseStorage.getInstance().reference
         val imageRef = storageRef.child("productes/${nomProducte.nom}.png")
         viewHolder.itemNom.text = nomProducte.nom
+        viewHolder.itemPreu.visibility = View.VISIBLE
+        val preu = "${nomProducte.preu} €"
+        viewHolder.itemPreu.text = preu
         imageRef.downloadUrl.addOnSuccessListener { uri ->
             Glide.with(viewHolder.itemView)
                 .load(uri)
@@ -48,5 +51,6 @@ class bcalenta_adapter(private val productesList: ArrayList<dtclss_productes>): 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.item_image)
         val itemNom: TextView = itemView.findViewById(R.id.item_nomTipusProducte)
+        val itemPreu: TextView = itemView.findViewById(R.id.item_preuProducte)
     }
 }
