@@ -121,6 +121,8 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
 
         //Funció per saber quin idioma ha sigut seleccionat
         seleccionaIdioma()
+
+        supportActionBar?.title = ""
     }
 
     //Aquesta funció fará que es comprovi si hi han dades en els camps indicats
