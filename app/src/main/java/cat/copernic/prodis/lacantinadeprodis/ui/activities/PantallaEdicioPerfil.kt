@@ -3,6 +3,7 @@ package cat.copernic.prodis.lacantinadeprodis.ui.activities
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -11,6 +12,7 @@ import android.graphics.drawable.VectorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.telephony.TelephonyManager
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -49,6 +51,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import cat.copernic.prodis.lacantinadeprodis.MainActivity
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import java.util.*
 
 class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
@@ -90,6 +93,10 @@ class PantallaEdicioPerfil : AppCompatActivity(), LifecycleOwner {
         )
 
         title = "Edició Perfil"
+
+        if(utils().isTabablet(applicationContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager)){
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        }
 
         //Fem que al prémer el botó de per cambiar la foto cridi a la funció per triar si volem agafar la foto desde la càmera o desde la galeria
         binding.btnCambiarFoto.setOnClickListener() { view: View ->

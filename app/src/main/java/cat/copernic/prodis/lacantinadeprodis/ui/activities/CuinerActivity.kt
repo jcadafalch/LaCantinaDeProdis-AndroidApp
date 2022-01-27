@@ -1,7 +1,10 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.telephony.TelephonyManager
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -10,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityCuinerBinding
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 
 class CuinerActivity: AppCompatActivity() {
@@ -18,6 +22,10 @@ class CuinerActivity: AppCompatActivity() {
         val binding = DataBindingUtil.setContentView<ActivityCuinerBinding>(this, R.layout.activity_cuiner)
 
         title = ""
+
+        if(utils().isTabablet(applicationContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager)){
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        }
 
     }
     //Funció per inflar el menú

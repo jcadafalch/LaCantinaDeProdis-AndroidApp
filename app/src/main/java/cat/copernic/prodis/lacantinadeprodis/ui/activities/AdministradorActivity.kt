@@ -1,13 +1,17 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.telephony.TelephonyManager
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityAdministradorBinding
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 
 class AdministradorActivity : AppCompatActivity() {
@@ -29,6 +33,10 @@ class AdministradorActivity : AppCompatActivity() {
 
         var bundle = intent.extras
         dni = bundle?.getString("dni").toString()
+
+        if(utils().isTabablet(applicationContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager)){
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        }
 
     }
 

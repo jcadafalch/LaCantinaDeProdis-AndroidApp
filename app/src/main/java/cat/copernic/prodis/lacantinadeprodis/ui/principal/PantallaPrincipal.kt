@@ -1,6 +1,8 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.principal
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.telephony.TelephonyManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.FragmentPantallaPrincipalBinding
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 
 class PantallaPrincipal : Fragment() {
@@ -21,9 +24,9 @@ class PantallaPrincipal : Fragment() {
             inflater, R.layout.fragment_pantalla_principal, container, false
         )
 
-        if (auth.currentUser != null){
+        /*if (auth.currentUser != null){
             auth.signOut()
-        }
+        }*/
 
         //Escoltem el botó per anar a la pantalla del client
         binding.btnPprincipalClient.setOnClickListener { view : View ->

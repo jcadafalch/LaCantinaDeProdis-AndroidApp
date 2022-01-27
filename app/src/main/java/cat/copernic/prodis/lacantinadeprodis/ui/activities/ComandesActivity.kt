@@ -1,8 +1,11 @@
 package cat.copernic.prodis.lacantinadeprodis.ui.activities
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.telephony.TelephonyManager
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -12,6 +15,7 @@ import cat.copernic.prodis.lacantinadeprodis.MainActivity
 import cat.copernic.prodis.lacantinadeprodis.R
 import cat.copernic.prodis.lacantinadeprodis.databinding.ActivityComandesBinding
 import cat.copernic.prodis.lacantinadeprodis.ui.principal.PantallaIniciSessioClientAdmin
+import cat.copernic.prodis.lacantinadeprodis.utils.utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -30,6 +34,10 @@ class ComandesActivity: AppCompatActivity() {
         dni = bundle?.getString("dni").toString()
 
         title = ""
+
+        if(utils().isTabablet(applicationContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager)){
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        }
 
     }
 

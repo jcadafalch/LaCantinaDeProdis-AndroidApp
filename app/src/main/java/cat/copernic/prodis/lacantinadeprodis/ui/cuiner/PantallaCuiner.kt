@@ -49,7 +49,7 @@ class PantallaCuiner : Fragment() {
             }
             Configuration.ORIENTATION_LANDSCAPE -> {
                 recyclerView.layoutManager =
-                    GridLayoutManager(this.context, 2, RecyclerView.HORIZONTAL, false)
+                    GridLayoutManager(this.context, 3, RecyclerView.VERTICAL, false)
             }
             Configuration.ORIENTATION_UNDEFINED -> {
                 recyclerView.layoutManager =
